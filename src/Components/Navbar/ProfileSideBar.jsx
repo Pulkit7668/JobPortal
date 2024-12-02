@@ -4,7 +4,7 @@ import { FaTimes, FaCogs, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa"
 import { TfiMenuAlt } from "react-icons/tfi";
 
 function ProfileSidebar({ isOpen, onClose }) {
-  const profileCompletion = 40; // Profile completion percentage (can be dynamic)
+  const profileCompletion = 40;
 
   // Define the color based on profile completion percentage
   const progressColor = profileCompletion >= 75 ? "#34D399" : "#F04141";
@@ -40,7 +40,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               {/* Profile Picture */}
               <div className="w-16 h-16 rounded-full border-2 border-gray-50 flex items-center justify-center bg-gray-100">
                 <img
-                  src="https://static.naukimg.com/s/0/0/i/ni-gnb-revamped/userdp_v1.svg" // Replace with actual profile image URL
+                  src="https://static.naukimg.com/s/0/0/i/ni-gnb-revamped/userdp_v1.svg"
                   alt="Profile"
                   className="rounded-full w-[80%] h-[80%] object-cover"
                 />
@@ -66,11 +66,11 @@ function ProfileSidebar({ isOpen, onClose }) {
                   fill="none"
                   stroke={progressColor} // Conditional color based on progress
                   strokeWidth="4"
-                  strokeDasharray="97.39" // Circumference of the circle (2πr)
+                  strokeDasharray="97.39"
                   strokeDashoffset={`${
                     97.39 - (profileCompletion / 100) * 97.39
-                  }`} // Adjust based on percentage
-                  transform="rotate(-90 18 18)" // Rotate to start from the top
+                  }`}
+                  transform="rotate(-90 18 18)"
                 />
               </svg>
 

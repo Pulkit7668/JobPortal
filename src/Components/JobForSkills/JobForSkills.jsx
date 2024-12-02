@@ -34,7 +34,7 @@ const jobs = [
 ];
 
 // Mock user profile skills
-const userSkills = ["React", "JavaScript", "HTML", "CSS"]; // Example skills from user's profile
+const userSkills = ["React", "JavaScript", "HTML", "CSS"];
 
 // Function to check if the job matches the user's skills
 const filterJobsBySkills = (jobs, userSkills) => {
