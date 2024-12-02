@@ -32,7 +32,7 @@ function UpdateProfile() {
       <div className="md:w-1/2 p-6">
         {/* Back Button with Icon */}
         <button
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate(-1)}
           className="text-blue-600 border-2 border-blue-600 rounded-full p-1 mb-6 hover:bg-blue-600 hover:text-white transition duration-300"
         >
           <FiArrowLeft size={24} />
