@@ -24,6 +24,11 @@ function App() {
         <JobCards key={job.id} job={job} />
       ))}
       </div>
+      <div className="flex items-center justify-center">
+        <button className="mt-5 px-4 py-2 font-semibold text-black border border-black rounded-xl hover:bg-white transition duration-300">
+          View More
+        </button>
+      </div>
     </div>
     <Footer />
     </div>
