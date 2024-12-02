@@ -105,7 +105,7 @@ function ProfileSidebar({ isOpen, onClose }) {
             Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span>
           </h4>
           <div className="flex justify-between mt-3 bg-blue-50 p-3 rounded-lg">
-            <div className="text-center">
+            <div className="text-center ml-8">
               <h5 className="text-lg font-bold text-gray-700">0</h5>
               <p className="text-xs text-gray-500">Search Appearances</p>
               <Link
@@ -116,7 +116,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               </Link>
             </div>
             <div className="border-l-2"></div>
-            <div className="text-center">
+            <div className="text-center mr-8">
               <h5 className="text-lg font-bold text-gray-700">0</h5>
               <p className="text-xs text-gray-500">Recruiter Actions</p>
               <Link

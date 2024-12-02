@@ -1,17 +1,10 @@
 import React from 'react';
-import Navbar from './Components/Navbar/Navbar';
-import SearchInputBox from './Components/SearchInputBox/SearchInputBox';
-import JobsForSkills from './Components/JobForSkills/JobForSkills';
-import TopRecruiters from './Components/TopRecruiters/TopRecruiters';
+import HomePage from './Pages/HomePage';
+
 
 function App() {
   return (
-    <div className="bg-white min-h-screen">
-      <Navbar />
-      <SearchInputBox />
-      <JobsForSkills />
-      <TopRecruiters />
-      </div>
+    <HomePage />
   );
 }
 
