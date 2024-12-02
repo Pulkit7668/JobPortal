@@ -90,7 +90,7 @@ function ProfileSidebar({ isOpen, onClose }) {
                 Engineering & Tech
               </p>
               <Link
-                to="/update-profile"
+                to=""
                 className="text-sm text-blue-600 hover:underline"
               >
                 View & Update Profile
