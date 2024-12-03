@@ -50,19 +50,18 @@ function JobsForSkills() {
     <div className="p-6 mx-20 mt-10">
       <h2 className="text-2xl font-bold mb-4">Jobs Matching Your Skills</h2>
       {filteredJobs.length > 0 ? (
-        <div className="flex flex-wrap space-x-8">
+        <div className="flex flex-wrap gap-6">
           {filteredJobs.map((job) => (
             <div
               key={job.id}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-4 bg-white border border-gray-200 rounded-xl hover:shadow-2xl transition-shadow duration-300"
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-4 bg-white border border-gray-200 rounded-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between"
             >
               <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
               <p className="text-gray-600">{job.company}</p>
               <p className="text-sm text-gray-500">{job.location}</p>
               <div className="mt-2">
                 <span className="text-xs text-gray-600">
-                  Skills:{" "}
-                  <strong>{job.skills.join(", ")}</strong>
+                  Skills: <strong>{job.skills.join(", ")}</strong>
                 </span>
               </div>
               <div className="mt-3">

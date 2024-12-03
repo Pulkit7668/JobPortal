@@ -72,15 +72,15 @@ function TopRecruiters() {
           {sortedRecruiters.map((recruiter) => (
             <div
               key={recruiter.id}
-              className="p-4 border border-gray-200 bg-white rounded-lg hover:shadow-2xl transition-shadow duration-300 flex items-center"
+              className="p-4 border border-gray-200 bg-white rounded-lg hover:shadow-2xl transition-shadow duration-300 flex"
             >
               <img
                 src={recruiter.image}
                 alt={recruiter.name}
-                className="w-20 h-20 mr-4 object-contain"
+                className="w-10 h-10 mr-4 object-contain"
               />
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-sm font-bold mt-2 mb-2 text-gray-800">
                   {recruiter.name}
                 </h3>
                 <p className="text-gray-600">{recruiter.location}</p>
