@@ -46,13 +46,12 @@ function Navbar() {
   return (
     <>
       <header className="relative">
-        <div className="flex justify-evenly items-center px-6 py-4">
+        <div className="flex justify-around items-center px-6 py-4">
           {/* Logo */}
           <div className="text-4xl font-bold text-blue-600">UrLogo</div>
 
           {/* Navigation Links */}
           <nav className="space-x-10 text-gray-700 relative right-32">
-            {/* Jobs Dropdown */}
             <div className="group inline-block relative font-semibold">
               <NavLink
                 to="/prepare"
@@ -68,8 +67,6 @@ function Navbar() {
                 <DropdownCard data={prepareData} />
               </div>
             </div>
-
-            {/* Companies Dropdown */}
             <div className="group inline-block relative font-semibold">
               <NavLink
                 to="/participate"
@@ -85,8 +82,6 @@ function Navbar() {
                 <DropdownCard data={participateData} />
               </div>
             </div>
-
-            {/* Opportunities Dropdown */}
             <div className="group inline-block relative font-semibold">
               <NavLink
                 to="/opportunities"
@@ -106,7 +101,6 @@ function Navbar() {
 
           {/* Right: Notification, and User Icon */}
           <div className="flex items-center space-x-6">
-            {/* Notification Bell with Hover Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setIsNotificationHovered(true)}
@@ -114,7 +108,7 @@ function Navbar() {
             >
               <FaBell className="text-gray-600 text-xl cursor-pointer" size={24} />
               {isNotificationHovered && (
-                <div className="absolute -left-10 mt-2 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
+                <div className="absolute right-0 mt-2 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
                   <div className="p-4">
                     <div className="py-2 border-b">
                       <div className="flex justify-between items-center">
