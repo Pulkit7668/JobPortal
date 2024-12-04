@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaTimes, FaCogs, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
+import { FaTimes, FaRegHeart, FaCogs, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
 
 function ProfileSidebar({ isOpen, onClose }) {
@@ -64,7 +64,7 @@ function ProfileSidebar({ isOpen, onClose }) {
                   cy="18"
                   r="15.5"
                   fill="none"
-                  stroke={progressColor} // Conditional color based on progress
+                  stroke={progressColor}
                   strokeWidth="4"
                   strokeDasharray="97.39"
                   strokeDashoffset={`${
@@ -141,6 +141,12 @@ function ProfileSidebar({ isOpen, onClose }) {
             </Link>
           </div>
           <div className="flex items-center space-x-3">
+            <FaRegHeart size={16} className="text-gray-500" />
+            <Link to="/wishlist" className="block text-gray-700 hover:text-blue-600">
+              Wishlist
+            </Link>
+          </div>
+          <div className="flex items-center space-x-3">
             <FaCogs size={16} className="text-gray-500" />
             <Link to="/settings" className="block text-gray-700 hover:text-blue-600">
               Settings
@@ -167,3 +173,4 @@ function ProfileSidebar({ isOpen, onClose }) {
 }
 
 export default ProfileSidebar;
+

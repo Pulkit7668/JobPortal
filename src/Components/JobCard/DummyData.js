@@ -1,95 +1,104 @@
 const jobData = [
-    {
-      id: 1,
-      title: "Software Engineer",
-      company: "Tech Solutions Inc.",
-      type: "Full-time",
-      experience: "2 years",
-      location: "Bengaluru",
-      skills: ["JavaScript", "React", "Node.js", "MongoDB"]
-    },
-    {
-      id: 2,
-      title: "Frontend Developer",
-      company: "Creative Labs",
-      type: "Part-time",
-      experience: "1 years",
-      location: "Mumbai",
-      skills: ["HTML", "CSS", "JavaScript", "Vue.js"]
-    },
-    {
-      id: 3,
-      title: "Backend Developer",
-      company: "Innovate Tech",
-      type: "Full-time",
-      experience: "3 years",
-      location: "Chennai",
-      skills: ["Node.js", "Express", "SQL", "REST API"]
-    },
-    {
-      id: 4,
-      title: "Data Scientist",
-      company: "DataMind",
-      type: "Full-time",
-      experience: "3 years",
-      location: "Hyderabad",
-      skills: ["Python", "Machine Learning", "Data Analysis", "Pandas"]
-    },
-    {
-      id: 5,
-      title: "Product Manager",
-      company: "Future Tech",
-      type: "Full-time",
-      experience: "5 years",
-      location: "Mumbai",
-      skills: ["Product Roadmap", "Agile", "Cross-functional Teams", "Leadership"]
-    },
-    {
-      id: 6,
-      title: "UX Designer",
-      company: "Design Hub",
-      type: "Freelance",
-      experience: "4 years",
-      location: "Kolkata",
-      skills: ["Figma", "Wireframing", "Prototyping", "User Research"]
-    },
-    {
-      id: 7,
-      title: "SEO Specialist",
-      company: "MarketBuzz",
-      type: "Contract",
-      experience: "2 years",
-      location: "Pune",
-      skills: ["SEO", "Google Analytics", "Content Optimization", "Keyword Research"]
-    },
-    {
-      id: 8,
-      title: "Marketing Specialist",
-      company: "Branding Co.",
-      type: "Full-time",
-      experience: "3 years",
-      location: "Delhi",
-      skills: ["Social Media Marketing", "Email Campaigns", "Google Ads", "Content Strategy"]
-    },
-    {
-      id: 9,
-      title: "HR Manager",
-      company: "PeopleCorp",
-      type: "Full-time",
-      experience: "4 years",
-      location: "Bengaluru",
-      skills: ["Recruitment", "Employee Relations", "Payroll", "HRIS"]
-    },
-    {
-      id: 10,
-      title: "Graphic Designer",
-      company: "Design Studio",
-      type: "Freelance",
-      experience: "1 years",
-      location: "Mumbai",
-      skills: ["Adobe Illustrator", "Photoshop", "Brand Design", "Typography"]
-    },
-  ];
-  
-  export default jobData;
-  
+  {
+    id: 1,
+    title: "Frontend Developer",
+    company: "Tech Corp",
+    location: "Bengaluru, Karnataka",
+    salary: "(₹8 LPA - ₹12 LPA)",
+    type: "Full-time",
+    experience: "0-2 years",
+    logo: "https://plus.unsplash.com/premium_photo-1678565879444-f87c8bd9f241?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  },
+  {
+    id: 2,
+    title: "Backend Developer",
+    company: "CodeBase Ltd.",
+    location: "Hyderabad, Telangana",
+    salary: "(₹10 LPA - ₹15 LPA)",
+    type: "Part-time",
+    experience: "2-5 years",
+    logo: "https://plus.unsplash.com/premium_photo-1678565999588-08fdd0b1410b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  },
+  {
+    id: 3,
+    title: "Data Analyst",
+    company: "DataX Inc.",
+    location: "Mumbai, Maharashtra",
+    salary: "(₹5 LPA - ₹8 LPA)",
+    type: "Full-time",
+    experience: "1-3 years",
+    logo: "https://plus.unsplash.com/premium_photo-1661878265739-da90bc1af051?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  },
+  {
+    id: 4,
+    title: "UX Designer",
+    company: "Creative Studio",
+    location: "Chennai, Tamil Nadu",
+    salary: "(₹6 LPA - ₹10 LPA)",
+    type: "Contract",
+    experience: "2-4 years",
+    logo: "https://media.istockphoto.com/id/1218511457/photo/top-view-asian-ux-developer-and-ui-designer-brainstorming-about-mobile-app-interface.webp?a=1&b=1&s=612x612&w=0&k=20&c=iOAHgk17yMAvF4Bhc3MHkaxCUcBWeY41qT5CvufOEn8=",
+  },
+  {
+    id: 5,
+    title: "Software Engineer",
+    company: "Innovatech Solutions",
+    location: "Pune, Maharashtra",
+    salary: "(₹12 LPA - ₹18 LPA)",
+    type: "Full-time",
+    experience: "3-5 years",
+    logo: "https://plus.unsplash.com/premium_photo-1726754457459-d2dfa2e3a434?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  },
+  {
+    id: 6,
+    title: "Product Manager",
+    company: "Visionary Products",
+    location: "Gurugram, Haryana",
+    salary: "(₹15 LPA - ₹20 LPA)",
+    type: "Full-time",
+    experience: "5+ years",
+    logo: "https://plus.unsplash.com/premium_photo-1725400817468-ddb0135d865d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  },
+  {
+    id: 7,
+    title: "Marketing Specialist",
+    company: "Marketify",
+    location: "Kolkata, West Bengal",
+    salary: "(₹4 LPA - ₹6 LPA)",
+    type: "Part-time",
+    experience: "0-2 years",
+    logo: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  },
+  {
+    id: 8,
+    title: "DevOps Engineer",
+    company: "CloudServ",
+    location: "Noida, Uttar Pradesh",
+    salary: "(₹10 LPA - ₹14 LPA)",
+    type: "Contract",
+    experience: "3-6 years",
+    logo: "https://media.istockphoto.com/id/1351548453/photo/programming-and-designing-software-architecture-with-node-tree-abstract-technology-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=-EGhCcgI0z7VL7aoI1xtoVWO3H3YbtSILqKdNZmIdKQ=",
+  },
+  {
+    id: 9,
+    title: "Graphic Designer",
+    company: "DesignCo",
+    location: "Ahmedabad, Gujarat",
+    salary: "(₹3 LPA - ₹5 LPA)",
+    type: "Full-time",
+    experience: "1-3 years",
+    logo: "https://plus.unsplash.com/premium_photo-1661293878449-979990331350?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+  },
+  {
+    id: 10,
+    title: "AI Researcher",
+    company: "AI Pioneers",
+    location: "Bengaluru, Karnataka",
+    salary: "(₹25 LPA - ₹30 LPA)",
+    type: "Full-time",
+    experience: "5+ years",
+    logo: "https://media.istockphoto.com/id/1387900612/photo/automation-data-analytic-with-robot-and-digital-visualization-for-big-data-scientist.webp?a=1&b=1&s=612x612&w=0&k=20&c=2iILS0WPh_D-MDMJiIw_14bg6IgJarMUYtDH4D0nIho=",
+  },
+];
+
+export default jobData;

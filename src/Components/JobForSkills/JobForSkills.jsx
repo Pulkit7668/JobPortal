@@ -1,42 +1,12 @@
 import React from "react";
 import { FaCircleArrowRight } from "react-icons/fa6";
-
-// Mock job data with Indian companies and locations
-const jobs = [
-  {
-    id: 1,
-    title: "Frontend Developer",
-    company: "Infosys",
-    location: "Bengaluru, Karnataka",
-    skills: ["React", "JavaScript", "HTML", "CSS"],
-  },
-  {
-    id: 2,
-    title: "Backend Developer",
-    company: "Tata Consultancy Services (TCS)",
-    location: "Mumbai, Maharashtra",
-    skills: ["Node.js", "JavaScript", "MongoDB", "Express"],
-  },
-  {
-    id: 3,
-    title: "Full Stack Developer",
-    company: "Wipro",
-    location: "Chennai, Tamil Nadu",
-    skills: ["React", "Node.js", "JavaScript", "MongoDB"],
-  },
-  {
-    id: 4,
-    title: "Web Developer",
-    company: "HCL Technologies",
-    location: "Noida, Uttar Pradesh",
-    skills: ["HTML", "CSS", "JavaScript"],
-  },
-];
+import { Link } from "react-router-dom";
+import { jobs } from "./JobData";
 
 // Mock user profile skills
 const userSkills = ["React", "JavaScript", "HTML", "CSS"];
 
-// Function to check if the job matches the user's skills
+// Function to filter jobs based on user's skills
 const filterJobsBySkills = (jobs, userSkills) => {
   return jobs.filter((job) =>
     job.skills.some((skill) => userSkills.includes(skill))
@@ -64,10 +34,20 @@ function JobsForSkills() {
                   Skills: <strong>{job.skills.join(", ")}</strong>
                 </span>
               </div>
-              <div className="mt-3">
-                <button className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
-                  Apply Now
-                </button>
+              <div className="flex items-center justify-around">
+                <div className="mt-3">
+                  <button className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                    Apply Now
+                  </button>
+                </div>
+                <div className="mt-3">
+                  <Link
+                    to={`jobforskills/job/${job.id}`}
+                    className="px-3 py-2 text-sm font-semibold text-blue-700"
+                  >
+                    More Details
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

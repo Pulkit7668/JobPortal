@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from '../Components/Navbar/Navbar';
-import SearchInputBox from '../Components/SearchInputBox/SearchInputBox';
-import JobsForSkills from '../Components/JobForSkills/JobForSkills';
-import TopRecruiters from '../Components/TopRecruiters/TopRecruiters';
-import ButtonGrid from '../Components/ButtonGrid/ButtonGrid';
-import Footer from '../Components/Footer/Footer';
-import JobCards from '../Components/JobCard/JobCards';
-import jobData from '../Components/JobCard/DummyData';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Navbar from "../Components/Navbar/Navbar";
+import SearchInputBox from "../Components/SearchInputBox/SearchInputBox";
+import JobsForSkills from "../Components/JobForSkills/JobForSkills";
+import TopRecruiters from "../Components/TopRecruiters/TopRecruiters";
+import ButtonGrid from "../Components/ButtonGrid/ButtonGrid";
+import Footer from "../Components/Footer/Footer";
+import JobListing from "../Components/JobCard/JobListing";
+import jobData from "../Components/JobCard/DummyData";
 
 function Homepage() {
   const [visibleJobs, setVisibleJobs] = useState(2);
@@ -45,7 +45,15 @@ function Homepage() {
                 variants={cardAnimation}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
-                <JobCards job={job} />
+                <JobListing
+                  title={job.title}
+                  company={job.company}
+                  location={job.location}
+                  salary={job.salary}
+                  type={job.type}
+                  experience={job.experience}
+                  logo={job.logo}
+                />
               </motion.div>
             ))}
           </AnimatePresence>

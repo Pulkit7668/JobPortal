@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import DropdownCard from "../DropdownCard/DropdownCard";
-import { FaSearch, FaBell, FaUserCircle } from "react-icons/fa";
-import ProfileSidebar from "./ProfileSideBar";
+import { FaBell, FaUserCircle } from "react-icons/fa";
+import ProfileSidebar from "../Profile/ProfileSideBar";
 
 const prepareData = [
   {
