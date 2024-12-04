@@ -1,10 +1,8 @@
-// src/components/ProfileCard.js
 import React from "react";
 
 function ProfileCard() {
-  const profileCompletion = 40; // Profile completion percentage
+  const profileCompletion = 40;
 
-  // Define the color based on profile completion percentage
   const progressColor = profileCompletion >= 75 ? "#34D399" : "#F04141";
 
   return (

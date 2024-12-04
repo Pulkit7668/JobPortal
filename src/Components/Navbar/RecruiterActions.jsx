@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi"; // Importing FiArrowLeft for back icon
+import { FiArrowLeft } from "react-icons/fi";
 import { FaEye, FaListAlt, FaFileDownload } from "react-icons/fa";
 
 const recruiterActions = {

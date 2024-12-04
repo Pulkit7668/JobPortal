@@ -115,13 +115,13 @@ function SearchInputBox() {
     // Handle suggestion click for job
     const handleJobSuggestionClick = (suggestion) => {
       setSearchQuery(suggestion);
-      setFilteredSuggestions([]); // Clear job suggestions after selection
+      setFilteredSuggestions([]);
     };
   
     // Handle suggestion click for location
     const handleLocationSuggestionClick = (suggestion) => {
       setLocationQuery(suggestion);
-      setFilteredLocationSuggestions([]); // Clear location suggestions after selection
+      setFilteredLocationSuggestions([]);
     };
   
     return (
