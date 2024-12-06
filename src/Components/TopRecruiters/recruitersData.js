@@ -274,7 +274,7 @@ export const recruitersData = [
         name: "Wipro",
         vacancies: 180,
         location: "Noida, Uttar Pradesh",
-        image: "https://www.wipro.com/content/dam/wipro/social-icons/wipro_new_logo.svg",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEdq8QnU_xN6fYYdYwvEksSOtTof0asvf4xRWdJYptIN-OSbWnkWRVcF4&s",
         jobs: [
             {
                 jobId: 301,
