@@ -1,10 +1,10 @@
 import React from "react";
-import { FaCircleArrowRight } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jobs } from "./JobData";
+import { FaArrowLeft } from "react-icons/fa";
 
 // Mock user profile skills
-const userSkills = ["React", "JavaScript", "HTML", "CSS"];
+const userSkills = ["React", "JavaScript", "HTML", "CSS", "Node"];
 
 // Function to filter jobs based on user's skills
 const filterJobsBySkills = (jobs, userSkills) => {
@@ -13,19 +13,25 @@ const filterJobsBySkills = (jobs, userSkills) => {
   );
 };
 
-function JobsForSkills() {
+function JobDetailsForSkills() {
   const filteredJobs = filterJobsBySkills(jobs, userSkills);
-  const jobsToShow = filteredJobs.slice(0, 4);
+  const navigate = useNavigate();
 
   return (
     <div className="p-6 mx-20 mt-10">
-      <h2 className="text-2xl font-bold mb-4">Jobs Matching Your Skills</h2>
-      {jobsToShow.length > 0 ? (
+      <button
+        onClick={() => navigate(-1)}
+        className="text-blue-600 hover:text-blue-800 mb-10"
+      >
+        <FaArrowLeft size={40} className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
+      </button>
+      <h2 className="text-2xl font-bold mb-4">More Jobs for Your Skills</h2>
+      {filteredJobs.length > 0 ? (
         <div className="flex flex-wrap gap-6">
-          {jobsToShow.map((job) => (
+          {filteredJobs.map((job) => (
             <div
               key={job.id}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-4 bg-white border border-gray-200 rounded-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between"
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-full p-4 bg-white border border-gray-200 rounded-xl hover:shadow-blue-200 hover:shadow-lg hover:border-blue-700 transition-shadow duration-300 flex flex-col justify-between"
             >
               <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
               <p className="text-gray-600">{job.company}</p>
@@ -35,15 +41,15 @@ function JobsForSkills() {
                   Skills: <strong>{job.skills.join(", ")}</strong>
                 </span>
               </div>
-              <div className="flex items-center justify-around">
+              <div className="flex items-center justify-end">
                 <div className="mt-3">
-                  <button className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                  <button className="px-3 py-2 text-sm font-semibold text-blue-700">
                     Apply Now
                   </button>
                 </div>
                 <div className="mt-3">
                   <Link
-                    to={`jobforskills/job/${job.id}`}
+                    to={`/jobforskills/job/${job.id}`}
                     className="px-3 py-2 text-sm font-semibold text-blue-700"
                   >
                     More Details
@@ -52,17 +58,6 @@ function JobsForSkills() {
               </div>
             </div>
           ))}
-          {filteredJobs.length > 4 && (
-            <div className="flex items-center justify-center mb-5 cursor-pointer">
-              <Link
-                to="/jobforskills"
-                className="mr-2 hover:text-blue-600 transition duration-300"
-              >
-                View more
-              </Link>
-              <FaCircleArrowRight size={24} />
-            </div>
-          )}
         </div>
       ) : (
         <p>No jobs available for your skills at the moment.</p>
@@ -71,4 +66,4 @@ function JobsForSkills() {
   );
 }
 
-export default JobsForSkills;
+export default JobDetailsForSkills;

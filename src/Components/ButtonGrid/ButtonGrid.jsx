@@ -1,13 +1,12 @@
 import React from "react";
 import { FiHome } from "react-icons/fi";
 import { MdOutlineBusiness } from "react-icons/md";
-import { FaGraduationCap, FaRocket } from "react-icons/fa";
+import { FaGraduationCap, FaRocket, FaHandshake } from "react-icons/fa";
 import { RiComputerLine } from "react-icons/ri";
 import { BsBox } from "react-icons/bs";
 import { BiBarChart, BiUserCircle } from "react-icons/bi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { IoAnalyticsOutline } from "react-icons/io5";
-import { HiOutlineCog } from "react-icons/hi";
 
 const ButtonGrid = () => {
   const buttons = [
@@ -21,7 +20,7 @@ const ButtonGrid = () => {
     { label: "Internship", icon: <AiOutlineFileSearch /> },
     { label: "Analytics", icon: <IoAnalyticsOutline /> },
     { label: "HR", icon: <BiUserCircle /> },
-    { label: "Engineering", icon: <HiOutlineCog /> },
+    { label: "Sales", icon: <FaHandshake /> },
   ];
 
   return (

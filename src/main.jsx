@@ -5,6 +5,10 @@ import "./index.css";
 import App from "./App.jsx";
 import RecruiterActions from "./Components/Navbar/RecruiterActions.jsx";
 import JobDetail from "./Components/JobForSkills/JobDetails.jsx";
+import Wishlist from './Components/Profile/Wishlist.jsx';
+import RecruitersJobs from "./Components/TopRecruiters/RecruitersJobs.jsx";
+import RecruiterJobDetails from "./Components/TopRecruiters/RecruiterJobDetails.jsx"
+import JobDetailsForSkills from "./Components/JobForSkills/JobDetailsForSkills.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -12,7 +16,11 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/recruiter-actions" element={<RecruiterActions />} />
+        <Route path="/jobforskills" element={<JobDetailsForSkills />} />
         <Route path="jobforskills/job/:id" element={<JobDetail />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/recruiters/jobs/:recruiterId" element={<RecruitersJobs />} />
+        <Route path="/recruiters/:recruiterId/jobs/:jobId" element={<RecruiterJobDetails />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
