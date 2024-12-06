@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { jobs } from "./JobData";
 import { FaArrowLeft } from "react-icons/fa";
@@ -16,6 +16,10 @@ const filterJobsBySkills = (jobs, userSkills) => {
 function JobDetailsForSkills() {
   const filteredJobs = filterJobsBySkills(jobs, userSkills);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="p-6 mx-20 mt-10">
