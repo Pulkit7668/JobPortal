@@ -98,7 +98,7 @@ function Footer() {
             <p className="text-sm text-gray-600 mb-4">Get real-time job updates on our App</p>
             <div className="flex justify-center space-x-4">
               <a
-                href="https://play.google.com/"
+                href=""
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"
@@ -110,7 +110,7 @@ function Footer() {
                 />
               </a>
               <a
-                href="https://www.apple.com/app-store/"
+                href=""
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"
