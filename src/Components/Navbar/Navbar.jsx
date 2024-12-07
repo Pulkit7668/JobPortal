@@ -23,7 +23,7 @@ const participateData = [
   },
 ];
 
-const oportunitiesData = [
+const opportunitiesData = [
   {
     items: [
       "Recommended jobs",
@@ -94,7 +94,7 @@ function Navbar() {
                 Opportunities
               </NavLink>
               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                <DropdownCard data={oportunitiesData} />
+                <DropdownCard data={opportunitiesData} />
               </div>
             </div>
           </nav>
@@ -156,3 +156,5 @@ function Navbar() {
 }
 
 export default Navbar;
+
+``

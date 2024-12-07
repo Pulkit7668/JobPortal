@@ -126,7 +126,6 @@ function SearchInputBox() {
   
     return (
         <>
-        {/* Hero Section */}
         <main className="text-center mt-32 px-4">
           <h1 className="text-4xl font-bold text-gray-800">Find your dream job now</h1>
           <p className="text-gray-600 mt-2">5 lakh+ jobs for you to explore</p>

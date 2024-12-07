@@ -2,7 +2,37 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
-function Footer() {
+const Footer = () => {
+  const socialLinks = [
+    { label: "Facebook", icon: <FaFacebookF />, url: "/facebook", color: "text-blue-600" },
+    { label: "Instagram", icon: <FaInstagram />, url: "/instagram", color: "text-pink-500" },
+    { label: "Twitter", icon: <FaTwitter />, url: "/twitter", color: "text-blue-400" },
+    { label: "LinkedIn", icon: <FaLinkedinIn />, url: "/linkedin", color: "text-blue-800" },
+  ];
+
+  const links = [
+    {
+      title: "Company",
+      items: [
+        { name: "About us", path: "/about-us" },
+        { name: "Careers", path: "/careers" },
+        { name: "Employer Home", path: "/employer-home" },
+        { name: "Sitemap", path: "/sitemap" },
+        { name: "Credits", path: "/credits" },
+      ],
+    },
+    {
+      title: "Support",
+      items: [
+        { name: "Help Center", path: "/help-center" },
+        { name: "Privacy Policy", path: "/privacy-policy" },
+        { name: "Terms & Conditions", path: "/terms-conditions" },
+        { name: "Fraud Alert", path: "/fraud-alert" },
+        { name: "Trust & Safety", path: "/trust-safety" },
+      ],
+    },
+  ];
+
   return (
     <footer className="text-gray-800 border-t-2 mx-20 py-8">
       <div className="container mx-auto px-4">
@@ -13,83 +43,35 @@ function Footer() {
             <h2 className="text-4xl font-bold mb-10 text-blue-600">UrLogo</h2>
             <h5 className="font-bold mb-2">Connect with us</h5>
             <div className="flex space-x-5">
-              <Link to="/facebook" aria-label="Facebook" className="text-blue-600 hover:text-blue-800">
-                <FaFacebookF className="text-2xl" />
-              </Link>
-              <Link to="/instagram" aria-label="Instagram" className="text-pink-500 hover:text-pink-700">
-                <FaInstagram className="text-2xl" />
-              </Link>
-              <Link to="/twitter" aria-label="Twitter" className="text-blue-400 hover:text-blue-600">
-                <FaTwitter className="text-2xl" />
-              </Link>
-              <Link to="/linkedin" aria-label="LinkedIn" className="text-blue-800 hover:text-blue-900">
-                <FaLinkedinIn className="text-2xl" />
-              </Link>
+              {socialLinks.map((link, idx) => (
+                <Link
+                  key={idx}
+                  to={link.url}
+                  aria-label={link.label}
+                  className={`${link.color} hover:opacity-80`}
+                >
+                  <span className="text-2xl">{link.icon}</span>
+                </Link>
+              ))}
             </div>
           </div>
 
           {/* Links Section */}
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <h5 className="font-bold mb-2">Company</h5>
-              <ul>
-                <li className="mb-1">
-                  <Link to="/about-us" className="hover:text-blue-600">
-                    About us
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/careers" className="hover:text-blue-600">
-                    Careers
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/employer-home" className="hover:text-blue-600">
-                    Employer Home
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/sitemap" className="hover:text-blue-600">
-                    Sitemap
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/credits" className="hover:text-blue-600">
-                    Credits
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-bold mb-2">Support</h5>
-              <ul>
-                <li className="mb-1">
-                  <Link to="/help-center" className="hover:text-blue-600">
-                    Help Center
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/privacy-policy" className="hover:text-blue-600">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/terms-conditions" className="hover:text-blue-600">
-                    Terms & Conditions
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/fraud-alert" className="hover:text-blue-600">
-                    Fraud Alert
-                  </Link>
-                </li>
-                <li className="mb-1">
-                  <Link to="/trust-safety" className="hover:text-blue-600">
-                    Trust & Safety
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {links.map((section, idx) => (
+              <div key={idx}>
+                <h5 className="font-bold mb-2">{section.title}</h5>
+                <ul>
+                  {section.items.map((item, id) => (
+                    <li key={id} className="mb-1">
+                      <Link to={item.path} className="hover:text-blue-600">
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
           {/* Apply on the Go Section */}
@@ -98,7 +80,7 @@ function Footer() {
             <p className="text-sm text-gray-600 mb-4">Get real-time job updates on our App</p>
             <div className="flex justify-center space-x-4">
               <a
-                href=""
+                href="https://play.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"
@@ -110,7 +92,7 @@ function Footer() {
                 />
               </a>
               <a
-                href=""
+                href="https://www.apple.com/in/app-store/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"
@@ -125,11 +107,14 @@ function Footer() {
           </div>
         </div>
         <div className="flex items-center border-t-2 mt-4">
-            <p className="mt-2 text-xs text-gray-500">All trademarks are the property of their respective owners <br /> All rights reserved 2024 Info Edge (India) Ltd.</p>
+          <p className="mt-2 text-xs text-gray-500">
+            All trademarks are the property of their respective owners <br /> All rights reserved
+            2024 Info Edge (India) Ltd.
+          </p>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
