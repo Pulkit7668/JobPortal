@@ -140,7 +140,7 @@ function SearchInputBox() {
               </div>
   
               {/* Input for Skills */}
-              <input
+              <input name='job-search'
                 value={searchQuery}
                 onChange={handleJobInputChange}
                 type="text"
@@ -149,7 +149,7 @@ function SearchInputBox() {
               />
   
               {/* Dropdown for Experience */}
-              <select
+              <select name='experience'
                 className="px-4 py-4 text-gray-700 focus:outline-none"
               >
                 <option className='text-black font-semibold' value="">Select experience</option>
@@ -162,7 +162,7 @@ function SearchInputBox() {
               </select>
   
               {/* Input for Location */}
-              <input
+              <input name='location-search'
                 value={locationQuery}
                 onChange={handleLocationInputChange}
                 type="text"

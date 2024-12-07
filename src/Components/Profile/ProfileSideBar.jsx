@@ -142,7 +142,7 @@ function ProfileSidebar({ isOpen, onClose }) {
           </div>
           <div className="flex items-center space-x-3">
             <FaRegHeart size={16} className="text-gray-500" />
-            <Link to="" className="block text-gray-700 hover:text-blue-600">
+            <Link to="/wishlist" className="block text-gray-700 hover:text-blue-600">
               Wishlist
             </Link>
           </div>

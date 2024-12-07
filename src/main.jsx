@@ -9,6 +9,7 @@ import RecruitersJobs from "./Components/TopRecruiters/RecruitersJobs.jsx";
 import RecruiterJobDetails from "./Components/TopRecruiters/RecruiterJobDetails.jsx"
 import JobDetailsForSkills from "./Components/JobForSkills/JobDetailsForSkills.jsx";
 
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
