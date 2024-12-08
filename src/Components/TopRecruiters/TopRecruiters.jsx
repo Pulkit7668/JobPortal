@@ -52,7 +52,7 @@
 
 import React from "react";
 import { recruitersData } from "./recruitersData";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // Sort recruiters by the number of vacancies (in descending order)
 const sortedRecruiters = [...recruitersData].sort((a, b) => b.vacancies - a.vacancies);
@@ -69,14 +69,12 @@ function TopRecruiters() {
               className="p-4 border border-gray-200 bg-white rounded-lg hover:shadow-2xl transition-shadow duration-300 flex"
             >
               <img
-                src={recruiter.image || "default-avatar.jpg"}  // Fallback image
+                src={recruiter.image || "default-avatar.jpg"}
                 alt={recruiter.name}
                 className="w-10 h-10 mr-4 object-contain"
               />
               <div>
-                <h3 className="text-sm font-bold mt-2 mb-2 text-gray-800">
-                  {recruiter.name}
-                </h3>
+                <h3 className="text-sm font-bold mt-2 mb-2 text-gray-800">{recruiter.name}</h3>
                 <p className="text-gray-600">{recruiter.location}</p>
                 <p className="text-sm text-gray-500">{recruiter.vacancies} Vacancies</p>
                 <Link to={`/recruiters/jobs/${recruiter.id}`} className="mt-3 text-blue-600 font-semibold">
@@ -90,12 +88,12 @@ function TopRecruiters() {
         <p>No top recruiters available at the moment.</p>
       )}
       <div className="flex items-center justify-center">
-        <button
-          onClick={() => alert("Implement View More functionality here")} // Placeholder action
+        <Link
+          to="/recruiters/all"
           className="mt-5 px-4 py-2 font-semibold text-black border border-black rounded-xl hover:bg-white transition duration-300"
         >
           View More
-        </button>
+        </Link>
       </div>
     </div>
   );

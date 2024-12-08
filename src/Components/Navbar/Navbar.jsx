@@ -48,8 +48,9 @@ function Navbar() {
       <header className="relative">
         <div className="flex justify-around items-center px-6 py-4">
           {/* Logo */}
-          <div className="text-4xl font-bold text-blue-600">UrLogo</div>
-
+          <div className="flex">
+            <h1 className="text-4xl font-bold text-blue-600">UrLogo</h1> 
+          </div>
           {/* Navigation Links */}
           <nav className="space-x-10 text-gray-700 relative right-32">
             <div className="group inline-block relative font-semibold">
@@ -156,5 +157,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-``

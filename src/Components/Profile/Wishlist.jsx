@@ -1,49 +1,48 @@
-// import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { FaArrowLeft } from "react-icons/fa";
+// import React, { useState } from 'react';
+// import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-// function Wishlist   () {
-//   const [savedJobs, setSavedJobs] = useState([]);
-//   const navigate = useNavigate();
+// function Wishlist() {
+//   // Sample data for the items
+//   const items = [
+//     { id: 1, name: 'Job 1', description: 'Description of Job 1' },
+//     { id: 2, name: 'Job 2', description: 'Description of Job 2' },
+//     { id: 3, name: 'Job 3', description: 'Description of Job 3' },
+//   ];
 
-//   useEffect(() => {
-//     // Example saved jobs (replace with actual data fetching)
-//     setSavedJobs([
-//       { id: 1, title: "Software Developer", company: "Tech Corp" },
-//       { id: 2, title: "UI/UX Designer", company: "Design Studio" },
-//       { id: 3, title: "Product Manager", company: "Productify" }
-//     ]);
-//   }, []);
+//   const [wishlist, setWishlist] = useState([]);
+
+//   const toggleWishlist = (itemId) => {
+//     setWishlist((prevWishlist) =>
+//       prevWishlist.includes(itemId)
+//         ? prevWishlist.filter((id) => id !== itemId)
+//         : [...prevWishlist, itemId]
+//     );
+//   };
 
 //   return (
-//     <div className="bg-gray-100 min-h-screen p-6">
-//       {/* Back Button */}
-//       <button
-//         onClick={() => navigate(-1)}
-//         className="text-blue-600 mb-6 flex items-center text-xl font-medium hover:text-blue-800 transition duration-300"
-//       >
-//         <FaArrowLeft size={24} className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
-//         <span>Back</span>
-//       </button>
-
-//       <h1 className="text-3xl font-bold text-gray-800 mb-4">Your Wishlist</h1>
-//       <div className="bg-white shadow-md rounded-lg p-6">
-//         <ul className="space-y-4">
-//           {savedJobs.map((job) => (
-//             <li key={job.id} className="border-b pb-4 last:border-none">
-//               <div className="flex justify-between">
-//                 <div>
-//                   <h3 className="text-xl font-semibold text-gray-700">{job.title}</h3>
-//                   <p className="text-gray-500">{job.company}</p>
-//                 </div>
-//                 <button className="text-blue-600 hover:text-blue-800 transition duration-300">
-//                   {/* Add any action button here, e.g., remove or view job */}
-//                   View Details
-//                 </button>
-//               </div>
-//             </li>
-//           ))}
-//         </ul>
+//     <div className="p-6">
+//       <h2 className="text-2xl font-bold mb-4">Wishlist</h2>
+//       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+//         {items.map((item) => (
+//           <div
+//             key={item.id}
+//             className="p-4 border border-gray-200 bg-white rounded-lg hover:shadow-xl transition-shadow duration-300 relative"
+//           >
+//             <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+//             <p className="text-sm text-gray-600">{item.description}</p>
+//             <div
+//               onClick={() => toggleWishlist(item.id)}
+//               className="absolute top-4 right-4 cursor-pointer text-xl hover:scale-110 transition-transform"
+//               aria-label="Save to wishlist"
+//             >
+//               {wishlist.includes(item.id) ? (
+//                 <FaHeart className="text-red-500" />
+//               ) : (
+//                 <FaRegHeart className="text-gray-400" />
+//               )}
+//             </div>
+//           </div>
+//         ))}
 //       </div>
 //     </div>
 //   );
