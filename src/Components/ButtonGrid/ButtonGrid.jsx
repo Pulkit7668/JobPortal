@@ -52,7 +52,7 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { IoAnalyticsOutline } from "react-icons/io5";
 
 const ButtonGrid = () => {
-  const location = useLocation(); // Get the current route
+  const location = useLocation();
   const buttons = [
     { label: "Remote", icon: <FiHome />, path: "/remote" },
     { label: "MNC", icon: <MdOutlineBusiness />, path: "/mnc" },

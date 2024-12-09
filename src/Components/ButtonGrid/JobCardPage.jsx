@@ -63,7 +63,7 @@
 
 // export default JobCategoryPage;
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import { jobData } from './JobData';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -72,8 +72,12 @@ const JobCategoryPage = ({ category }) => {
   const jobs = jobData[category.toLowerCase()] || [];
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="p-6">
+    <div className="p-6 mx-20">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 mb-10 transition duration-300"

@@ -18,7 +18,7 @@ function JobDetail() {
   }
 
   return (
-    <div className="p-6 mx-20 mt-10">
+    <div className="p-6 mx-20">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 hover:text-blue-800 mb-10"
@@ -54,7 +54,7 @@ function JobDetail() {
       </div>
       <div
         onClick={toggleSaveJob}
-        className="cursor-pointer absolute right-28 top-[75px] transition-all duration-300"
+        className="cursor-pointer absolute right-28 top-8 transition-all duration-300"
       >
         {isSaved ? (
           <FaHeart size={24} className="text-red-500" />
