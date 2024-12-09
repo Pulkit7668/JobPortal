@@ -8,7 +8,7 @@ import JobDetail from "./Components/JobForSkills/JobDetails.jsx";
 import RecruitersJobs from "./Components/TopRecruiters/RecruitersJobs.jsx";
 import RecruiterJobDetails from "./Components/TopRecruiters/RecruiterJobDetails.jsx"
 import JobDetailsForSkills from "./Components/JobForSkills/JobDetailsForSkills.jsx";
-import AllRecruiters from "./Components/TopRecruiters/AllRecruiters.jsx";
+// import AllRecruiters from "./Components/TopRecruiters/AllRecruiters.jsx";
 // import Wishlist from "./Components/Profile/Wishlist.jsx";
 // import JobCategoryPage from './Components/ButtonGrid/JobCardPage.jsx';
 
@@ -22,7 +22,7 @@ createRoot(document.getElementById("root")).render(
         {/* <Route path="/wishlist" element={<Wishlist />} /> */}
         <Route path="/jobforskills" element={<JobDetailsForSkills />} />
         <Route path="jobforskills/job/:id" element={<JobDetail />} />
-        <Route path="/recruiters/all" element={<AllRecruiters />} />
+        {/* <Route path="/recruiters/all" element={<AllRecruiters />} /> */}
         <Route path="/recruiters/jobs/:recruiterId" element={<RecruitersJobs />} />
         <Route path="/recruiters/:recruiterId/jobs/:jobId" element={<RecruiterJobDetails />} />
         {/* <Route path="/remote" element={<JobCategoryPage category="Remote" />} />

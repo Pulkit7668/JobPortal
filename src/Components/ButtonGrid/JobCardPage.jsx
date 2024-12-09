@@ -114,7 +114,6 @@
 //                   More Details
 //                 </button>
 //                 <button
-//                   onClick={() => alert("Application process not implemented yet")}
 //                   className="mt-4 font-semibold text-blue-700"
 //                 >
 //                   Apply Job
