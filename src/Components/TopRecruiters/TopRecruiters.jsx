@@ -40,7 +40,7 @@ function TopRecruiters() {
         <p>No top recruiters available at the moment.</p>
       )}
       <div className="flex items-center justify-center">
-        <Link to="" className="mt-5 px-4 py-2 font-semibold text-black border border-black rounded-xl hover:bg-white transition duration-300">
+        <Link to="/recruiters/all" className="mt-5 px-4 py-2 font-semibold text-black border border-black rounded-xl hover:bg-white transition duration-300">
           View More
         </Link>
       </div>
