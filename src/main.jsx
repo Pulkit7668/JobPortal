@@ -10,7 +10,7 @@ import RecruiterJobDetails from "./Components/TopRecruiters/RecruiterJobDetails.
 import JobDetailsForSkills from "./Components/JobForSkills/JobDetailsForSkills.jsx";
 import AllRecruiters from "./Components/TopRecruiters/AllRecruiters.jsx";
 // import Wishlist from "./Components/Profile/Wishlist.jsx";
-// import JobCategoryPage from './Components/ButtonGrid/JobCardPage.jsx';
+import JobCategoryPage from './Components/ButtonGrid/JobCardPage.jsx';
 
 
 createRoot(document.getElementById("root")).render(
@@ -25,7 +25,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/recruiters/all" element={<AllRecruiters />} />
         <Route path="/recruiters/jobs/:recruiterId" element={<RecruitersJobs />} />
         <Route path="/recruiters/:recruiterId/jobs/:jobId" element={<RecruiterJobDetails />} />
-        {/* <Route path="/remote" element={<JobCategoryPage category="Remote" />} />
+        <Route path="/remote" element={<JobCategoryPage category="Remote" />} />
         <Route path="/mnc" element={<JobCategoryPage category="MNC" />} />
         <Route path="/fresher" element={<JobCategoryPage category="Fresher" />} />
         <Route path="/software-it" element={<JobCategoryPage category="Software & IT" />} />
@@ -35,7 +35,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/internship" element={<JobCategoryPage category="Internship" />} />
         <Route path="/analytics" element={<JobCategoryPage category="Analytics" />} />
         <Route path="/hr" element={<JobCategoryPage category="HR" />} />
-        <Route path="/sales" element={<JobCategoryPage category="Sales" />} /> */}
+        <Route path="/sales" element={<JobCategoryPage category="Sales" />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
