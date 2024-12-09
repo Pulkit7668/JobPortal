@@ -4,31 +4,31 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/f
 
 const Footer = () => {
   const socialLinks = [
-    { label: "Facebook", icon: <FaFacebookF />, url: "/facebook", color: "text-blue-600" },
-    { label: "Instagram", icon: <FaInstagram />, url: "/instagram", color: "text-pink-500" },
-    { label: "Twitter", icon: <FaTwitter />, url: "/twitter", color: "text-blue-400" },
-    { label: "LinkedIn", icon: <FaLinkedinIn />, url: "/linkedin", color: "text-blue-800" },
+    { label: "Facebook", icon: <FaFacebookF />, url: "", color: "text-blue-600" },
+    { label: "Instagram", icon: <FaInstagram />, url: "", color: "text-pink-500" },
+    { label: "Twitter", icon: <FaTwitter />, url: "", color: "text-blue-400" },
+    { label: "LinkedIn", icon: <FaLinkedinIn />, url: "", color: "text-blue-800" },
   ];
 
   const links = [
     {
       title: "Company",
       items: [
-        { name: "About us", path: "/about-us" },
-        { name: "Careers", path: "/careers" },
-        { name: "Employer Home", path: "/employer-home" },
-        { name: "Sitemap", path: "/sitemap" },
-        { name: "Credits", path: "/credits" },
+        { name: "About us", path: "" },
+        { name: "Careers", path: "" },
+        { name: "Employer Home", path: "" },
+        { name: "Sitemap", path: "" },
+        { name: "Credits", path: "" },
       ],
     },
     {
       title: "Support",
       items: [
-        { name: "Help Center", path: "/help-center" },
-        { name: "Privacy Policy", path: "/privacy-policy" },
-        { name: "Terms & Conditions", path: "/terms-conditions" },
-        { name: "Fraud Alert", path: "/fraud-alert" },
-        { name: "Trust & Safety", path: "/trust-safety" },
+        { name: "Help Center", path: "" },
+        { name: "Privacy Policy", path: "" },
+        { name: "Terms & Conditions", path: "" },
+        { name: "Fraud Alert", path: "" },
+        { name: "Trust & Safety", path: "" },
       ],
     },
   ];
@@ -80,7 +80,7 @@ const Footer = () => {
             <p className="text-sm text-gray-600 mb-4">Get real-time job updates on our App</p>
             <div className="flex justify-center space-x-4">
               <a
-                href="https://play.google.com"
+                href=""
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"
@@ -92,7 +92,7 @@ const Footer = () => {
                 />
               </a>
               <a
-                href="https://www.apple.com/in/app-store/"
+                href=""
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"

@@ -271,7 +271,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               <h5 className="text-lg font-bold text-gray-700">0</h5>
               <p className="text-xs text-gray-500">Search Appearances</p>
               <Link
-                to="/search-appearances"
+                to=""
                 className="text-xs text-blue-600 hover:underline"
               >
                 View all
@@ -282,7 +282,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               <h5 className="text-lg font-bold text-gray-700">0</h5>
               <p className="text-xs text-gray-500">Recruiter Actions</p>
               <Link
-                to="/recruiter-actions"
+                to=""
                 className="text-xs text-blue-600 hover:underline"
               >
                 View all
@@ -295,7 +295,7 @@ function ProfileSidebar({ isOpen, onClose }) {
           <div className="flex items-center space-x-3">
             <TfiMenuAlt size={16} className="text-gray-500" />
             <Link
-              to="/career-guidance"
+              to=""
               className="block text-gray-700 hover:text-blue-600"
             >
               Career guidance
@@ -303,25 +303,25 @@ function ProfileSidebar({ isOpen, onClose }) {
           </div>
           <div className="flex items-center space-x-3">
             <FaRegHeart size={16} className="text-gray-500" />
-            <Link to="/wishlist" className="block text-gray-700 hover:text-blue-600">
+            <Link to="" className="block text-gray-700 hover:text-blue-600">
               Wishlist
             </Link>
           </div>
           <div className="flex items-center space-x-3">
             <FaCogs size={16} className="text-gray-500" />
-            <Link to="/settings" className="block text-gray-700 hover:text-blue-600">
+            <Link to="" className="block text-gray-700 hover:text-blue-600">
               Settings
             </Link>
           </div>
           <div className="flex items-center space-x-3">
             <FaQuestionCircle size={16} className="text-gray-500" />
-            <Link to="/faqs" className="block text-gray-700 hover:text-blue-600">
+            <Link to="" className="block text-gray-700 hover:text-blue-600">
               FAQs
             </Link>
           </div>
           <div className="flex items-center space-x-3">
             <FaSignOutAlt size={16} className="text-gray-500" />
-            <Link to="/logout" className="block text-gray-700 hover:text-blue-600">
+            <Link to="" className="block text-gray-700 hover:text-blue-600">
               Logout
             </Link>
           </div>
