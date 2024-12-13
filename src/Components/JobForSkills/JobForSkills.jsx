@@ -118,7 +118,7 @@ function JobsForSkills() {
                 </div>
                 <div className="mt-3">
                   <Link
-                    to={`/jobforskills/job/${job.id}`} // Added `/` to the link path
+                    to={`/jobforskills/job/${job.id}`}
                     className="px-3 py-2 text-sm font-semibold text-blue-700"
                   >
                     More Details
@@ -130,7 +130,7 @@ function JobsForSkills() {
           {filteredJobs.length > 4 && (
             <div className="flex items-center justify-center mb-5 cursor-pointer">
               <Link
-                to={{ pathname: "/jobforskills", state: { jobs: filteredJobs } }} // Passing filtered jobs state
+                to={{ pathname: "/jobforskills", state: { jobs: filteredJobs } }}
                 className="mr-2 hover:text-blue-600 transition duration-300"
               >
                 View more
