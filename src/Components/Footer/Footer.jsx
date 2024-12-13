@@ -80,7 +80,7 @@ const Footer = () => {
             <p className="text-sm text-gray-600 mb-4">Get real-time job updates on our App</p>
             <div className="flex justify-center space-x-4">
               <a
-                href=""
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"
@@ -92,7 +92,7 @@ const Footer = () => {
                 />
               </a>
               <a
-                href=""
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-90"

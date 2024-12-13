@@ -112,7 +112,7 @@ const JobCategoryPage = ({ category }) => {
 
               <div className='flex items-center justify-end'>
                 <button
-                  onClick={() => navigate(`/job/${job.id}`)}
+                  // onClick={() => navigate(`/job/${job.id}`)}
                   className="mt-4 mr-5 font-semibold text-blue-700"
                 >
                   More Details
