@@ -11,6 +11,8 @@ import JobDetailsForSkills from "./Components/JobForSkills/JobDetailsForSkills.j
 import AllRecruiters from "./Components/TopRecruiters/AllRecruiters.jsx";
 // import Wishlist from "./Components/Profile/Wishlist.jsx";
 import JobCategoryPage from './Components/ButtonGrid/JobCardPage.jsx';
+import Searchpage from "./Components/SearchInputBox/Searchpage.jsx";
+import NotificationPage from "./Components/Navbar/NotificationPage.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -36,6 +38,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/analytics" element={<JobCategoryPage category="Analytics" />} />
         <Route path="/hr" element={<JobCategoryPage category="HR" />} />
         <Route path="/sales" element={<JobCategoryPage category="Sales" />} />
+        <Route path="/search" element={<Searchpage />} />
+        <Route path="/notifications" element={<NotificationPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

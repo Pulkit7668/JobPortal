@@ -93,7 +93,7 @@ function JobsForSkills() {
   const jobsToShow = filteredJobs.slice(0, 4);
 
   return (
-    <div className="p-6 mx-20 mt-10">
+    <div className="p-6 md:mx-20 mt-10">
       <h2 className="text-2xl font-bold mb-4">Jobs Matching Your Skills</h2>
       {jobsToShow.length > 0 ? (
         <div className="flex flex-wrap gap-6">
@@ -128,7 +128,7 @@ function JobsForSkills() {
             </div>
           ))}
           {filteredJobs.length > 4 && (
-            <div className="flex items-center justify-center mb-5 cursor-pointer">
+            <div className="flex items-center justify-center xs:ml-28 md:ml-0 mb-5 cursor-pointer">
               <Link
                 to={{ pathname: "/jobforskills", state: { jobs: filteredJobs } }}
                 className="mr-2 hover:text-blue-600 transition duration-300"

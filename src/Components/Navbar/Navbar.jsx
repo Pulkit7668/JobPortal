@@ -49,18 +49,13 @@
 //         <div className="flex justify-around items-center px-6 py-4">
 //           {/* Logo */}
 //           <div className="flex">
-//             <h1 className="text-4xl font-bold text-blue-600">UrLogo</h1> 
+//             <h1 className="text-4xl font-bold text-blue-600">UrLogo</h1>
 //           </div>
 //           {/* Navigation Links */}
 //           <nav className="space-x-10 text-gray-700 relative right-32">
 //             <div className="group inline-block relative font-semibold">
 //               <NavLink
-//                 to="/prepare"
-//                 className={({ isActive }) =>
-//                   `hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1 ${
-//                     isActive ? "text-blue-600 border-b-2" : ""
-//                   }`
-//                 }
+//                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
 //               >
 //                 Prepare
 //               </NavLink>
@@ -70,12 +65,7 @@
 //             </div>
 //             <div className="group inline-block relative font-semibold">
 //               <NavLink
-//                 to="/participate"
-//                 className={({ isActive }) =>
-//                   `hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1 ${
-//                     isActive ? "text-blue-600 border-b-2" : ""
-//                   }`
-//                 }
+//                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
 //               >
 //                 Participate
 //               </NavLink>
@@ -85,12 +75,7 @@
 //             </div>
 //             <div className="group inline-block relative font-semibold">
 //               <NavLink
-//                 to="/opportunities"
-//                 className={({ isActive }) =>
-//                   `hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1 ${
-//                     isActive ? "text-blue-600 border-b-2" : ""
-//                   }`
-//                 }
+//                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
 //               >
 //                 Opportunities
 //               </NavLink>
@@ -159,9 +144,9 @@
 // export default Navbar;
 
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import DropdownCard from "../DropdownCard/DropdownCard";
-import { FaBell, FaUserCircle } from "react-icons/fa";
+import { FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
 import ProfileSidebar from "../Profile/ProfileSideBar";
 
 const prepareData = [
@@ -206,14 +191,14 @@ function Navbar() {
   return (
     <>
       <header className="relative">
-        <div className="flex justify-around items-center px-6 py-4">
+        <div className="flex md:justify-around xs:justify-between items-center px-6 xs:px-2 py-4">
           {/* Logo */}
           <div className="flex">
             <h1 className="text-4xl font-bold text-blue-600">UrLogo</h1>
           </div>
           {/* Navigation Links */}
           <nav className="space-x-10 text-gray-700 relative right-32">
-            <div className="group inline-block relative font-semibold">
+            <div className="group md:inline-block relative font-semibold xs:hidden">
               <NavLink
                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
               >
@@ -223,7 +208,7 @@ function Navbar() {
                 <DropdownCard data={prepareData} />
               </div>
             </div>
-            <div className="group inline-block relative font-semibold">
+            <div className="group md:inline-block relative font-semibold xs:hidden">
               <NavLink
                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
               >
@@ -233,7 +218,7 @@ function Navbar() {
                 <DropdownCard data={participateData} />
               </div>
             </div>
-            <div className="group inline-block relative font-semibold">
+            <div className="group md:inline-block relative font-semibold xs:hidden">
               <NavLink
                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
               >
@@ -245,14 +230,24 @@ function Navbar() {
             </div>
           </nav>
 
-          {/* Right: Notification, and User Icon */}
-          <div className="flex items-center space-x-6">
+          {/* Right: Search Icon, Notification, and User Icon */}
+          <div className="flex items-center md:space-x-6 xs:space-x-4">
+            {/* Search Icon */}
+            <div className="relative xs:block md:hidden">
+            <Link to="/search">
+                <FaSearch className="text-gray-600 text-xl cursor-pointer" size={20} />
+              </Link>
+            </div>
+
+            {/* Notification Icon */}
             <div
               className="relative"
               onMouseEnter={() => setIsNotificationHovered(true)}
               onMouseLeave={() => setIsNotificationHovered(false)}
             >
-              <FaBell className="text-gray-600 text-xl cursor-pointer" size={24} />
+              <Link to="/notifications">
+                <FaBell className="text-gray-600 text-xl cursor-pointer" size={24} />
+              </Link>
               {isNotificationHovered && (
                 <div className="absolute right-0 mt-2 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
                   <div className="p-4">

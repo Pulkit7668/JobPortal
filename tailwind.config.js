@@ -7,7 +7,13 @@ export default {
   theme: {
     extend: {
       screens: {
-        xs: "300px",
+        xs: "300px",        // Mobile - Small screens
+        sm: "640px",        // Mobile - Large screens (default Tailwind)
+        md: "768px",        // Tablet
+        lg: "1024px",       // Laptop
+        xl: "1280px",       // Desktop
+        "2xl": "1536px",    // Large Desktop
+
       },
       colors: {
         primary: "#007BFF",

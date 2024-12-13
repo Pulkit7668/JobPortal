@@ -68,7 +68,7 @@ const ButtonGrid = () => {
   ];
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-4 mt-20 mx-20">
+    <div className="flex flex-wrap justify-center gap-4 p-4 mt-20 md:mx-20">
       {buttons.map((button, index) => (
         <Link
           key={index}

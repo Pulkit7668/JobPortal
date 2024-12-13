@@ -7,7 +7,7 @@ function AllRecruiters() {
   const navigate = useNavigate();
 
   return (
-    <div className="p-6 mx-10 md:mx-20">
+    <div className="p-6 md:mx-20">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 mb-10 transition duration-300"

@@ -80,14 +80,14 @@ const JobListing = () => {
   };
 
   return (
-    <div className="container mt-12 mb-10">
-      <h1 className="ml-24 mb-4 text-3xl font-bold">Job Opportunities</h1>
-      <div className="grid grid-cols-2 gap-5 mx-24">
+    <div className="container mt-12 mb-10 md:ml-0 xs:ml-10">
+      <h1 className="md:ml-24 mb-4 text-3xl font-bold">Job Opportunities</h1>
+      <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-5 md:mx-24">
         <AnimatePresence mode="sync">
           {jobData.slice(0, visibleJobs).map((job) => (
             <motion.div
               key={job.id}
-              className="relative flex flex-col md:flex-row bg-white rounded-lg shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
+              className="relative flex xs:flex-col md:flex-row bg-white rounded-lg shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -114,7 +114,7 @@ const JobListing = () => {
                   💰 {job.salary}
                 </p>
               </div>
-              <button className="absolute bottom-4 right-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+              <button className="md:absolute md:bottom-4 xs:right-2 md:right-4 xs:mt-5 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
                 Apply Now
               </button>
               <div
