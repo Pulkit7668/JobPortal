@@ -23,7 +23,7 @@ function RecruitersJob() {
   }
 
   return (
-    <div className="p-6 md:mx-20">
+    <div className="p-6 lg:mx-20">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 mb-10 transition duration-300"
@@ -39,7 +39,7 @@ function RecruitersJob() {
 
       <div className="mt-6">
         {recruiter.jobs.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
             {recruiter.jobs.map((job) => (
               <div
                 key={job.jobId}

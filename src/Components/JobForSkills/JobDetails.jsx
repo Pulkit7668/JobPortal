@@ -18,7 +18,7 @@ function JobDetail() {
   }
 
   return (
-    <div className="p-6 md:mx-20">
+    <div className="p-6 lg:mx-20">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 hover:text-blue-800 mb-10"

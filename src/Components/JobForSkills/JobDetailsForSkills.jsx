@@ -22,7 +22,7 @@ function JobDetailsForSkills() {
   }, []);
 
   return (
-    <div className="p-6 md:mx-20">
+    <div className="p-6 lg:mx-20">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 hover:text-blue-800 mb-10"
@@ -35,7 +35,7 @@ function JobDetailsForSkills() {
           {filteredJobs.map((job) => (
             <div
               key={job.id}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-full p-4 bg-white border border-gray-200 rounded-xl hover:shadow-blue-200 hover:shadow-lg hover:border-blue-700 transition-shadow duration-300 flex flex-col justify-between"
+              className="w-full sm:w-1/2 md:w-full lg:w-full p-4 bg-white border border-gray-200 rounded-xl hover:shadow-blue-200 hover:shadow-lg hover:border-blue-700 transition-shadow duration-300 flex flex-col justify-between"
             >
               <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
               <p className="text-gray-600">{job.company}</p>

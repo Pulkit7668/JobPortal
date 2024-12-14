@@ -7,7 +7,7 @@ const sortedRecruiters = recruitersData.sort((a, b) => b.vacancies - a.vacancies
 
 function TopRecruiters() {
   return (
-    <div className="p-6 md:mx-20 mt-10">
+    <div className="p-6 lg:mx-20 mt-10">
       <h2 className="text-2xl font-bold mb-4">Top Recruiters</h2>
       {sortedRecruiters.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

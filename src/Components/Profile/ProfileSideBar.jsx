@@ -18,7 +18,7 @@ function ProfileSidebar({ isOpen, onClose }) {
       )}
 
       <div
-        className={`fixed top-0 right-0 h-full bg-white md:rounded-l-3xl shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"} sm:w-[80%] lg:w-96`}
+        className={`fixed top-0 right-0 h-full md:w-[50%] bg-white md:rounded-l-3xl shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"} sm:w-[80%] lg:w-96`}
       >
         <div className="flex justify-between items-center px-4 py-3 border-b">
           <h2 className="text-lg font-bold">Profile</h2>

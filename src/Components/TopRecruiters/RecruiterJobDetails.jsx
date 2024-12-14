@@ -18,7 +18,7 @@ function RecruiterJobDetails() {
   }
 
   return (
-    <div className="p-6 md:mx-20">
+    <div className="p-6 lg:mx-20">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 mb-6 hover:text-blue-700 transition duration-300"
