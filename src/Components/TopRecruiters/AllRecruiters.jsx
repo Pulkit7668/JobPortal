@@ -24,7 +24,7 @@ function AllRecruiters() {
           {recruitersData.map((recruiter) => (
             <div
               key={recruiter.id}
-              className="p-4 border border-gray-200 bg-white rounded-lg hover:shadow-xl transition-shadow duration-300"
+              className="p-4 border border-gray-200 bg-white rounded-xl hover:shadow-xl transition-shadow duration-300"
             >
               <div className="flex items-center mb-4">
                 <img

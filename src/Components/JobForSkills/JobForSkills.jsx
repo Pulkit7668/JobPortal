@@ -21,7 +21,7 @@ function JobsForSkills() {
     <div className="p-6 lg:mx-20 mt-10">
       <h2 className="text-2xl font-bold mb-4">Jobs Matching Your Skills</h2>
       {jobsToShow.length > 0 ? (
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap gap-6 2xl:gap-10">
           {jobsToShow.map((job) => (
             <div
               key={job.id}

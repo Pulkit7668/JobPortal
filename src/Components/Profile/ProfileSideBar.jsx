@@ -18,7 +18,7 @@ function ProfileSidebar({ isOpen, onClose }) {
       )}
 
       <div
-        className={`fixed top-0 right-0 h-full md:w-[50%] bg-white md:rounded-l-3xl shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"} sm:w-[80%] lg:w-96`}
+        className={`fixed top-0 right-0 h-full md:w-[50%] 2xl:w-[25%] bg-white md:rounded-l-3xl shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"} sm:w-[80%] lg:w-96`}
       >
         <div className="flex justify-between items-center px-4 py-3 border-b">
           <h2 className="text-lg font-bold">Profile</h2>
@@ -89,7 +89,7 @@ function ProfileSidebar({ isOpen, onClose }) {
           <h4 className="text-sm font-bold text-gray-700">
             Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span>
           </h4>
-          <div className="flex justify-between mt-3 bg-blue-50 p-3 rounded-lg">
+          <div className="flex justify-between 2xl:justify-around mt-3 bg-blue-50 p-3 rounded-lg">
             <div className="text-center ml-8">
               <h5 className="text-lg font-bold text-gray-700">0</h5>
               <p className="text-xs text-gray-500">Search Appearances</p>

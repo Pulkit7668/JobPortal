@@ -27,14 +27,14 @@ const JobListing = () => {
   };
 
   return (
-    <div className="container mt-12 mb-10 md:ml-0 xs:ml-10">
+    <div className="mt-12 mb-10 md:ml-0 xs:mx-5">
       <h1 className="md:ml-10 lg:ml-24 mb-4 text-3xl font-bold">Job Opportunities</h1>
       <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
         <AnimatePresence mode="sync">
           {jobData.slice(0, visibleJobs).map((job) => (
             <motion.div
               key={job.id}
-              className="relative flex xs:flex-col md:flex-row bg-white rounded-lg shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
+              className="relative flex xs:flex-col md:flex-row bg-white rounded-xl shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
               initial="hidden"
               animate="visible"
               exit="exit"
