@@ -34,7 +34,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="text-gray-800 border-t-2 lg:mx-20 2xl:mx-0 py-8">
+    <footer className="text-gray-800 border-t-2 lg:mx-20 py-8">
       <div className="mx-auto px-4">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
