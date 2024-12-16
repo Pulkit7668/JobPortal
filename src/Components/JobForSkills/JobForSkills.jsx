@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { jobs } from "./JobData";
+import { jobs } from "../../apis/JobDataForSkills";
 
 // Mock user profile skills
 const userSkills = ["React", "JavaScript", "HTML", "CSS"];

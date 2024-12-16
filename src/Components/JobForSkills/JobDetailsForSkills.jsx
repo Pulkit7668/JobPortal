@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { jobs } from "./JobData";
+import { jobs } from "../../apis/JobDataForSkills";
 import { FaArrowLeft } from "react-icons/fa";
 
 // Mock user profile skills

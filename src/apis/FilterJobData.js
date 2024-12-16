@@ -1,4 +1,4 @@
-export const jobData = {
+export const filterJobData = {
     remote: [
       { id: 1, title: 'Remote Software Engineer', company: 'TechCorp', description: 'Work from anywhere as a full-stack developer.', location: 'Anywhere, India', experience: '3+ years', salary: '₹7 LPA' },
       { id: 2, title: 'Remote Marketing Specialist', company: 'AdWiz', description: 'Join our marketing team and grow brands globally.', location: 'Anywhere, India', experience: '2+ years', salary: '₹6 LPA' },

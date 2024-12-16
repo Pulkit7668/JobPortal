@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import { jobData } from './JobData';
+import { filterJobData } from '../../apis/FilterJobData';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const JobCategoryPage = ({ category }) => {
-  const jobs = jobData[category.toLowerCase()] || [];
+  const jobs = filterJobData[category.toLowerCase()] || [];
   const navigate = useNavigate();
 
   useEffect(() => {

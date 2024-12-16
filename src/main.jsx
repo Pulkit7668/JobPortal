@@ -10,7 +10,7 @@ import RecruiterJobDetails from "./Components/TopRecruiters/RecruiterJobDetails.
 import JobDetailsForSkills from "./Components/JobForSkills/JobDetailsForSkills.jsx";
 import AllRecruiters from "./Components/TopRecruiters/AllRecruiters.jsx";
 // import Wishlist from "./Components/Profile/Wishlist.jsx";
-import JobCategoryPage from './Components/ButtonGrid/JobCardPage.jsx';
+import JobCategoryPage from './Components/FilterJobs/JobCardPage.jsx';
 import Searchpage from "./Components/SearchInputBox/Searchpage.jsx";
 import NotificationPage from "./Components/Navbar/NotificationPage.jsx";
 

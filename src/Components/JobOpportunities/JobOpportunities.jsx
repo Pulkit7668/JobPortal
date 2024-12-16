@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import jobData from "./DummyData";
+import jobData from "../../apis/JobOpportunitiesData";
 
-const JobListing = () => {
+const JobOpportunities = () => {
   const [visibleJobs, setVisibleJobs] = useState(2);
   const [isSaved, setIsSaved] = useState({});
 
@@ -100,4 +100,4 @@ const JobListing = () => {
   );
 };
 
-export default JobListing;
+export default JobOpportunities;

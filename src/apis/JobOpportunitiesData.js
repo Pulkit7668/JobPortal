@@ -1,4 +1,4 @@
-const jobData = [
+const JobOpportunitiesData = [
   {
     id: 1,
     title: "Frontend Developer",
@@ -101,4 +101,4 @@ const jobData = [
   },
 ];
 
-export default jobData;
+export default JobOpportunitiesData;

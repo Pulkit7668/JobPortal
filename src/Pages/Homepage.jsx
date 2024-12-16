@@ -3,19 +3,19 @@ import Navbar from "../Components/Navbar/Navbar";
 import SearchInputBox from "../Components/SearchInputBox/SearchInputBox";
 import JobsForSkills from "../Components/JobForSkills/JobForSkills";
 import TopRecruiters from "../Components/TopRecruiters/TopRecruiters";
-import ButtonGrid from "../Components/ButtonGrid/ButtonGrid";
 import Footer from "../Components/Footer/Footer";
-import JobListing from "../Components/JobCard/JobListing";
+import FilterJob from "../Components/FilterJobs/FilterJob";
+import JobOpportunities from "../Components/JobOpportunities/JobOpportunities";
 
 function Homepage() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
       <SearchInputBox />
-      <ButtonGrid />
+      <FilterJob />
       <JobsForSkills />
       <TopRecruiters />
-      <JobListing />
+      <JobOpportunities />
       <Footer />
     </div>
   );

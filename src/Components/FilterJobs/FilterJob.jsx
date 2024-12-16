@@ -9,7 +9,7 @@ import { BiBarChart, BiUserCircle } from "react-icons/bi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { IoAnalyticsOutline } from "react-icons/io5";
 
-const ButtonGrid = () => {
+const FilterJob = () => {
   const location = useLocation();
   const buttons = [
     { label: "Remote", icon: <FiHome />, path: "/remote" },
@@ -47,4 +47,4 @@ const ButtonGrid = () => {
   );
 };
 
-export default ButtonGrid;
+export default FilterJob;
