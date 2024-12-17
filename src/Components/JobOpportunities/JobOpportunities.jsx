@@ -27,7 +27,7 @@ const JobOpportunities = () => {
   };
 
   return (
-    <div className="mt-12 mb-10 md:ml-0 xs:mx-5">
+    <div className="mt-12 mb-10 xs:mx-5">
       <h1 className="md:ml-10 lg:ml-24 mb-4 text-3xl font-bold">Job Opportunities</h1>
       <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
         <AnimatePresence mode="sync">
