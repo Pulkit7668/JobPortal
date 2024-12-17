@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaHeart, FaRegHeart } from 'react-icons/fa';
-import { jobs } from '../../apis/JobDataForSkills';
+import { jobs } from './JobDataForSkills';
 
 function JobDetail() {
   const { id } = useParams();

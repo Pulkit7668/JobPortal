@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import jobsData from '../../apis/SearchData';
+import jobsData from './SearchData';
 import { FaArrowLeft } from 'react-icons/fa';
 
 function SearchJobDetails() {

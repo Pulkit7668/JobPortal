@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import jobData from "../../apis/JobOpportunitiesData";
+import jobData from "./JobOpportunitiesData";
 
 const JobOpportunities = () => {
   const [visibleJobs, setVisibleJobs] = useState(2);

@@ -1,5 +1,5 @@
 import React from "react";
-import { recruitersData } from "../../apis/recruitersData";
+import { recruitersData } from "./recruitersData";
 import { Link } from 'react-router-dom';
 
 // Sort recruiters by the number of vacancies (in descending order)

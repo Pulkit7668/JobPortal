@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaHeart, FaRegHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
-import jobsData from "../../apis/SearchData";
+import jobsData from "./SearchData";
 
 function SearchPage() {
   const [skill, setSkill] = useState("");

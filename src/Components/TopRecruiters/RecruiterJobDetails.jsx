@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { recruitersData } from "../../apis/recruitersData";
+import { recruitersData } from "./recruitersData";
 import { FaArrowLeft } from "react-icons/fa";
 
 function RecruiterJobDetails() {

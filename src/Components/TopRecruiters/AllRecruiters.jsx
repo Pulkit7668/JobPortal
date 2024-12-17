@@ -1,5 +1,5 @@
 import React from "react";
-import { recruitersData } from "../../apis/recruitersData";
+import { recruitersData } from "./recruitersData";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 

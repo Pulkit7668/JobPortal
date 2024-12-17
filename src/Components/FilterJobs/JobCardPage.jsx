@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { filterJobData } from '../../apis/FilterJobData';
+import { filterJobData } from './FilterJobData';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
