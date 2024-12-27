@@ -1,7 +1,8 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { jobs } from "./JobDataForSkills";
 import { FaArrowLeft } from "react-icons/fa";
+import TogglePage from "../TogglePage/TogglePage";
 
 // Mock user profile skills
 const userSkills = ["React", "JavaScript", "HTML", "CSS", "Node"];
@@ -16,6 +17,13 @@ const filterJobsBySkills = (jobs, userSkills) => {
 function JobDetailsForSkills() {
   const filteredJobs = filterJobsBySkills(jobs, userSkills);
   const navigate = useNavigate();
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+    const [selectedJob, setSelectedJob] = useState(null);
+  
+    const handleApplyNow = (job) => {
+      setSelectedJob(job);
+      setISTogglePageOpen(true);
+    };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,7 +55,7 @@ function JobDetailsForSkills() {
               </div>
               <div className="flex items-center justify-end">
                 <div className="mt-3">
-                  <button className="px-3 py-2 text-sm font-semibold text-blue-700">
+                  <button onClick={() => handleApplyNow(job)} className="px-3 py-2 text-sm font-semibold text-blue-700">
                     Apply Now
                   </button>
                 </div>
@@ -62,6 +70,12 @@ function JobDetailsForSkills() {
               </div>
             </div>
           ))}
+          {/* Toggle Page */}
+          {isTogglePageOpen && (
+            <TogglePage jobTitle={selectedJob?.title}
+            onClose={() => setISTogglePageOpen(false)} 
+            />
+          )}
         </div>
       ) : (
         <p>No jobs available for your skills at the moment.</p>

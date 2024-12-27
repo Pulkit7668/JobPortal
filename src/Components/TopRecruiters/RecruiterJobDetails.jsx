@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { recruitersData } from "./recruitersData";
 import { FaArrowLeft } from "react-icons/fa";
+import TogglePage from "../TogglePage/TogglePage";
 
 function RecruiterJobDetails() {
   const { recruiterId, jobId } = useParams();
   const navigate = useNavigate();
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+  
+  const handleApplyNow = (job) => {
+    setSelectedJob(job);
+    setISTogglePageOpen(true);
+  };
+  
   
   // Find the recruiter based on the recruiterId
   const recruiter = recruitersData.find((r) => r.id === parseInt(recruiterId));
@@ -73,12 +82,18 @@ function RecruiterJobDetails() {
 
       {/* Apply Button */}
       <div className="mt-8 flex justify-center md:justify-end">
-        <button
+        <button onClick={() => handleApplyNow(job)}
           className="bg-blue-600 text-white py-3 px-8 font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
         >
           Apply Now
         </button>
       </div>
+      {/* Toggle Page */}
+      {isTogglePageOpen && (
+          <TogglePage jobTitle={selectedJob?.title}
+          onClose={() => setISTogglePageOpen(false)} 
+          />
+      )}
     </div>
   );
 }

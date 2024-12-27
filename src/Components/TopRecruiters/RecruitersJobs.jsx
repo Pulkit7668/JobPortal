@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { recruitersData } from "./recruitersData";
 import { FaArrowLeft, FaHeart, FaRegHeart } from "react-icons/fa";
+import TogglePage from "../TogglePage/TogglePage";
 
 function RecruitersJob() {
   const { recruiterId } = useParams();
   const navigate = useNavigate();
   const [savedJobs, setSavedJobs] = useState({});
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+
+  const handleApplyNow = (job) => {
+    setSelectedJob(job);
+    setISTogglePageOpen(true);
+  };
 
   const toggleSaveJob = (jobId) => {
     setSavedJobs((prevSavedJobs) => ({
@@ -50,10 +58,8 @@ function RecruitersJob() {
                 <p className="text-sm text-gray-600 mt-2">Experience: {job.experience}</p>
                 <p className="text-sm text-gray-600">Salary: {job.salary}</p>
                 <div className="flex items-center justify-end">
-                  <button className="mt-3 text-blue-600 font-semibold">Apply Now</button>
+                  <button onClick={() => handleApplyNow(job)} className="mt-3 text-blue-600 font-semibold">Apply Now</button>
                 </div>
-
-                {/* More Details Button */}
                 <div className="absolute bottom-4 left-4">
                   <button
                     onClick={() => navigate(`/recruiters/${recruiterId}/jobs/${job.jobId}`)}
@@ -76,6 +82,12 @@ function RecruitersJob() {
                 </div>
               </div>
             ))}
+          {/* Toggle Page */}
+          {isTogglePageOpen && (
+            <TogglePage jobTitle={selectedJob?.title}
+            onClose={() => setISTogglePageOpen(false)} 
+            />
+          )}
           </div>
         ) : (
           <p>No jobs available for this recruiter.</p>

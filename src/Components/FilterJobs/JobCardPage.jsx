@@ -1,11 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { filterJobData } from './FilterJobData';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import TogglePage from '../TogglePage/TogglePage';
 
 const JobCategoryPage = ({ category }) => {
   const jobs = filterJobData[category.toLowerCase()] || [];
   const navigate = useNavigate();
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+    
+  const handleApplyNow = (job) => {
+    setSelectedJob(job);
+    setISTogglePageOpen(true);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,21 +54,26 @@ const JobCategoryPage = ({ category }) => {
               </div>
 
               <div className='flex items-center justify-end'>
-                <button
-                  // onClick={() => navigate(`/job/${job.id}`)}
+                <button onClick={() => navigate(`/jobs/${category.toLowerCase()}/${job.id}`)}
                   className="mt-4 mr-5 font-semibold text-blue-700"
                 >
                   More Details
                 </button>
-                <button
+                <button onClick={() => handleApplyNow(job)}
                   className="mt-4 font-semibold text-blue-700"
                 >
-                  Apply Job
+                  Apply Now
                 </button>
               </div>
             </div>
           ))}
         </div>
+      )}
+      {/* Toggle Page */}
+      {isTogglePageOpen && (
+          <TogglePage jobTitle={selectedJob?.title}
+          onClose={() => setISTogglePageOpen(false)} 
+          />
       )}
     </div>
   );

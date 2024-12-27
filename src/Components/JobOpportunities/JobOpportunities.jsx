@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import jobData from "./JobOpportunitiesData";
+import TogglePage from "../TogglePage/TogglePage";
 
 const JobOpportunities = () => {
   const [visibleJobs, setVisibleJobs] = useState(2);
   const [isSaved, setIsSaved] = useState({});
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+    
+  const handleApplyNow = (job) => {
+    setSelectedJob(job);
+    setISTogglePageOpen(true);
+  };
 
   const toggleSaveJob = (id) => {
     setIsSaved((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -61,7 +69,7 @@ const JobOpportunities = () => {
                   💰 {job.salary}
                 </p>
               </div>
-              <button className="md:absolute md:bottom-4 xs:right-2 md:right-4 xs:mt-5 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+              <button onClick={() => handleApplyNow(job)} className="md:absolute md:bottom-4 xs:right-2 md:right-4 xs:mt-5 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
                 Apply Now
               </button>
               <div
@@ -96,6 +104,12 @@ const JobOpportunities = () => {
           </button>
         )}
       </div>
+      {/* Toggle Page */}
+      {isTogglePageOpen && (
+          <TogglePage jobTitle={selectedJob?.title}
+          onClose={() => setISTogglePageOpen(false)} 
+          />
+      )}
     </div>
   );
 };

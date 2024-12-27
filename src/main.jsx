@@ -15,6 +15,8 @@ import Searchpage from "./Components/SearchInputBox/Searchpage.jsx";
 import NotificationPage from "./Components/Navbar/NotificationPage.jsx";
 import JobsResults from "./Components/SearchInputBox/JobResults.jsx";
 import SearchJobDetails from "./Components/SearchInputBox/SearchJobDetails.jsx";
+import CareerGuidancePage from "./Components/CareerGuidance/CareerGuidancePage.jsx";
+import FilterJobDetails from "./Components/FilterJobs/FilterJobDetails..jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -32,9 +34,9 @@ createRoot(document.getElementById("root")).render(
         <Route path="/remote" element={<JobCategoryPage category="Remote" />} />
         <Route path="/mnc" element={<JobCategoryPage category="MNC" />} />
         <Route path="/fresher" element={<JobCategoryPage category="Fresher" />} />
-        <Route path="/software-it" element={<JobCategoryPage category="Software & IT" />} />
+        <Route path="/software-it" element={<JobCategoryPage category="SoftwareIt" />} />
         <Route path="/startup" element={<JobCategoryPage category="Startup" />} />
-        <Route path="/supply-chain" element={<JobCategoryPage category="Supply Chain" />} />
+        <Route path="/supply-chain" element={<JobCategoryPage category="SupplyChain" />} />
         <Route path="/marketing" element={<JobCategoryPage category="Marketing" />} />
         <Route path="/internship" element={<JobCategoryPage category="Internship" />} />
         <Route path="/analytics" element={<JobCategoryPage category="Analytics" />} />
@@ -44,6 +46,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/notifications" element={<NotificationPage />} />
         <Route path="/job-results" element={<JobsResults />} />
         <Route path="/job-details/:jobTitle" element={<SearchJobDetails />} />
+        <Route path="/jobs/:category/:jobId" element={<FilterJobDetails />} />
+        <Route path="/career-guidance" element={<CareerGuidancePage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

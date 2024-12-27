@@ -118,7 +118,7 @@ function ProfileSidebar({ isOpen, onClose }) {
           <div className="flex items-center space-x-3">
             <TfiMenuAlt size={16} className="text-gray-500" />
             <Link
-              to=""
+              to="/career-guidance"
               className="block text-gray-700 hover:text-blue-600"
             >
               Career guidance

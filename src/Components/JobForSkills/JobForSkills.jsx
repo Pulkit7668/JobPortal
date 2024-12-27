@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { jobs } from "./JobDataForSkills";
+import TogglePage from "../TogglePage/TogglePage";
 
 // Mock user profile skills
 const userSkills = ["React", "JavaScript", "HTML", "CSS"];
@@ -16,6 +17,13 @@ const filterJobsBySkills = (jobs, userSkills) => {
 function JobsForSkills() {
   const filteredJobs = filterJobsBySkills(jobs, userSkills);
   const jobsToShow = filteredJobs.slice(0, 4);
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+
+  const handleApplyNow = (job) => {
+    setSelectedJob(job);
+    setISTogglePageOpen(true);
+  };
 
   return (
     <div className="p-6 lg:mx-20 mt-10">
@@ -37,7 +45,7 @@ function JobsForSkills() {
               </div>
               <div className="flex items-center xs:justify-evenly lg:justify-around md:justify-end">
                 <div className="mt-3">
-                  <button className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                  <button onClick={() => handleApplyNow(job)} className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
                     Apply Now
                   </button>
                 </div>
@@ -62,6 +70,13 @@ function JobsForSkills() {
               </Link>
               <FaCircleArrowRight size={24} />
             </div>
+          )}
+
+          {/* Toggle Page */}
+          {isTogglePageOpen && (
+            <TogglePage jobTitle={selectedJob?.title}
+            onClose={() => setISTogglePageOpen(false)} 
+            />
           )}
         </div>
       ) : (
