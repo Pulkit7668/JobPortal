@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaHeart, FaRegHeart } from 'react-icons/fa';
 import { jobs } from './JobDataForSkills';
@@ -24,6 +24,10 @@ function JobDetail() {
   if (!job) {
     return <p>Job not found.</p>;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="p-6 lg:mx-20">
@@ -62,7 +66,7 @@ function JobDetail() {
       </div>
       <div
         onClick={toggleSaveJob}
-        className="cursor-pointer absolute md:right-28 xs:right-10 top-8 transition-all duration-300"
+        className="cursor-pointer absolute md:right-28 xs:right-10 top-24 transition-all duration-300"
       >
         {isSaved ? (
           <FaHeart size={24} className="text-red-500" />

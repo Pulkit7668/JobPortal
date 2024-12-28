@@ -8,12 +8,29 @@
     100% { transform: rotate(360deg); }
   }
   
-  .loader {
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #3498db;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spin 1s linear infinite;
-  }
-  
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+.custom-prev,
+.custom-next {
+  font-size: 14px; /* Smaller font size */
+  width: 40px; /* Wider size */
+  height: 30px; /* Smaller height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px; /* Rounded corners */
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

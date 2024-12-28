@@ -16,7 +16,7 @@ const CareerGuidancePage = () => {
   };
 
   return (
-    <div className="bg-gray-50 p-6 lg:px-20 lg:py-10">
+    <div className="p-6 lg:px-20 lg:py-10">
       {/* Header Section */}
       <motion.section
         initial={{ opacity: 0 }}

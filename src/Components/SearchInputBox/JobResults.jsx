@@ -2,12 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import jobsData from './SearchData';
 import { FaArrowLeft, FaHeart, FaRegHeart } from 'react-icons/fa';
+import TogglePage from "../TogglePage/TogglePage";
 
 function JobResults() {
   const [jobResults, setJobResults] = useState([]);
   const [favoritedJobs, setFavoritedJobs] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+  
+  const handleApplyNow = (job) => {
+    setSelectedJob(job);
+    setISTogglePageOpen(true);
+  };
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -85,8 +93,8 @@ function JobResults() {
 
               {/* Apply and More Details Buttons */}
               <div className="flex items-center justify-end font-semibold">
-                <button className="text-blue-700 mr-5">
-                  Apply
+                <button onClick={() => handleApplyNow(job)} className="text-blue-700 mr-5">
+                  Apply Now
                 </button>
                 <button 
                   onClick={() => navigate(`/job-details/${job.title.toLowerCase().replace(/\s+/g, '-')}`)} 
@@ -100,6 +108,12 @@ function JobResults() {
         ) : (
           <p className="text-center text-gray-500">No jobs found</p>
         )}
+        {/* Toggle Page */}
+        {isTogglePageOpen && (
+            <TogglePage jobTitle={selectedJob?.title}
+            onClose={() => setISTogglePageOpen(false)} 
+            />
+          )}
       </div>
     </div>
   );

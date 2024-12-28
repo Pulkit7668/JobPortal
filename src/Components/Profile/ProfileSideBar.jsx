@@ -92,7 +92,7 @@ function ProfileSidebar({ isOpen, onClose }) {
           <div className="flex justify-between 2xl:justify-around mt-3 bg-blue-50 p-3 rounded-lg">
             <div className="text-center ml-8">
               <h5 className="text-lg font-bold text-gray-700">0</h5>
-              <p className="text-xs text-gray-500">Search Appearances</p>
+              <p className="text-xs text-gray-500">Recruiter Visitor</p>
               <Link
                 to=""
                 className="text-xs text-blue-600 hover:underline"

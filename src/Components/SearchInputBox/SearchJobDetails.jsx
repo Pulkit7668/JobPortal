@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import jobsData from './SearchData';
 import { FaArrowLeft } from 'react-icons/fa';
+import TogglePage from "../TogglePage/TogglePage";
 
 function SearchJobDetails() {
   const { jobTitle } = useParams();
   const navigate = useNavigate();
   const [jobDetails, setJobDetails] = useState(null);
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+
+  const handleApplyNow = (job) => {
+    setSelectedJob(job);
+    setISTogglePageOpen(true);
+  };
 
   useEffect(() => {
     const job = jobsData.find(
@@ -56,12 +64,18 @@ function SearchJobDetails() {
 
         {/* Apply Button */}
         <div className="flex justify-end">
-          <button  
+          <button onClick={() => handleApplyNow(jobDetails)} 
             className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md transition duration-300 hover:bg-blue-700"
           >
             Apply Now
           </button>
         </div>
+        {/* Toggle Page */}
+        {isTogglePageOpen && (
+          <TogglePage jobTitle={selectedJob?.title}
+            onClose={() => setISTogglePageOpen(false)} 
+          />
+        )}
       </div>
     </div>
   );

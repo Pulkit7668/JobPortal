@@ -91,18 +91,6 @@ const Footer = () => {
                   className="w-40"
                 />
               </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-90"
-              >
-                <img
-                  src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us.svg"
-                  alt="App Store"
-                  className="w-40"
-                />
-              </a>
             </div>
           </div>
         </div>

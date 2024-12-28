@@ -17,9 +17,16 @@ const prepareData = [
   },
 ];
 
-const participateData = [
+const coursesData = [
   {
-    items: ["Contests", "All India NCAT", "Naukri Campus Young Turks"],
+    items: [
+      "Web Development",
+      "Data Science",
+      "Machine Learning",
+      "Digital Marketing",
+      "Cloud Computing",
+      "Cyber Security",
+    ],
   },
 ];
 
@@ -46,7 +53,7 @@ function Navbar() {
   return (
     <>
       <header className="relative">
-        <div className="flex lg:justify-around xs:justify-between items-center px-6 xs:px-2 py-4">
+        <div className="flex lg:mx-24 xs:justify-between items-center px-6 xs:px-2 py-4">
           {/* Logo */}
           <div className="flex">
             <h1 className="text-4xl font-bold text-blue-600">UrLogo</h1>
@@ -67,10 +74,10 @@ function Navbar() {
               <NavLink
                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
               >
-                Participate
+                Courses
               </NavLink>
               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                <DropdownCard data={participateData} />
+                <DropdownCard data={coursesData} />
               </div>
             </div>
             <div className="group md:inline-block relative font-semibold xs:hidden">
@@ -89,7 +96,7 @@ function Navbar() {
           <div className="flex items-center md:space-x-6 xs:space-x-4">
             {/* Search Icon */}
             <div className="relative xs:block lg:hidden">
-            <Link to="/search">
+              <Link to="/search">
                 <FaSearch className="text-gray-600 text-xl cursor-pointer" size={20} />
               </Link>
             </div>

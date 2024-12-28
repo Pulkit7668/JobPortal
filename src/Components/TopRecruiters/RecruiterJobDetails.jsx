@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { recruitersData } from "./recruitersData";
 import { FaArrowLeft } from "react-icons/fa";
@@ -15,6 +15,9 @@ function RecruiterJobDetails() {
     setISTogglePageOpen(true);
   };
   
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   // Find the recruiter based on the recruiterId
   const recruiter = recruitersData.find((r) => r.id === parseInt(recruiterId));

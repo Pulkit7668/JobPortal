@@ -1,6 +1,7 @@
 import React from "react";
 import { recruitersData } from "./recruitersData";
 import { Link } from 'react-router-dom';
+import { FaCircleArrowRight } from "react-icons/fa6";
 
 // Sort recruiters by the number of vacancies (in descending order)
 const sortedRecruiters = recruitersData.sort((a, b) => b.vacancies - a.vacancies);
@@ -8,9 +9,17 @@ const sortedRecruiters = recruitersData.sort((a, b) => b.vacancies - a.vacancies
 function TopRecruiters() {
   return (
     <div className="p-6 lg:mx-20 mt-10">
-      <h2 className="text-2xl font-bold mb-4">Top Recruiters</h2>
+      <div className="flex items-center justify-between mb-5">
+        <h2 className="text-2xl font-bold">Top Recruiters</h2>
+        <div className="flex items-center">
+          <Link to="/recruiters/all" className="px-4 py-2  text-gray-800 hover:text-blue-600 transition-all duration-300">
+            View More
+          </Link>
+          <FaCircleArrowRight size={20} />
+        </div>
+      </div>
       {sortedRecruiters.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-5">
           {sortedRecruiters.map((recruiter) => (
             <div
               key={recruiter.id}
@@ -39,11 +48,6 @@ function TopRecruiters() {
       ) : (
         <p>No top recruiters available at the moment.</p>
       )}
-      <div className="flex items-center justify-center">
-        <Link to="/recruiters/all" className="mt-5 px-4 py-2 font-semibold text-black border border-black rounded-xl hover:bg-white transition duration-300">
-          View More
-        </Link>
-      </div>
     </div>
   );
 }

@@ -109,7 +109,7 @@ export const jobs = [
     title: "UX/UI Designer",
     company: "Capgemini",
     location: "Chennai, Tamil Nadu",
-    skills: ["Figma", "Sketch", "Adobe XD", "UX Design", "UI Design", "HTML", "CSS"],
+    skills: ["Figma", "Sketch", "Adobe XD", "UX Design", "UI Design"],
     description:
       "As a UX/UI Designer, you will be responsible for designing intuitive and user-friendly interfaces. You will work closely with developers and product managers to create wireframes, prototypes, and high-fidelity designs that meet user needs and business goals.",
     responsibilities: [

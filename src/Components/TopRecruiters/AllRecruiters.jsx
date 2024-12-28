@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { recruitersData } from "./recruitersData";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
 function AllRecruiters() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="p-6 lg:mx-20">

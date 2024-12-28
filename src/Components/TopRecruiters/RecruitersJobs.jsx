@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { recruitersData } from "./recruitersData";
 import { FaArrowLeft, FaHeart, FaRegHeart } from "react-icons/fa";
@@ -22,6 +22,10 @@ function RecruitersJob() {
       [jobId]: !prevSavedJobs[jobId],
     }));
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Find the recruiter data based on the ID
   const recruiter = recruitersData.find((r) => r.id === parseInt(recruiterId));
