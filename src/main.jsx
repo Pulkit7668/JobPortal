@@ -13,11 +13,13 @@ import Searchpage from "./Components/SearchInputBox/Searchpage.jsx";
 import NotificationPage from "./Components/Navbar/NotificationPage.jsx";
 import JobsResults from "./Components/SearchInputBox/JobResults.jsx";
 import SearchJobDetails from "./Components/SearchInputBox/SearchJobDetails.jsx";
-import CareerGuidancePage from "./Components/CareerGuidance/CareerGuidancePage.jsx";
+import CareerGuidancePage from "./Components/Profile/CareerGuidancePage.jsx";
 import FilterJobDetails from "./Components/FilterJobs/FilterJobDetails..jsx";
 import Layout from "./Layout.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AllJobOpportunities from "./Components/JobOpportunities/AllJobOpportunities.jsx";
+import ViewAndUpdateProfile from "./Components/Profile/ViewAndUpdateProfile.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -30,23 +32,26 @@ createRoot(document.getElementById("root")).render(
           <Route path="/recruiters/all" element={<AllRecruiters />} />
           <Route path="/recruiters/jobs/:recruiterId" element={<RecruitersJobs />} />
           <Route path="/recruiters/:recruiterId/jobs/:jobId" element={<RecruiterJobDetails />} />
-          <Route path="/remote" element={<JobCategoryPage category="Remote" />} />
-          <Route path="/mnc" element={<JobCategoryPage category="MNC" />} />
-          <Route path="/fresher" element={<JobCategoryPage category="Fresher" />} />
-          <Route path="/software-it" element={<JobCategoryPage category="SoftwareIt" />} />
-          <Route path="/startup" element={<JobCategoryPage category="Startup" />} />
-          <Route path="/supply-chain" element={<JobCategoryPage category="SupplyChain" />} />
-          <Route path="/marketing" element={<JobCategoryPage category="Marketing" />} />
-          <Route path="/internship" element={<JobCategoryPage category="Internship" />} />
-          <Route path="/analytics" element={<JobCategoryPage category="Analytics" />} />
-          <Route path="/hr" element={<JobCategoryPage category="HR" />} />
+          <Route path="/it" element={<JobCategoryPage category="IT" />} />
           <Route path="/sales" element={<JobCategoryPage category="Sales" />} />
+          <Route path="/marketing" element={<JobCategoryPage category="Marketing" />} />
+          <Route path="/hr" element={<JobCategoryPage category="HR" />} />
+          <Route path="/finance" element={<JobCategoryPage category="Finance" />} />
+          <Route path="/operations" element={<JobCategoryPage category="Operations" />} />
+          <Route path="/support" element={<JobCategoryPage category="Support" />} />
+          <Route path="/analytics" element={<JobCategoryPage category="Analytics" />} />
+          <Route path="/legal" element={<JobCategoryPage category="Legal" />} />
+          <Route path="/training" element={<JobCategoryPage category="Training" />} />
+          <Route path="/engineering" element={<JobCategoryPage category="Engineering" />} />
+          <Route path="/administration" element={<JobCategoryPage category="Administration" />} />
           <Route path="/search" element={<Searchpage />} />
           <Route path="/notifications" element={<NotificationPage />} />
           <Route path="/job-results" element={<JobsResults />} />
           <Route path="/job-details/:jobTitle" element={<SearchJobDetails />} />
           <Route path="/jobs/:category/:jobId" element={<FilterJobDetails />} />
           <Route path="/career-guidance" element={<CareerGuidancePage />} />
+          <Route path="/job-opportunities" element={<AllJobOpportunities />} />
+          <Route path="/view-update-profile" element={<ViewAndUpdateProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>

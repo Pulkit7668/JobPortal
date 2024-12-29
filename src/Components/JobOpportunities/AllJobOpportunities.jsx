@@ -1,29 +1,28 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, {useEffect} from "react";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import jobData from "./JobOpportunitiesData";
-import { FaCircleArrowRight } from "react-icons/fa6";
 
-const JobOpportunities = () => {
-  const [visibleJobs] = useState(2);
+const AllJobOpportunities = () => {
   const navigate = useNavigate();
 
-  const handleViewMore = () => {
-    navigate("/job-opportunities");
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="mt-12 mb-10 xs:mx-5">
-      <div className="flex items-center justify-between mb-5 lg:mx-24">
-        <h2 className="text-2xl font-bold">Job Opportunities</h2>
-        <div className="flex items-center">
-          <Link to="/job-opportunities" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
-            View More
-          </Link>
-          <FaCircleArrowRight size={20} />
-        </div>
+      <div className="flex items-center mb-8 md:ml-10 lg:ml-20">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-blue-600 hover:text-blue-800 mr-4"
+        >
+          <FaArrowLeft size={40} className="p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
+        </button>
+        <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold">All Job Opportunities</h1>
       </div>
       <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
-        {jobData.slice(0, visibleJobs).map((job) => (
+        {jobData.map((job) => (
           <div
             key={job.id}
             className="relative flex xs:flex-col md:flex-row bg-white rounded-xl shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
@@ -52,4 +51,4 @@ const JobOpportunities = () => {
   );
 };
 
-export default JobOpportunities;
+export default AllJobOpportunities;

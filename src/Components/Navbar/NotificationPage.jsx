@@ -6,7 +6,7 @@ function NotificationPage() {
     const navigate = useNavigate();
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-20 p-6">
       <button
         onClick={() => navigate(-1)}
         className="text-blue-600 mb-10 transition duration-300"

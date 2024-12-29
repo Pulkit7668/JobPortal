@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for programmatic navigation
 import { FaTimes, FaRegHeart, FaCogs, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
 
 function ProfileSidebar({ isOpen, onClose }) {
   const profileCompletion = 40;
-
   const progressColor = profileCompletion >= 75 ? "#34D399" : "#F04141";
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    onClose();
+    navigate("/view-update-profile");
+  };
+
+  const handleCareerGuidanceClick = () => {
+    onClose();
+    navigate("/career-guidance");
+  };
 
   return (
     <>
@@ -75,12 +85,12 @@ function ProfileSidebar({ isOpen, onClose }) {
               <p className="text-sm text-gray-500">
                 B.Tech/B.E. Production/Industrial at Hi-Tech Institute of Engineering & Tech
               </p>
-              <Link
-                to=""
+              <button
+                onClick={handleProfileClick}
                 className="text-sm text-blue-600 hover:underline"
               >
                 View & Update Profile
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -117,12 +127,12 @@ function ProfileSidebar({ isOpen, onClose }) {
         <div className="p-4 space-y-3 text-sm">
           <div className="flex items-center space-x-3">
             <TfiMenuAlt size={16} className="text-gray-500" />
-            <Link
-              to="/career-guidance"
+            <button
+              onClick={handleCareerGuidanceClick}
               className="block text-gray-700 hover:text-blue-600"
             >
               Career guidance
-            </Link>
+            </button>
           </div>
           <div className="flex items-center space-x-3">
             <FaRegHeart size={16} className="text-gray-500" />

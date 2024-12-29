@@ -12,7 +12,7 @@ function TopRecruiters() {
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-2xl font-bold">Top Recruiters</h2>
         <div className="flex items-center">
-          <Link to="/recruiters/all" className="px-4 py-2  text-gray-800 hover:text-blue-600 transition-all duration-300">
+          <Link to="/recruiters/all" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
             View More
           </Link>
           <FaCircleArrowRight size={20} />

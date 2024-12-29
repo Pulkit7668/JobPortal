@@ -34,3 +34,37 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* Custom Scrollbar Styling */
+.scrollable {
+  overflow-y: auto;
+  max-height: calc(100vh - 60px); /* Adjust height to fit the container */
+}
+
+/* Scrollbar container */
+.scrollable::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+/* Scrollbar track */
+.scrollable::-webkit-scrollbar-track {
+  background-color: #ffffff; /* Light background for the track */
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb (the draggable part) */
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #007BFF; /* Darker color for the thumb */
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Scrollbar thumb hover */
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: #0073ee; /* Darker on hover */
+}
+
+/* Add a margin-right to the left section to create space */
+.scrollable {
+  margin-right: 20px; /* Adjust the value as needed */
+}
