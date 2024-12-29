@@ -78,7 +78,7 @@ function JobDetail() {
         </div>
 
         {/* Right Section: Job Details */}
-        <div className="lg:w-2/3 h-full mt-10">
+        <div className="lg:w-2/3 h-full">
           {/* Title and Heart Icon */}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
