@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import jobData from "./JobOpportunitiesData";
 import { FaCircleArrowRight } from "react-icons/fa6";
+import TogglePage from "../TogglePage/TogglePage";
+import { Link } from "react-router-dom";
 
 const JobOpportunities = () => {
   const [visibleJobs] = useState(2);
-  const navigate = useNavigate();
-
-  const handleViewMore = () => {
-    navigate("/job-opportunities");
+  const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+  
+  const handleApplyNow = () => {
+    setISTogglePageOpen(true);
   };
 
   return (
@@ -16,7 +18,10 @@ const JobOpportunities = () => {
       <div className="flex items-center justify-between mb-5 lg:mx-24">
         <h2 className="text-2xl font-bold">Job Opportunities</h2>
         <div className="flex items-center">
-          <Link to="/job-opportunities" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
+          <Link
+            to="/job-opportunities"
+            className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300"
+          >
             View More
           </Link>
           <FaCircleArrowRight size={20} />
@@ -45,9 +50,26 @@ const JobOpportunities = () => {
                 💰 {job.salary}
               </p>
             </div>
+
+            {/* Apply Now Button */}
+            <div className="absolute bottom-4 right-4">
+              <button
+                onClick={() => handleApplyNow()}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+              >
+                Apply Now
+              </button>
+            </div>
           </div>
         ))}
       </div>
+      {/* Toggle Page */}
+      {isTogglePageOpen && (
+        <TogglePage
+          jobTitle={selectedJob?.title}
+          onClose={() => setISTogglePageOpen(false)}
+        />
+      )}
     </div>
   );
 };

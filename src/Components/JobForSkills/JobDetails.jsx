@@ -36,7 +36,7 @@ function JobDetail() {
     <>
       <button
         onClick={() => navigate(-1)}
-        className="text-blue-600 hover:text-blue-800 md:ml-5 lg:ml-24 mt-10 xs:hidden md:block"
+        className="text-blue-600 hover:text-blue-800 md:ml-5 lg:ml-24 xs:ml-5 lg:mt-10 xs:mt-5"
       >
         <FaArrowLeft size={40} className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
       </button>
@@ -78,7 +78,7 @@ function JobDetail() {
         </div>
 
         {/* Right Section: Job Details */}
-        <div className="lg:w-2/3 h-full">
+        <div className="lg:w-2/3 h-full bg-gray-50 p-6 rounded-lg shadow-md">
           {/* Title and Heart Icon */}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
@@ -111,6 +111,8 @@ function JobDetail() {
               <li key={index}>{req}</li>
             ))}
           </ul>
+
+          <p className="font-semibold text-gray-700 mt-8">Application Deadline: {selectedJob.application_deadline}</p>
 
           {/* Apply Now button */}
           <div className="mt-6 flex justify-end">

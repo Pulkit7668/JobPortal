@@ -18,7 +18,8 @@ export const jobs = [
       "3+ years of experience in front-end development.",
       "Proficiency in React.js and front-end tools like Webpack, Babel.",
       "Experience with responsive design and cross-browser compatibility."
-    ]
+    ],
+    application_deadline: "31-Dec-2024"
   },
   {
     id: 2,
@@ -39,7 +40,8 @@ export const jobs = [
       "2+ years of experience in backend development.",
       "Experience with Node.js, Express, and database management systems.",
       "Strong knowledge of RESTful API design and implementation."
-    ]
+    ],
+    application_deadline: "15-Nov-2024"
   },
   {
     id: 3,
@@ -60,7 +62,8 @@ export const jobs = [
       "Experience with full-stack web development (React, Node.js, MongoDB).",
       "Understanding of cloud services like AWS or Azure.",
       "Experience with version control systems (Git)."
-    ]
+    ],
+    application_deadline: "15-Jan-2025"
   },
   {
     id: 4,
@@ -81,7 +84,8 @@ export const jobs = [
       "1-3 years of experience in web development.",
       "Proficiency in HTML5, CSS3, and JavaScript.",
       "Experience with web optimization techniques."
-    ]
+    ],
+    application_deadline: "25-Dec-2024"
   },
   {
     id: 5,
@@ -102,14 +106,15 @@ export const jobs = [
       "2+ years of experience in mobile app development.",
       "Proficiency in React Native and Redux.",
       "Experience with both Android and iOS platforms."
-    ]
+    ],
+    application_deadline: "30-Dec-2024"
   },
   {
     id: 6,
     title: "UX/UI Designer",
     company: "Capgemini",
     location: "Chennai, Tamil Nadu",
-    skills: ["Figma", "Sketch", "Adobe XD", "UX Design", "UI Design"],
+    skills: ["Figma", "Sketch", "Adobe XD", "UX Design", "UI Design", "HTML", "CSS"],
     description:
       "As a UX/UI Designer, you will be responsible for designing intuitive and user-friendly interfaces. You will work closely with developers and product managers to create wireframes, prototypes, and high-fidelity designs that meet user needs and business goals.",
     responsibilities: [
@@ -123,6 +128,51 @@ export const jobs = [
       "3+ years of experience in UX/UI design.",
       "Proficiency in design tools like Figma, Sketch, and Adobe XD.",
       "Strong portfolio demonstrating design and problem-solving skills."
-    ]
+    ],
+    application_deadline: "20-Nov-2024"
   },
+  {
+    id: 7,
+    title: "Cloud Engineer",
+    company: "Google Cloud",
+    location: "Hyderabad, Telangana",
+    skills: ["AWS", "Azure", "Docker", "Kubernetes", "Node.js"],
+    description:
+      "As a Cloud Engineer, you will be responsible for building and maintaining cloud infrastructure on platforms like AWS and Azure. You will work closely with development teams to integrate cloud services and ensure high availability and scalability of applications.",
+    responsibilities: [
+      "Design and implement cloud solutions using AWS and Azure.",
+      "Automate deployment processes using Docker and Kubernetes.",
+      "Ensure the scalability and security of cloud applications.",
+      "Work with developers to integrate cloud services and APIs."
+    ],
+    requirements: [
+      "Bachelor's degree in Computer Science or related field.",
+      "2+ years of experience with cloud platforms (AWS, Azure).",
+      "Experience with containerization (Docker, Kubernetes).",
+      "Strong knowledge of cloud security best practices."
+    ],
+    application_deadline: "05-Dec-2024"
+  },
+  {
+    id: 8,
+    title: "DevOps Engineer",
+    company: "Amazon Web Services",
+    location: "Bengaluru, Karnataka",
+    skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
+    description:
+      "As a DevOps Engineer, you will work on automating and optimizing the deployment pipelines, managing cloud infrastructure, and implementing CI/CD best practices to ensure faster and more reliable delivery of software.",
+    responsibilities: [
+      "Automate deployment pipelines using CI/CD tools.",
+      "Manage cloud infrastructure on AWS and other cloud providers.",
+      "Containerize applications using Docker and orchestrate using Kubernetes.",
+      "Work with developers and QA teams to ensure high-quality software releases."
+    ],
+    requirements: [
+      "Bachelor's degree in Computer Science or related field.",
+      "3+ years of experience in DevOps and cloud infrastructure.",
+      "Proficiency in Docker, Kubernetes, and AWS.",
+      "Experience with infrastructure as code (Terraform, CloudFormation)."
+    ],
+    application_deadline: "10-Dec-2024"
+  }
 ];
