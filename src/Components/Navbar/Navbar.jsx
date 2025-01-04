@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import DropdownCard from "../DropdownCard/DropdownCard";
 import { FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
 import ProfileSidebar from "../Profile/ProfileSideBar";
+// import LoginPage from "../LoginPage/Loginpage";
 
 const prepareData = [
   {
@@ -45,10 +46,21 @@ const opportunitiesData = [
 function Navbar() {
   const [isProfileSidebarOpen, setIsProfileSidebarOpen] = useState(false);
   const [isNotificationHovered, setIsNotificationHovered] = useState(false);
+  // const [isLoginOpen, setIsLoginOpen] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleProfileSidebar = () => {
     setIsProfileSidebarOpen(!isProfileSidebarOpen);
   };
+
+  // const handleLogin = () => {
+  //   setIsLoggedIn(true);
+  //   setIsLoginOpen(false); // Close the login modal after successful login
+  // };
+
+  // const handleLogout = () => {
+  //   setIsLoggedIn(false);
+  // };
 
   return (
     <>
@@ -102,58 +114,81 @@ function Navbar() {
             </div>
 
             {/* Notification Icon */}
-            <div
-              className="relative"
-              onMouseEnter={() => setIsNotificationHovered(true)}
-              onMouseLeave={() => setIsNotificationHovered(false)}
-            >
-              <Link to="/notifications">
-                <FaBell className="text-gray-600 text-xl cursor-pointer" size={24} />
-              </Link>
-              {isNotificationHovered && (
-                <div className="absolute right-0 mt-2 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
-                  <div className="p-4">
-                    <div className="py-2 border-b">
-                      <div className="flex justify-between items-center">
-                        <h4 className="text-sm font-bold">Recommended jobs</h4>
-                        <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
-                          14 New
-                        </span>
+            {/* {isLoggedIn && ( */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsNotificationHovered(true)}
+                onMouseLeave={() => setIsNotificationHovered(false)}
+              >
+                <Link to="/notifications">
+                  <FaBell className="text-gray-600 text-xl cursor-pointer" size={24} />
+                </Link>
+                {isNotificationHovered && (
+                  <div className="absolute right-0 mt-2 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
+                    <div className="p-4">
+                      <div className="py-2 border-b">
+                        <div className="flex justify-between items-center">
+                          <h4 className="text-sm font-bold">Recommended jobs</h4>
+                          <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
+                            14 New
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-500 mt-1">Frontend Developer</p>
                       </div>
-                      <p className="text-sm text-gray-500 mt-1">Frontend Developer</p>
-                    </div>
-                    <div className="py-2 border-b">
-                      <div className="flex justify-between items-center">
-                        <h4 className="text-sm font-bold">Pending Actions</h4>
-                        <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
-                          13 Actions
-                        </span>
+                      <div className="py-2 border-b">
+                        <div className="flex justify-between items-center">
+                          <h4 className="text-sm font-bold">Pending Actions</h4>
+                          <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
+                            13 Actions
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-500 mt-1">
+                          Update Senior Secondary School Details
+                        </p>
                       </div>
-                      <p className="text-sm text-gray-500 mt-1">
-                        Update Senior Secondary School Details
-                      </p>
-                    </div>
-                    <div className="py-2">
-                      <h4 className="text-sm font-bold">Recruiter Searches</h4>
+                      <div className="py-2">
+                        <h4 className="text-sm font-bold">Recruiter Searches</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            {/* )} */}
 
             {/* User Icon */}
-            <div
-              className="border-2 rounded-full cursor-pointer"
-              onClick={toggleProfileSidebar}
-            >
-              <FaUserCircle className="text-gray-300 text-xl" size={35} />
-            </div>
+            {/* {isLoggedIn && ( */}
+              <div
+                className="border-2 rounded-full cursor-pointer"
+                onClick={toggleProfileSidebar}
+              >
+                <FaUserCircle className="text-gray-300 text-xl" size={35} />
+              </div>
+            {/* )} */}
+
+            {/* Login Button */}
+            {/* {!isLoggedIn && (
+              <div>
+                <button
+                  onClick={() => setIsLoginOpen(true)}
+                  className="px-4 py-2 text-black font-medium border-2 border-black rounded-xl"
+                >
+                  Login
+                </button>
+              </div>
+            )} */}
           </div>
         </div>
       </header>
 
       {/* Profile Sidebar */}
       <ProfileSidebar isOpen={isProfileSidebarOpen} onClose={toggleProfileSidebar} />
+
+      {/* Login Page
+      <LoginPage
+        isOpen={isLoginOpen}
+        onClose={() => setIsLoginOpen(false)}
+        onLogin={handleLogin} // Pass the login handler here
+      /> */}
     </>
   );
 }
