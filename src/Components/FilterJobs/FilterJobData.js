@@ -126,6 +126,58 @@ export const filterJobData = {
       ],
       application_deadline: '20th March 2025',
     },
+    {
+      id: 6,
+      title: 'Product Manager',
+      company: 'VisionaryTech',
+      description: 'Lead cross-functional teams to deliver exceptional products.',
+      location: 'Delhi, India',
+      experience: '5+ years',
+      salary: '₹18 LPA',
+      responsibilities: [
+        'Define and prioritize product roadmaps.',
+        'Collaborate with engineering and design teams.',
+        'Analyze user feedback and market trends.',
+      ],
+      requirements: [
+        'Proven experience in product management.',
+        'Strong understanding of Agile methodologies.',
+        'Excellent communication and leadership skills.',
+      ],
+      perks: [
+        'Competitive salary with stock options.',
+        'Regular team outings and retreats.',
+        'Health and wellness benefits.',
+      ],
+      application_deadline: '5th March 2025',
+      contact_email: 'pm-careers@visionarytech.com',
+    },
+    {
+      id: 7,
+      title: 'UI/UX Designer',
+      company: 'CreativeX',
+      description: 'Design intuitive and visually appealing user experiences.',
+      location: 'Kolkata, India',
+      experience: '2+ years',
+      salary: '₹10 LPA',
+      responsibilities: [
+        'Create wireframes, prototypes, and mockups.',
+        'Collaborate with developers to implement designs.',
+        'Conduct user research and usability testing.',
+      ],
+      requirements: [
+        'Proficiency in Figma, Adobe XD, and Sketch.',
+        'Strong portfolio of UI/UX design work.',
+        'Knowledge of design principles and accessibility standards.',
+      ],
+      perks: [
+        'Work with a creative and dynamic team.',
+        'Opportunities for professional growth.',
+        'Flexible work environment.',
+      ],
+      application_deadline: '20th March 2025',
+      contact_email: 'design-careers@creativex.com',
+    }
   ],  
   marketing: [
       {
