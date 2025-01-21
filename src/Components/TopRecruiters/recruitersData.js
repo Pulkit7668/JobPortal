@@ -21,7 +21,7 @@ export const recruitersData = [
               "Collaborate with the team to identify software requirements.",
               "Write clean, maintainable, and efficient code.",
               "Test, debug, and optimize applications."
-            ]
+            ],
           },
           {
             jobId: 102,

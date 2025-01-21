@@ -23,8 +23,7 @@ export const filterJobData = {
         'Learning and development budget.',
         'Comprehensive health insurance.',
       ],
-      application_deadline: '31st January 2025',
-      contact_email: 'careers@techcorp.com',
+      application_deadline: "10-Dec-2025",
     },
     {
       id: 2,
@@ -49,7 +48,7 @@ export const filterJobData = {
         'Annual performance bonuses.',
         'Access to premium tools and resources.',
       ],
-      application_deadline: '15th February 2025',
+      application_deadline: '15-Feb-2025',
     },
     {
       id: 3,
@@ -74,7 +73,7 @@ export const filterJobData = {
         'Generous leave policies.',
         'Work with cutting-edge technologies.',
       ],
-      application_deadline: '28th February 2025',
+      application_deadline: "10-Dec-2024",
     },
     {
       id: 4,
@@ -99,7 +98,7 @@ export const filterJobData = {
         'Training programs and certifications.',
         'Health and wellness programs.',
       ],
-      application_deadline: '10th March 2025',
+      application_deadline: '10-Mar-2025',
     },
     {
       id: 5,
@@ -114,7 +113,7 @@ export const filterJobData = {
         'Collaborate with data scientists to deliver datasets.',
         'Ensure data quality and consistency.',
       ],
-      requirements: [
+     requirements: [
         'Proficiency in Python and SQL.',
         'Experience with Hadoop, Spark, or similar technologies.',
         'Strong understanding of data modeling and warehousing.',
@@ -124,7 +123,7 @@ export const filterJobData = {
         'Competitive salary with bonuses.',
         'Team outings and wellness initiatives.',
       ],
-      application_deadline: '20th March 2025',
+      application_deadline: "10-Dec-2025",
     },
     {
       id: 6,
@@ -175,8 +174,7 @@ export const filterJobData = {
         'Opportunities for professional growth.',
         'Flexible work environment.',
       ],
-      application_deadline: '20th March 2025',
-      contact_email: 'design-careers@creativex.com',
+      application_deadline: "10-Jan-2025",
     }
   ],  
   marketing: [

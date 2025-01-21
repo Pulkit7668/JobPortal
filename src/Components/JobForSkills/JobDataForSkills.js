@@ -19,7 +19,7 @@ export const jobs = [
       "Proficiency in React.js and front-end tools like Webpack, Babel.",
       "Experience with responsive design and cross-browser compatibility."
     ],
-    application_deadline: "31-Dec-2024"
+    application_deadline: "31-jan-2025",
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ export const jobs = [
       "Experience with Node.js, Express, and database management systems.",
       "Strong knowledge of RESTful API design and implementation."
     ],
-    application_deadline: "15-Nov-2024"
+    application_deadline: "15-Nov-2024",
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const jobs = [
       "Understanding of cloud services like AWS or Azure.",
       "Experience with version control systems (Git)."
     ],
-    application_deadline: "15-Jan-2025"
+    application_deadline: "25-Jan-2025",
   },
   {
     id: 4,
@@ -85,7 +85,7 @@ export const jobs = [
       "Proficiency in HTML5, CSS3, and JavaScript.",
       "Experience with web optimization techniques."
     ],
-    application_deadline: "25-Dec-2024"
+    application_deadline: "25-Dec-2024",
   },
   {
     id: 5,
@@ -107,7 +107,7 @@ export const jobs = [
       "Proficiency in React Native and Redux.",
       "Experience with both Android and iOS platforms."
     ],
-    application_deadline: "30-Dec-2024"
+    application_deadline: "30-Mar-2025",
   },
   {
     id: 6,
@@ -129,7 +129,7 @@ export const jobs = [
       "Proficiency in design tools like Figma, Sketch, and Adobe XD.",
       "Strong portfolio demonstrating design and problem-solving skills."
     ],
-    application_deadline: "20-Nov-2024"
+    application_deadline: "20-Feb-2025",
   },
   {
     id: 7,
@@ -151,7 +151,7 @@ export const jobs = [
       "Experience with containerization (Docker, Kubernetes).",
       "Strong knowledge of cloud security best practices."
     ],
-    application_deadline: "05-Dec-2024"
+    application_deadline: "05-Dec-2024",
   },
   {
     id: 8,
@@ -173,6 +173,6 @@ export const jobs = [
       "Proficiency in Docker, Kubernetes, and AWS.",
       "Experience with infrastructure as code (Terraform, CloudFormation)."
     ],
-    application_deadline: "10-Dec-2024"
+    application_deadline: "10-Dec-2025",
   }
 ];

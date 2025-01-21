@@ -12,14 +12,19 @@ const FilterJobDetails = () => {
   const job = jobs.find((j) => j.id === parseInt(jobId));
   const [isSaved, setIsSaved] = useState(false);
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
-  const [selectedJob, setSelectedJob] = useState(job || null); // Store selected job in state
+  const [selectedJob, setSelectedJob] = useState(job || null);
+
+  // Check if the job is active based on the application deadline
+  const isActive = selectedJob
+    ? new Date(selectedJob.application_deadline) >= new Date()
+    : false;
 
   const handleApplyNow = () => {
     setISTogglePageOpen(true);
   };
 
   const handleMoreDetailsClick = (jobItem) => {
-    setSelectedJob(jobItem); // Update selected job when "More Details" is clicked
+    setSelectedJob(jobItem);
   };
 
   const toggleSaveJob = () => {
@@ -68,6 +73,7 @@ const FilterJobDetails = () => {
                   <button
                     onClick={() => handleApplyNow(jobItem)}
                     className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                    disabled={!isActive}
                   >
                     Apply Now
                   </button>
@@ -87,15 +93,22 @@ const FilterJobDetails = () => {
         <div className="lg:w-3/4 xs:w-full bg-gray-50 p-6 rounded-lg shadow-md">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
-            <div
-              onClick={toggleSaveJob}
-              className="cursor-pointer transition-all duration-300"
-            >
-              {isSaved ? (
-                <FaHeart size={24} className="text-red-500" />
-              ) : (
-                <FaRegHeart size={24} className="text-gray-400" />
-              )}
+            <div className="flex items-center space-x-4">
+              {/* Status */}
+              <p className={`font-semibold ${isActive ? 'text-green-600' : 'text-red-600'}`}>
+                Status: {isActive ? 'Active' : 'Closed'}
+              </p>
+              {/* Heart Icon */}
+              <div
+                onClick={toggleSaveJob}
+                className="cursor-pointer transition-all duration-300"
+              >
+                {isSaved ? (
+                  <FaHeart size={24} className="text-red-500" />
+                ) : (
+                  <FaRegHeart size={24} className="text-gray-400" />
+                )}
+              </div>
             </div>
           </div>
           <p className="text-lg font-semibold text-gray-600 mb-4">{selectedJob.company}</p>
@@ -145,6 +158,7 @@ const FilterJobDetails = () => {
             <button
               onClick={handleApplyNow}
               className="px-6 py-2 bg-blue-600 font-semibold text-white rounded-lg hover:bg-blue-700 transition duration-300"
+              disabled={!isActive}
             >
               Apply Now
             </button>
