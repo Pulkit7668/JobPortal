@@ -36,7 +36,7 @@ const JobCategoryPage = ({ category }) => {
   };
 
   return (
-    <div className="p-6 lg:mx-20">
+    <div className="p-6 lg:mx-20 mt-10">
       <div className="flex items-center mb-10">
         <button
           onClick={() => navigate(-1)}

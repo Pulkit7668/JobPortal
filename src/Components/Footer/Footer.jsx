@@ -16,9 +16,6 @@ const Footer = () => {
       items: [
         { name: "About us", path: "" },
         { name: "Careers", path: "" },
-        { name: "Employer Home", path: "" },
-        { name: "Sitemap", path: "" },
-        { name: "Credits", path: "" },
       ],
     },
     {
@@ -27,8 +24,6 @@ const Footer = () => {
         { name: "Help Center", path: "" },
         { name: "Privacy Policy", path: "" },
         { name: "Terms & Conditions", path: "" },
-        { name: "Fraud Alert", path: "" },
-        { name: "Trust & Safety", path: "" },
       ],
     },
   ];

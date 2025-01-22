@@ -16,7 +16,7 @@ const JobOpportunities = () => {
   return (
     <div className="mt-12 mb-10 xs:mx-5">
       <div className="flex items-center justify-between mb-5 lg:mx-24">
-        <h2 className="text-2xl font-bold">Job Opportunities</h2>
+        <h2 className="text-2xl font-bold">Recommended Jobs</h2>
         <div className="flex items-center">
           <Link
             to="/job-opportunities"
@@ -44,18 +44,18 @@ const JobOpportunities = () => {
               <h2 className="text-xl font-bold text-gray-800">{job.title}</h2>
               <p className="text-gray-600">{job.company}</p>
               <p className="text-gray-500 mt-1">
-                📍 {job.location} | 💼 {job.type} | 🕒 {job.experience}
+                {job.location} | {job.type} | {job.experience}
               </p>
               <p className="text-green-600 font-semibold mt-2">
-                💰 {job.salary}
+                {job.salary}
               </p>
             </div>
 
             {/* Apply Now Button */}
-            <div className="absolute bottom-4 right-4">
+            <div className="absolute bottom-2 right-4">
               <button
                 onClick={() => handleApplyNow()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
               >
                 Apply Now
               </button>

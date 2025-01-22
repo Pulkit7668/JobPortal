@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for programmatic navigation
-import { FaTimes, FaRegHeart, FaCogs, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
-import { TfiMenuAlt } from "react-icons/tfi";
+import { Link, useNavigate } from "react-router-dom";
+import { FaTimes, FaRegBookmark, FaCogs, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 
 function ProfileSidebar({ isOpen, onClose }) {
   const profileCompletion = 40;
@@ -126,24 +125,9 @@ function ProfileSidebar({ isOpen, onClose }) {
 
         <div className="p-4 space-y-3 text-sm">
           <div className="flex items-center space-x-3">
-            <TfiMenuAlt size={16} className="text-gray-500" />
-            <button
-              onClick={handleCareerGuidanceClick}
-              className="block text-gray-700 hover:text-blue-600"
-            >
-              Career guidance
-            </button>
-          </div>
-          <div className="flex items-center space-x-3">
-            <FaRegHeart size={16} className="text-gray-500" />
+            <FaRegBookmark size={16} className="text-gray-500" />
             <Link to="" className="block text-gray-700 hover:text-blue-600">
-              Wishlist
-            </Link>
-          </div>
-          <div className="flex items-center space-x-3">
-            <FaCogs size={16} className="text-gray-500" />
-            <Link to="" className="block text-gray-700 hover:text-blue-600">
-              Settings
+              Saved Jobs
             </Link>
           </div>
           <div className="flex items-center space-x-3">

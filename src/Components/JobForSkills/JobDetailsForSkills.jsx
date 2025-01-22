@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { jobs } from "./JobDataForSkills";
 import TogglePage from "../TogglePage/TogglePage";
 import { FaArrowLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { CiLocationOn } from "react-icons/ci";
 
 // Mock user profile skills
 const userSkills = ["React", "JavaScript", "HTML", "CSS", "Node.js", "Express", "MongoDB", "Redux", "AWS", "Figma", "Sketch", "Adobe XD"];
@@ -58,7 +59,7 @@ function JobDetailsForSkills() {
   console.log("Current Jobs (Page " + currentPage + "):", currentJobs);
 
   return (
-    <div className="p-6 lg:mx-20 mb-5">
+    <div className="p-6 lg:mx-20 mb-5 mt-10">
       <div className="flex items-center mb-10">
         <button
           onClick={() => navigate(-1)}
@@ -80,8 +81,11 @@ function JobDetailsForSkills() {
               className="p-4 bg-white border border-gray-200 rounded-xl hover:shadow-blue-200 transition-shadow duration-300 flex flex-col justify-between"
             >
               <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
-              <p className="text-gray-600">{job.company}</p>
-              <p className="text-sm text-gray-500">{job.location}</p>
+              <p className="text-gray-600 mb-5">{job.company}</p>
+              <div className="flex items-center">
+                <CiLocationOn size={14} className="text-gray-500" />
+                <p className="text-sm text-gray-500">{job.location}</p>
+              </div>
               <div className="mt-2">
                 <span className="text-xs text-gray-600">
                   Skills: <strong>{job.skills.join(", ")}</strong>

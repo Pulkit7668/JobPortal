@@ -77,7 +77,7 @@ function SearchInputBox() {
       <p className="text-gray-600 mt-2">5 lakh+ jobs for you to explore</p>
 
       <div className="mt-8 flex justify-center">
-        <div className="flex bg-white shadow-xl rounded-full h-[10vh] 2xl:h-[6vh] w-[60%] items-center border-2">
+        <div className="flex bg-white shadow-xl rounded-full h-[10vh] 2xl:h-[6vh] w-[65%] items-center border-2">
           {/* Search Icon */}
           <div className="flex items-center justify-center px-4 ml-2 text-gray-500">
             <AiOutlineSearch size={30} />
