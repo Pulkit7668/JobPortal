@@ -86,6 +86,12 @@ function JobDetailsForSkills() {
                 <CiLocationOn size={14} className="text-gray-500" />
                 <p className="text-sm text-gray-500">{job.location}</p>
               </div>
+              <p className="text-xs text-gray-600">
+                Experience: <strong>{job.experience}</strong>
+              </p>
+              <p className="text-xs text-gray-600">
+                Salary: <strong>{job.salary}</strong>
+              </p>
               <div className="mt-2">
                 <span className="text-xs text-gray-600">
                   Skills: <strong>{job.skills.join(", ")}</strong>

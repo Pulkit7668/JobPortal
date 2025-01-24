@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaTimes, FaRegBookmark, FaCogs, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
+import { FaTimes, FaRegBookmark, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 
 function ProfileSidebar({ isOpen, onClose }) {
   const profileCompletion = 40;
@@ -10,11 +10,6 @@ function ProfileSidebar({ isOpen, onClose }) {
   const handleProfileClick = () => {
     onClose();
     navigate("/view-update-profile");
-  };
-
-  const handleCareerGuidanceClick = () => {
-    onClose();
-    navigate("/career-guidance");
   };
 
   return (

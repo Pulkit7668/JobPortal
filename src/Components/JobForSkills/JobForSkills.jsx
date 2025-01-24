@@ -30,7 +30,7 @@ function JobsForSkills() {
     <div className="p-6 lg:mx-20 mt-10">
       {/* Heading and View More Alignment */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">Jobs Matching Your Skills</h2>
+        <h2 className="md:text-2xl font-bold xs:text-lg">Jobs Matching Your Skills</h2>
         {filteredJobs.length > 4 && (
           <div className="flex items-center">
             <Link
@@ -45,7 +45,7 @@ function JobsForSkills() {
       </div>
 
       {jobsToShow.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {jobsToShow.map((job) => (
             <div
               key={job.id}
@@ -56,6 +56,14 @@ function JobsForSkills() {
               <div className="flex items-center">
                 <CiLocationOn size={14} className="text-gray-500" />
                 <p className="text-sm text-gray-500">{job.location}</p>
+              </div>
+              <div className="mt-2">
+                <p className="text-xs text-gray-600">
+                  Experience: <strong>{job.experience}</strong>
+                </p>
+                <p className="text-xs text-gray-600">
+                  Salary: <strong>{job.salary}</strong>
+                </p>
               </div>
               <div className="mt-2">
                 <span className="text-xs text-gray-600">

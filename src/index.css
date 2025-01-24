@@ -68,3 +68,16 @@
 .scrollable {
   margin-right: 20px; /* Adjust the value as needed */
 }
+
+
+/* Menu card */
+
+/* Keyframe animation for slide-in from left */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

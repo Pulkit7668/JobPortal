@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaHeart, FaRegHeart } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { FaArrowLeft, FaHeart, FaRegHeart } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
-import { jobs } from './JobDataForSkills';
-import TogglePage from '../TogglePage/TogglePage';
+import { jobs } from "./JobDataForSkills";
+import TogglePage from "../TogglePage/TogglePage";
 
 function JobDetail() {
   const { id } = useParams();
@@ -57,11 +57,17 @@ function JobDetail() {
                 className="p-4 bg-white border border-gray-200 rounded-xl hover:shadow-xl transition-shadow duration-300"
               >
                 <h3 className="text-lg font-semibold text-gray-800">{jobItem.title}</h3>
-                <p className="text-gray-600 mb-5">{jobItem.company}</p>
-                <div className="flex items-center">
-                  <CiLocationOn size={14} className="text-gray-500"  />
+                <p className="text-gray-600 mb-1">{jobItem.company}</p>
+                <div className="flex items-center mb-2">
+                  <CiLocationOn size={14} className="text-gray-500" />
                   <p className="text-sm text-gray-500">{jobItem.location}</p>
                 </div>
+                <p className="text-xs text-gray-600">
+                  Experience: <strong>{jobItem.experience}</strong>
+                </p>
+                <p className="text-xs text-gray-600">
+                  Salary: <strong>{jobItem.salary}</strong>
+                </p>
                 <div className="mt-2">
                   <span className="text-xs text-gray-600">
                     Skills: <strong>{jobItem.skills.join(", ")}</strong>
@@ -94,8 +100,8 @@ function JobDetail() {
             <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
             <div className="flex items-center space-x-4">
               {/* Status */}
-              <p className={`font-semibold ${isActive ? 'text-green-600' : 'text-red-600'}`}>
-                Status: {isActive ? 'Active' : 'Closed'}
+              <p className={`font-semibold ${isActive ? "text-green-600" : "text-red-600"}`}>
+                Status: {isActive ? "Active" : "Closed"}
               </p>
               {/* Heart Icon */}
               <div
@@ -111,9 +117,16 @@ function JobDetail() {
             </div>
           </div>
 
-          <p className="text-xl text-gray-600 mb-2">{selectedJob.company}</p>
+          <p className="text-xl text-gray-600 mb-1">{selectedJob.company}</p>
           <p className="text-sm text-gray-500 mb-4">{selectedJob.location}</p>
           <p className="text-lg text-gray-700 mb-4">{selectedJob.description}</p>
+
+          <p className="text-md text-gray-600 mb-2">
+            <strong>Experience: </strong>{selectedJob.experience}
+          </p>
+          <p className="text-md text-gray-600 mb-4">
+            <strong>Salary: </strong>{selectedJob.salary}
+          </p>
 
           <h3 className="text-lg font-semibold mb-2">Responsibilities</h3>
           <ul className="list-disc pl-5 mb-4">
@@ -129,12 +142,12 @@ function JobDetail() {
             ))}
           </ul>
 
-          <p className="font-semibold text-gray-700 mt-8">
+          <p className="font-semibold text-gray-700 mt-4">
             Application Deadline: {selectedJob.application_deadline}
           </p>
 
           {/* Apply Now button */}
-          <div className="mt-6 flex justify-end">
+          <div className="flex justify-end">
             <button
               onClick={() => handleApplyNow(selectedJob)}
               className="px-6 py-2 bg-blue-600 font-semibold text-white rounded-lg hover:bg-blue-700 transition duration-300"

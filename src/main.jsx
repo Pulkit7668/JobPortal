@@ -20,6 +20,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AllJobOpportunities from "./Components/JobOpportunities/AllJobOpportunities.jsx";
 import ViewAndUpdateProfile from "./Components/Profile/ViewAndUpdateProfile.jsx";
+import ChangePassword from "./Components/ChangePassword/ChangePassword.jsx";
+import SupportChat from "./Components/SupportChat/SupportChat.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -52,6 +54,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/career-guidance" element={<CareerGuidancePage />} />
           <Route path="/job-opportunities" element={<AllJobOpportunities />} />
           <Route path="/view-update-profile" element={<ViewAndUpdateProfile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/support-chat" element={<SupportChat />} />
         </Route>
       </Routes>
     </BrowserRouter>

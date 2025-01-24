@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import DropdownCard from "../DropdownCard/DropdownCard";
-import { FaTimes, FaBars, FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
+import { FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
 import { BiMenuAltLeft } from "react-icons/bi";
 import ProfileSidebar from "../Profile/ProfileSideBar";
 import MenuCard from "../MenuCard/MenuCard";
@@ -167,25 +167,7 @@ function Navbar() {
       <ProfileSidebar isOpen={isProfileSidebarOpen} onClose={toggleProfileSidebar} />
 
       {/* Sliding MenuCard */}
-      <div
-        className={`fixed top-0 left-0 h-full xs:w-full lg:w-[20%] bg-white shadow-lg z-50 transform transition-transform duration-300 ${
-          isMenuCardOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="p-5">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-gray-700">User Menu</h3>
-            <button
-              className="text-gray-500 hover:text-gray-800"
-              aria-label="Close sidebar"
-              onClick={toggleMenuCard}
-            >
-              <FaTimes size={20} />
-            </button>
-          </div>
-          <MenuCard />
-        </div>
-      </div>
+      <MenuCard isOpen={isMenuCardOpen} onClose={toggleMenuCard} />
     </>
   );
 }
