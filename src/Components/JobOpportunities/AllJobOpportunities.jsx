@@ -11,7 +11,7 @@ const AllJobOpportunities = () => {
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 6; // Adjust the number of jobs per page
+  const jobsPerPage = 8; // Adjust the number of jobs per page
 
   // Total number of pages
   const totalPages = Math.ceil(jobData.length / jobsPerPage);
@@ -42,39 +42,46 @@ const AllJobOpportunities = () => {
         >
           <FaArrowLeft size={40} className="p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
         </button>
-        <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold">All Recommended obs</h1>
+        <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold">All Recommended Jobs</h1>
       </div>
-      <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
+
+      {/* Job Listings */}
+      <div className="grid lg:grid-cols-4 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
         {currentJobs.map((job) => (
           <div
             key={job.id}
-            className="relative flex xs:flex-col md:flex-row bg-white rounded-xl shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
+            className="flex flex-col bg-white rounded-xl shadow-md p-2 mb-4 hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="flex-shrink-0">
-              <img
-                src={job.logo}
-                alt={`${job.company} logo`}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-            </div>
-            <div className="flex-grow mt-4 md:mt-0 md:ml-6">
+            <div className="flex-grow">
               <h2 className="text-xl font-bold text-gray-800">{job.title}</h2>
               <p className="text-gray-600">{job.company}</p>
-              <p className="text-gray-500 mt-1">
-                {job.location} | {job.type} | {job.experience}
+              <p className="text-gray-500">
+                {job.location}
               </p>
-              <p className="text-green-600 font-semibold mt-2">
-                {job.salary}
+              <p className="text-xs text-gray-600">
+                Experience: <strong>{job.experience}</strong>
               </p>
+              <p className="text-xs text-gray-600">
+                Salary: <strong>{job.salary}</strong>
+              </p>
+              <span className="text-xs text-gray-600">
+                Skills: <strong>{job.skills.join(", ")}</strong>
+              </span>
             </div>
 
-            {/* Apply Now Button */}
-            <div className="absolute bottom-2 right-4">
+            {/* Buttons Container */}
+            <div className="flex justify-between mt-4">
               <button
                 onClick={() => handleApplyNow(job)}
-                className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 mb-2 w-full"
               >
                 Apply Now
+              </button>
+              <button
+                
+                className="text-blue-700 font-semibold w-full"
+              >
+                More Details
               </button>
             </div>
           </div>

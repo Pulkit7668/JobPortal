@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import jobData from "./JobOpportunitiesData";
 import { FaCircleArrowRight } from "react-icons/fa6";
+import { CiLocationOn } from "react-icons/ci";
 import TogglePage from "../TogglePage/TogglePage";
 import { Link } from "react-router-dom";
 
 const JobOpportunities = () => {
-  const [visibleJobs] = useState(2);
+  const [visibleJobs] = useState(8);
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
-  
+
   const handleApplyNow = () => {
     setISTogglePageOpen(true);
   };
@@ -27,37 +28,42 @@ const JobOpportunities = () => {
           <FaCircleArrowRight size={20} />
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
+      <div className="grid lg:grid-cols-4 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
         {jobData.slice(0, visibleJobs).map((job) => (
           <div
             key={job.id}
-            className="relative flex xs:flex-col md:flex-row bg-white rounded-xl shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
+            className="flex flex-col bg-white rounded-xl shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="flex-shrink-0">
-              <img
-                src={job.logo}
-                alt={`${job.company} logo`}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-            </div>
-            <div className="flex-grow mt-4 md:mt-0 md:ml-6">
+            <div className="flex-grow">
               <h2 className="text-xl font-bold text-gray-800">{job.title}</h2>
               <p className="text-gray-600">{job.company}</p>
-              <p className="text-gray-500 mt-1">
-                {job.location} | {job.type} | {job.experience}
+              <div className="flex items-center">
+                <CiLocationOn size={14} className="text-gray-500" />
+                <p className="text-sm text-gray-500">{job.location}</p>
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                Experience: <strong>{job.experience}</strong>
               </p>
-              <p className="text-green-600 font-semibold mt-2">
-                {job.salary}
+              <p className="text-xs text-gray-600">
+                Salary: <strong>{job.salary}</strong>
               </p>
+              <span className="text-xs text-gray-600">
+                Skills: <strong>{job.skills.join(", ")}</strong>
+              </span>
             </div>
 
-            {/* Apply Now Button */}
-            <div className="absolute bottom-2 right-4">
+            {/* Buttons at the bottom */}
+            <div className="flex justify-between mt-4">
               <button
                 onClick={() => handleApplyNow()}
-                className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
               >
                 Apply Now
+              </button>
+              <button
+                className="text-blue-700 font-semibold"
+              >
+                More Details
               </button>
             </div>
           </div>

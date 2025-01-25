@@ -6,7 +6,7 @@ import { jobs } from "./JobDataForSkills";
 import TogglePage from "../TogglePage/TogglePage";
 
 // Mock user profile skills
-const userSkills = ["React", "JavaScript", "HTML", "CSS"];
+const userSkills = ["React", "JavaScript", "HTML", "CSS", "Docker"];
 
 // Function to filter jobs based on user's skills
 const filterJobsBySkills = (jobs, userSkills) => {
@@ -17,7 +17,7 @@ const filterJobsBySkills = (jobs, userSkills) => {
 
 function JobsForSkills() {
   const filteredJobs = filterJobsBySkills(jobs, userSkills);
-  const jobsToShow = filteredJobs.slice(0, 4);
+  const jobsToShow = filteredJobs.slice(0, 8);
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
 
@@ -64,8 +64,6 @@ function JobsForSkills() {
                 <p className="text-xs text-gray-600">
                   Salary: <strong>{job.salary}</strong>
                 </p>
-              </div>
-              <div className="mt-2">
                 <span className="text-xs text-gray-600">
                   Skills: <strong>{job.skills.join(", ")}</strong>
                 </span>
@@ -74,7 +72,7 @@ function JobsForSkills() {
                 <div className="mt-3">
                   <button
                     onClick={() => handleApplyNow(job)}
-                    className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                    className="px-5 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
                   >
                     Apply Now
                   </button>

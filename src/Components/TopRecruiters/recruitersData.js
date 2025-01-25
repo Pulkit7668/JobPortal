@@ -3,7 +3,7 @@ export const recruitersData = [
         id: 1,
         name: "Tata Consultancy Services (TCS)",
         vacancies: 250,
-        location: "Mumbai, Maharashtra",
+        location: "Mumbai",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbUfVwV-mMkk3G3BGg2NOBo9cwqSMAmFevvl6Qf7R9-72RoOy8SKpybI&s",
         jobs: [
           {
@@ -32,7 +32,7 @@ export const recruitersData = [
             requirements: "Experience with SQL, Excel, and data visualization tools like Tableau or Power BI.",
             skills: "Analytical skills, attention to detail, communication, data interpretation.",
             education: "B.Tech in IT or related field, or equivalent.",
-            location: "Mumbai, Maharashtra",
+            location: "Mumbai",
             responsibilities: [
               "Collect and clean data from various sources.",
               "Analyze data to generate actionable business insights.",

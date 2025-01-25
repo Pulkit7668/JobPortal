@@ -21,17 +21,32 @@ const ChangePassword = () => {
   const handleNext = () => {
     if (step === 1 && email.trim() === "") {
       setError("Email is required.");
-      toast.error("Please enter your email.");
+      toast.error("Please enter your email.", {
+        style: {
+          backgroundColor: '#f8d7da', // Light red
+          color: '#721c24', // Dark red text
+        },
+      });
       return;
     }
     if (step === 1 && !validateEmail(email)) {
       setError("Please enter a valid email.");
-      toast.error("Please enter a valid email.");
+      toast.error("Please enter a valid email.", {
+        style: {
+          backgroundColor: '#f8d7da',
+          color: '#721c24',
+        },
+      });
       return;
     }
     if (step === 2 && otp.join("").trim() === "") {
       setError("OTP is required.");
-      toast.error("Please enter the OTP.");
+      toast.error("Please enter the OTP.", {
+        style: {
+          backgroundColor: '#f8d7da',
+          color: '#721c24',
+        },
+      });
       return;
     }
 
@@ -41,7 +56,12 @@ const ChangePassword = () => {
       setTimeout(() => {
         setIsLoading(false);
         setStep(step + 1);
-        toast.success("OTP sent to your email.");
+        toast.success("OTP sent to your email.", {
+          style: {
+            backgroundColor: '#d4edda', // Light green
+            color: '#155724', // Dark green text
+          },
+        });
       }, 3000);
       return;
     }
@@ -53,12 +73,22 @@ const ChangePassword = () => {
   const handleResetPassword = () => {
     if (newPassword.trim() === "" || confirmPassword.trim() === "") {
       setError("Both password fields are required.");
-      toast.error("Please fill out both password fields.");
+      toast.error("Please fill out both password fields.", {
+        style: {
+          backgroundColor: '#f8d7da',
+          color: '#721c24',
+        },
+      });
       return;
     }
     if (newPassword !== confirmPassword) {
       setError("Passwords do not match.");
-      toast.error("Passwords do not match.");
+      toast.error("Passwords do not match.", {
+        style: {
+          backgroundColor: '#f8d7da',
+          color: '#721c24',
+        },
+      });
       return;
     }
 
@@ -67,7 +97,12 @@ const ChangePassword = () => {
 
     // Simulate a network request (e.g., password reset API call)
     setTimeout(() => {
-      toast.success("Password changed successfully!");
+      toast.success("Password changed successfully!", {
+        style: {
+          backgroundColor: '#d4edda', // Light green
+          color: '#155724', // Dark green text
+        },
+      });
       setIsLoading(false);
       setTimeout(() => {
         navigate("/");
@@ -89,33 +124,29 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="flex bg-white p-8 rounded-lg shadow-md w-2/3">
+    <div className="flex items-center justify-center h-[80vh] bg-gray-100">
+      <div className="flex bg-white p-5 rounded-lg shadow-md xs:w-[90%] md:w-[95%] lg:w-2/3">
         {/* Left side: Placeholder for Change Password Design */}
-        <div className="w-1/2 pr-4 flex flex-col justify-center items-center">
-          <div className="w-full h-48 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex items-center justify-center text-white">
+        <div className="w-1/2 pr-4 flex flex-col justify-center items-center xs:hidden md:flex">
+          <div className="w-full h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex flex-col justify-center items-center text-center text-white">
             <h3 className="text-3xl font-bold">Secure Your Account</h3>
+            <p className="mt-4 text-gray-100 mx-5">Follow the steps to reset your password and protect your account.</p>
           </div>
-          <p className="mt-4 text-center text-gray-600">Follow the steps to reset your password and protect your account.</p>
         </div>
 
         {/* Right side: Change Password Form */}
-        <div className="w-1/2 pl-4">
-          {/* Main Heading */}
-          <h1 className="text-3xl font-bold mb-6 text-center">Change Your Password</h1>
-
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            {step === 1 && (
-              <div className="relative">
-                <span>Verify Email</span>
-                {/* Cross Icon */}
-                <FaTimes
-                  className="absolute top-0 right-0 text-gray-500 cursor-pointer"
-                  size={20}
-                  onClick={() => navigate("/")}
-                />
-              </div>
-            )}
+        <div className="md:w-1/2 md:pl-4">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="xs:text-lg md:text-3xl font-bold">Change Your Password</h1>
+            {/* Close Btn */}
+            <FaTimes
+              className="text-gray-500 cursor-pointer hover:text-gray-700"
+              size={20}
+              onClick={() => navigate("/")}
+            />
+          </div>
+          <h2 className="text-2xl font-bold mb-6">
+            {step === 1 && <div className="relative"><span>Verify Email</span></div>}
             {step === 2 && "Verify OTP"}
             {step === 3 && "Reset Password"}
           </h2>
@@ -125,9 +156,7 @@ const ChangePassword = () => {
 
           {step === 1 && (
             <div>
-              <label className="block text-gray-700 font-medium mb-2">
-                Enter your email:
-              </label>
+              <label className="block text-gray-700 font-medium mb-2">Enter your email:</label>
               <input
                 type="email"
                 placeholder="Enter email"
@@ -160,9 +189,7 @@ const ChangePassword = () => {
 
           {step === 2 && (
             <div>
-              <label className="block text-gray-700 font-medium mb-2">
-                Enter the OTP sent to your email:
-              </label>
+              <label className="block text-gray-700 font-medium mb-2">Enter the OTP sent to your email:</label>
               <div className="flex space-x-2 mb-4">
                 {otp.map((digit, index) => (
                   <input
@@ -187,9 +214,7 @@ const ChangePassword = () => {
 
           {step === 3 && (
             <div>
-              <label className="block text-gray-700 font-medium mb-2">
-                New Password:
-              </label>
+              <label className="block text-gray-700 font-medium mb-2">New Password:</label>
               <input
                 type="password"
                 placeholder="Enter new password"
@@ -197,9 +222,7 @@ const ChangePassword = () => {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
-              <label className="block text-gray-700 font-medium mb-2 mt-4">
-                Confirm Password:
-              </label>
+              <label className="block text-gray-700 font-medium mb-2 mt-4">Confirm Password:</label>
               <input
                 type="password"
                 placeholder="Confirm new password"

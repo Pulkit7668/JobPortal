@@ -22,6 +22,9 @@ import AllJobOpportunities from "./Components/JobOpportunities/AllJobOpportuniti
 import ViewAndUpdateProfile from "./Components/Profile/ViewAndUpdateProfile.jsx";
 import ChangePassword from "./Components/ChangePassword/ChangePassword.jsx";
 import SupportChat from "./Components/SupportChat/SupportChat.jsx";
+import ChangeVisibility from "./Components/ChangeVisibility/ChangeVisibility.jsx";
+import SetJobPreference from "./Components/SetJobPreference/SetJobPreference.jsx";
+import AboutUs from "./Components/AboutUs/AboutUs.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -56,6 +59,9 @@ createRoot(document.getElementById("root")).render(
           <Route path="/view-update-profile" element={<ViewAndUpdateProfile />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/support-chat" element={<SupportChat />} />
+          <Route path="/change-visibility" element={<ChangeVisibility />} />
+          <Route path="/set-job-preference" element={<SetJobPreference />} />
+          <Route path="/about-us" element={<AboutUs />} />
         </Route>
       </Routes>
     </BrowserRouter>
