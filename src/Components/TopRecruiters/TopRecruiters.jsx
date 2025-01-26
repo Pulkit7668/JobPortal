@@ -41,7 +41,7 @@ function TopRecruiters() {
                 </div>
                 <p className="text-sm text-gray-500">{recruiter.vacancies} Vacancies</p>
                 
-                <div className="flex items-center justify-between"> 
+                <div className="flex items-center justify-between mt-3"> 
                   {/* View Jobs Button */}
                   <button className="mt-3 text-blue-600 font-semibold">
                     <Link to={`/recruiters/jobs/${recruiter.id}`}>

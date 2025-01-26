@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { recruitersData } from "./recruitersData";
 import { Link, useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaArrowLeft, FaChevronLeft, FaChevronRight, FaAngleDown } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
+import FilterRecruiters from "./FilterRecruiters";
+
 
 function AllRecruiters() {
   const navigate = useNavigate();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+  
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const recruitersPerPage = 8;
+
+  // Filter panel visibility
+  const [showFilter, setShowFilter] = useState(false);
 
   // Total number of pages
   const totalPages = Math.ceil(recruitersData.length / recruitersPerPage);
@@ -26,18 +36,42 @@ function AllRecruiters() {
   }, [currentPage]);
 
   return (
+    <>
     <div className="p-6 lg:mx-20 mt-10">
-      <button
-        onClick={() => navigate(-1)}
-        className="text-blue-600 mb-10 transition duration-300"
-        aria-label="Go back"
-      >
-        <FaArrowLeft
-          size={40}
-          className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"
-        />
-      </button>
-      <h2 className="text-2xl font-bold mb-6">All Recruiters</h2>
+      {/* Align Back button, Heading, and Filter button */}
+      <div className="flex items-center justify-between mb-10">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-blue-600 transition duration-300"
+          aria-label="Go back"
+        >
+          <FaArrowLeft
+            size={40}
+            className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"
+          />
+        </button>
+        <h2 className="xs:text-2xl md:text-3xl font-bold">All Recruiters</h2>
+        {/* Filter Button */}
+        <button
+          onClick={toggleFilter} // Toggle filter visibility
+          className="flex items-center text-lg font-semibold text-gray-800 border border-black px-5 py-1 rounded-lg hover:bg-white transition duration-300"
+          aria-label="Filter recruiters"
+        >
+          Filter
+          <FaAngleDown className="ml-2" />
+        </button>
+      </div>
+
+      {/* Filter Panel */}
+      {showFilter && (
+        <div
+          className="fixed top-0 left-0 w-1/3 h-full bg-white shadow-lg z-50 transition-transform transform ease-in-out"
+          style={{ transform: showFilter ? "translateX(0)" : "translateX(-100%)" }}
+        >
+          <FilterRecruiters closeFilter={() => setShowFilter(false)} />
+        </div>
+      )}
+
       {currentRecruiters.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {currentRecruiters.map((recruiter) => (
@@ -104,6 +138,10 @@ function AllRecruiters() {
         </button>
       </div>
     </div>
+
+    {/* Filter */}
+    <FilterRecruiters isOpen={isFilterOpen} onClose={toggleFilter} />
+    </>
   );
 }
 

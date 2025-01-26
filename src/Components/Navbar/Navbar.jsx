@@ -173,3 +173,43 @@ function Navbar() {
 }
 
 export default Navbar;
+
+// import React, { useState } from "react";
+// import LoginForm from "../LoginPage/LoginPage"; // Adjust the path as necessary
+
+// const Navbar = () => {
+//   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
+
+//   const toggleLoginForm = () => {
+//     setIsLoginFormOpen((prev) => !prev);
+//   };
+
+//   return (
+//     <>
+//       <nav className="flex items-center justify-between bg-white px-6 py-4 shadow-md">
+//         {/* Logo */}
+//         <div className="text-2xl font-bold text-gray-800">Website Logo</div>
+
+//         {/* Buttons */}
+//         <div className="flex items-center space-x-4">
+//           <button
+//             className="border-2 border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-100 transition"
+//             onClick={toggleLoginForm}
+//           >
+//             Login
+//           </button>
+//           <button
+//             className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition"
+//           >
+//             Register
+//           </button>
+//         </div>
+//       </nav>
+
+//       {/* Render LoginForm when open */}
+//       {isLoginFormOpen && <LoginForm onClose={toggleLoginForm} />}
+//     </>
+//   );
+// };
+
+// export default Navbar;

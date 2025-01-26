@@ -25,6 +25,8 @@ import SupportChat from "./Components/SupportChat/SupportChat.jsx";
 import ChangeVisibility from "./Components/ChangeVisibility/ChangeVisibility.jsx";
 import SetJobPreference from "./Components/SetJobPreference/SetJobPreference.jsx";
 import AboutUs from "./Components/AboutUs/AboutUs.jsx";
+import BlockedCompanies from "./Components/BlockedCompanies/BlockedCompanies.jsx";
+import SavedJobs from "./Components/SavedJobs/SavedJobs.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -62,6 +64,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/change-visibility" element={<ChangeVisibility />} />
           <Route path="/set-job-preference" element={<SetJobPreference />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/blocked-companies" element={<BlockedCompanies />} />
+          <Route path="/saved-jobs" element={<SavedJobs />} />
         </Route>
       </Routes>
     </BrowserRouter>
