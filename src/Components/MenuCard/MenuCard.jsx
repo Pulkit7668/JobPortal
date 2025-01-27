@@ -1,10 +1,25 @@
 import React, { useState } from "react";
+import { useAuth } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { FaTimes, FaKey, FaComments, FaEye, FaSlidersH, FaInfoCircle, FaBan, FaBookmark, FaSignOutAlt } from "react-icons/fa";
+import { Toaster, toast } from "react-hot-toast";
+import { 
+  FaTimes, 
+  FaKey, 
+  FaComments, 
+  FaEye, 
+  FaSlidersH, 
+  FaInfoCircle, 
+  FaBan, 
+  FaBookmark, 
+  FaSignOutAlt 
+} from "react-icons/fa";
 
 const MenuCard = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const { isLoggedIn, logout } = useAuth();
 
   const handleMenuClick = (path) => {
     onClose();
@@ -12,12 +27,26 @@ const MenuCard = ({ isOpen, onClose }) => {
   };
 
   const handleLogout = () => {
-    setShowLogoutPopup(false);
-    navigate("/");
+    setLoading(true);
+    setTimeout(() => {
+      logout();
+      toast.success("Logged out successfully!", {
+        position: "top-center",
+        style: {
+          background: "#d4edda", // Custom success background color
+          color: "#155724", // Custom success text color
+        },
+      });
+      setLoading(false);
+      setShowLogoutPopup(false);
+      onClose();
+    }, 2000); // Simulate a 2-second delay
   };
 
   return (
     <>
+      {/* Hot Toast Container */}
+      <Toaster />
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 z-40"
@@ -25,7 +54,7 @@ const MenuCard = ({ isOpen, onClose }) => {
         ></div>
       )}
       <div
-        className={`fixed top-0 left-0 h-full md:w-[50%] 2xl:w-[25%] bg-white md:rounded-r-2xl shadow-lg z-50 flex flex-col justify-between transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"} sm:w-[80%] lg:w-72 p-5`}
+        className={`fixed top-0 left-0 h-full md:w-[50%] 2xl:w-[25%] bg-white md:rounded-r-2xl shadow-lg z-50 flex flex-col justify-between transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"} xs:w-full lg:w-72 p-5`}
       >
         <div>
           <div className="flex items-center justify-between pb-5">
@@ -127,7 +156,11 @@ const MenuCard = ({ isOpen, onClose }) => {
                 onClick={handleLogout}
                 className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
               >
-                Logout
+                {loading ? (
+                  <div className="loader-red mx-auto"></div>
+                ) : (
+                  "Logout"
+                )}
               </button>
             </div>
           </div>

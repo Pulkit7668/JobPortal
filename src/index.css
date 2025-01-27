@@ -17,6 +17,15 @@
   animation: spin 1s linear infinite;
 }
 
+.loader-red {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #e3342f;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
 .custom-prev,
 .custom-next {
   font-size: 14px; /* Smaller font size */
