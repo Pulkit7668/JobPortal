@@ -213,7 +213,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
                 </label>
                 <input
                   type="email"
-                  id="email"
+                  id="forgot-email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
