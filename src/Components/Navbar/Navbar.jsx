@@ -8,24 +8,6 @@ import MenuCard from "../MenuCard/MenuCard";
 import { useAuth } from "../../Context/AuthContext";
 import LoginPage from "../LoginPage/LoginPage";
 
-const subscriptionPlan = [
-  {
-    items: ["Basic Plan", "Premium Plan", "Pro Plan"]
-  }
-];
-
-const coursesData = [
-  {
-    items: [
-      "Web Development",
-      "Data Science",
-      "Machine Learning",
-      "Digital Marketing",
-      "Cloud Computing",
-      "Cyber Security",
-    ],
-  },
-];
 
 const opportunitiesData = [
   {
@@ -83,20 +65,14 @@ function Navbar() {
           {isLoggedIn && (
             <nav className="md:space-x-6 lg:ml-48 lg:space-x-10 text-gray-700 relative lg:right-32">
               <div className="group md:inline-block relative font-semibold xs:hidden">
-                <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
+                <NavLink to="/subscription-plan" className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
                   Subscription Plan
                 </NavLink>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                 <DropdownCard data={subscriptionPlan} />
-                </div>
               </div>
               <div className="group md:inline-block relative font-semibold xs:hidden">
                 <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
                   Courses
                 </NavLink>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  <DropdownCard data={coursesData} />
-                </div>
               </div>
               <div className="group md:inline-block relative font-semibold xs:hidden">
                 <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">

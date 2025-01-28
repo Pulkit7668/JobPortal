@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
@@ -7,13 +8,14 @@ const ForgotPassword = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState(""); // State to handle OTP
-  const [isOtpSent, setIsOtpSent] = useState(false); // State to check if OTP is sent
-  const [newPassword, setNewPassword] = useState(""); // State to handle new password
-  const [confirmPassword, setConfirmPassword] = useState(""); // State to handle confirm password
-  const [showNewPassword, setShowNewPassword] = useState(false); // State to toggle new password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State to toggle confirm password visibility
-  const [isPasswordReset, setIsPasswordReset] = useState(false); // State to check if password is reset
+  const [otp, setOtp] = useState("");
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [isOtpVerified, setIsOtpVerified] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isPasswordReset, setIsPasswordReset] = useState(false);
 
   const otpRefs = useRef([]);
 
@@ -23,6 +25,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
       setEmail("");
       setOtp("");
       setIsOtpSent(false);
+      setIsOtpVerified(false);
       setNewPassword("");
       setConfirmPassword("");
       setShowNewPassword(false);
@@ -67,7 +70,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
       } finally {
         setLoading(false);
       }
-    }, 2000); // Simulate a 2-second delay
+    }, 2000);
   };
 
   const handleOtpChange = (e, index) => {
@@ -81,6 +84,45 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         otpRefs.current[index + 1].focus();
       }
     }
+  };
+
+  const handleOtpSubmit = async (e) => {
+    e.preventDefault();
+    if (otp.trim() === "") {
+      toast.error("Please enter the OTP!", {
+        position: "top-center",
+        style: {
+          background: "#f8d7da", // Custom error background color
+          color: "#721c24", // Custom error text color
+        },
+      });
+      return;
+    }
+
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        // Simulate OTP verification
+        toast.success("OTP verified! You can now reset your password.", {
+          position: "top-center",
+          style: {
+            background: "#d4edda", // Custom success background color
+            color: "#155724", // Custom success text color
+          },
+        });
+        setIsOtpVerified(true);
+      } catch (error) {
+        toast.error("Invalid OTP. Please try again.", {
+          position: "top-center",
+          style: {
+            background: "#f8d7da", // Custom error background color
+            color: "#721c24", // Custom error text color
+          },
+        });
+      } finally {
+        setLoading(false);
+      }
+    }, 2000);
   };
 
   const handleResetPasswordSubmit = async (e) => {
@@ -121,7 +163,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         setIsPasswordReset(true);
         setTimeout(() => {
           navigate("/");
-        }, 300); // Delay to allow the animation to complete
+        }, 300);
       } catch (error) {
         toast.error("Failed to reset password. Please try again.", {
           position: "top-center",
@@ -133,18 +175,12 @@ const ForgotPassword = ({ isOpen, onClose }) => {
       } finally {
         setLoading(false);
       }
-    }, 2000); // Simulate a 2-second delay
+    }, 2000);
   };
 
   return (
     <>
       <Toaster />
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40"
-          onClick={onClose}
-        ></div>
-      )}
       <div
         className={`fixed top-0 right-0 h-full md:w-[50%] 2xl:w-[25%] bg-white md:rounded-l-3xl shadow-xl z-50 flex flex-col transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -165,8 +201,46 @@ const ForgotPassword = ({ isOpen, onClose }) => {
             </button>
           </div>
           {/* Form */}
-          {isOtpSent ? (
-            <form onSubmit={handleResetPasswordSubmit} className="space-y-6">
+          {!isOtpSent ? (
+            <form onSubmit={handleForgotPasswordSubmit} className="space-y-6">
+              {/* Email Field */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading} // Disable button if loading
+                className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
+                  loading
+                    ? "cursor-not-allowed"
+                    : "hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                }`}
+              >
+                {loading ? (
+                  <div className="loader mx-auto"></div>
+                ) : (
+                  "Send OTP"
+                )}
+              </button>
+            </form>
+          ) : !isOtpVerified ? (
+            <form onSubmit={handleOtpSubmit} className="space-y-6">
               {/* OTP Field */}
               <div>
                 <label
@@ -191,6 +265,25 @@ const ForgotPassword = ({ isOpen, onClose }) => {
                 </div>
               </div>
 
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading} // Disable button if loading
+                className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
+                  loading
+                    ? "cursor-not-allowed"
+                    : "hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                }`}
+              >
+                {loading ? (
+                  <div className="loader mx-auto"></div>
+                ) : (
+                  "Verify OTP"
+                )}
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleResetPasswordSubmit} className="space-y-6">
               {/* New Password Field */}
               <div>
                 <label
@@ -261,54 +354,6 @@ const ForgotPassword = ({ isOpen, onClose }) => {
                   <div className="loader mx-auto"></div>
                 ) : (
                   "Reset Password"
-                )}
-              </button>
-              <p className="text-center text-sm text-gray-600 mt-4">
-                Didn't receive the OTP?{" "}
-                <button
-                  type="button"
-                  onClick={handleForgotPasswordSubmit}
-                  className="text-blue-600 hover:underline font-medium"
-                >
-                  Resend OTP
-                </button>
-              </p>
-            </form>
-          ) : (
-            <form onSubmit={handleForgotPasswordSubmit} className="space-y-6">
-              {/* Email Field */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={loading} // Disable button if loading
-                className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
-                  loading
-                    ? "cursor-not-allowed"
-                    : "hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
-                }`}
-              >
-                {loading ? (
-                  <div className="loader mx-auto"></div>
-                ) : (
-                  "Send OTP"
                 )}
               </button>
             </form>
