@@ -3,7 +3,7 @@ import SearchInputBox from "../Components/SearchInputBox/SearchInputBox";
 import JobsForSkills from "../Components/JobForSkills/JobForSkills";
 import TopRecruiters from "../Components/TopRecruiters/TopRecruiters";
 import FilterJob from "../Components/FilterJobs/FilterJob";
-import JobOpportunities from "../Components/JobOpportunities/JobOpportunities";
+import RecommendedJobs from "../Components/RecommendedJobs/RecommendedJobs";
 
 function Homepage() {
 
@@ -17,7 +17,7 @@ function Homepage() {
       <FilterJob />
       <JobsForSkills />
       <TopRecruiters />
-      <JobOpportunities />
+      <RecommendedJobs />
     </>
   );
 }

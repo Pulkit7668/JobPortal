@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaArrowLeft, FaEllipsisV, FaBookmark } from "react-icons/fa";
+import { RiCloseCircleLine } from "react-icons/ri";
+import { AiOutlineStar, AiOutlineExclamationCircle } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
 import { jobs } from "./JobDataForSkills";
 import TogglePage from "../TogglePage/TogglePage";
@@ -8,9 +10,9 @@ import TogglePage from "../TogglePage/TogglePage";
 function JobDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [isSaved, setIsSaved] = useState(false);
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(jobs.find((job) => job.id === parseInt(id)) || null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle the menu
 
   // Check if the job is active based on the application deadline
   const isActive = selectedJob
@@ -22,12 +24,12 @@ function JobDetail() {
     setISTogglePageOpen(true);
   };
 
-  const toggleSaveJob = () => {
-    setIsSaved(!isSaved);
-  };
-
   const handleMoreDetailsClick = (jobItem) => {
     setSelectedJob(jobItem);
+  };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen); // Toggle menu visibility
   };
 
   useEffect(() => {
@@ -95,7 +97,7 @@ function JobDetail() {
 
         {/* Right Section: Job Details */}
         <div className="lg:w-2/3 h-full bg-gray-50 p-6 rounded-lg shadow-md">
-          {/* Title, Status, and Heart Icon */}
+          {/* Title, Status */}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
             <div className="flex items-center space-x-4">
@@ -103,17 +105,33 @@ function JobDetail() {
               <p className={`font-semibold ${isActive ? "text-green-600" : "text-red-600"}`}>
                 Status: {isActive ? "Active" : "Closed"}
               </p>
-              {/* Heart Icon */}
-              <div
-                onClick={toggleSaveJob}
-                className="cursor-pointer transition-all duration-300"
-              >
-                {isSaved ? (
-                  <FaHeart size={24} className="text-red-500" />
-                ) : (
-                  <FaRegHeart size={24} className="text-gray-400" />
-                )}
-              </div>
+              {/* Menu Icon */}
+              <button onClick={handleMenuToggle} className="cursor-pointer">
+                <FaEllipsisV size={20} className="text-gray-600 hover:text-blue-600" />
+              </button>
+              {/* Dropdown Menu */}
+              {isMenuOpen && (
+                <div className="absolute top-44 right-4 p-3 bg-white border border-gray-200 rounded-lg shadow-lg">
+                  <ul className="space-y-2">
+                    <li className="flex items-center space-x-2 border-b border-gray-200 pb-2 cursor-pointer">
+                      <FaBookmark size={16} className="text-gray-600" />
+                      <span>Save Job</span>
+                    </li>
+                    <li className="flex items-center space-x-2 border-b border-gray-200 pb-2 cursor-pointer">
+                      <RiCloseCircleLine size={16} className="text-gray-600" />
+                      <span>Block Company</span>
+                    </li>
+                    <li className="flex items-center space-x-2 border-b border-gray-200 pb-2 cursor-pointer">
+                      <AiOutlineStar size={16} className="text-gray-600" />
+                      <span>Review Company</span>
+                    </li>
+                    <li className="flex items-center space-x-2 cursor-pointer">
+                      <AiOutlineExclamationCircle size={16} className="text-gray-600" />
+                      <span>Report Job/Company</span>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
 

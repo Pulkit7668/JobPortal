@@ -18,7 +18,7 @@ import FilterJobDetails from "./Components/FilterJobs/FilterJobDetails..jsx";
 import Layout from "./Layout.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import AllJobOpportunities from "./Components/JobOpportunities/AllJobOpportunities.jsx";
+import AllRecommendedJobs from "./Components/RecommendedJobs/AllRecommendedJobs.jsx";
 import ViewAndUpdateProfile from "./Components/Profile/ViewAndUpdateProfile.jsx";
 import ChangePassword from "./Components/ChangePassword/ChangePassword.jsx";
 import SupportChat from "./Components/SupportChat/SupportChat.jsx";
@@ -30,6 +30,7 @@ import SavedJobs from "./Components/SavedJobs/SavedJobs.jsx";
 import { AuthProvider } from "./Context/AuthContext.jsx"; 
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword.jsx";
 import SubscriptionPlan from "./Components/SubscriptionPlan/SubscriptionPlan.jsx";
+import Signup from "./Components/SignUpPage/SignUp.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -62,7 +63,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/job-details/:jobTitle" element={<SearchJobDetails />} />
             <Route path="/jobs/:category/:jobId" element={<FilterJobDetails />} />
             <Route path="/career-guidance" element={<CareerGuidancePage />} />
-            <Route path="/job-opportunities" element={<AllJobOpportunities />} />
+            <Route path="/job-opportunities" element={<AllRecommendedJobs />} />
             <Route path="/view-update-profile" element={<ViewAndUpdateProfile />} />
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/support-chat" element={<SupportChat />} />
@@ -72,7 +73,8 @@ createRoot(document.getElementById("root")).render(
             <Route path="/blocked-companies" element={<BlockedCompanies />} />
             <Route path="/saved-jobs" element={<SavedJobs />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="subscription-plan" element={<SubscriptionPlan />} />
+            <Route path="/subscription-plan" element={<SubscriptionPlan />} />
+            <Route path="/signup" element={<Signup />} />
           </Route>
         </Routes>
       </BrowserRouter>

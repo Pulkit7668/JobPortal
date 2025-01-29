@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import jobData from "./JobOpportunitiesData";
+import jobData from "./RecommendedJobsData";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { CiLocationOn } from "react-icons/ci";
 import TogglePage from "../TogglePage/TogglePage";
 import { Link } from "react-router-dom";
 
-const JobOpportunities = () => {
+const RecommendedJobs = () => {
   const [visibleJobs] = useState(8);
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
@@ -80,4 +80,4 @@ const JobOpportunities = () => {
   );
 };
 
-export default JobOpportunities;
+export default RecommendedJobs;

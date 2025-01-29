@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import DropdownCard from "../DropdownCard/DropdownCard";
 import { FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
 import { BiMenuAltLeft } from "react-icons/bi";
@@ -25,6 +25,7 @@ function Navbar() {
   const [isNotificationHovered, setIsNotificationHovered] = useState(false);
   const [isMenuCardOpen, setIsMenuCardOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const navigate = useNavigate();
 
   const { user, isLoggedIn, login, logout } = useAuth();
 
@@ -38,6 +39,10 @@ function Navbar() {
 
   const toggleLogin = () => {
     setIsLoginOpen(!isLoginOpen);
+  };
+
+  const handleSignup = () => {
+    navigate("/signup");
   };
 
   return (
@@ -157,7 +162,7 @@ function Navbar() {
                 >
                   Login
                 </button>
-                <button className="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg">
+                <button onClick={handleSignup} className="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg">
                   Signup
                 </button>
               </div>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import jobData from "./JobOpportunitiesData";
+import jobData from "./RecommendedJobsData";
 import TogglePage from "../TogglePage/TogglePage";
 
-const AllJobOpportunities = () => {
+const AllRecommendedJobs = () => {
   const navigate = useNavigate();
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
@@ -118,4 +118,4 @@ const AllJobOpportunities = () => {
   );
 };
 
-export default AllJobOpportunities;
+export default AllRecommendedJobs;
