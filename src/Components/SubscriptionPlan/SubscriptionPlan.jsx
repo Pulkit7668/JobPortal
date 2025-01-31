@@ -206,7 +206,7 @@ const SubscriptionPlan = () => {
     <div className="bg-gray-100">
       <div className="relative w-full h-[60vh] bg-gray-100 flex items-center justify-center">
         <div className="relative z-10 text-center px-6 py-20">
-          <h2 className="text-5xl font-bold text-gray-800 leading-tight">
+          <h2 className="xs:text-xl md:text-5xl font-bold text-gray-800 leading-tight">
             Find, attract, and <span className="text-blue-600">hire</span> talent with Naukri.
           </h2>
           <button
@@ -219,23 +219,23 @@ const SubscriptionPlan = () => {
       </div>
 
       {/* Card Section */}
-      <div className="relative z-10 max-w-5xl mx-auto flex justify-between bg-white shadow-lg rounded-xl p-8 -mt-20">
-        <div className="flex flex-col items-center w-1/3 text-center">
+      <div className="relative z-10 max-w-5xl xs:mx-5 lg:mx-auto md:flex md:justify-between bg-white shadow-lg rounded-xl p-8">
+        <div className="flex flex-col items-center md:w-1/3 text-center mb-5">
           <div className="text-5xl mb-4">🧑‍💼</div>
           <h3 className="text-lg font-semibold">
             Hire <span className="font-bold text-gray-800">skilled candidates</span>
           </h3>
           <p className="text-gray-600 text-sm">for your business</p>
         </div>
-
-        <div className="flex flex-col items-center w-1/3 text-center border-l border-r px-6">
+        <hr className="xs:block md:hidden mb-5" />
+        <div className="flex flex-col items-center md:w-1/3 text-center md:border-l md:border-r px-6 mb-10">
           <div className="text-5xl mb-4">🏢</div>
           <h3 className="text-lg font-semibold">
             Get candidates with relevant <span className="font-bold text-gray-800">industry experience</span>
           </h3>
         </div>
-
-        <div className="flex flex-col items-center w-1/3 text-center">
+        <hr className="xs:block md:hidden mb-5" />
+        <div className="flex flex-col items-center md:w-1/3 text-center">
           <div className="text-5xl mb-4">💰</div>
           <h3 className="text-lg font-semibold">
             Explore <span className="font-bold text-gray-800">budget-friendly</span> plans
@@ -250,12 +250,12 @@ const SubscriptionPlan = () => {
         <p className="text-gray-600 text-lg mt-2">for Small & Medium Businesses</p>
 
         {/* Plans Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 xs:mx-5 lg:mx-0">
           {hiringPlans.map((plan, index) => (
             <div key={index} className="bg-white shadow-md rounded-xl p-6 border hover:shadow-xl transition duration-300 transform hover:-translate-y-2 relative">
-              <span className="bg-blue-100 text-blue-600 text-lg font-semibold px-3 py-1 rounded">{plan.title}</span>
-              <h3 className="text-xl font-semibold text-start mt-4">{plan.description}</h3>
-              <ul className="mt-2 text-gray-600 text-sm text-start space-y-2 list-disc list-inside">
+              <span className="bg-blue-100 text-blue-600 lg:text-lg font-semibold px-3 py-1 rounded">{plan.title}</span>
+              <h3 className="xs:text-xl md:text-base lg:text-xl font-semibold text-start mt-4">{plan.description}</h3>
+              <ul className="mt-2 text-gray-600 md:text-xs lg:text-sm text-start space-y-2 list-disc list-inside">
                 {plan.features.map((feature, i) => (
                   <li key={i}>{feature}</li>
                 ))}
@@ -270,7 +270,7 @@ const SubscriptionPlan = () => {
                     scrollToSection(assistedHiringRef);
                   }
                 }} 
-                className="mt-4 text-blue-600 font-semibold border border-blue-600 px-20 py-2 rounded-lg hover:bg-blue-100 transition duration-300">
+                className="mt-4 text-blue-600 font-semibold border border-blue-600 xs:px-20 md:px-10 lg:px-20 py-2 rounded-lg hover:bg-blue-100 transition duration-300">
                 View plans
               </button>
               {plan.newLabel && (
@@ -284,15 +284,15 @@ const SubscriptionPlan = () => {
       </div>
       
       {/* Job Posting */}
-      <div ref={jobPostingRef} className="max-w-6xl mx-auto mt-16 px-6 border border-gray-300 py-10 rounded-3xl bg-gradient-to-b from-blue-50 via-white to-gray-100">
-        <h4 className="text-lg font-bold text-[#F15424] text-center mb-2">JOB POSTING</h4>
-        <h2 className="text-4xl font-bold text-gray-900 text-center">Job Posting Pricing</h2>
-        <p className="text-gray-600 text-xl mt-2 text-center">Choose the plan that suits your hiring needs</p>
+      <div ref={jobPostingRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 border border-gray-300 py-10 rounded-3xl bg-gradient-to-b from-blue-50 via-white to-gray-100">
+        <h4 className="xs:text-sm md:text-lg font-bold text-[#F15424] text-center mb-2">JOB POSTING</h4>
+        <h2 className="xs:text-xl md:text-4xl font-bold text-gray-900 text-center">Job Posting Pricing</h2>
+        <p className="text-gray-600 md:text-xl mt-2 text-center">Choose the plan that suits your hiring needs</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {pricingPlans.map((plan, index) => (
             <div key={index} className="bg-white shadow-md rounded-xl p-6 border hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
-              <h3 className="text-3xl text-blue-600">{plan.title}</h3>
+              <h3 className="xs:text-3xl md:text-2xl lg:text-3xl text-blue-600">{plan.title}</h3>
               <p className="text-2xl font-bold text-gray-600 mt-2">{plan.price}</p>
               <p className="text-xs font-semibold text-gray-500">*GST as applicable</p>
               <h3 className="text-xl font-semibold text-gray-600 mt-2">Key Features</h3>
@@ -319,22 +319,22 @@ const SubscriptionPlan = () => {
       </div>
 
       {/* RESDEX Section */}
-      <div ref={resdexRef} className="max-w-6xl mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl mb-10 bg-gradient-to-b from-purple-100 via-white to-gray-100">
-        <h4 className="text-lg font-bold text-[#F15424] text-center mb-2">RESDEX</h4>
-        <h2 className="text-4xl font-bold text-gray-900 text-center">Search India’s Largest Resume Database</h2>
-        <p className="text-gray-600 text-xl mt-2 text-center">by location, industry, skills, and more to find the right fit</p>
+      <div ref={resdexRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl mb-10 bg-gradient-to-b from-purple-100 via-white to-gray-100">
+        <h4 className="xs:text-sm md:text-lg font-bold text-[#F15424] text-center mb-2">RESDEX</h4>
+        <h2 className="xs:text-xl md:text-4xl font-bold text-gray-900 text-center">Search India’s Largest Resume Database</h2>
+        <p className="text-gray-600 md:text-xl mt-2 text-center">by location, industry, skills, and more to find the right fit</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
           {resdexPlans.map((plan, index) => (
             <div key={index} className="bg-gray-50 p-6 rounded-xl border shadow-md">
               <h3 className="text-3xl text-purple-600">{plan.title}</h3>
-              <p className="text-gray-600 mt-2">{plan.description}</p>
+              <p className="xs:text-sm md:text-base text-gray-600 mt-2">{plan.description}</p>
               {plan.prices ? (
-                <div className="flex justify-between mt-4">
+                <div className="lg:flex justify-between mt-4">
                   {plan.prices.map((priceOption, i) => (
                     <div
                       key={i}
-                      className={`flex-1 mx-2 cursor-pointer ${selectedPrice === i ? 'border-purple-600' : 'border-gray-300'} border p-3 rounded-lg flex items-center justify-between`}
+                      className={`flex-1 mx-2 xs:mb-5 lg:mb-0 cursor-pointer ${selectedPrice === i ? 'border-purple-600' : 'border-gray-300'} border p-3 rounded-lg flex items-center justify-between`}
                       onClick={() => handlePriceClick(i)}
                     >
                       <div className="">
@@ -376,10 +376,10 @@ const SubscriptionPlan = () => {
       </div>
 
       {/* Assisted Hiring */}
-      <div ref={assistedHiringRef} className="max-w-6xl mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl bg-gradient-to-b from-green-50 via-white to-gray-100">
-        <h4 className="text-lg font-bold text-[#F15424] text-center mb-2">ASSISTED HIRING</h4>
-        <h2 className="text-4xl font-bold text-gray-900 text-center">Get a Dedicated Hiring Expert</h2>
-        <p className="text-gray-600 text-xl mt-2 text-center">Let our experts handle your hiring needs</p>
+      <div ref={assistedHiringRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl bg-gradient-to-b from-green-50 via-white to-gray-100">
+        <h4 className="xs:text-sm md:text-lg font-bold text-[#F15424] text-center mb-2">ASSISTED HIRING</h4>
+        <h2 className="xs:text-xl md:text-4xl font-bold text-gray-900 text-center">Get a Dedicated Hiring Expert</h2>
+        <p className="text-gray-600 md:text-xl mt-2 text-center">Let our experts handle your hiring needs</p>
 
         <div className="grid grid-cols-1 md:grid-cols-1 gap-6 mt-10">
           {assistedHiringPlans.map((plan, index) => (
@@ -395,7 +395,7 @@ const SubscriptionPlan = () => {
 
               <ul className="mt-4 text-gray-700 space-y-2 text-left">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-center">
+                  <li key={i} className="flex items-center xs:text-xs md:text-sm">
                     <PiStarFourFill className="text-green-500 mr-2" />
                     {feature}
                   </li>
@@ -416,9 +416,9 @@ const SubscriptionPlan = () => {
       </div>
 
       {/* Doubts section */}
-      <div className="max-w-6xl mx-auto mt-16 px-6 py-10 mb-10 border border-gray-300 rounded-3xl bg-gradient-to-b from-yellow-50 via-white to-gray-100">
-        <h4 className="text-lg font-bold text-[#F15424] text-center mb-2">ANY DOUBTS?</h4>
-        <h2 className="text-4xl font-bold text-gray-900 text-center">Frequently Asked Questions</h2>
+      <div className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 py-10 mb-10 border border-gray-300 rounded-3xl bg-gradient-to-b from-yellow-50 via-white to-gray-100">
+        <h4 className="xs:text-sm md:text-lg font-bold text-[#F15424] text-center mb-2">ANY DOUBTS?</h4>
+        <h2 className="xs:text-xl md:text-4xl font-bold text-gray-900 text-center">Frequently Asked Questions</h2>
 
         <div className="mt-8">
           {faqs.map((faq, index) => (
@@ -427,7 +427,7 @@ const SubscriptionPlan = () => {
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => handleQuestionToggle(index)}
               >
-                <h3 className="text-lg font-semibold">{faq.question}</h3>
+                <h3 className="xs:text-sm md:text-lg font-semibold">{faq.question}</h3>
                 <span className="text-3xl">{activeQuestion === index ? '-' : '+'}</span>
               </div>
               <div

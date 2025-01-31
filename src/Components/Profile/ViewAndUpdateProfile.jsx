@@ -79,7 +79,7 @@ const ViewAndUpdateProfile = () => {
         >
           <FaArrowLeft size={40} className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
         </button>
-        <h1 className="text-3xl font-bold">View & Update Profile</h1>
+        <h1 className="xs:text-xl md:text-3xl font-bold">View & Update Profile</h1>
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-md p-6 mb-4">

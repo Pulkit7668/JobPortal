@@ -44,7 +44,7 @@ function JobDetail() {
     <>
       <button
         onClick={() => navigate(-1)}
-        className="text-blue-600 hover:text-blue-800 md:ml-5 lg:ml-24 xs:ml-5 lg:mt-10 xs:mt-5"
+        className="text-blue-600 hover:text-blue-800 md:ml-5 lg:ml-24 xs:ml-5 lg:mt-10 xs:mt-10"
       >
         <FaArrowLeft size={40} className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
       </button>
@@ -99,10 +99,10 @@ function JobDetail() {
         <div className="lg:w-2/3 h-full bg-gray-50 p-6 rounded-lg shadow-md">
           {/* Title, Status */}
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
+            <h2 className="md:text-2xl font-bold mr-1">{selectedJob.title}</h2>
             <div className="flex items-center space-x-4">
               {/* Status */}
-              <p className={`font-semibold ${isActive ? "text-green-600" : "text-red-600"}`}>
+              <p className={`xs:text-xs md:text-base font-semibold ${isActive ? "text-green-600" : "text-red-600"}`}>
                 Status: {isActive ? "Active" : "Closed"}
               </p>
               {/* Menu Icon */}
@@ -111,7 +111,7 @@ function JobDetail() {
               </button>
               {/* Dropdown Menu */}
               {isMenuOpen && (
-                <div className="absolute top-44 right-4 p-3 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute xs:top-52 xs:right-10 lg:top-44 lg:right-4 p-3 bg-white border border-gray-200 rounded-lg shadow-lg">
                   <ul className="space-y-2">
                     <li className="flex items-center space-x-2 border-b border-gray-200 pb-2 cursor-pointer">
                       <FaBookmark size={16} className="text-gray-600" />
@@ -165,7 +165,7 @@ function JobDetail() {
           </p>
 
           {/* Apply Now button */}
-          <div className="flex justify-end">
+          <div className="flex justify-end xs:mt-5 md:mt-0">
             <button
               onClick={() => handleApplyNow(selectedJob)}
               className="px-6 py-2 bg-blue-600 font-semibold text-white rounded-lg hover:bg-blue-700 transition duration-300"

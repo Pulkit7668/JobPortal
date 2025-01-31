@@ -41,7 +41,7 @@ const SetJobPreference = () => {
     <div className="h-[80vh] bg-gray-100 flex items-center justify-center">
       <div className="bg-white rounded-lg shadow-lg w-[80vw] flex flex-col">
         {/* Top Part: Heading and Close Icon */}
-        <div className="bg-indigo-500 text-white text-3xl font-bold relative py-4 rounded-t-lg">
+        <div className="bg-indigo-500 text-white xs:text-lg text-3xl font-bold relative py-4 rounded-t-lg">
           <h1 className="ml-5">Set Job Preference</h1>
           <button
             className="absolute top-1/2 transform -translate-y-1/2 right-4 text-white"

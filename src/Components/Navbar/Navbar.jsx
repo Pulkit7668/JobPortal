@@ -155,14 +155,14 @@ function Navbar() {
               </div>
              </>
             ) : (
-              <div className="space-x-4">
+              <div className="xs:space-x-2 md:space-x-4">
                 <button
                   onClick={toggleLogin}
-                  className="px-4 py-2 text-white bg-blue-600 rounded-lg"
+                  className="xs:px-2 md:px-4 py-2 text-white bg-blue-600 rounded-lg"
                 >
                   Login
                 </button>
-                <button onClick={handleSignup} className="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg">
+                <button onClick={handleSignup} className="xs:px-2 md:px-4 py-2 text-blue-600 border border-blue-600 rounded-lg">
                   Signup
                 </button>
               </div>

@@ -104,7 +104,7 @@ const LoginPage = ({ isOpen, onClose }) => {
         <div className="">
           <div className="flex items-center justify-between mb-6">
             {/* Title */}
-            <h2 className="text-2xl font-bold text-blue-600 text-center">
+            <h2 className="xs:text-xl md:text-2xl font-bold text-blue-600">
               Login to Your Account
             </h2>
             {/* Close Button */}

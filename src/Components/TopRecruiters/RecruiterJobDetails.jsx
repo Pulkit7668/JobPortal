@@ -46,7 +46,7 @@ function RecruiterJobDetails() {
     <>
       <button
         onClick={() => navigate(-1)}
-        className="text-blue-600 mb-6 hover:text-blue-700 transition duration-300 lg:ml-24 xs:ml-5 xs:mt-5 lg:mt-10"
+        className="text-blue-600 mb-6 hover:text-blue-700 transition duration-300 lg:ml-24 xs:ml-5 xs:mt-10 lg:mt-10"
       >
         <FaArrowLeft
           size={40}
