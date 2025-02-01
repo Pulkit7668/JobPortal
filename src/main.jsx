@@ -13,7 +13,6 @@ import Searchpage from "./Components/SearchInputBox/Searchpage.jsx";
 import NotificationPage from "./Components/Navbar/NotificationPage.jsx";
 import JobsResults from "./Components/SearchInputBox/JobResults.jsx";
 import SearchJobDetails from "./Components/SearchInputBox/SearchJobDetails.jsx";
-import CareerGuidancePage from "./Components/Profile/CareerGuidancePage.jsx";
 import FilterJobDetails from "./Components/FilterJobs/FilterJobDetails..jsx";
 import Layout from "./Layout.jsx";
 import "slick-carousel/slick/slick.css";
@@ -62,7 +61,6 @@ createRoot(document.getElementById("root")).render(
             <Route path="/job-results" element={<JobsResults />} />
             <Route path="/job-details/:jobTitle" element={<SearchJobDetails />} />
             <Route path="/jobs/:category/:jobId" element={<FilterJobDetails />} />
-            <Route path="/career-guidance" element={<CareerGuidancePage />} />
             <Route path="/job-opportunities" element={<AllRecommendedJobs />} />
             <Route path="/view-update-profile" element={<ViewAndUpdateProfile />} />
             <Route path="/change-password" element={<ChangePassword />} />
