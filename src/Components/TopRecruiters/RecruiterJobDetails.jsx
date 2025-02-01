@@ -74,7 +74,7 @@ function RecruiterJobDetails() {
                     Apply Now
                   </button>
                   <button
-                    onClick={() => handleMoreDetailsClick(jobItem)} // Set the job details on click
+                    onClick={() => handleMoreDetailsClick(jobItem)}
                     className="text-sm text-blue-700"
                   >
                     More Details

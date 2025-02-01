@@ -33,19 +33,18 @@ const MenuCard = ({ isOpen, onClose }) => {
       toast.success("Logged out successfully!", {
         position: "top-center",
         style: {
-          background: "#d4edda", // Custom success background color
-          color: "#155724", // Custom success text color
+          background: "#d4edda",
+          color: "#155724",
         },
       });
       setLoading(false);
       setShowLogoutPopup(false);
       onClose();
-    }, 2000); // Simulate a 2-second delay
+    }, 2000);
   };
 
   return (
     <>
-      {/* Hot Toast Container */}
       <Toaster />
       {isOpen && (
         <div

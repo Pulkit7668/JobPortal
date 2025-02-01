@@ -12,7 +12,7 @@ function JobDetail() {
   const navigate = useNavigate();
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(jobs.find((job) => job.id === parseInt(id)) || null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle the menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Check if the job is active based on the application deadline
   const isActive = selectedJob
@@ -29,7 +29,7 @@ function JobDetail() {
   };
 
   const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen); // Toggle menu visibility
+    setIsMenuOpen(!isMenuOpen);
   };
 
   useEffect(() => {

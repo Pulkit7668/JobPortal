@@ -107,7 +107,7 @@ const ChangePassword = () => {
       setTimeout(() => {
         navigate("/");
       }, 2000);
-    }, 2000); // Simulate delay (replace with actual API call)
+    }, 2000);
   };
 
   const handleOtpChange = (e, index) => {

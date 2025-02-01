@@ -4,7 +4,7 @@ import { useAuth } from "../../Context/AuthContext";
 import { FaTimes } from "react-icons/fa";
 import { Toaster, toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import ForgotPassword from "../ForgotPassword/ForgotPassword"; // Import ForgotPassword component
+import ForgotPassword from "../ForgotPassword/ForgotPassword";
 
 const LoginPage = ({ isOpen, onClose }) => {
   const { login, loginWithGoogle, user } = useAuth();
@@ -12,8 +12,8 @@ const LoginPage = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-  const [isForgotPassword, setIsForgotPassword] = useState(false); // State to toggle forgot password modal
+  const [showPassword, setShowPassword] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
 
   const isFormValid = email.trim() !== "" && password.trim() !== "";
 
@@ -23,8 +23,8 @@ const LoginPage = ({ isOpen, onClose }) => {
       toast.error("Please fill in all fields!", {
         position: "top-center",
         style: {
-          background: "#f8d7da", // Custom error background color
-          color: "#721c24", // Custom error text color
+          background: "#f8d7da",
+          color: "#721c24",
         },
       });
       return;
@@ -37,8 +37,8 @@ const LoginPage = ({ isOpen, onClose }) => {
         toast.success("Login successful!", {
           position: "top-center",
           style: {
-            background: "#d4edda", // Custom success background color
-            color: "#155724", // Custom success text color
+            background: "#d4edda",
+            color: "#155724",
           },
         });
         onClose();
@@ -47,8 +47,8 @@ const LoginPage = ({ isOpen, onClose }) => {
         toast.error("Login failed. Please try again.", {
           position: "top-center",
           style: {
-            background: "#f8d7da", // Custom error background color
-            color: "#721c24", // Custom error text color
+            background: "#f8d7da",
+            color: "#721c24",
           },
         });
       } finally {
@@ -64,8 +64,8 @@ const LoginPage = ({ isOpen, onClose }) => {
       toast.success("Login successful!", {
         position: "top-center",
         style: {
-          background: "#d4edda", // Custom success background color
-          color: "#155724", // Custom success text color
+          background: "#d4edda",
+          color: "#155724",
         },
       });
       onClose();
@@ -74,8 +74,8 @@ const LoginPage = ({ isOpen, onClose }) => {
       toast.error("Login failed. Please try again.", {
         position: "top-center",
         style: {
-          background: "#f8d7da", // Custom error background color
-          color: "#721c24", // Custom error text color
+          background: "#f8d7da",
+          color: "#721c24",
         },
       });
     } finally {
@@ -176,7 +176,7 @@ const LoginPage = ({ isOpen, onClose }) => {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={!isFormValid || loading} // Disable button if form is invalid or loading
+              disabled={!isFormValid || loading}
               className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
                 !isFormValid || loading
                   ? "cursor-not-allowed"

@@ -39,8 +39,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
       toast.error("Please enter your email address!", {
         position: "top-center",
         style: {
-          background: "#f8d7da", // Custom error background color
-          color: "#721c24", // Custom error text color
+          background: "#f8d7da",
+          color: "#721c24",
         },
       });
       return;
@@ -53,8 +53,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         toast.success("OTP sent to your email!", {
           position: "top-center",
           style: {
-            background: "#d4edda", // Custom success background color
-            color: "#155724", // Custom success text color
+            background: "#d4edda",
+            color: "#155724",
           },
         });
         setIsOtpSent(true);
@@ -62,8 +62,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         toast.error("Failed to send OTP. Please try again.", {
           position: "top-center",
           style: {
-            background: "#f8d7da", // Custom error background color
-            color: "#721c24", // Custom error text color
+            background: "#f8d7da",
+            color: "#721c24",
           },
         });
       } finally {
@@ -91,8 +91,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
       toast.error("Please enter the OTP!", {
         position: "top-center",
         style: {
-          background: "#f8d7da", // Custom error background color
-          color: "#721c24", // Custom error text color
+          background: "#f8d7da",
+          color: "#721c24",
         },
       });
       return;
@@ -105,8 +105,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         toast.success("OTP verified! You can now reset your password.", {
           position: "top-center",
           style: {
-            background: "#d4edda", // Custom success background color
-            color: "#155724", // Custom success text color
+            background: "#d4edda",
+            color: "#155724",
           },
         });
         setIsOtpVerified(true);
@@ -114,8 +114,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         toast.error("Invalid OTP. Please try again.", {
           position: "top-center",
           style: {
-            background: "#f8d7da", // Custom error background color
-            color: "#721c24", // Custom error text color
+            background: "#f8d7da",
+            color: "#721c24",
           },
         });
       } finally {
@@ -130,8 +130,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
       toast.error("Please fill in all fields!", {
         position: "top-center",
         style: {
-          background: "#f8d7da", // Custom error background color
-          color: "#721c24", // Custom error text color
+          background: "#f8d7da",
+          color: "#721c24",
         },
       });
       return;
@@ -141,8 +141,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
       toast.error("Passwords do not match!", {
         position: "top-center",
         style: {
-          background: "#f8d7da", // Custom error background color
-          color: "#721c24", // Custom error text color
+          background: "#f8d7da",
+          color: "#721c24",
         },
       });
       return;
@@ -155,8 +155,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         toast.success("Password reset successful!", {
           position: "top-center",
           style: {
-            background: "#d4edda", // Custom success background color
-            color: "#155724", // Custom success text color
+            background: "#d4edda",
+            color: "#155724",
           },
         });
         setIsPasswordReset(true);
@@ -167,8 +167,8 @@ const ForgotPassword = ({ isOpen, onClose }) => {
         toast.error("Failed to reset password. Please try again.", {
           position: "top-center",
           style: {
-            background: "#f8d7da", // Custom error background color
-            color: "#721c24", // Custom error text color
+            background: "#f8d7da",
+            color: "#721c24",
           },
         });
       } finally {
@@ -224,7 +224,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={loading} // Disable button if loading
+                disabled={loading}
                 className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
                   loading
                     ? "cursor-not-allowed"
@@ -267,7 +267,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={loading} // Disable button if loading
+                disabled={loading}
                 className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
                   loading
                     ? "cursor-not-allowed"
@@ -342,7 +342,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={loading} // Disable button if loading
+                disabled={loading}
                 className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
                   loading
                     ? "cursor-not-allowed"

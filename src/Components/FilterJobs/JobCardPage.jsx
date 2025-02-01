@@ -11,7 +11,7 @@ const JobCategoryPage = ({ category }) => {
   const [selectedJob, setSelectedJob] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 6; // Number of jobs to display per page
+  const jobsPerPage = 6;
   const totalPages = Math.ceil(jobs.length / jobsPerPage);
 
   useEffect(() => {

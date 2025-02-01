@@ -11,7 +11,7 @@ const AllRecommendedJobs = () => {
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 8; // Adjust the number of jobs per page
+  const jobsPerPage = 8;
 
   // Total number of pages
   const totalPages = Math.ceil(jobData.length / jobsPerPage);

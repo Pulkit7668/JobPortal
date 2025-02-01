@@ -23,7 +23,7 @@ function JobDetailsForSkills() {
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 6; // Number of jobs displayed per page
+  const jobsPerPage = 6;
 
   // Calculate total pages and jobs for the current page
   const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
