@@ -36,7 +36,7 @@ function Signup() {
         <div className="flex w-full overflow-hidden">
           
           {/* Left Section - Box with fixed height and sticky */}
-          <div className="w-[40%] p-6 ml-20 flex flex-col items-center justify-center h-[65vh] sticky top-20 xs:hidden lg:block">
+          <div className="w-[40%] p-6  flex flex-col items-center justify-center h-[65vh] sticky top-20 xs:hidden lg:block">
             <div className="bg-white p-6 rounded-lg shadow-md w-[60%] h-[100%] text-center">
               <img
                 src="https://plus.unsplash.com/premium_vector-1721224450752-b0f014727713?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMElsbHVzdHJhdGlvbnN8ZW58MHx8MHx8fDA%3D"
