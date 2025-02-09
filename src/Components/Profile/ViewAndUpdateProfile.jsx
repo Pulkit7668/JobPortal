@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import { FaEdit, FaMapMarkerAlt, FaPhone, FaEnvelope, FaVenusMars, FaBirthdayCake, FaTimes } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import QuickLinks from "./QuickLinks";
 
 function ViewAndUpdateProfile() {
   const [editing, setEditing] = useState(false);
-  const [editingCareerPreferences, setEditingCareerPreferences] = useState(false);
   const [profile, setProfile] = useState({
     name: "John Doe",
     education: "B.Tech/B.E.",
@@ -17,21 +17,12 @@ function ViewAndUpdateProfile() {
     birthday: "Add Birthday",
     currentLocation: "",
   });
-  const [careerPreferences, setCareerPreferences] = useState({
-    jobType: "",
-    availability: "",
-    preferredLocation: "",
-  });
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const [photo, setPhoto] = useState(null);
   const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
-  };
-
-  const handleCareerPreferencesChange = (e) => {
-    setCareerPreferences({ ...careerPreferences, [e.target.name]: e.target.value });
   };
 
   const handlePhotoChange = (e) => {
@@ -249,156 +240,7 @@ function ViewAndUpdateProfile() {
           </div>
         )}
       </div>
-      {/* Quick Links Section */}
-      <div className="max-w-6xl mx-auto p-10 bg-white shadow-md rounded-lg relative flex flex-col gap-6 mt-10">
-        <h1 className="text-3xl font-bold">View & Edit</h1>
-        <hr />
-        <div className="flex gap-6">
-          <div className="w-1/4 bg-gray-100 p-4 rounded-lg shadow-md h-[30rem] overflow-hidden">
-            <h2 className="text-lg font-bold">Quick Links</h2>
-            <ul className="mt-2 space-y-2 font-medium overflow-y-auto h-full pr-2 custom-scrollbar">
-              <li className="hover:underline cursor-pointer">Preference</li>
-              <li className="hover:underline cursor-pointer">Education</li>
-              <li className="hover:underline cursor-pointer">Key skills</li>
-              <li className="hover:underline cursor-pointer">Languages</li>
-              <li className="hover:underline cursor-pointer">Internships</li>
-              <li className="hover:underline cursor-pointer">Projects</li>
-              <li className="hover:underline cursor-pointer">Profile Summary</li>
-              <li className="hover:underline cursor-pointer">Accomplishments</li>
-              <li className="hover:underline cursor-pointer">Competitive Exams</li>
-              <li className="hover:underline cursor-pointer">Employment</li>
-              <li className="hover:underline cursor-pointer">Academic Achievements</li>
-              <li className="hover:underline cursor-pointer">Resume</li>
-            </ul>
-          </div>
-
-          {/* Main Profile Section */}
-          <div className="w-3/4 space-y-6 overflow-y-scroll pr-2 custom-scrollbar" style={{ maxHeight: '30rem' }}>
-            {[
-              "Career Preferences",
-              "Education",
-              "Key Skills",
-              "Languages",
-              "Internships",
-              "Projects",
-              "Profile Summary",
-              "Accomplishments",
-              "Competitive Exams",
-              "Employment",
-              "Academic Achievements",
-              "Resume",
-            ].map((section, index) => (
-              <div key={index} className="p-4 bg-white shadow-md border rounded-lg relative" style={{ height: '250px' }}>
-                <h3 className="text-xl font-bold">{section}</h3>
-                {section === "Career Preferences" ? (
-                  <div className="mt-10">
-                  <div className="flex justify-between gap-4 mt-2">
-                    <div className="flex flex-col">
-                      <span className="font-medium">Preferred Job Type</span>
-                      <span className="text-blue-600 font-semibold">{careerPreferences.jobType}</span>
-                    </div>
-                    <div className="flex flex-col mr-[40%]">
-                      <span className="font-medium">Availability to Work</span>
-                      <span className="text-blue-600 font-semibold">{careerPreferences.availability}</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col mt-6">
-                      <span className="font-medium">Preferred Location</span>
-                      <span className="text-blue-600 font-semibold">{careerPreferences.preferredLocation}</span>
-                  </div>
-                  </div>
-                ) : (
-                  <p className="text-gray-600 mt-2">Add details for {section.toLowerCase()}</p>
-                )}
-                <FaEdit className="text-gray-500 cursor-pointer absolute top-4 right-4" onClick={() => section === "Career Preferences" ? setEditingCareerPreferences(true) : setEditing(true)} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Career Preferences Edit Modal */}
-      {editingCareerPreferences && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[50%]">
-            <h2 className="text-xl font-bold mb-4 flex items-center justify-between">
-              Edit Career Preferences
-              <FaTimes
-                className="cursor-pointer text-red-500"
-                onClick={() => setEditingCareerPreferences(false)}
-              />
-            </h2>
-            <div className="space-y-4 overflow-y-auto custom-scrollbar" style={{ maxHeight: '400px', paddingRight: '10px' }}>
-              <div>
-                <label className="font-medium">Preferred Job Type</label>
-                <div className="flex gap-4 mt-2">
-                  {careerPreferences.jobType === "" ? (
-                    <>
-                      <button
-                        onClick={() => handleJobTypeClick("Internships")}
-                        className="px-4 py-2 border-2 rounded-3xl bg-white text-gray-600 border-gray-300 hover:bg-blue-500 hover:text-white"
-                      >
-                        Internships
-                      </button>
-                      <button
-                        onClick={() => handleJobTypeClick("Jobs")}
-                        className="px-4 py-2 border-2 rounded-3xl bg-white text-gray-600 border-gray-300 hover:bg-blue-500 hover:text-white"
-                      >
-                        Jobs
-                      </button>
-                    </>
-                  ) : (
-                    <div className="px-4 py-2 border-2 rounded-3xl bg-gray-200 text-gray-600 flex items-center gap-2">
-                      {careerPreferences.jobType}
-                      <FaTimes
-                        className="text-red-500 cursor-pointer"
-                        onClick={handleRemoveJobType}
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div>
-                <label className="font-medium">Availability to Work</label>
-                <div className="flex gap-4 mt-2">
-                  {careerPreferences.availability === "" ? (
-                    ["15 Days or less", "1 Month", "2 Months", "3 Months", "More than 3 Months"].map((duration) => (
-                      <button
-                        key={duration}
-                        onClick={() => handleAvailabilityClick(duration)}
-                        className="px-4 py-2 border-2 rounded-3xl bg-white text-gray-600 border-gray-300 hover:bg-blue-500 hover:text-white"
-                      >
-                        {duration}
-                      </button>
-                    ))
-                  ) : (
-                    <div className="px-4 py-2 border-2 rounded-3xl bg-gray-200 text-gray-600 flex items-center gap-2">
-                      {careerPreferences.availability}
-                      <FaTimes
-                        className="text-red-500 cursor-pointer"
-                        onClick={handleRemoveAvailability}
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div>
-                <label className="font-medium">Preferred Location</label>
-                <input name="preferredLocation" value={careerPreferences.preferredLocation} onChange={handleCareerPreferencesChange} className="w-full p-2 border rounded-2xl" />
-              </div>
-            </div>
-            <div className="flex justify-end gap-2 mt-4">
-              <button onClick={() => setEditingCareerPreferences(false)} className="mr-5 font-semibold text-blue-600 rounded-lg">Cancel</button>
-              <button
-                onClick={() => setEditingCareerPreferences(false)}
-                className="px-3 py-2 bg-blue-600 text-white rounded-lg"
-              >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <QuickLinks />
     </div>
   );
 }
