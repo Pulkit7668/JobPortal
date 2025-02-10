@@ -11,6 +11,9 @@ export const renderModalContent = (
     education,
     keySkills,
     languagesKnown,
+    internship,
+    project,
+    profileSummary,
     handleCareerPreferencesChange,
     handleEducationChange,
     handleJobTypeClick,
@@ -22,7 +25,10 @@ export const renderModalContent = (
     handleAddSkill,
     handleRemoveSkill,
     handleAddLanguage,
-    handleRemoveLanguage
+    handleRemoveLanguage,
+    handleInternshipFieldChange,
+    handleProjectFieldChange,
+    handleProfileSummaryChange
 ) => {
     switch (editingSection) {
         case "Career Preferences":
@@ -302,6 +308,137 @@ export const renderModalContent = (
                             </div>
                         </div>
                     </>
+                );
+            case "Internships":
+                return (
+                        <>
+                            <div>
+                                <label className="font-medium">Company Name</label>
+                                <input name="companyName" placeholder='Enter the name of the company' value={internship.companyName} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl" />
+                            </div>
+                            <div>
+                                <label className="font-medium">Internship Duration</label>
+                                <div className="flex gap-4">
+                                    <select name="internshipStartMonth" value={internship.internshipStartMonth} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">Start Month</option>
+                                        {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((month) => (
+                                            <option key={month} value={month}>{month}</option>
+                                        ))}
+                                    </select>
+                                    <select name="internshipStartYear" value={internship.internshipStartYear} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">Start Year</option>
+                                        {startYears.map((year) => (
+                                            <option key={year} value={year}>{year}</option>
+                                        ))}
+                                    </select>
+                                    <span className="self-center">to</span>
+                                    <select name="internshipEndMonth" value={internship.internshipEndMonth} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">End Month</option>
+                                        {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((month) => (
+                                            <option key={month} value={month}>{month}</option>
+                                        ))}
+                                    </select>
+                                    <select name="internshipEndYear" value={internship.internshipEndYear} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">End Year</option>
+                                        {endYears.map((year) => (
+                                            <option key={year} value={year}>{year}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="font-medium">Project Name</label>
+                                <input name="projectName" placeholder='Enter the name of the project you undertook' value={internship.projectName} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl" />
+                            </div>
+                            <div>
+                                <label className="font-medium">Describe what you did at internship</label>
+                                <textarea name="internshipDescription" placeholder='Enter the responsibilities you held, anything you accomplished or learned while in your internship' value={internship.internshipDescription} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl" maxLength="1000" />
+                                <div className="text-gray-600 text-right">
+                                    ({profileSummary.length}/1000)
+                                </div>
+                            </div>
+                            <div>
+                                <label className="font-medium">Key Skills (optional)</label>
+                                <input name="internshipKeySkills" placeholder='Enter the skills you used in this role' value={internship.internshipKeySkills} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl" />
+                            </div>
+                            <div>
+                                <label className="font-medium">Project URL (optional)</label>
+                                <input name="projectUrl" placeholder='Enter the website link of the project' value={internship.projectUrl} onChange={handleInternshipFieldChange} className="w-full p-2 border rounded-2xl" />
+                            </div>
+                        </>
+                );
+            case "Projects":
+                return (
+                        <>
+                            <div>
+                                <label className="font-medium">Project Name</label>
+                                <input name="projectName" placeholder='Enter the name of the project' value={project.projectName || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl" />
+                            </div>
+                            <div>
+                                <label className="font-medium">Project Duration</label>
+                                <div className="flex gap-4">
+                                    <select name="projectStartMonth" value={project.projectStartMonth || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">Start Month</option>
+                                        {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((month) => (
+                                            <option key={month} value={month}>{month}</option>
+                                        ))}
+                                    </select>
+                                    <select name="projectStartYear" value={project.projectStartYear || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">Start Year</option>
+                                        {startYears.map((year) => (
+                                            <option key={year} value={year}>{year}</option>
+                                        ))}
+                                    </select>
+                                    <span className="self-center">to</span>
+                                    <select name="projectEndMonth" value={project.projectEndMonth || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">End Month</option>
+                                        {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((month) => (
+                                            <option key={month} value={month}>{month}</option>
+                                        ))}
+                                    </select>
+                                    <select name="projectEndYear" value={project.projectEndYear || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl min-h-[1.5rem]">
+                                        <option value="">End Year</option>
+                                        {endYears.map((year) => (
+                                            <option key={year} value={year}>{year}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="font-medium">Describe what the project was about</label>
+                                <textarea name="projectDescription" placeholder='Enter the details of the project' value={project.projectDescription || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl" maxLength="1000" />
+                                <div className="text-gray-600 text-right">
+                                    ({profileSummary.length}/1000)
+                                </div>
+                            </div>
+                            <div>
+                                <label className="font-medium">Key Skills (optional)</label>
+                                <input name="projectKeySkills" placeholder='Enter the skills used in this project' value={project.projectKeySkills || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl" />
+                            </div>
+                            <div>
+                                <label className="font-medium">Project URL (optional)</label>
+                                <input name="projectUrl" placeholder='Enter the website link of the project' value={project.projectUrl || ""} onChange={handleProjectFieldChange} className="w-full p-2 border rounded-2xl" />
+                            </div>
+                        </>
+                );
+            case "Profile Summary":
+                return (
+                        <>
+                            <div>
+                                <p className="text-gray-600 mt-2">Your profile summary should mention the highlights of your career and education, what your professional interests are, and what kind of career you are looking for. Write a meaningful summary of more than 50 characters.</p>
+                                <textarea
+                                    name="profileSummary"
+                                    placeholder='Enter your profile summary'
+                                    value={profileSummary}
+                                    onChange={handleProfileSummaryChange}
+                                    className="w-full p-2 border rounded-2xl mt-4"
+                                    maxLength="1000"
+                                />
+                                <div className="text-gray-600 text-right">
+                                    ({profileSummary.length}/1000)
+                                </div>
+                            </div>
+                        </>
                 );
         default:
             return null;
