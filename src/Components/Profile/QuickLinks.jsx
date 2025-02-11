@@ -141,12 +141,12 @@ function QuickLinks() {
         <div>
             <Toaster />
             {/* Quick Links Section */}
-            <div className="max-w-6xl mx-auto p-10 bg-white shadow-md rounded-lg relative flex flex-col gap-6 mt-10">
-                <h1 className="text-3xl font-bold">View & Edit</h1>
+            <div className="mx-auto p-10 relative flex flex-col gap-6">
+                <h1 className="text-3xl text-blue-600 font-bold">View & Edit</h1>
                 <hr />
                 <div className="flex gap-6">
-                    <div className="w-1/4 bg-gray-100 p-4 rounded-lg shadow-md h-[30rem] overflow-hidden">
-                        <h2 className="text-lg font-bold">Quick Links</h2>
+                    <div className="w-1/4 bg-white border p-4 rounded-2xl shadow-md h-[30rem] overflow-hidden">
+                        <h2 className="text-xl font-bold text-blue-600">Quick Links</h2>
                         <ul className="mt-2 space-y-3 font-medium overflow-y-auto h-full pr-2 custom-scrollbar">
                             {sections.map((section, index) => (
                                 <li key={index} className="hover:underline cursor-pointer" onClick={() => setEditingSection(section)}>
@@ -159,7 +159,7 @@ function QuickLinks() {
                     {/* Main Profile Section */}
                     <div className="w-3/4 space-y-6 overflow-y-scroll pr-2 custom-scrollbar" style={{ maxHeight: '30rem' }}>
                         {sections.map((section, index) => (
-                            <div key={index} className="p-4 bg-white shadow-md border rounded-lg relative">
+                            <div key={index} className="p-4 bg-white shadow-md border rounded-2xl relative">
                                 <h3 className="text-xl font-bold">{section}</h3>
                                 {section === "Career Preferences" ? (
                                     <div className="mt-10">

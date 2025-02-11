@@ -42,22 +42,6 @@ function ViewAndUpdateProfile() {
     setProfile({ ...profile, gender: "Add Gender" });
   };
 
-  const handleJobTypeClick = (jobType) => {
-    setCareerPreferences({ ...careerPreferences, jobType });
-  };
-
-  const handleRemoveJobType = () => {
-    setCareerPreferences({ ...careerPreferences, jobType: "" });
-  };
-
-  const handleAvailabilityClick = (availability) => {
-    setCareerPreferences({ ...careerPreferences, availability });
-  };
-
-  const handleRemoveAvailability = () => {
-    setCareerPreferences({ ...careerPreferences, availability: "" });
-  };
-
   // Function to calculate profile completion percentage
   const calculateProfileCompletion = () => {
     const filledFields = Object.values(profile).filter((field) => field && field !== "Add Gender").length;
@@ -67,7 +51,7 @@ function ViewAndUpdateProfile() {
 
   return (
     <div>
-      <div className="max-w-6xl h-[40vh] mx-auto p-10 bg-white shadow-md rounded-lg relative flex items-center gap-6 mt-10 mb-10">
+      <div className="h-[40vh] mx-auto p-10 relative flex items-center gap-6">
         <div
           className="relative w-32 h-32 rounded-full border-4 border-gray-200 flex items-center justify-center bg-gray-300 text-gray-600 text-sm font-bold cursor-pointer"
           onClick={() => setShowPhotoModal(true)}

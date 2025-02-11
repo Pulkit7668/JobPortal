@@ -31,8 +31,8 @@ const SupportChat = () => {
   };
 
   return (
-    <div className="m-5 p-5 h-[80vh] bg-gray-100 flex flex-col">
-      <div className="bg-indigo-500 text-white text-3xl font-bold py-2 rounded-t-lg relative">
+    <div className="mt-5 h-[90vh] bg-gray-100 flex flex-col">
+      <div className="bg-indigo-500 text-white text-3xl font-bold py-2 relative">
         <h1 className="ml-5">Support Chat</h1>
         <button
           onClick={handleCloseChat}
@@ -64,7 +64,7 @@ const SupportChat = () => {
         </div>
 
         {/* Message Input */}
-        <div className="border border-gray-300 p-4 bg-gray-50 rounded-b-lg">
+        <div className="border border-gray-300 p-4 bg-gray-50">
           <form onSubmit={handleSendMessage} className="flex items-center space-x-4">
             <input
               type="text"

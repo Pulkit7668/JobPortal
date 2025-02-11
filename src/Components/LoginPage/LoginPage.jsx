@@ -221,6 +221,16 @@ const LoginPage = ({ isOpen, onClose }) => {
               Sign up here
             </Link>
           </p>
+          <p className="text-center text-sm text-gray-600 mt-2">
+            Are you a recruiter?{" "}
+            <Link
+              to="/recruiter-signup"
+              onClick={onClose} 
+              className="text-blue-600 hover:underline font-medium"
+            >
+              Recruiter Sign up
+            </Link>
+          </p>
         </div>
       </div>
 
