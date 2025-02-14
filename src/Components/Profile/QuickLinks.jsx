@@ -146,8 +146,8 @@ function QuickLinks() {
                 <hr />
                 <div className="flex gap-6">
                     <div className="w-1/4 bg-white border p-4 rounded-2xl shadow-md h-[30rem] overflow-hidden">
-                        <h2 className="text-xl font-bold text-blue-600">Quick Links</h2>
-                        <ul className="mt-2 space-y-3 font-medium overflow-y-auto h-full pr-2 custom-scrollbar">
+                        <h2 className="text-xl font-bold text-blue-600 mb-5">Quick Links</h2>
+                        <ul className="mt-2 space-y-5 font-medium overflow-y-auto h-full pr-2 custom-scrollbar">
                             {sections.map((section, index) => (
                                 <li key={index} className="hover:underline cursor-pointer" onClick={() => setEditingSection(section)}>
                                     {section}

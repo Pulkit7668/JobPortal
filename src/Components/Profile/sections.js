@@ -7,8 +7,5 @@ export const sections = [
     "Projects",
     "Profile Summary",
     "Accomplishments",
-    "Competitive Exams",
-    "Employment",
-    "Academic Achievements",
     "Resume",
   ];

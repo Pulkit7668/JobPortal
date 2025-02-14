@@ -51,7 +51,8 @@ function ViewAndUpdateProfile() {
 
   return (
     <div>
-      <div className="h-[40vh] mx-auto p-10 relative flex items-center gap-6">
+      {/* profile edit */}
+      <div className="h-[40vh] max-w-6xl mt-20 mx-auto p-10 relative flex items-center gap-6 bg-white border rounded-2xl shadow-md">
         <div
           className="relative w-32 h-32 rounded-full border-4 border-gray-200 flex items-center justify-center bg-gray-300 text-gray-600 text-sm font-bold cursor-pointer"
           onClick={() => setShowPhotoModal(true)}
