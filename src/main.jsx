@@ -30,6 +30,9 @@ import { AuthProvider } from "./Context/AuthContext.jsx";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword.jsx";
 import SubscriptionPlan from "./Components/SubscriptionPlan/SubscriptionPlan.jsx";
 import Signup from "./Components/SignUpPage/Signup.jsx";
+import AllLatestJobs from "./Components/LatestJobs/AllLatestJobs.jsx";
+import LatestJobDetail from "./Components/LatestJobs/LatestJobDetails.jsx";
+import RecommendedJobDetails from "./Components/RecommendedJobs/RecommendedJobDetails.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -62,6 +65,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/job-details/:jobTitle" element={<SearchJobDetails />} />
             <Route path="/jobs/:category/:jobId" element={<FilterJobDetails />} />
             <Route path="/job-opportunities" element={<AllRecommendedJobs />} />
+            <Route path="/recommended/job/:id" element={<RecommendedJobDetails />} />
             <Route path="/view-update-profile" element={<ViewAndUpdateProfile />} />
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/support-chat" element={<SupportChat />} />
@@ -73,6 +77,8 @@ createRoot(document.getElementById("root")).render(
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/subscription-plan" element={<SubscriptionPlan />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/all-latest-jobs" element={<AllLatestJobs />} />
+            <Route path="/latest/job/:id" element={<LatestJobDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>

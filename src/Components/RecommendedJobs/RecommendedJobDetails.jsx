@@ -4,10 +4,10 @@ import { FaArrowLeft, FaEllipsisV, FaBookmark, FaChevronLeft, FaChevronRight } f
 import { RiCloseCircleLine } from "react-icons/ri";
 import { AiOutlineStar, AiOutlineExclamationCircle } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
-import { jobs } from "./JobDataForSkills";
+import jobs from "./RecommendedJobsData";
 import TogglePage from "../TogglePage/TogglePage";
 
-function JobDetail() {
+function RecommendedJobDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isTogglePageOpen, setISTogglePageOpen] = useState(false);
@@ -193,7 +193,7 @@ function JobDetail() {
             ))}
           </ul>
 
-          <p className="font-semibold text-gray-700 mt-4">
+          <p className="font-semibold text-gray-700 mt-10">
             Application Deadline: {selectedJob.application_deadline}
           </p>
 
@@ -218,4 +218,4 @@ function JobDetail() {
   );
 }
 
-export default JobDetail;
+export default RecommendedJobDetails;

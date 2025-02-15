@@ -4,6 +4,7 @@ import JobsForSkills from "../Components/JobForSkills/JobForSkills";
 import TopRecruiters from "../Components/TopRecruiters/TopRecruiters";
 import FilterJob from "../Components/FilterJobs/FilterJob";
 import RecommendedJobs from "../Components/RecommendedJobs/RecommendedJobs";
+import LatestJob from "../Components/LatestJobs/LatestJob";
 
 function Homepage() {
 
@@ -16,8 +17,9 @@ function Homepage() {
       <SearchInputBox />
       <FilterJob />
       <JobsForSkills />
-      <TopRecruiters />
       <RecommendedJobs />
+      <LatestJob />
+      <TopRecruiters />
     </>
   );
 }
