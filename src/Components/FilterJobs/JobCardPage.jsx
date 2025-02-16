@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { filterJobData } from './FilterJobData';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaChevronLeft, FaChevronRight, FaCircle, FaDotCircle } from 'react-icons/fa';
+import { CiLocationOn } from "react-icons/ci";
 import TogglePage from '../TogglePage/TogglePage';
 
 const JobCategoryPage = ({ category }) => {
@@ -63,22 +64,23 @@ const JobCategoryPage = ({ category }) => {
               >
                 <h3 className="text-2xl mb-2 font-semibold text-gray-800">{job.title}</h3>
                 <p className="text-sm font-semibold text-gray-600">{job.company}</p>
-                <p className="text-sm font-semibold text-gray-500">
-                  {job.description.length > 100
-                    ? job.description.slice(0, 100) + '...'
-                    : job.description}
-                </p>
 
-                <div className="mt-4">
-                  <p className="text-sm text-gray-600">
-                    <strong>Location:</strong> {job.location}
+                <div className="mt-2">
+                  <div className="flex items-center mb-2">
+                    <CiLocationOn size={14} className="text-gray-500" />
+                    <p className="text-sm text-gray-500">{job.location}</p>
+                  </div>
+                  <p className="text-xs text-gray-600">
+                    Experience: <strong>{job.experience}</strong>
                   </p>
-                  <p className="text-sm text-gray-600">
-                    <strong>Experience Required:</strong> {job.experience}
+                  <p className="text-xs text-gray-600">
+                    Salary: <strong>{job.salary}</strong>
                   </p>
-                  <p className="text-sm text-gray-600">
-                    <strong>Salary:</strong> {job.salary}
-                  </p>
+                  <div className="mt-2">
+                    <span className="text-xs text-gray-600">
+                      Skills: <strong>{job.skills ? job.skills.join(", ") : "N/A"}</strong>
+                    </span>
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-end">

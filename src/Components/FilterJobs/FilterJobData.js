@@ -18,10 +18,8 @@ export const filterJobData = {
         'Experience with database systems like MongoDB and PostgreSQL.',
         'Knowledge of cloud platforms such as AWS or Azure.',
       ],
-      perks: [
-        'Flexible working hours.',
-        'Learning and development budget.',
-        'Comprehensive health insurance.',
+      skills: [
+        'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
       ],
       application_deadline: "10-Dec-2025",
     },
@@ -43,10 +41,8 @@ export const filterJobData = {
         'Experience with React and state management libraries like Redux.',
         'Good understanding of web performance optimization.',
       ],
-      perks: [
-        'Remote work options.',
-        'Annual performance bonuses.',
-        'Access to premium tools and resources.',
+      skills: [
+        'JavaScript', 'HTML', 'CSS', 'React', 'Redux', 'Tailwind CSS'
       ],
       application_deadline: '15-Feb-2025',
     },
@@ -68,10 +64,8 @@ export const filterJobData = {
         'Experience with infrastructure-as-code tools like Terraform.',
         'Strong understanding of cloud platforms (AWS, GCP).',
       ],
-      perks: [
-        'Stock options.',
-        'Generous leave policies.',
-        'Work with cutting-edge technologies.',
+      skills: [
+        'Docker', 'Kubernetes', 'Jenkins', 'Terraform', 'AWS', 'GCP'
       ],
       application_deadline: "10-Dec-2024",
     },
@@ -93,10 +87,8 @@ export const filterJobData = {
         'Experience with SQL and NoSQL databases.',
         'Familiarity with message queues like RabbitMQ or Kafka.',
       ],
-      perks: [
-        'Flexible work schedule.',
-        'Training programs and certifications.',
-        'Health and wellness programs.',
+      skills: [
+        'Python', 'Java', 'SQL', 'NoSQL', 'RabbitMQ', 'Kafka'
       ],
       application_deadline: '10-Mar-2025',
     },
@@ -113,15 +105,13 @@ export const filterJobData = {
         'Collaborate with data scientists to deliver datasets.',
         'Ensure data quality and consistency.',
       ],
-     requirements: [
+      requirements: [
         'Proficiency in Python and SQL.',
         'Experience with Hadoop, Spark, or similar technologies.',
         'Strong understanding of data modeling and warehousing.',
       ],
-      perks: [
-        'Professional development opportunities.',
-        'Competitive salary with bonuses.',
-        'Team outings and wellness initiatives.',
+      skills: [
+        'Python', 'SQL', 'Hadoop', 'Spark', 'Data Modeling', 'Data Warehousing'
       ],
       application_deadline: "10-Dec-2025",
     },
@@ -143,10 +133,8 @@ export const filterJobData = {
         'Strong understanding of Agile methodologies.',
         'Excellent communication and leadership skills.',
       ],
-      perks: [
-        'Competitive salary with stock options.',
-        'Regular team outings and retreats.',
-        'Health and wellness benefits.',
+      skills: [
+        'Product Management', 'Agile', 'User Feedback Analysis', 'Market Trends'
       ],
       application_deadline: '5th March 2025',
       contact_email: 'pm-careers@visionarytech.com',
@@ -169,318 +157,271 @@ export const filterJobData = {
         'Strong portfolio of UI/UX design work.',
         'Knowledge of design principles and accessibility standards.',
       ],
-      perks: [
-        'Work with a creative and dynamic team.',
-        'Opportunities for professional growth.',
-        'Flexible work environment.',
+      skills: [
+        'Figma', 'Adobe XD', 'Sketch', 'UI/UX Design', 'Accessibility Standards'
       ],
       application_deadline: "10-Jan-2025",
     }
-  ],  
+  ],
   marketing: [
-      {
-        id: 1,
-        title: 'Digital Marketing Executive',
-        company: 'TechWave',
-        description: 'Responsible for managing online campaigns, SEO, SEM, and social media strategies to drive brand growth and engagement.',
-        location: 'Bangalore, India',
-        experience: '2+ years',
-        salary: '₹5 LPA',
-        responsibilities: [
-          'Plan and execute digital marketing campaigns, including SEO, PPC, email, and social media.',
-          'Monitor and analyze campaign performance and optimize for better results.',
-          'Develop and implement content strategies to increase brand awareness and engagement.',
-          'Work closely with the content and design teams to create engaging marketing materials.',
-          'Prepare and present reports on campaign performance and growth metrics.'
-        ],
-        requirements: [
-          '2+ years of experience in digital marketing.',
-          'Strong understanding of SEO, SEM, and social media marketing.',
-          'Experience with Google Analytics, AdWords, and other marketing tools.',
-          'Excellent communication and content creation skills.',
-          'Ability to work in a fast-paced environment and meet deadlines.'
-        ],
-        perks: [
-          'Flexible working hours and remote work options.',
-          'Health benefits and wellness programs.',
-          'Opportunities for career growth and professional development.',
-          'Paid leave and performance-based incentives.'
-        ],
-        application_deadline: '30th June 2025',
-      },
-      {
-        id: 2,
-        title: 'Marketing Manager',
-        company: 'AdWorks',
-        description: 'Lead marketing initiatives and strategies to promote the brand, drive customer acquisition, and improve brand positioning.',
-        location: 'Mumbai, India',
-        experience: '5+ years',
-        salary: '₹8 LPA',
-        responsibilities: [
-          'Develop and implement comprehensive marketing strategies to drive growth.',
-          'Lead and manage marketing campaigns, digital advertising, and market research.',
-          'Analyze consumer trends and competitor strategies to identify growth opportunities.',
-          'Collaborate with cross-functional teams, including product, design, and sales.',
-          'Manage budgets, timelines, and resources for marketing projects.'
-        ],
-        requirements: [
-          '5+ years of experience in marketing, with a proven track record of successful campaigns.',
-          'Strong leadership and team management skills.',
-          'Experience in content strategy, brand management, and customer acquisition.',
-          'Proficiency in marketing tools such as Google Analytics, HubSpot, and social media platforms.',
-          'Excellent analytical and communication skills.'
-        ],
-        perks: [
-          'Generous compensation and bonuses based on performance.',
-          'Health and wellness benefits.',
-          'Professional growth and leadership development opportunities.',
-          'Paid vacation and holidays.'
-        ],
-        application_deadline: '15th July 2025',
-      },
-      {
-        id: 3,
-        title: 'SEO Specialist',
-        company: 'SEO Hub',
-        description: 'Optimize websites for better search engine ranking and traffic, focusing on keyword strategies and on-page optimization.',
-        location: 'Delhi, India',
-        experience: '3+ years',
-        salary: '₹6 LPA',
-        responsibilities: [
-          'Conduct keyword research and implement on-page and off-page SEO strategies.',
-          'Analyze website performance and improve search engine rankings.',
-          'Collaborate with content teams to create SEO-friendly content.',
-          'Monitor SEO trends and algorithm changes to stay ahead of industry shifts.',
-          'Prepare SEO reports and provide insights on website traffic and keyword rankings.'
-        ],
-        requirements: [
-          '3+ years of experience in SEO and digital marketing.',
-          'Deep understanding of Google Analytics, Google Search Console, and SEO tools.',
-          'Experience in keyword research, link building, and content optimization.',
-          'Strong knowledge of SEO trends, algorithms, and best practices.',
-          'Excellent problem-solving and analytical skills.'
-        ],
-        perks: [
-          'Work in a collaborative, fast-paced team.',
-          'Opportunity for skill development and growth in SEO and digital marketing.',
-          'Health insurance and other benefits.',
-          'Paid time off and flexible work options.'
-        ],
-        application_deadline: '5th August 2025',
-      },
-      {
-        id: 4,
-        title: 'Content Marketing Manager',
-        company: 'ContentX',
-        description: 'Oversee content creation and marketing campaigns, managing a team of content creators to produce engaging content for various digital platforms.',
-        location: 'Chennai, India',
-        experience: '4+ years',
-        salary: '₹7 LPA',
-        responsibilities: [
-          'Develop content marketing strategies aligned with brand objectives.',
-          'Lead the content team to produce blog posts, articles, videos, and other marketing materials.',
-          'Collaborate with designers, social media teams, and product managers to ensure content is consistent and impactful.',
-          'Measure and report on content performance and optimize strategies.',
-          'Stay updated with the latest content marketing trends and technologies.'
-        ],
-        requirements: [
-          '4+ years of experience in content marketing or digital marketing.',
-          'Proven experience in leading content teams and developing content strategies.',
-          'Excellent writing, editing, and proofreading skills.',
-          'Familiarity with content management systems (CMS) and SEO principles.',
-          'Strong communication and leadership skills.'
-        ],
-        perks: [
-          'Dynamic and innovative work environment.',
-          'Flexible working hours and remote work options.',
-          'Health and wellness benefits.',
-          'Opportunities for career growth and leadership roles.'
-        ],
-        application_deadline: '10th August 2025',
-      },
-      {
-        id: 5,
-        title: 'Graphic Designer',
-        company: 'DesignPro',
-        description: 'Create design assets for digital campaigns, websites, and projects, focusing on creativity and visual communication.',
-        location: 'Delhi, India',
-        experience: '0-1 years',
-        salary: '₹1.2 LPA',
-        responsibilities: [
-          'Design digital assets for web, social media, and print.',
-          'Assist in developing visual concepts and brand identity.',
-          'Collaborate with the marketing and content teams to create visually compelling designs.',
-          'Ensure designs meet brand guidelines and are optimized for various platforms.',
-          'Stay updated on design trends and best practices.'
-        ],
-        requirements: [
-          '0-1 years of experience in graphic design.',
-          'Proficiency in Adobe Creative Suite (Photoshop, Illustrator, InDesign).',
-          'Strong understanding of design principles and visual communication.',
-          'Creative mindset with attention to detail.',
-          'Ability to work collaboratively and meet deadlines.'
-        ],
-        perks: [
-          'Opportunities to work on creative and impactful projects.',
-          'Exposure to various design and marketing techniques.',
-          'Health benefits and paid leave.',
-          'Work in a creative and supportive team environment.'
-        ],
-        application_deadline: '20th August 2025',
-      }
-    ],
-    analytics: [
-      {
-        id: 1,
-        title: 'Data Analyst',
-        company: 'DataVibe',
-        description: 'Analyze large datasets to provide insights that support data-driven business decisions, and help in improving business strategies.',
-        location: 'Bangalore, India',
-        experience: '3+ years',
-        salary: '₹6 LPA',
-        responsibilities: [
-          'Collect, clean, and analyze large datasets.',
-          'Generate actionable insights and reports for business stakeholders.',
-          'Work with business teams to understand data needs and provide solutions.',
-          'Create dashboards and visualizations to represent data insights.',
-          'Support decision-making by providing analytical support for business problems.'
-        ],
-        requirements: [
-          'Strong proficiency in SQL, Excel, and data visualization tools (Tableau, Power BI).',
-          'Experience with statistical tools like R or Python is a plus.',
-          'Strong analytical and problem-solving skills.',
-          'Ability to communicate complex data insights in simple terms.',
-          'Attention to detail and ability to work independently.'
-        ],
-        perks: [
-          'Exposure to working with large, real-world datasets.',
-          'Collaborate with cross-functional teams on impactful projects.',
-          'Opportunity to grow your data analytics skills and advance in the field.',
-          'Flexible work hours and a supportive work environment.'
-        ],
-        application_deadline: '15th July 2025',
-      },
-      {
-        id: 2,
-        title: 'Business Intelligence Analyst',
-        company: 'DataLink',
-        description: 'Provide actionable insights to enhance business processes and improve efficiency using business intelligence tools and techniques.',
-        location: 'Mumbai, India',
-        experience: '4+ years',
-        salary: '₹8 LPA',
-        responsibilities: [
-          'Design and develop BI solutions to support business decision-making.',
-          'Work with business stakeholders to identify key metrics and KPIs.',
-          'Create dashboards and reports to monitor business performance.',
-          'Analyze complex data sets to derive actionable insights.',
-          'Collaborate with IT teams to integrate BI systems with existing infrastructure.'
-        ],
-        requirements: [
-          'Proficiency in BI tools such as Power BI, Tableau, or Qlik.',
-          'Experience with data modeling, ETL processes, and data warehousing.',
-          'Strong knowledge of SQL and data query languages.',
-          'Excellent communication and presentation skills.',
-          'Experience in business process analysis and improvement.'
-        ],
-        perks: [
-          'Work with cutting-edge BI technologies and data platforms.',
-          'Exposure to decision-making processes at the business level.',
-          'Opportunity to make an impact through data-driven decision-making.',
-          'Learning opportunities in business analysis and data visualization.'
-        ],
-        application_deadline: '20th July 2025',
-      },
-      {
-        id: 3,
-        title: 'Financial Analyst',
-        company: 'FinSight',
-        description: 'Provide financial analysis and support strategic decision-making by evaluating financial performance and forecasting future trends.',
-        location: 'Delhi, India',
-        experience: '3+ years',
-        salary: '₹7 LPA',
-        responsibilities: [
-          'Conduct financial modeling and budgeting.',
-          'Prepare financial reports and presentations for stakeholders.',
-          'Analyze financial data to identify trends and provide insights.',
-          'Support strategic planning with data-driven recommendations.',
-          'Monitor financial performance against targets and suggest corrective actions.'
-        ],
-        requirements: [
-          'Strong knowledge of financial modeling, budgeting, and forecasting.',
-          'Proficiency in financial software (Excel, SAP, etc.) and reporting tools.',
-          'Strong analytical and problem-solving skills.',
-          'Excellent communication and presentation skills.',
-          'Attention to detail and ability to meet deadlines.'
-        ],
-        perks: [
-          'Opportunity to work on strategic financial decisions.',
-          'Exposure to senior management and key decision-makers.',
-          'Mentorship from experienced financial analysts.',
-          'Flexible work hours and career growth opportunities.'
-        ],
-        application_deadline: '25th July 2025',
-      },
-      {
-        id: 4,
-        title: 'Marketing Analyst',
-        company: 'AdMetrics',
-        description: 'Analyze marketing data to drive better campaign performance and optimize marketing strategies.',
-        location: 'Chennai, India',
-        experience: '2+ years',
-        salary: '₹5.5 LPA',
-        responsibilities: [
-          'Track and analyze marketing campaign performance.',
-          'Conduct market research and competitor analysis.',
-          'Create and maintain reports on marketing KPIs and ROI.',
-          'Identify opportunities for campaign optimization.',
-          'Work with marketing teams to refine strategies based on data insights.'
-        ],
-        requirements: [
-          'Strong knowledge of digital marketing channels and analytics tools (Google Analytics, SEMrush, etc.).',
-          'Proficiency in Excel or Google Sheets for data analysis.',
-          'Good understanding of marketing trends and customer behavior.',
-          'Ability to interpret data and present findings clearly.',
-          'Excellent communication and teamwork skills.'
-        ],
-        perks: [
-          'Work on high-impact marketing campaigns and projects.',
-          'Opportunity to collaborate with creative and strategic teams.',
-          'Exposure to data-driven marketing strategies.',
-          'Flexible work environment and learning opportunities.'
-        ],
-        application_deadline: '30th July 2025',
-      },
-      {
-        id: 5,
-        title: 'Product Analyst',
-        company: 'Innovative Solutions',
-        description: 'Analyze product performance and suggest improvements to help enhance the product and customer experience.',
-        location: 'Pune, India',
-        experience: '3+ years',
-        salary: '₹7 LPA',
-        responsibilities: [
-          'Analyze product performance metrics and identify areas for improvement.',
-          'Collaborate with product managers and engineers to enhance product features.',
-          'Conduct user research and gather feedback to inform product decisions.',
-          'Monitor product usage data and generate reports for stakeholders.',
-          'Support the product development lifecycle by providing data-driven insights.'
-        ],
-        requirements: [
-          'Experience with product analytics tools (Google Analytics, Mixpanel, etc.).',
-          'Strong knowledge of product lifecycle management and metrics.',
-          'Ability to analyze large sets of product data and derive actionable insights.',
-          'Good understanding of customer behavior and user experience.',
-          'Strong communication and collaboration skills.'
-        ],
-        perks: [
-          'Exposure to the product development process from ideation to launch.',
-          'Opportunity to work closely with product managers and engineers.',
-          'Learning opportunities in product analytics and UX optimization.',
-          'Flexible work hours and career advancement possibilities.'
-        ],
-        application_deadline: '5th August 2025',
-      }
-    ],    
+    {
+      id: 1,
+      title: 'Digital Marketing Executive',
+      company: 'TechWave',
+      description: 'Responsible for managing online campaigns, SEO, SEM, and social media strategies to drive brand growth and engagement.',
+      location: 'Bangalore, India',
+      experience: '2+ years',
+      salary: '₹5 LPA',
+      responsibilities: [
+        'Plan and execute digital marketing campaigns, including SEO, PPC, email, and social media.',
+        'Monitor and analyze campaign performance and optimize for better results.',
+        'Develop and implement content strategies to increase brand awareness and engagement.',
+        'Work closely with the content and design teams to create engaging marketing materials.',
+        'Prepare and present reports on campaign performance and growth metrics.'
+      ],
+      requirements: [
+        '2+ years of experience in digital marketing.',
+        'Strong understanding of SEO, SEM, and social media marketing.',
+        'Experience with Google Analytics, AdWords, and other marketing tools.',
+        'Excellent communication and content creation skills.',
+        'Ability to work in a fast-paced environment and meet deadlines.'
+      ],
+      skills: [
+        'SEO', 'SEM', 'Google Analytics', 'AdWords', 'Content Creation', 'Social Media Marketing'
+      ],
+      application_deadline: '30th June 2025',
+    },
+    {
+      id: 2,
+      title: 'Marketing Manager',
+      company: 'AdWorks',
+      description: 'Lead marketing initiatives and strategies to promote the brand, drive customer acquisition, and improve brand positioning.',
+      location: 'Mumbai, India',
+      experience: '5+ years',
+      salary: '₹8 LPA',
+      responsibilities: [
+        'Develop and implement comprehensive marketing strategies to drive growth.',
+        'Lead and manage marketing campaigns, digital advertising, and market research.',
+        'Analyze consumer trends and competitor strategies to identify growth opportunities.',
+        'Collaborate with cross-functional teams, including product, design, and sales.',
+        'Manage budgets, timelines, and resources for marketing projects.'
+      ],
+      requirements: [
+        '5+ years of experience in marketing, with a proven track record of successful campaigns.',
+        'Strong leadership and team management skills.',
+        'Experience in content strategy, brand management, and customer acquisition.',
+        'Proficiency in marketing tools such as Google Analytics, HubSpot, and social media platforms.',
+        'Excellent analytical and communication skills.'
+      ],
+      skills: [
+        'Content Strategy', 'Brand Management', 'Customer Acquisition', 'Google Analytics', 'HubSpot', 'Social Media Platforms'
+      ],
+      application_deadline: '15th July 2025',
+    },
+    {
+      id: 3,
+      title: 'SEO Specialist',
+      company: 'SEO Hub',
+      description: 'Optimize websites for better search engine ranking and traffic, focusing on keyword strategies and on-page optimization.',
+      location: 'Delhi, India',
+      experience: '3+ years',
+      salary: '₹6 LPA',
+      responsibilities: [
+        'Conduct keyword research and implement on-page and off-page SEO strategies.',
+        'Analyze website performance and improve search engine rankings.',
+        'Collaborate with content teams to create SEO-friendly content.',
+        'Monitor SEO trends and algorithm changes to stay ahead of industry shifts.',
+        'Prepare SEO reports and provide insights on website traffic and keyword rankings.'
+      ],
+      requirements: [
+        '3+ years of experience in SEO and digital marketing.',
+        'Deep understanding of Google Analytics, Google Search Console, and SEO tools.',
+        'Experience in keyword research, link building, and content optimization.',
+        'Strong knowledge of SEO trends, algorithms, and best practices.',
+        'Excellent problem-solving and analytical skills.'
+      ],
+      skills: [
+        'Keyword Research', 'On-Page SEO', 'Off-Page SEO', 'Google Analytics', 'Google Search Console', 'Link Building'
+      ],
+      application_deadline: '5th August 2025',
+    },
+    {
+      id: 4,
+      title: 'Content Marketing Manager',
+      company: 'ContentX',
+      description: 'Oversee content creation and marketing campaigns, managing a team of content creators to produce engaging content for various digital platforms.',
+      location: 'Chennai, India',
+      experience: '4+ years',
+      salary: '₹7 LPA',
+      responsibilities: [
+        'Develop content marketing strategies aligned with brand objectives.',
+        'Lead the content team to produce blog posts, articles, videos, and other marketing materials.',
+        'Collaborate with designers, social media teams, and product managers to ensure content is consistent and impactful.',
+        'Measure and report on content performance and optimize strategies.',
+        'Stay updated with the latest content marketing trends and technologies.'
+      ],
+      requirements: [
+        '4+ years of experience in content marketing or digital marketing.',
+        'Proven experience in leading content teams and developing content strategies.',
+        'Excellent writing, editing, and proofreading skills.',
+        'Familiarity with content management systems (CMS) and SEO principles.',
+        'Strong communication and leadership skills.'
+      ],
+      skills: [
+        'Content Marketing', 'Team Leadership', 'Writing', 'Editing', 'Proofreading', 'SEO'
+      ],
+      application_deadline: '10th August 2025',
+    },
+    {
+      id: 5,
+      title: 'Graphic Designer',
+      company: 'DesignPro',
+      description: 'Create design assets for digital campaigns, websites, and projects, focusing on creativity and visual communication.',
+      location: 'Delhi, India',
+      experience: '0-1 years',
+      salary: '₹1.2 LPA',
+      responsibilities: [
+        'Design digital assets for web, social media, and print.',
+        'Assist in developing visual concepts and brand identity.',
+        'Collaborate with the marketing and content teams to create visually compelling designs.',
+        'Ensure designs meet brand guidelines and are optimized for various platforms.',
+        'Stay updated on design trends and best practices.'
+      ],
+      requirements: [
+        '0-1 years of experience in graphic design.',
+        'Proficiency in Adobe Creative Suite (Photoshop, Illustrator, InDesign).',
+        'Strong understanding of design principles and visual communication.',
+        'Creative mindset with attention to detail.',
+        'Ability to work collaboratively and meet deadlines.'
+      ],
+      skills: [
+        'Adobe Creative Suite', 'Photoshop', 'Illustrator', 'InDesign', 'Design Principles', 'Visual Communication'
+      ],
+      application_deadline: '20th August 2025',
+    }
+  ],
+  analytics: [
+    {
+      id: 1,
+      title: 'Data Analyst',
+      company: 'DataVibe',
+      description: 'Analyze large datasets to provide insights that support data-driven business decisions, and help in improving business strategies.',
+      location: 'Bangalore, India',
+      experience: '3+ years',
+      salary: '₹6 LPA',
+      responsibilities: [
+        'Collect, clean, and analyze large datasets.',
+        'Generate actionable insights and reports for business stakeholders.',
+        'Work with business teams to understand data needs and provide solutions.',
+        'Create dashboards and visualizations to represent data insights.',
+        'Support decision-making by providing analytical support for business problems.'
+      ],
+      requirements: [
+        'Strong proficiency in SQL, Excel, and data visualization tools (Tableau, Power BI).',
+        'Experience with statistical tools like R or Python is a plus.',
+        'Strong analytical and problem-solving skills.',
+        'Ability to communicate complex data insights in simple terms.',
+        'Attention to detail and ability to work independently.'
+      ],
+      application_deadline: '15th July 2025',
+    },
+    {
+      id: 2,
+      title: 'Business Intelligence Analyst',
+      company: 'DataLink',
+      description: 'Provide actionable insights to enhance business processes and improve efficiency using business intelligence tools and techniques.',
+      location: 'Mumbai, India',
+      experience: '4+ years',
+      salary: '₹8 LPA',
+      responsibilities: [
+        'Design and develop BI solutions to support business decision-making.',
+        'Work with business stakeholders to identify key metrics and KPIs.',
+        'Create dashboards and reports to monitor business performance.',
+        'Analyze complex data sets to derive actionable insights.',
+        'Collaborate with IT teams to integrate BI systems with existing infrastructure.'
+      ],
+      requirements: [
+        'Proficiency in BI tools such as Power BI, Tableau, or Qlik.',
+        'Experience with data modeling, ETL processes, and data warehousing.',
+        'Strong knowledge of SQL and data query languages.',
+        'Excellent communication and presentation skills.',
+        'Experience in business process analysis and improvement.'
+      ],
+      application_deadline: '20th July 2025',
+    },
+    {
+      id: 3,
+      title: 'Financial Analyst',
+      company: 'FinSight',
+      description: 'Provide financial analysis and support strategic decision-making by evaluating financial performance and forecasting future trends.',
+      location: 'Delhi, India',
+      experience: '3+ years',
+      salary: '₹7 LPA',
+      responsibilities: [
+        'Conduct financial modeling and budgeting.',
+        'Prepare financial reports and presentations for stakeholders.',
+        'Analyze financial data to identify trends and provide insights.',
+        'Support strategic planning with data-driven recommendations.',
+        'Monitor financial performance against targets and suggest corrective actions.'
+      ],
+      requirements: [
+        'Strong knowledge of financial modeling, budgeting, and forecasting.',
+        'Proficiency in financial software (Excel, SAP, etc.) and reporting tools.',
+        'Strong analytical and problem-solving skills.',
+        'Excellent communication and presentation skills.',
+        'Attention to detail and ability to meet deadlines.'
+      ],
+      application_deadline: '25th July 2025',
+    },
+    {
+      id: 4,
+      title: 'Marketing Analyst',
+      company: 'AdMetrics',
+      description: 'Analyze marketing data to drive better campaign performance and optimize marketing strategies.',
+      location: 'Chennai, India',
+      experience: '2+ years',
+      salary: '₹5.5 LPA',
+      responsibilities: [
+        'Track and analyze marketing campaign performance.',
+        'Conduct market research and competitor analysis.',
+        'Create and maintain reports on marketing KPIs and ROI.',
+        'Identify opportunities for campaign optimization.',
+        'Work with marketing teams to refine strategies based on data insights.'
+      ],
+      requirements: [
+        'Strong knowledge of digital marketing channels and analytics tools (Google Analytics, SEMrush, etc.).',
+        'Proficiency in Excel or Google Sheets for data analysis.',
+        'Good understanding of marketing trends and customer behavior.',
+        'Ability to interpret data and present findings clearly.',
+        'Excellent communication and teamwork skills.'
+      ],
+      application_deadline: '30th July 2025',
+    },
+    {
+      id: 5,
+      title: 'Product Analyst',
+      company: 'Innovative Solutions',
+      description: 'Analyze product performance and suggest improvements to help enhance the product and customer experience.',
+      location: 'Pune, India',
+      experience: '3+ years',
+      salary: '₹7 LPA',
+      responsibilities: [
+        'Analyze product performance metrics and identify areas for improvement.',
+        'Collaborate with product managers and engineers to enhance product features.',
+        'Conduct user research and gather feedback to inform product decisions.',
+        'Monitor product usage data and generate reports for stakeholders.',
+        'Support the product development lifecycle by providing data-driven insights.'
+      ],
+      requirements: [
+        'Experience with product analytics tools (Google Analytics, Mixpanel, etc.).',
+        'Strong knowledge of product lifecycle management and metrics.',
+        'Ability to analyze large sets of product data and derive actionable insights.',
+        'Good understanding of customer behavior and user experience.',
+        'Strong communication and collaboration skills.'
+      ],
+      application_deadline: '5th August 2025',
+    }
+  ],
     hr: [
       {
         id: 1,

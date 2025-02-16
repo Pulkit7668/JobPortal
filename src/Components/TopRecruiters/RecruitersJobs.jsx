@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { recruitersData } from "./recruitersData";
 import { FaArrowLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { CiLocationOn } from "react-icons/ci";
 import TogglePage from "../TogglePage/TogglePage";
 
 function RecruitersJob() {
@@ -30,7 +31,7 @@ function RecruitersJob() {
   const recruiter = recruitersData.find((r) => r.id === parseInt(recruiterId));
 
   if (!recruiter) {
-    return <p>Recruiter not found.</p>;
+    return <p className="text-center text-red-500">Recruiter not found.</p>;
   }
 
   // Calculate total number of pages for jobs
@@ -71,12 +72,31 @@ function RecruitersJob() {
                 key={job.jobId}
                 className="p-4 border border-gray-200 bg-white rounded-lg hover:shadow-2xl transition-shadow duration-300 relative"
               >
-                <h3 className="text-sm font-bold text-gray-800">{job.title}</h3>
-                <p className="text-sm text-gray-500 mt-1">{job.description}</p>
-                <p className="text-sm text-gray-600 mt-2">Experience: {job.experience}</p>
-                <p className="text-sm text-gray-600">Salary: {job.salary}</p>
+                <h3 className="text-2xl mb-2 font-semibold text-gray-800">{job.title}</h3>
+                <div className="mt-2">
+                  <div className="flex items-center mb-2">
+                    <CiLocationOn size={14} className="text-gray-500" />
+                    <p className="text-sm text-gray-500">{job.location}</p>
+                  </div>
+                  <p className="text-xs text-gray-600">
+                    Experience: <strong>{job.experience || "Not specified"}</strong>
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    Salary: <strong>{job.salary || "Negotiable"}</strong>
+                  </p>
+                  <div className="mt-2">
+                    <span className="text-xs text-gray-600">
+                      Skills: <strong>{Array.isArray(job.skills) ? job.skills.join(", ") : String(job.skills || "N/A")}</strong>
+                    </span>
+                  </div>
+                </div>
                 <div className="flex items-center justify-end">
-                  <button onClick={() => handleApplyNow(job)} className="mt-3 text-blue-600 font-semibold">Apply Now</button>
+                  <button 
+                    onClick={() => handleApplyNow(job)} 
+                    className="mt-3 text-blue-600 font-semibold"
+                  >
+                    Apply Now
+                  </button>
                 </div>
                 <div className="absolute bottom-4 left-4">
                   <button
@@ -90,7 +110,7 @@ function RecruitersJob() {
             ))}
           </div>
         ) : (
-          <p>No jobs available for this recruiter.</p>
+          <p className="text-center text-gray-500">No jobs available for this recruiter.</p>
         )}
 
         {/* Pagination Controls with Icons */}

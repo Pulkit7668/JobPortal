@@ -1,5 +1,9 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
 import { FaHandshake, FaGraduationCap, FaBalanceScale, FaTools } from "react-icons/fa";
 import { RiComputerLine } from "react-icons/ri";
 import { BiBarChart, BiUserCircle, BiSupport } from "react-icons/bi";
@@ -25,23 +29,62 @@ const FilterJob = () => {
   ];
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-4 mt-20 lg:mx-20">
-      {buttons.map((button, index) => (
-        <Link
-          key={index}
-          to={button.path}
-          aria-label={`Navigate to ${button.label}`}
-          title={button.label}
-          className={`flex items-center px-4 py-4 shadow-md rounded-lg transition duration-200 cursor-pointer ${
-            location.pathname === button.path
-              ? "bg-blue-100 shadow-xl"
-              : "bg-white hover:shadow-2xl"
-          }`}
+    <div className="mt-20 px-4 lg:mx-20">
+      {/* Desktop View */}
+      <div className="hidden md:flex flex-wrap justify-center gap-4">
+        {buttons.map((button, index) => (
+          <Link
+            key={index}
+            to={button.path}
+            aria-label={`Navigate to ${button.label}`}
+            title={button.label}
+            className={`flex items-center px-4 py-3 shadow-md rounded-lg transition-all duration-300 cursor-pointer 
+              ${
+                location.pathname === button.path
+                  ? "bg-blue-500 text-white shadow-lg"
+                  : "bg-white text-gray-700 hover:shadow-2xl hover:bg-gray-100"
+              }`}
+          >
+            <span className="text-xl">{button.icon}</span>
+            <span className="ml-2 text-lg font-medium">{button.label}</span>
+          </Link>
+        ))}
+      </div>
+
+      {/* Mobile View (Swiper with Auto Loop) */}
+      <div className="md:hidden">
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={3.2}
+          freeMode={true}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          modules={[Autoplay, FreeMode]}
+          className="py-2"
         >
-          <span className="text-xl text-gray-700">{button.icon}</span>
-          <span className="ml-2 text-lg font-medium text-gray-700">{button.label}</span>
-        </Link>
-      ))}
+          {buttons.map((button, index) => (
+            <SwiperSlide key={index}>
+              <Link
+                to={button.path}
+                aria-label={`Navigate to ${button.label}`}
+                title={button.label}
+                className={`flex flex-col items-center p-3 shadow-md rounded-lg transition-all duration-300 cursor-pointer
+                  ${
+                    location.pathname === button.path
+                      ? "bg-blue-500 text-white shadow-lg"
+                      : "bg-white text-gray-700 hover:shadow-xl"
+                  }`}
+              >
+                <span className="text-2xl">{button.icon}</span>
+                <span className="text-sm font-medium mt-1">{button.label}</span>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

@@ -22,6 +22,7 @@ export const recruitersData = [
               "Write clean, maintainable, and efficient code.",
               "Test, debug, and optimize applications."
             ],
+            application_deadline: "20-Feb-2024",
           },
           {
             jobId: 102,
@@ -574,7 +575,7 @@ export const recruitersData = [
               requirements: "Experience with front-end and back-end technologies.",
               skills: "JavaScript, React, Node.js, HTML5, CSS3, SQL",
               education: "B.Tech or equivalent in Computer Science or related field.",
-              location: "Hyderabad, Telangana",
+              location: "Hyderabad",
               responsibilities: [
                   "Design, develop, and maintain web applications.",
                   "Collaborate with front-end and back-end developers to build efficient solutions.",
@@ -591,7 +592,7 @@ export const recruitersData = [
               requirements: "Expertise in SAP modules and implementation.",
               skills: "SAP S/4HANA, SAP FICO, SAP MM, SAP SD",
               education: "B.Tech or equivalent in Computer Science or related field.",
-              location: "Hyderabad, Telangana",
+              location: "Hyderabad",
               responsibilities: [
                   "Analyze client requirements and design SAP solutions.",
                   "Implement SAP modules for business process automation.",
@@ -608,7 +609,7 @@ export const recruitersData = [
               requirements: "Experience with CRM platforms like Salesforce or Microsoft Dynamics.",
               skills: "Salesforce, Microsoft Dynamics, CRM software development, SQL",
               education: "B.Tech or equivalent in Computer Science or related field.",
-              location: "Hyderabad, Telangana",
+              location: "Hyderabad",
               responsibilities: [
                   "Develop and customize CRM solutions for clients.",
                   "Integrate CRM systems with other business tools and applications.",
@@ -625,7 +626,7 @@ export const recruitersData = [
               requirements: "Experience in recruitment and HR management.",
               skills: "HRM, Talent Acquisition, Employee Relations, Training and Development",
               education: "MBA in HR or equivalent.",
-              location: "Hyderabad, Telangana",
+              location: "Hyderabad",
               responsibilities: [
                   "Recruit and onboard new employees.",
                   "Organize employee training and development programs.",
@@ -642,7 +643,7 @@ export const recruitersData = [
               requirements: "Experience in cloud platforms like AWS, Azure, or Google Cloud.",
               skills: "Cloud architecture, AWS, Azure, Google Cloud, Infrastructure as Code",
               education: "B.Tech or equivalent in Computer Science or related field.",
-              location: "Hyderabad, Telangana",
+              location: "Hyderabad",
               responsibilities: [
                   "Design and implement cloud architectures for clients.",
                   "Migrate legacy systems to the cloud.",
@@ -659,7 +660,7 @@ export const recruitersData = [
               requirements: "Experience with data analytics, machine learning, and data visualization.",
               skills: "Python, R, SQL, Machine Learning, Data Visualization",
               education: "B.Tech or equivalent in Computer Science or related field.",
-              location: "Hyderabad, Telangana",
+              location: "Hyderabad",
               responsibilities: [
                   "Analyze large datasets to uncover business insights.",
                   "Build predictive models and machine learning algorithms.",
@@ -685,7 +686,7 @@ export const recruitersData = [
               requirements: "Proven experience in business analysis and solutioning.",
               skills: "Business Analysis, Consulting, Strategy, Client Interaction",
               education: "B.Tech/MBA or equivalent in Business/Technology.",
-              location: "Kolkata, West Bengal",
+              location: "Kolkata",
               responsibilities: [
                   "Collaborate with clients to understand business needs.",
                   "Design and implement business solutions based on requirements.",
@@ -702,7 +703,7 @@ export const recruitersData = [
               requirements: "Strong knowledge of Java and object-oriented programming.",
               skills: "Java, Spring, Hibernate, SQL, Microservices",
               education: "B.Tech or equivalent in Computer Science or related field.",
-              location: "Kolkata, West Bengal",
+              location: "Kolkata",
               responsibilities: [
                   "Design, implement, and maintain Java-based applications.",
                   "Write reusable, testable, and efficient code.",
@@ -719,7 +720,7 @@ export const recruitersData = [
               requirements: "Experience in product management, Agile methodologies.",
               skills: "Product Roadmap, Agile, Scrum, Stakeholder Management",
               education: "MBA/PGDM or equivalent in Business/Technology.",
-              location: "Kolkata, West Bengal",
+              location: "Kolkata",
               responsibilities: [
                   "Define product vision, roadmap, and growth opportunities.",
                   "Collaborate with cross-functional teams to deliver product milestones.",
@@ -736,7 +737,7 @@ export const recruitersData = [
               requirements: "Deep knowledge of network security protocols and firewalls.",
               skills: "Network Security, Firewalls, VPN, IDS/IPS, Ethical Hacking",
               education: "B.Tech or equivalent in Information Technology or Cybersecurity.",
-              location: "Kolkata, West Bengal",
+              location: "Kolkata",
               responsibilities: [
                   "Monitor network security for potential threats.",
                   "Implement and configure security measures like firewalls, IDS/IPS.",
@@ -753,7 +754,7 @@ export const recruitersData = [
               requirements: "Proficiency in front-end web technologies and responsive design.",
               skills: "HTML5, CSS3, JavaScript, React, Bootstrap",
               education: "B.Tech or equivalent in Computer Science or related field.",
-              location: "Kolkata, West Bengal",
+              location: "Kolkata",
               responsibilities: [
                   "Design and implement user-friendly interfaces.",
                   "Ensure cross-browser compatibility and responsive design.",
@@ -770,7 +771,7 @@ export const recruitersData = [
               requirements: "Experience in analyzing business processes and requirements.",
               skills: "Business Analysis, Requirements Gathering, Documentation",
               education: "B.Tech/MBA or equivalent in Business/Technology.",
-              location: "Kolkata, West Bengal",
+              location: "Kolkata",
               responsibilities: [
                   "Work with stakeholders to understand business requirements.",
                   "Analyze and document functional and non-functional requirements.",
@@ -784,7 +785,7 @@ export const recruitersData = [
         id: 8,
         name: "IBM India",
         vacancies: 60,
-        location: "Bengaluru, Karnataka",
+        location: "Bengaluru",
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
         jobs: [
           {
@@ -796,7 +797,7 @@ export const recruitersData = [
             requirements: "Strong experience in designing cloud-based solutions and architecture.",
             skills: "AWS, Azure, Google Cloud, Cloud Architecture, Microservices",
             education: "B.Tech/M.Tech or equivalent in Computer Science or related field.",
-            location: "Bengaluru, Karnataka",
+            location: "Bengaluru",
             responsibilities: [
               "Design scalable and cost-effective cloud architectures.",
               "Migrate on-premise solutions to cloud platforms.",
@@ -813,7 +814,7 @@ export const recruitersData = [
             requirements: "Experience in data analytics, machine learning, and data visualization.",
             skills: "Python, R, SQL, Machine Learning, Data Visualization",
             education: "B.Tech/M.Tech or equivalent in Computer Science, Statistics, or related field.",
-            location: "Bengaluru, Karnataka",
+            location: "Bengaluru",
             responsibilities: [
               "Analyze large data sets to identify trends and actionable insights.",
               "Develop predictive models and machine learning algorithms.",
@@ -830,7 +831,7 @@ export const recruitersData = [
             requirements: "Strong knowledge of machine learning frameworks and algorithms.",
             skills: "Python, TensorFlow, Scikit-learn, Keras, Deep Learning",
             education: "B.Tech/M.Tech or equivalent in Computer Science or related field.",
-            location: "Bengaluru, Karnataka",
+            location: "Bengaluru",
             responsibilities: [
               "Build and implement machine learning models and algorithms.",
               "Deploy models in a production environment and monitor their performance.",
@@ -847,7 +848,7 @@ export const recruitersData = [
             requirements: "Strong troubleshooting skills and customer service orientation.",
             skills: "Networking, IT Support, Troubleshooting, Customer Service",
             education: "B.Tech or equivalent in Information Technology or related field.",
-            location: "Bengaluru, Karnataka",
+            location: "Bengaluru",
             responsibilities: [
               "Troubleshoot technical issues and provide timely solutions.",
               "Assist clients with software, hardware, and networking issues.",
@@ -864,7 +865,7 @@ export const recruitersData = [
             requirements: "Experience with blockchain frameworks and distributed ledger technology.",
             skills: "Blockchain, Ethereum, Solidity, Hyperledger, Smart Contracts",
             education: "B.Tech/M.Tech or equivalent in Computer Science or related field.",
-            location: "Bengaluru, Karnataka",
+            location: "Bengaluru",
             responsibilities: [
               "Design and develop decentralized applications (DApps) using blockchain technology.",
               "Write and deploy smart contracts on blockchain platforms.",
@@ -881,7 +882,7 @@ export const recruitersData = [
             requirements: "Proficiency in network infrastructure and security protocols.",
             skills: "Networking, TCP/IP, Routing, VPN, Network Security",
             education: "B.Tech or equivalent in Electronics/Telecommunication Engineering.",
-            location: "Bengaluru, Karnataka",
+            location: "Bengaluru",
             responsibilities: [
               "Design and implement network solutions for enterprise clients.",
               "Monitor network performance and troubleshoot issues.",

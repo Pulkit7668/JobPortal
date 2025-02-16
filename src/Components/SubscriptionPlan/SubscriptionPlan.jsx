@@ -1,14 +1,27 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { PiStarFourFill } from "react-icons/pi";
+import { useLocation } from "react-router-dom";
 
 const SubscriptionPlan = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const jobPostingRef = useRef(null);
   const resdexRef = useRef(null);
   const assistedHiringRef = useRef(null);
-  const faqRef = useRef(null);
   const [activeQuestion, setActiveQuestion] = useState(null);
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const section = searchParams.get("section");
+
+  useEffect(() => {
+    if (section) {
+      const element = document.getElementById(section.replace(/\s+/g, "-"));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [section]);
 
   const handlePriceClick = (index) => {
     setSelectedPrice(index);
@@ -284,7 +297,7 @@ const SubscriptionPlan = () => {
       </div>
       
       {/* Job Posting */}
-      <div ref={jobPostingRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 border border-gray-300 py-10 rounded-3xl bg-gradient-to-b from-blue-50 via-white to-gray-100">
+      <div id="Job-Posting"  ref={jobPostingRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 border border-gray-300 py-10 rounded-3xl bg-gradient-to-b from-blue-50 via-white to-gray-100">
         <h4 className="xs:text-sm md:text-lg font-bold text-[#F15424] text-center mb-2">JOB POSTING</h4>
         <h2 className="xs:text-xl md:text-4xl font-bold text-gray-900 text-center">Job Posting Pricing</h2>
         <p className="text-gray-600 md:text-xl mt-2 text-center">Choose the plan that suits your hiring needs</p>
@@ -319,7 +332,7 @@ const SubscriptionPlan = () => {
       </div>
 
       {/* RESDEX Section */}
-      <div ref={resdexRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl mb-10 bg-gradient-to-b from-purple-100 via-white to-gray-100">
+      <div id="Resdex" ref={resdexRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl mb-10 bg-gradient-to-b from-purple-100 via-white to-gray-100">
         <h4 className="xs:text-sm md:text-lg font-bold text-[#F15424] text-center mb-2">RESDEX</h4>
         <h2 className="xs:text-xl md:text-4xl font-bold text-gray-900 text-center">Search India’s Largest Resume Database</h2>
         <p className="text-gray-600 md:text-xl mt-2 text-center">by location, industry, skills, and more to find the right fit</p>
@@ -376,7 +389,7 @@ const SubscriptionPlan = () => {
       </div>
 
       {/* Assisted Hiring */}
-      <div ref={assistedHiringRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl bg-gradient-to-b from-green-50 via-white to-gray-100">
+      <div id="Assisted-Hiring" ref={assistedHiringRef} className="max-w-6xl xs:mx-5 lg:mx-auto mt-16 px-6 py-10 border border-gray-300 rounded-3xl bg-gradient-to-b from-green-50 via-white to-gray-100">
         <h4 className="xs:text-sm md:text-lg font-bold text-[#F15424] text-center mb-2">ASSISTED HIRING</h4>
         <h2 className="xs:text-xl md:text-4xl font-bold text-gray-900 text-center">Get a Dedicated Hiring Expert</h2>
         <p className="text-gray-600 md:text-xl mt-2 text-center">Let our experts handle your hiring needs</p>

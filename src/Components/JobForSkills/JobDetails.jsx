@@ -169,7 +169,10 @@ function JobDetail() {
           </div>
 
           <p className="text-xl text-gray-600 mb-1">{selectedJob.company}</p>
-          <p className="text-sm text-gray-500 mb-4">{selectedJob.location}</p>
+          <div className="flex items-center mb-2">
+            <CiLocationOn size={14} className="text-gray-500" />
+            <p className="text-sm text-gray-500">{selectedJob.location}</p>
+          </div>
           <p className="text-lg text-gray-700 mb-4">{selectedJob.description}</p>
 
           <p className="text-md text-gray-600 mb-2">
