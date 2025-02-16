@@ -95,9 +95,12 @@ function Navbar() {
               >
                 Subscription Plan
               </NavLink>
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  <DropdownCard data={subscriptionPlan} />
+              {isLoggedIn && (
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                 <DropdownCard data={subscriptionPlan} />
                 </div>
+              )}
+
             </div>
             <div className="group md:inline-block relative font-semibold xs:hidden">
               <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
