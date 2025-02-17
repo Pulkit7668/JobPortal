@@ -33,6 +33,8 @@ import Signup from "./Components/SignUpPage/Signup.jsx";
 import AllLatestJobs from "./Components/LatestJobs/AllLatestJobs.jsx";
 import LatestJobDetail from "./Components/LatestJobs/LatestJobDetails.jsx";
 import RecommendedJobDetails from "./Components/RecommendedJobs/RecommendedJobDetails.jsx";
+import RecruiterChat from "./Components/RecruiterChat/RecruiterChat.jsx";
+import FAQ from "./Components/Profile/FAQ.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -69,6 +71,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/view-update-profile" element={<ViewAndUpdateProfile />} />
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/support-chat" element={<SupportChat />} />
+            <Route path="/recruiter-chat" element={<RecruiterChat />} />
             <Route path="/change-visibility" element={<ChangeVisibility />} />
             <Route path="/set-job-preference" element={<SetJobPreference />} />
             <Route path="/about-us" element={<AboutUs />} />
@@ -79,6 +82,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/signup" element={<Signup />} />
             <Route path="/all-latest-jobs" element={<AllLatestJobs />} />
             <Route path="/latest/job/:id" element={<LatestJobDetail />} />
+            <Route path="/faq" element={<FAQ />} />
           </Route>
         </Routes>
       </BrowserRouter>

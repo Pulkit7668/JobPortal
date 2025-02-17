@@ -121,7 +121,7 @@ function ProfileSidebar({ isOpen, onClose }) {
         <div className="p-4 space-y-3 text-sm">
           <div className="flex items-center space-x-3">
             <FaQuestionCircle size={16} className="text-gray-500" />
-            <Link to="" className="block text-gray-700 hover:text-blue-600">
+            <Link onClick={onClose} to="/faq" className="block text-gray-700 hover:text-blue-600">
               FAQs
             </Link>
           </div>

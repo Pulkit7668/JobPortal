@@ -86,6 +86,14 @@ const MenuCard = ({ isOpen, onClose }) => {
             </button>
 
             <button
+              onClick={() => handleMenuClick("/recruiter-chat")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaComments />
+              <span>Recruiter Chat</span>
+            </button>
+
+            <button
               onClick={() => handleMenuClick("/change-visibility")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
