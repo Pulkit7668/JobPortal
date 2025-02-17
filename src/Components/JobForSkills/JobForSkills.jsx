@@ -58,7 +58,7 @@ function JobsForSkills() {
               className="p-4 bg-white border border-gray-200 rounded-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between"
             >
               <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
-              <p className="text-gray-600 mb-5">{job.company}</p>
+              <p className="text-gray-600 mb-1">{job.company}</p>
               <div className="flex items-center">
                 <CiLocationOn size={14} className="text-gray-500" />
                 <p className="text-sm text-gray-500">{job.location}</p>

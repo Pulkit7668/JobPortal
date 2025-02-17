@@ -8,6 +8,7 @@ import MenuCard from "../MenuCard/MenuCard";
 import { useAuth } from "../../Context/AuthContext";
 import LoginPage from "../LoginPage/LoginPage";
 import { toast, Toaster } from "react-hot-toast";
+import SearchPage from "../SearchInputBox/Searchpage";
 
 const opportunitiesData = [
   {
@@ -35,6 +36,7 @@ function Navbar() {
   const [isNotificationHovered, setIsNotificationHovered] = useState(false);
   const [isMenuCardOpen, setIsMenuCardOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const navigate = useNavigate();
 
   const { user, isLoggedIn, login, logout } = useAuth();
@@ -50,6 +52,10 @@ function Navbar() {
   const toggleLogin = () => {
     setIsLoginOpen(!isLoginOpen);
   };
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  }
 
   const handleSignup = () => {
     navigate("/signup");
@@ -107,6 +113,16 @@ function Navbar() {
                 Courses
               </NavLink>
             </div>
+            {!isLoggedIn && (
+              <div className="group md:inline-block relative font-semibold xs:hidden">
+                <NavLink
+                 to=""
+                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
+                >
+                  Services
+                </NavLink>
+              </div>
+            )}
             {isLoggedIn && (
               <div className="group md:inline-block relative font-semibold xs:hidden">
                 <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
@@ -125,9 +141,9 @@ function Navbar() {
               <>
                 {/* Search Icon */}
                 <div className="relative xs:block lg:hidden">
-                  <Link to="/search">
+                  <button onClick={toggleSearch}>
                     <FaSearch className="text-gray-600 text-xl cursor-pointer" size={20} />
-                  </Link>
+                  </button>
                 </div>
 
                 {/* Notification Icon */}
@@ -214,6 +230,9 @@ function Navbar() {
 
       {/* Login Popup */}
       <LoginPage isOpen={isLoginOpen} onClose={toggleLogin} />
+
+      {/* Search Jobs */}
+      <SearchPage isOpen={isSearchOpen} onClose={toggleSearch} />
     </>
   );
 }
