@@ -40,6 +40,7 @@ const MenuCard = ({ isOpen, onClose }) => {
       setLoading(false);
       setShowLogoutPopup(false);
       onClose();
+      navigate("/"); // Redirect to home page after logout
     }, 2000);
   };
 

@@ -35,6 +35,7 @@ import LatestJobDetail from "./Components/LatestJobs/LatestJobDetails.jsx";
 import RecommendedJobDetails from "./Components/RecommendedJobs/RecommendedJobDetails.jsx";
 import RecruiterChat from "./Components/RecruiterChat/RecruiterChat.jsx";
 import FAQ from "./Components/Profile/FAQ.jsx";
+import RecruiterSidePage from "./Pages/RecruiterSidePage.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -83,6 +84,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/all-latest-jobs" element={<AllLatestJobs />} />
             <Route path="/latest/job/:id" element={<LatestJobDetail />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/recruiter-page" element={<RecruiterSidePage />} />
           </Route>
         </Routes>
       </BrowserRouter>
