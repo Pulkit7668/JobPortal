@@ -106,7 +106,7 @@ function AllRecruiters() {
 
                 {/* Add a Details button */}
                 <Link
-                  to={`/recruiters/${recruiter.id}`}
+                  to={`/recruiters/details/${recruiter.id}`}
                   className="mt-2 text-blue-600 font-semibold inline-block"
                 >
                   Details

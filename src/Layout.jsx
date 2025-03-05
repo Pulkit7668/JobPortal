@@ -10,6 +10,7 @@ const Layout = () => {
   const hideFooterRoutes = ["/signup" ,"/login", "/register", "/dashboard", "/support-chat", "/view-update-profile", "/recruiter-chat", "/support-chat", "/set-job-preference", "/blocked-companies", "/saved-jobs"];
 
   const hideNavbarRoutes = ["/recruiter-page"];
+  
 
   return (
     <div className="bg-gray-100 min-h-screen">
