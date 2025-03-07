@@ -21,7 +21,8 @@ const RecommendedJobsData = [
       "Strong understanding of web markup, including HTML5 and CSS3",
       "Good understanding of JavaScript libraries and frameworks, such as React or Angular"
     ],
-    application_deadline: "2025-03-01"
+    application_deadline: "2025-03-01",
+    isVerified: true
   },
   {
     id: 2,
@@ -44,7 +45,8 @@ const RecommendedJobsData = [
       "Experience with Java and Spring Boot",
       "Familiarity with RESTful APIs and MySQL"
     ],
-    application_deadline: "2025-03-15"
+    application_deadline: "2025-03-15",
+    isVerified: false
   },
   {
     id: 3,
@@ -67,7 +69,8 @@ const RecommendedJobsData = [
       "Technical expertise regarding data models, database design development, data mining and segmentation techniques",
       "Strong knowledge of and experience with reporting packages (Business Objects etc), databases (SQL etc), programming (XML, Javascript, or ETL frameworks)"
     ],
-    application_deadline: "2025-04-01"
+    application_deadline: "2025-04-01",
+    isVerified: true
   },
   {
     id: 4,
@@ -78,7 +81,7 @@ const RecommendedJobsData = [
     type: "Contract",
     experience: "2-4 years",
     skills: ["Sketch", "Figma", "User Research", "Wireframing", "Prototyping"],
-    description: "We are looking for a UX Designer to design software and platforms that meet people’s needs.",
+    description: "We are looking for a UX Designer to design software and platforms that meet people's needs.",
     responsibilities: [
       "Understand product specifications and user psychology",
       "Conduct concept and usability testing",
@@ -90,7 +93,8 @@ const RecommendedJobsData = [
       "Strong portfolio of design projects",
       "Familiarity with interaction design and information architecture"
     ],
-    application_deadline: "2025-03-20"
+    application_deadline: "2025-03-20",
+    isVerified: true
   },
   {
     id: 5,
@@ -113,7 +117,8 @@ const RecommendedJobsData = [
       "Experience with software design and development in a test-driven environment",
       "Knowledge of coding languages (e.g. C++, Java, JavaScript) and frameworks/systems (e.g. AngularJS, Git)"
     ],
-    application_deadline: "2025-04-10"
+    application_deadline: "2025-04-10",
+    isVerified: false
   },
   {
     id: 6,
@@ -136,7 +141,8 @@ const RecommendedJobsData = [
       "Experience in product lifecycle management",
       "Background in software development and program management is preferred"
     ],
-    application_deadline: "2025-03-25"
+    application_deadline: "2025-03-25",
+    isVerified: true
   },
   {
     id: 7,
@@ -159,7 +165,8 @@ const RecommendedJobsData = [
       "Thorough understanding of marketing elements (including traditional and digital marketing such as SEO/Social media etc.) and market research methods",
       "Demonstrable experience in marketing data analytics and tools"
     ],
-    application_deadline: "2025-04-05"
+    application_deadline: "2025-04-05",
+    isVerified: false
   },
   {
     id: 8,
@@ -182,7 +189,8 @@ const RecommendedJobsData = [
       "Good knowledge of Ruby or Python",
       "Working knowledge of databases and SQL"
     ],
-    application_deadline: "2025-03-30"
+    application_deadline: "2025-03-30",
+    isVerified: true
   },
   {
     id: 9,
@@ -205,7 +213,8 @@ const RecommendedJobsData = [
       "A strong portfolio of illustrations or other graphics",
       "Familiarity with design software and technologies (such as InDesign, Illustrator, Dreamweaver, Photoshop)"
     ],
-    application_deadline: "2025-04-15"
+    application_deadline: "2025-04-15",
+    isVerified: false
   },
   {
     id: 10,
@@ -228,8 +237,22 @@ const RecommendedJobsData = [
       "Experience with machine learning frameworks (like Keras or PyTorch)",
       "Knowledge of data science and software engineering"
     ],
-    application_deadline: "2025-04-20"
+    application_deadline: "2025-04-20",
+    isVerified: true
   }
 ];
+
+export const companyLogos = {
+  "Tech Corp": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png",
+  "CodeBase Ltd.": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/2560px-Tata_Consultancy_Services_Logo.svg.png",
+  "DataX Inc.": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/2560px-Wipro_Primary_Logo_Color_RGB.svg.png",
+  "Creative Studio": "https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg",
+  "Innovatech Solutions": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png",
+  "Visionary Products": "https://www.capgemini.com/wp-content/themes/capgemini2020/assets/images/logo.svg",
+  "Marketify": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png",
+  "CloudServ": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png",
+  "DesignCo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Microsoft_logo.png/1200px-Microsoft_logo.png",
+  "AI Pioneers": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
+};
 
 export default RecommendedJobsData;

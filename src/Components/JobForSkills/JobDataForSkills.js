@@ -21,7 +21,7 @@ export const jobs = [
     ],
     experience: "3-5 years",
     salary: "8 LPA - 12 LPA",
-    application_deadline: "31-jan-2025",
+    application_deadline: "2025-01-31",
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ export const jobs = [
     ],
     experience: "2-4 years",
     salary: "10 LPA - 15 LPA",
-    application_deadline: "15-Nov-2024",
+    application_deadline: "2024-11-15",
   },
   {
     id: 3,
@@ -69,7 +69,7 @@ export const jobs = [
     ],
     experience: "4-6 years",
     salary: "12 LPA - 18 LPA",
-    application_deadline: "25-Jan-2025",
+    application_deadline: "2025-01-25",
   },
   {
     id: 4,
@@ -93,7 +93,7 @@ export const jobs = [
     ],
     experience: "1-3 years",
     salary: "6 LPA - 9 LPA",
-    application_deadline: "25-Dec-2024",
+    application_deadline: "2024-12-25",
   },
   {
     id: 5,
@@ -117,7 +117,7 @@ export const jobs = [
     ],
     experience: "2-4 years",
     salary: "10 LPA - 14 LPA",
-    application_deadline: "30-Mar-2025",
+    application_deadline: "2025-03-30",
   },
   {
     id: 6,
@@ -141,7 +141,7 @@ export const jobs = [
     ],
     experience: "3-5 years",
     salary: "7 LPA - ₹12 LPA",
-    application_deadline: "20-Feb-2025",
+    application_deadline: "2025-02-20",
   },
   {
     id: 7,
@@ -165,7 +165,7 @@ export const jobs = [
     ],
     experience: "2-4 years",
     salary: "15 LPA - 20 LPA",
-    application_deadline: "05-Dec-2024",
+    application_deadline: "2024-12-05",
   },
   {
     id: 8,
@@ -189,7 +189,24 @@ export const jobs = [
     ],
     experience: "3-5 years",
     salary: "18 LPA - 24 LPA",
-    application_deadline: "28-Feb-2025",
+    application_deadline: "2025-02-28",
   },
 ];
 
+
+export const companyLogos = {
+  Infosys: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png",
+  "Tata Consultancy Services (TCS)":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/2560px-Tata_Consultancy_Services_Logo.svg.png",
+  Wipro:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/2560px-Wipro_Primary_Logo_Color_RGB.svg.png",
+  "HCL Technologies":
+    "https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg",
+  Accenture: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png",
+  Capgemini:
+    "https://www.capgemini.com/wp-content/themes/capgemini2020/assets/images/logo.svg",
+  "Google Cloud":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png",
+  "Amazon Web Services":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png",
+}

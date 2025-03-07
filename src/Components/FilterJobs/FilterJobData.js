@@ -134,9 +134,9 @@ export const filterJobData = {
         'Excellent communication and leadership skills.',
       ],
       skills: [
-        'Product Management', 'Agile', 'User Feedback Analysis', 'Market Trends'
+        'Product Management', 'Agile', 'Market Trends', 'User Feedback Analysis'
       ],
-      application_deadline: '5th March 2025',
+      application_deadline: '10-Apr-2025',
       contact_email: 'pm-careers@visionarytech.com',
     },
     {
@@ -559,6 +559,9 @@ export const filterJobData = {
         location: 'Bangalore, India',
         experience: '5+ years',
         salary: '₹12 LPA',
+        skills: [
+          'Sales Strategy', 'Team Management', 'Client Relationships'
+        ],
         responsibilities: [
           'Develop and execute sales strategies to achieve business objectives.',
           'Manage and mentor the sales team to meet sales targets.',
@@ -585,6 +588,9 @@ export const filterJobData = {
         location: 'Mumbai, India',
         experience: '3+ years',
         salary: '₹8 LPA',
+        skills: [ 
+          'B2B Sales', 'Account Management', 'Lead Generation'
+        ],
         responsibilities: [
           'Identify and acquire new business opportunities.',
           'Build strong relationships with clients to increase sales.',
@@ -610,6 +616,9 @@ export const filterJobData = {
         location: 'Hyderabad, India',
         experience: '7+ years',
         salary: '₹14 LPA',
+        skills: [
+          'Sales Operations', 'Process Improvement', 'Sales Analytics'
+        ],
         responsibilities: [
           'Analyze and improve sales processes and operations.',
           'Support the sales team with tools, data, and insights.',
@@ -635,6 +644,9 @@ export const filterJobData = {
         location: 'Chennai, India',
         experience: '2+ years',
         salary: '₹6 LPA',
+        skills: [
+          'Lead Generation', 'Sales Closing', 'Client Acquisition'
+        ],
         responsibilities: [
           'Identify new business opportunities and lead generation.',
           'Close deals and manage client accounts.',
@@ -660,6 +672,9 @@ export const filterJobData = {
         location: 'Pune, India',
         experience: '6+ years',
         salary: '₹13 LPA',
+        skills: [ 
+          'Regional Sales', 'Team Management', 'Client Relationships'
+        ],
         responsibilities: [
           'Develop and implement regional sales strategies.',
           'Manage and lead regional sales teams to exceed targets.',
@@ -1575,3 +1590,22 @@ export const filterJobData = {
       },
     ]    
   };
+
+
+
+  export const companyLogos = {
+    TechCorp: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png",
+    Innovatech:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/2560px-Tata_Consultancy_Services_Logo.svg.png",
+    CloudWorks:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/2560px-Wipro_Primary_Logo_Color_RGB.svg.png",
+    CodeFlow:
+      "https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg",
+    DataWave: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png",
+    VisionaryTech:
+      "https://www.capgemini.com/wp-content/themes/capgemini2020/assets/images/logo.svg",
+    CreativeX:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png",
+    "Amazon Web Services":
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png",
+  }
