@@ -14,7 +14,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { Filter } from 'lucide-react';
 import jobData, { companyLogos } from "./LatestJobData";
 import TogglePage from "../TogglePage/TogglePage";
-import FilterPanel from "../FilterPanel";
+import FilterPanel from "../FilterForJob/FilterPanel";
 
 const AllLatestJobs = () => {
   const navigate = useNavigate();
@@ -174,14 +174,16 @@ const AllLatestJobs = () => {
         <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold text-gray-800">All Latest Jobs</h1>
         </div>
         
-        {/* Filter Button */}
-        <button
-          onClick={() => setIsFilterOpen(true)}
-          className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
-        >
-          <Filter size={24} className="mr-1" />
-          <span className="hidden sm:inline">Filter</span>
-        </button>
+        <div className="flex items-center xs:block lg:hidden">
+          {/* Filter Button */}
+          <button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
+          >
+            <Filter size={24} className="mr-1" />
+            <span className="hidden sm:inline">Filter</span>
+          </button>
+        </div>
       </div>
 
       {/* Active Filters Display */}

@@ -14,7 +14,7 @@ import { CiLocationOn } from "react-icons/ci"
 import { Filter } from "lucide-react"
 import jobData, { companyLogos } from "./RecommendedJobsData"
 import TogglePage from "../TogglePage/TogglePage"
-import FilterPanel from "../FilterPanel"
+import FilterPanel from "../FilterForJob/FilterPanel"
 
 const AllRecommendedJobs = () => {
   const navigate = useNavigate()
@@ -23,13 +23,13 @@ const AllRecommendedJobs = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(null)
 
-  // Filter states
   const [filters, setFilters] = useState({
     jobType: [],
     experienceLevel: [],
-    salaryRange: "Any",
+    salaryRange: [0, Infinity],  // Salary ko open-ended rakho
     skills: [],
   })
+  
 
   const [filteredJobs, setFilteredJobs] = useState(jobData)
 
@@ -58,60 +58,23 @@ const AllRecommendedJobs = () => {
 
   // Apply filters to jobs
   const applyFilters = useCallback((filterOptions) => {
-    let result = [...jobData]
-
-    // Filter by job type if any selected
-    if (filterOptions.jobType.length > 0) {
-      result = result.filter((job) =>
-        // This assumes job has a type property. Adjust according to your data structure
-        filterOptions.jobType.some((type) => job.type?.toLowerCase().includes(type.toLowerCase())),
-      )
-    }
-
-    // Filter by experience level if any selected
-    if (filterOptions.experienceLevel.length > 0) {
-      result = result.filter((job) =>
-        filterOptions.experienceLevel.some((level) => {
-          // Map experience text to categories
-          if (level === "Entry Level" && job.experience.includes("0-2")) return true
-          if (level === "Mid Level" && job.experience.includes("3-5")) return true
-          if (level === "Senior" && job.experience.includes("5+")) return true
-          if (level === "Executive" && job.experience.includes("10+")) return true
-          return false
-        }),
-      )
-    }
-
-    // Filter by salary range if not "Any"
-    if (filterOptions.salaryRange !== "Any") {
-      result = result.filter((job) => {
-        const jobSalary = Number.parseInt(job.salary.replace(/[^0-9]/g, ""))
-
-        if (filterOptions.salaryRange === "0-30,000") {
-          return jobSalary <= 30000
-        } else if (filterOptions.salaryRange === "30,000-60,000") {
-          return jobSalary > 30000 && jobSalary <= 60000
-        } else if (filterOptions.salaryRange === "60,000-90,000") {
-          return jobSalary > 60000 && jobSalary <= 90000
-        } else if (filterOptions.salaryRange === "90,000+") {
-          return jobSalary > 90000
-        }
-        return true
-      })
-    }
-
-    // Filter by skills if any selected
-    if (filterOptions.skills.length > 0) {
-      result = result.filter((job) =>
-        filterOptions.skills.some((skill) =>
-          job.skills.some((jobSkill) => jobSkill.toLowerCase().includes(skill.toLowerCase())),
-        ),
-      )
-    }
-
-    setFilteredJobs(result)
-    setCurrentPage(1) // Reset to first page when filters change
-  }, [])
+    let result = [...jobData];
+  
+    // Filter by salary range
+    result = result.filter((job) => {
+      const jobSalaryMatch = job.salary.match(/\d+/g); // Sirf numbers extract karo
+      const jobSalary = jobSalaryMatch ? parseInt(jobSalaryMatch[0]) : 0;
+      
+      return (
+        jobSalary >= filterOptions.salaryRange[0] && 
+        jobSalary <= filterOptions.salaryRange[1]
+      );
+    });
+  
+    setFilteredJobs(result);
+    setCurrentPage(1); // Reset pagination
+  }, []);
+  
 
   // Total number of pages
   const totalPages = Math.ceil(filteredJobs.length / jobsPerPage)
@@ -139,16 +102,21 @@ const AllRecommendedJobs = () => {
 
   // Apply filters when they change
   useEffect(() => {
-    applyFilters(filters)
-  }, [filters, applyFilters])
+    applyFilters(filters);
+    console.log("Filtered Jobs: ", filteredJobs); // Debugging ke liye
+  }, [filters, applyFilters]);
+  
 
   return (
     <div className="mt-12 mb-10 xs:mx-5 relative">
-      {/* Filter Panel */}
+      {/* FilterPanel */}
       <FilterPanel
         isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
-        onApplyFilters={applyFilters}
+        onApplyFilters={(newFilters) => {
+          setFilters(newFilters)
+          applyFilters(newFilters)
+        }}
         filters={filters}
         setFilters={setFilters}
       />
@@ -169,14 +137,16 @@ const AllRecommendedJobs = () => {
           <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold">All Recommended Jobs</h1>
         </div>
 
-        {/* Filter Button */}
-        <button
-          onClick={() => setIsFilterOpen(true)}
-          className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
-        >
-          <Filter size={24} className="mr-1" />
-          <span className="hidden sm:inline">Filter</span>
-        </button>
+        <div className="flex items-center xs:block lg:hidden">
+          {/* Filter Button */}
+          <button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
+          >
+            <Filter size={24} className="mr-1" />
+            <span className="hidden sm:inline">Filter</span>
+          </button>
+        </div>
       </div>
 
       {/* Active Filters Display */}

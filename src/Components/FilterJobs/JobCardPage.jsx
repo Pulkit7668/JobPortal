@@ -268,7 +268,7 @@ import {
 } from "react-icons/fa"
 import { CiLocationOn } from "react-icons/ci"
 import TogglePage from "../TogglePage/TogglePage"
-import FilterPanel from "../FilterPanel"
+import FilterPanel from "../FilterForJob/FilterPanel"
 import { Filter } from "lucide-react"
 
 const JobCategoryPage = ({ category }) => {
@@ -287,7 +287,7 @@ const JobCategoryPage = ({ category }) => {
   const [filters, setFilters] = useState({
     jobType: [],
     experienceLevel: [],
-    salaryRange: [],
+    salaryRange: [0, Infinity],
     skills: [],
   })
 

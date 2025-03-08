@@ -4,7 +4,7 @@ import { recruitersData } from "./recruitersData";
 import { FaArrowLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 import TogglePage from "../TogglePage/TogglePage";
-import FilterPanel from "../FilterPanel";
+import FilterPanel from "../FilterForJob/FilterPanel";
 import { Filter } from "lucide-react";
 
 function RecruitersJob() {
@@ -150,14 +150,16 @@ function RecruitersJob() {
           </button>
           <h2 className="text-2xl font-bold">{recruiter.name} - Job Openings</h2>
         </div>
-        {/* Filter Button */}
-        <button
-          onClick={() => setIsFilterOpen(true)}
-          className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
-        >
-          <Filter size={24} className="mr-1" />
-          <span className="hidden sm:inline">Filter</span>
-        </button>
+        <div className="flex items-center xs:block lg:hidden">
+          {/* Filter Button */}
+          <button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
+          >
+            <Filter size={24} className="mr-1" />
+            <span className="hidden sm:inline">Filter</span>
+          </button>
+        </div>
       </div>
 
       <p className="text-gray-600 mb-4">Location: {recruiter.location}</p>

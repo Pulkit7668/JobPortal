@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa"
 import { CiLocationOn } from "react-icons/ci"
 import { Filter } from "lucide-react"
-import FilterPanel from "../FilterPanel"
+import FilterPanel from "../FilterForJob/FilterPanel"
 
 // Mock user profile skills
 const userSkills = [
@@ -208,13 +208,16 @@ function JobDetailsForSkills() {
         </div>
 
         {/* Filter Button */}
-        <button
-          onClick={() => setIsFilterOpen(true)}
-          className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 curspr-pointer"
-        >
-          <Filter size={24} className="mr-1" />
-          <span className="hidden sm:inline">Filter</span>
-        </button>
+        <div className="flex items-center xs:block lg:hidden">
+          {/* Filter Button */}
+          <button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
+          >
+            <Filter size={24} className="mr-1" />
+            <span className="hidden sm:inline">Filter</span>
+          </button>
+        </div>
       </div>
 
       {/* Active Filters Display */}
