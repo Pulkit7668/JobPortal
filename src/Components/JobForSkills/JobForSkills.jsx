@@ -220,7 +220,3 @@ function JobsForSkills() {
 }
 
 export default JobsForSkills
-
-
-
-

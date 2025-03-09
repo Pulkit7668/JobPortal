@@ -1,32 +1,549 @@
-import React from 'react';
-import { FaTimes } from "react-icons/fa";
+import React, { useState } from 'react';
 
-const EditModal = ({ title, onClose, onSave, children }) => {
-    return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-[50%]">
-                <h2 className="text-xl font-bold mb-4 flex items-center justify-between">
-                    {title}
-                    <FaTimes
-                        className="cursor-pointer text-red-500"
-                        onClick={onClose}
-                    />
-                </h2>
-                <div className="space-y-4 overflow-y-auto custom-scrollbar" style={{ maxHeight: '400px', paddingRight: '10px' }}>
-                    {children}
-                </div>
-                <div className="flex justify-end gap-2 mt-4">
-                    <button onClick={onClose} className="mr-5 font-semibold text-blue-600 rounded-lg">Cancel</button>
-                    <button
-                        onClick={onSave}
-                        className="px-3 py-2 bg-blue-600 text-white rounded-lg"
-                    >
-                        Save Changes
-                    </button>
-                </div>
+export default function EditModal({ section, data, onSave, onCancel }) {
+  const [formData, setFormData] = useState(data);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleExperienceChange = (index, field, value) => {
+    const updatedExperience = [...formData.experience];
+    updatedExperience[index] = {
+      ...updatedExperience[index],
+      [field]: value
+    };
+    
+    setFormData({
+      ...formData,
+      experience: updatedExperience
+    });
+  };
+
+  const handleEducationChange = (index, field, value) => {
+    const updatedEducation = [...formData.education];
+    updatedEducation[index] = {
+      ...updatedEducation[index],
+      [field]: value
+    };
+    
+    setFormData({
+      ...formData,
+      education: updatedEducation
+    });
+  };
+
+  const handleSkillsChange = (e) => {
+    const skills = e.target.value.split(',').map(skill => skill.trim());
+    setFormData({
+      ...formData,
+      skills
+    });
+  };
+
+  const handleTopSkillsChange = (e) => {
+    const topSkills = e.target.value.split(',').map(skill => skill.trim());
+    setFormData({
+      ...formData,
+      topSkills
+    });
+  };
+
+  const handleWorkSampleChange = (index, field, value) => {
+    const updatedWorkSamples = [...formData.workSamples];
+    updatedWorkSamples[index] = {
+      ...updatedWorkSamples[index],
+      [field]: value
+    };
+    
+    setFormData({
+      ...formData,
+      workSamples: updatedWorkSamples
+    });
+  };
+
+  const handleKeywordsChange = (type, e) => {
+    const keywords = e.target.value.split(',').map(keyword => keyword.trim());
+    setFormData({
+      ...formData,
+      keywords: {
+        ...formData.keywords,
+        [type]: keywords
+      }
+    });
+  };
+
+  const handleExperienceSkillsChange = (index, e) => {
+    const skills = e.target.value.split(',').map(skill => skill.trim());
+    const updatedExperience = [...formData.experience];
+    updatedExperience[index] = {
+      ...updatedExperience[index],
+      skills
+    };
+    
+    setFormData({
+      ...formData,
+      experience: updatedExperience
+    });
+  };
+
+  const handleWorkSampleTechnologiesChange = (index, e) => {
+    const technologies = e.target.value.split(',').map(tech => tech.trim());
+    const updatedWorkSamples = [...formData.workSamples];
+    updatedWorkSamples[index] = {
+      ...updatedWorkSamples[index],
+      technologies
+    };
+    
+    setFormData({
+      ...formData,
+      workSamples: updatedWorkSamples
+    });
+  };
+
+  const renderForm = () => {
+    switch(section) {
+      case 'cover':
+        return (
+          <div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Cover Image URL
+              </label>
+              <input
+                type="text"
+                name="coverImage"
+                value={formData.coverImage}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
             </div>
-        </div>
-    );
-};
+          </div>
+        );
+        
+      case 'profile':
+        return (
+          <div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Profile Image URL
+              </label>
+              <input
+                type="text"
+                name="profileImage"
+                value={formData.profileImage}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Headline
+              </label>
+              <input
+                type="text"
+                name="headline"
+                value={formData.headline}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Company
+              </label>
+              <input
+                type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Location
+              </label>
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Bio
+              </label>
+              <textarea
+                name="bio"
+                value={formData.bio}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        );
+        
+      case 'resume':
+        return (
+          <div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Basic Info
+              </label>
+              <textarea
+                name="basicInfo"
+                value={formData.basicInfo}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        );
+        
+      case 'experience':
+        return (
+          <div>
+            {formData.experience.map((exp, index) => (
+              <div key={index} className="mb-6 p-4 border rounded">
+                <h3 className="font-bold mb-2">Experience {index + 1}</h3>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Role
+                  </label>
+                  <input
+                    type="text"
+                    value={exp.role}
+                    onChange={(e) => handleExperienceChange(index, 'role', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    value={exp.company}
+                    onChange={(e) => handleExperienceChange(index, 'company', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Duration
+                  </label>
+                  <input
+                    type="text"
+                    value={exp.duration}
+                    onChange={(e) => handleExperienceChange(index, 'duration', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    value={exp.location}
+                    onChange={(e) => handleExperienceChange(index, 'location', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Description
+                  </label>
+                  <textarea
+                    value={exp.description}
+                    onChange={(e) => handleExperienceChange(index, 'description', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    rows="3"
+                  ></textarea>
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Skills (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={exp.skills ? exp.skills.join(', ') : ''}
+                    onChange={(e) => handleExperienceSkillsChange(index, e)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+        
+      case 'education':
+        return (
+          <div>
+            {formData.education.map((edu, index) => (
+              <div key={index} className="mb-6 p-4 border rounded">
+                <h3 className="font-bold mb-2">Education {index + 1}</h3>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Institution
+                  </label>
+                  <input
+                    type="text"
+                    value={edu.institution}
+                    onChange={(e) => handleEducationChange(index, 'institution', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Degree
+                  </label>
+                  <input
+                    type="text"
+                    value={edu.degree}
+                    onChange={(e) => handleEducationChange(index, 'degree', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Year
+                  </label>
+                  <input
+                    type="text"
+                    value={edu.year}
+                    onChange={(e) => handleEducationChange(index, 'year', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    value={edu.location}
+                    onChange={(e) => handleEducationChange(index, 'location', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Grade
+                  </label>
+                  <input
+                    type="text"
+                    value={edu.grade}
+                    onChange={(e) => handleEducationChange(index, 'grade', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+        
+      case 'skills':
+        return (
+          <div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Skills (comma separated)
+              </label>
+              <textarea
+                value={formData.skills.join(', ')}
+                onChange={handleSkillsChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                rows="3"
+              ></textarea>
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Top Skills (comma separated, max 5-6)
+              </label>
+              <textarea
+                value={formData.topSkills.join(', ')}
+                onChange={handleTopSkillsChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                rows="2"
+              ></textarea>
+            </div>
+          </div>
+        );
+        
+      case 'workSamples':
+        return (
+          <div>
+            {formData.workSamples.map((sample, index) => (
+              <div key={index} className="mb-6 p-4 border rounded">
+                <h3 className="font-bold mb-2">Work Sample {index + 1}</h3>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    value={sample.title}
+                    onChange={(e) => handleWorkSampleChange(index, 'title', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Description
+                  </label>
+                  <textarea
+                    value={sample.description}
+                    onChange={(e) => handleWorkSampleChange(index, 'description', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    rows="3"
+                  ></textarea>
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Role
+                  </label>
+                  <input
+                    type="text"
+                    value={sample.role}
+                    onChange={(e) => handleWorkSampleChange(index, 'role', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Duration
+                  </label>
+                  <input
+                    type="text"
+                    value={sample.duration}
+                    onChange={(e) => handleWorkSampleChange(index, 'duration', e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    Technologies (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={sample.technologies ? sample.technologies.join(', ') : ''}
+                    onChange={(e) => handleWorkSampleTechnologiesChange(index, e)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+        
+      case 'keywords':
+        return (
+          <div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Basic Skills (comma separated)
+              </label>
+              <textarea
+                value={formData.keywords.basicSkills.join(', ')}
+                onChange={(e) => handleKeywordsChange('basicSkills', e)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                rows="3"
+              ></textarea>
+            </div>
+            
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Top Skills (comma separated, max 5-6)
+              </label>
+              <textarea
+                value={formData.keywords.topSkills.join(', ')}
+                onChange={(e) => handleKeywordsChange('topSkills', e)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                rows="2"
+              ></textarea>
+            </div>
+          </div>
+        );
+        
+      default:
+        return null;
+    }
+  };
 
-export default EditModal;
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto">
+        <h2 className="text-xl font-bold mb-4">
+          Edit {section.charAt(0).toUpperCase() + section.slice(1)}
+        </h2>
+        
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          onSave(section, formData);
+        }}>
+          {renderForm()}
+          
+          <div className="flex justify-end gap-2 mt-6">
+            <button
+              type="button"
+              onClick={onCancel}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}

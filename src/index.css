@@ -120,3 +120,33 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Profile */
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f3f4f6;
+}
+
+.edit-button {
+  @apply bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-50 transition-colors flex items-center;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+}
+
+.section-title {
+  @apply text-xl font-bold mb-4;
+}
+
+.section-card {
+  @apply bg-gray-50 p-4 rounded-lg;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+

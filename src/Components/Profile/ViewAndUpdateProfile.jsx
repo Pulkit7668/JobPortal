@@ -1,233 +1,286 @@
-import { useState, useRef } from "react";
-import { FaEdit, FaMapMarkerAlt, FaPhone, FaEnvelope, FaVenusMars, FaBirthdayCake, FaTimes } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa6";
-import QuickLinks from "./QuickLinks";
+import React, { useState } from 'react';
+import Sidebar from './Sidebar';
+import ProfileHeader from './ProfileHeader';
+import ProfileInfo from './ProfileInfo';
+import ResumeSection from './ResumeSection';
+import ProfessionalDetails from './ProfessionalDetails';
+import EditModal from './EditModal';
+import KeywordsSection from './KeywordsSection';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function ViewAndUpdateProfile() {
-  const [editing, setEditing] = useState(false);
-  const [profile, setProfile] = useState({
-    name: "John Doe",
-    education: "B.Tech/B.E.",
-    college: "ABES Engineering College",
-    location: "Noida",
-    hometown: "Agra",
-    email: "xyz@gmail.com",
-    phone: "1234567890",
-    gender: "Add Gender",
-    birthday: "Add Birthday",
-    currentLocation: "",
+export default function ProfileView() {
+  const [profileData, setProfileData] = useState({
+    coverImage: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNvdmVyJTIwcGljJTIwY29kZXxlbnwwfHwwfHx8MA%3D%3D',
+    profileImage: 'https://images.unsplash.com/photo-1617975251517-b90ff061b52e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D',
+    name: 'Rahul Sharma',
+    headline: 'Senior Frontend Developer',
+    company: 'TechSolutions India',
+    location: 'Bangalore, India',
+    bio: 'Passionate frontend developer with 5+ years of experience building responsive and user-friendly web applications.',
+    resumeDetails: {
+      basicInfo: 'B.Tech in Computer Science, 5+ years experience in web development',
+      professionalDetails: 'Worked on multiple enterprise-level applications using modern JavaScript frameworks',
+      experience: [
+        { 
+          company: 'TechSolutions India', 
+          role: 'Senior Frontend Developer', 
+          duration: 'Jan 2022 - Present',
+          description: 'Leading the frontend team and developing scalable web applications',
+          location: 'Bangalore, India',
+          skills: ['React', 'TypeScript', 'Redux', 'Tailwind CSS']
+        },
+        { 
+          company: 'WebTech Solutions', 
+          role: 'Frontend Developer', 
+          duration: 'Mar 2019 - Dec 2021',
+          description: 'Developed responsive web interfaces using React and Redux',
+          location: 'Pune, India',
+          skills: ['React', 'JavaScript', 'Redux', 'CSS3']
+        }
+      ],
+      education: [
+        {
+          institution: 'Delhi Technical University',
+          degree: 'B.Tech in Computer Science',
+          year: '2015 - 2019',
+          location: 'Delhi, India',
+          grade: '8.5 CGPA'
+        },
+        {
+          institution: 'Delhi Public School',
+          degree: 'Higher Secondary Education',
+          year: '2013 - 2015',
+          location: 'Delhi, India',
+          grade: '92%'
+        }
+      ],
+      skills: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux', 'Git', 'Node.js', 'Express', 'MongoDB', 'REST API', 'GraphQL', 'Jest', 'Webpack'],
+      topSkills: ['React', 'JavaScript', 'TypeScript', 'Redux', 'Tailwind CSS'],
+      workSamples: [
+        {
+          title: 'E-commerce Platform',
+          description: 'Built a full-featured e-commerce platform with React, Redux, and Node.js. Implemented features like product search, filtering, cart management, payment integration, and order tracking.',
+          technologies: ['React', 'Redux', 'Node.js', 'MongoDB', 'Stripe API'],
+          role: 'Frontend Lead',
+          duration: '4 months'
+        },
+        {
+          title: 'CRM Dashboard',
+          description: 'Developed an interactive dashboard for customer relationship management with real-time data visualization, user management, and reporting features.',
+          technologies: ['React', 'TypeScript', 'D3.js', 'Firebase'],
+          role: 'Full Stack Developer',
+          duration: '3 months'
+        },
+        {
+          title: 'Healthcare Management System',
+          description: 'Created a comprehensive healthcare management system for a local clinic to manage patient records, appointments, and billing.',
+          technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+          role: 'Frontend Developer',
+          duration: '6 months'
+        }
+      ],
+      keywords: {
+        basicSkills: ['HTML', 'CSS', 'JavaScript', 'Git', 'Responsive Design', 'UI/UX', 'Problem Solving', 'Communication'],
+        topSkills: ['React', 'TypeScript', 'Redux', 'Tailwind CSS', 'Node.js', 'MongoDB']
+      }
+    }
   });
-  const [showPhotoModal, setShowPhotoModal] = useState(false);
-  const [photo, setPhoto] = useState(null);
-  const fileInputRef = useRef(null);
 
-  const handleChange = (e) => {
-    setProfile({ ...profile, [e.target.name]: e.target.value });
+  const [editingSection, setEditingSection] = useState(null);
+  const [editData, setEditData] = useState({});
+  const [activeTab, setActiveTab] = useState('all');
+
+  const handleEdit = (section, data) => {
+    setEditingSection(section);
+    setEditData(data);
   };
 
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.size <= 2 * 1024 * 1024) {
-      setPhoto(URL.createObjectURL(file));
-    } else {
-      alert("Please select a valid file (png, jpg, jpeg, gif - up to 2MB)");
+  const handleSave = (section, newData) => {
+    let updatedProfileData = { ...profileData };
+    
+    switch(section) {
+      case 'cover':
+        updatedProfileData.coverImage = newData.coverImage;
+        break;
+      case 'profile':
+        updatedProfileData = {
+          ...updatedProfileData,
+          name: newData.name,
+          headline: newData.headline,
+          company: newData.company,
+          location: newData.location,
+          bio: newData.bio,
+          profileImage: newData.profileImage
+        };
+        break;
+      case 'resume':
+        updatedProfileData.resumeDetails.basicInfo = newData.basicInfo;
+        break;
+      case 'experience':
+        updatedProfileData.resumeDetails.experience = newData.experience;
+        break;
+      case 'education':
+        updatedProfileData.resumeDetails.education = newData.education;
+        break;
+      case 'skills':
+        updatedProfileData.resumeDetails.skills = newData.skills;
+        updatedProfileData.resumeDetails.topSkills = newData.topSkills;
+        break;
+      case 'workSamples':
+        updatedProfileData.resumeDetails.workSamples = newData.workSamples;
+        break;
+      case 'keywords':
+        updatedProfileData.resumeDetails.keywords = newData.keywords;
+        break;
+      default:
+        break;
+    }
+    
+    setProfileData(updatedProfileData);
+    setEditingSection(null);
+    toast.success(`${section.charAt(0).toUpperCase() + section.slice(1)} updated successfully!`);
+  };
+
+  const handleCancel = () => {
+    setEditingSection(null);
+  };
+
+  const filterContent = () => {
+    if (activeTab === 'all') {
+      return true;
+    } else if (activeTab === 'experience') {
+      return ['experience'];
+    } else if (activeTab === 'education') {
+      return ['education'];
+    } else if (activeTab === 'skills') {
+      return ['skills', 'keywords'];
+    } else if (activeTab === 'projects') {
+      return ['workSamples'];
     }
   };
 
-  const handleGenderClick = (gender) => {
-    setProfile({ ...profile, gender });
-  };
-
-  const handleRemoveGender = () => {
-    setProfile({ ...profile, gender: "Add Gender" });
-  };
-
-  // Function to calculate profile completion percentage
-  const calculateProfileCompletion = () => {
-    const filledFields = Object.values(profile).filter((field) => field && field !== "Add Gender").length;
-    const totalFields = 9; // Total fields to be considered for completion
-    return Math.round((filledFields / totalFields) * 100);
-  };
-
   return (
-    <div>
-      {/* profile edit */}
-      <div className="h-[40vh] max-w-6xl mt-20 mx-auto p-10 relative flex items-center gap-6 bg-white border rounded-2xl shadow-md">
-        <div
-          className="relative w-32 h-32 rounded-full border-4 border-gray-200 flex items-center justify-center bg-gray-300 text-gray-600 text-sm font-bold cursor-pointer"
-          onClick={() => setShowPhotoModal(true)}
-        >
-          <div className="mt-6">
-            {photo ? (
-              <img src={photo} alt="Profile" className="w-full h-full object-cover rounded-full" />
-            ) : (
-              <>
-                <FaPlus className="absolute text-gray-400 bg-white p-1 rounded-full text-3xl top-8 left-1/2 transform -translate-x-1/2" size={25} />
-                <span>Add photo</span>
-              </>
-            )}
-          </div>
-
-          {/* Dynamically update completion percentage */}
-          <div className="absolute bottom-0 bg-red-500 text-white text-xs px-2 py-1 rounded-full">{calculateProfileCompletion()}%</div>
-        </div>
-
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            {profile.name} <FaEdit className="text-gray-500 cursor-pointer" onClick={() => setEditing(true)} />
-          </h2>
-          <p className="text-gray-600">{profile.education}</p>
-          <p className="text-gray-500">{profile.college}</p>
-          <div className="mt-2 flex gap-6 text-gray-600">
-            <div className="flex flex-col items-start gap-2">
-              <div className="flex items-center gap-2">
-                <FaMapMarkerAlt /> {profile.location}
-              </div>
-              <div className="flex items-center gap-2">
-                <FaVenusMars /> {profile.gender}
-              </div>
-              <div className="flex items-center gap-2">
-                <FaBirthdayCake /> {profile.birthday}
-              </div>
-            </div>
-
-            <div className="border-l border-gray-300 pl-6 flex flex-col items-start gap-2">
-              <div className="flex items-center gap-2">
-                <FaPhone /> {profile.phone}
-              </div>
-              <div className="flex items-center gap-2">
-                <FaEnvelope /> {profile.email}
-              </div>
+    <div className="flex min-h-screen bg-gray-100">
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className="flex-1 p-4">
+        <div className="mx-auto">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+            <ProfileHeader 
+              coverImage={profileData.coverImage} 
+              onEdit={() => handleEdit('cover', { coverImage: profileData.coverImage })} 
+            />
+            
+            <div className="p-6">
+              <ProfileInfo 
+                profileImage={profileData.profileImage}
+                name={profileData.name}
+                headline={profileData.headline}
+                company={profileData.company}
+                location={profileData.location}
+                bio={profileData.bio}
+                onEdit={() => handleEdit('profile', { 
+                  profileImage: profileData.profileImage,
+                  name: profileData.name,
+                  headline: profileData.headline,
+                  company: profileData.company,
+                  location: profileData.location,
+                  bio: profileData.bio
+                })}
+              />
             </div>
           </div>
-        </div>
-
-        {editing && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-[50%]">
-              <h2 className="text-xl font-bold mb-4 flex items-center justify-between">
-                Edit Profile
-                <FaTimes
-                  className="cursor-pointer text-red-500"
-                  onClick={() => setEditing(false)}
-                />
-              </h2>
-              <div className="space-y-4 overflow-y-auto custom-scrollbar" style={{ maxHeight: '400px', paddingRight: '10px' }}>
-                <div>
-                  <label className="font-medium">Email</label>
-                  <input name="email" value={profile.email} onChange={handleChange} className="w-full p-2 border rounded-2xl" />
-                </div>
-                <div>
-                  <label className="font-medium">Phone</label>
-                  <input name="phone" value={profile.phone} onChange={handleChange} className="w-full p-2 border rounded-2xl" />
-                </div>
-                <div>
-                  <label className="font-medium">Gender</label>
-                  <div className="flex gap-4 mt-2">
-                    {profile.gender === "Add Gender" && (
-                      <>
-                        <button
-                          onClick={() => handleGenderClick("Male")}
-                          className="px-4 py-2 border-2 rounded-3xl bg-white text-gray-600 border-gray-300 hover:bg-blue-500 hover:text-white"
-                        >
-                          Male
-                        </button>
-                        <button
-                          onClick={() => handleGenderClick("Female")}
-                          className="px-4 py-2 border-2 rounded-3xl bg-white text-gray-600 border-gray-300 hover:bg-pink-500 hover:text-white"
-                        >
-                          Female
-                        </button>
-                        <button
-                          onClick={() => handleGenderClick("Transgender")}
-                          className="px-4 py-2 border-2 rounded-3xl bg-white text-gray-600 border-gray-300 hover:bg-purple-500 hover:text-white"
-                        >
-                          Transgender
-                        </button>
-                      </>
-                    )}
-
-                    {profile.gender !== "Add Gender" && (
-                      <div className="px-4 py-2 border-2 rounded-3xl bg-gray-200 text-gray-600 flex items-center gap-2">
-                        {profile.gender}
-                        <FaTimes
-                          className="text-red-500 cursor-pointer"
-                          onClick={handleRemoveGender}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <label className="font-medium">Date of birth (DD/MM/YYYY)</label>
-                  <input name="birthday" onChange={handleChange} className="w-full p-2 border rounded-2xl" />
-                </div>
-                <div>
-                  <label className="font-medium">Current Location</label>
-                  <input name="currentLocation" value={profile.currentLocation} onChange={handleChange} className="w-full p-2 border rounded-2xl" />
-                </div>
-                <div>
-                  <label className="font-medium">Hometown</label>
-                  <input name="hometown" value={profile.hometown} onChange={handleChange} className="w-full p-2 border rounded-2xl" />
-                </div>
-              </div>
-              <div className="flex justify-end gap-2 mt-4">
-                <button onClick={() => setEditing(false)} className="mr-5 font-semibold text-blue-600 rounded-lg">Cancel</button>
-                <button
-                  onClick={() => {
-                    setProfile({
-                      ...profile,
-                      location: profile.currentLocation,
-                    });
-                    setEditing(false);
-                  }}
-                  className="px-3 py-2 bg-blue-600 text-white rounded-lg"
-                >
-                  Save Changes
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Photo Upload Modal */}
-        {showPhotoModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-3xl shadow-lg w-[50%] text-center">
-              <h2 className="text-xl font-bold">Upload a Recent Photo</h2>
-              <p className="text-gray-600 mb-4 font-semibold">
-                Photo enhances memorability and helps you demonstrate professionalism.
-              </p>
-              <div className="text-center flex items-center justify-center">
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current.click()}
-                  className="block px-3 py-2 font-semibold border rounded-3xl mt-2 text-white bg-blue-600"
-                >
-                  Upload Photo 
-                </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  onChange={handlePhotoChange}
-                  accept="image/png, image/jpg, image/jpeg, image/gif"
-                  className="hidden"
+          
+          {(activeTab === 'all' || activeTab === 'resume') && (
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+              <div className="p-6">
+                <ResumeSection 
+                  basicInfo={profileData.resumeDetails.basicInfo}
+                  onEdit={() => handleEdit('resume', { basicInfo: profileData.resumeDetails.basicInfo })}
                 />
               </div>
-              <div className="mt-4 text-sm font-medium text-gray-500">
-                Supported file format: png, jpg, jpeg, gif - up to 2MB
-              </div>
-              <div className="flex justify-end gap-2 mt-4">
-                <button onClick={() => setShowPhotoModal(false)} className="px-4 py-2 bg-gray-500 text-white rounded-lg">Cancel</button>
-                <button onClick={() => setShowPhotoModal(false)} className="px-4 py-2 bg-green-600 text-white rounded-lg">Save</button>
+            </div>
+          )}
+          
+          {(activeTab === 'all' || activeTab === 'experience') && (
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+              <div className="p-6">
+                <ProfessionalDetails 
+                  section="experience"
+                  title="Experience"
+                  items={profileData.resumeDetails.experience}
+                  onEdit={() => handleEdit('experience', { experience: profileData.resumeDetails.experience })}
+                />
               </div>
             </div>
-          </div>
-        )}
+          )}
+          
+          {(activeTab === 'all' || activeTab === 'education') && (
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+              <div className="p-6">
+                <ProfessionalDetails 
+                  section="education"
+                  title="Education"
+                  items={profileData.resumeDetails.education}
+                  onEdit={() => handleEdit('education', { education: profileData.resumeDetails.education })}
+                />
+              </div>
+            </div>
+          )}
+          
+          {(activeTab === 'all' || activeTab === 'skills') && (
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+              <div className="p-6">
+                <ProfessionalDetails 
+                  section="skills"
+                  title="Skills & Tools"
+                  skills={profileData.resumeDetails.skills}
+                  topSkills={profileData.resumeDetails.topSkills}
+                  onEdit={() => handleEdit('skills', { 
+                    skills: profileData.resumeDetails.skills,
+                    topSkills: profileData.resumeDetails.topSkills
+                  })}
+                />
+              </div>
+            </div>
+          )}
+          
+          {(activeTab === 'all' || activeTab === 'projects') && (
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+              <div className="p-6">
+                <ProfessionalDetails 
+                  section="workSamples"
+                  title="Work Samples"
+                  items={profileData.resumeDetails.workSamples}
+                  onEdit={() => handleEdit('workSamples', { workSamples: profileData.resumeDetails.workSamples })}
+                />
+              </div>
+            </div>
+          )}
+          
+          {(activeTab === 'all' || activeTab === 'skills') && (
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+              <div className="p-6">
+                <KeywordsSection 
+                  keywords={profileData.resumeDetails.keywords}
+                  onEdit={() => handleEdit('keywords', { keywords: profileData.resumeDetails.keywords })}
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      <QuickLinks />
+      
+      {editingSection && (
+        <EditModal 
+          section={editingSection}
+          data={editData}
+          onSave={handleSave}
+          onCancel={handleCancel}
+        />
+      )}
+      
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }
-
-export default ViewAndUpdateProfile;

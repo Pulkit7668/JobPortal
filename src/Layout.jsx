@@ -7,7 +7,7 @@ const Layout = () => {
   const location = useLocation();
 
   // Jinke upar footer nahi dikhana hai unka path yahan specify karo
-  const hideFooterRoutes = ["/signup" ,"/login", "/register", "/dashboard", "/support-chat", "/view-update-profile", "/recruiter-chat", "/support-chat", "/set-job-preference", "/blocked-companies", "/saved-jobs"];
+  const hideFooterRoutes = ["/signup" ,"/login", "/register", "/dashboard", "/support-chat", "/view-update-profile", "/recruiter-chat", "/support-chat", "/set-job-preference", "/blocked-companies", "/saved-jobs", "/applied-jobs", "/term-and-condition", "/privacy-policy"];
 
   const hideNavbarRoutes = ["/recruiter-page"];
   

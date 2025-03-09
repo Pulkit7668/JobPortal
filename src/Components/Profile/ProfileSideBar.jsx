@@ -1,16 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaTimes, FaQuestionCircle } from "react-icons/fa";
+import { FaTimes, FaBookmark, FaEye, FaSlidersH,  } from "react-icons/fa";
 
 function ProfileSidebar({ isOpen, onClose }) {
   const profileCompletion = 40;
   const progressColor = profileCompletion >= 75 ? "#34D399" : "#F04141";
   const navigate = useNavigate();
 
-  const handleProfileClick = () => {
+  const handleProfileClick = (path) => {
     onClose();
-    navigate("/view-update-profile");
-  };
+    navigate(path);
+};
 
   return (
     <>
@@ -80,7 +80,7 @@ function ProfileSidebar({ isOpen, onClose }) {
                 B.Tech/B.E. Production/Industrial at Hi-Tech Institute of Engineering & Tech
               </p>
               <button
-                onClick={handleProfileClick}
+                onClick={() => handleProfileClick("/view-update-profile") }
                 className="text-sm text-blue-600 hover:underline"
               >
                 View & Update Profile
@@ -119,11 +119,31 @@ function ProfileSidebar({ isOpen, onClose }) {
         </div>
 
         <div className="p-4 space-y-3 text-sm">
-          <div className="flex items-center space-x-3">
-            <FaQuestionCircle size={16} className="text-gray-500" />
-            <Link onClick={onClose} to="/faq" className="block text-gray-700 hover:text-blue-600">
-              FAQs
-            </Link>
+          <div className="space-y-3">
+            <button
+              onClick={() => handleProfileClick("/change-visibility")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaEye />
+              <span>Change Visibility</span>
+            </button>
+            
+            <button
+              onClick={() => handleProfileClick("/set-job-preference")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaSlidersH />
+              <span>Set Job Preference</span>
+            </button>
+
+            <button
+              onClick={() => handleProfileClick("/saved-jobs")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaBookmark />
+              <span>Saved Jobs</span>
+            </button>
+            
           </div>
         </div>
       </div>

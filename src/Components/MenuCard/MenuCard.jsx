@@ -6,12 +6,13 @@ import {
   FaTimes, 
   FaKey, 
   FaComments, 
-  FaEye, 
-  FaSlidersH, 
   FaInfoCircle, 
-  FaBan, 
-  FaBookmark, 
-  FaSignOutAlt 
+  FaBan,  
+  FaSignOutAlt, 
+  FaQuestionCircle,
+  FaClipboardList, 
+  FaUserShield, 
+  FaFileContract
 } from "react-icons/fa";
 
 const MenuCard = ({ isOpen, onClose }) => {
@@ -95,22 +96,6 @@ const MenuCard = ({ isOpen, onClose }) => {
             </button>
 
             <button
-              onClick={() => handleMenuClick("/change-visibility")}
-              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
-            >
-              <FaEye />
-              <span>Change Visibility</span>
-            </button>
-
-            <button
-              onClick={() => handleMenuClick("/set-job-preference")}
-              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
-            >
-              <FaSlidersH />
-              <span>Set Job Preference</span>
-            </button>
-
-            <button
               onClick={() => handleMenuClick("/about-us")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
@@ -127,12 +112,37 @@ const MenuCard = ({ isOpen, onClose }) => {
             </button>
 
             <button
-              onClick={() => handleMenuClick("/saved-jobs")}
+              onClick={() => handleMenuClick("/applied-jobs")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
-              <FaBookmark />
-              <span>Saved Jobs</span>
+              <FaClipboardList />
+              <span>Applied Jobs</span>
             </button>
+
+            <button
+              onClick={() => handleMenuClick("/privacy-policy")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaUserShield />
+              <span>Privacy & Policy</span>
+            </button>
+
+            <button
+              onClick={() => handleMenuClick("/term-and-condition")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaFileContract />
+              <span>Term & Condition</span>
+            </button>
+
+            <button
+              onClick={() => handleMenuClick("/faq")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaQuestionCircle />
+              <span>FAQs</span>
+            </button>
+
           </div>
         </div>
 

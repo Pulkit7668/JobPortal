@@ -36,6 +36,9 @@ import RecommendedJobDetails from "./Components/RecommendedJobs/RecommendedJobDe
 import RecruiterChat from "./Components/RecruiterChat/RecruiterChat.jsx";
 import FAQ from "./Components/Profile/FAQ.jsx";
 import CompanyDetail from "./Components/TopRecruiters/CompanyDetail.jsx";
+import AppliedJobs from "./Components/AppliedJobs/AppliedJobs.jsx";
+import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy.jsx";
+import TermsAndConditions from "./Components/TermAndCondition/TermAndCondition.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -85,6 +88,9 @@ createRoot(document.getElementById("root")).render(
             <Route path="/latest/job/:id" element={<LatestJobDetail />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/recruiters/details/:id" element={<CompanyDetail />} />
+            <Route path="/applied-jobs" element={<AppliedJobs />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/term-and-condition" element={<TermsAndConditions />} />
           </Route>
         </Routes>
       </BrowserRouter>
