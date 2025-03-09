@@ -9,7 +9,7 @@ import KeywordsSection from './KeywordsSection';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function ProfileView() {
+export default function ViewAndUpdateProfile() {
   const [profileData, setProfileData] = useState({
     coverImage: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNvdmVyJTIwcGljJTIwY29kZXxlbnwwfHwwfHx8MA%3D%3D',
     profileImage: 'https://images.unsplash.com/photo-1617975251517-b90ff061b52e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGUlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D',
