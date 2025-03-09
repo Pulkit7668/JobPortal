@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function EditModal({ section, data, onSave, onCancel }) {
+export default function EditModal1({ section, data, onSave, onCancel }) {
   const [formData, setFormData] = useState(data);
 
   const handleChange = (e) => {

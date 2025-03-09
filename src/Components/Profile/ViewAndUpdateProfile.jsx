@@ -4,7 +4,7 @@ import ProfileHeader from './ProfileHeader';
 import ProfileInfo from './ProfileInfo';
 import ResumeSection from './ResumeSection';
 import ProfessionalDetails from './ProfessionalDetails';
-import EditModal from './EditModal';
+import EditModal from './EditModal1';
 import KeywordsSection from './KeywordsSection';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
