@@ -22,13 +22,18 @@ const AllLatestJobs = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(null);
+  const [sortBy, setSortBy] = useState("sort-by");
   
   // Filter states
   const [filters, setFilters] = useState({
-    jobType: [],
-    experienceLevel: [],
-    salaryRange: "Any",
-    skills: [],
+    easyApply: false,
+    datePosted: "anytime",
+    experienceLevel: "All Levels",
+    jobType: "All Types",
+    location: "All Locations",
+    nearbyLocation: "",
+    industry: "All Industries",
+    companySize: "All Sizes",
   });
   
   const [filteredJobs, setFilteredJobs] = useState(jobData);
@@ -60,60 +65,96 @@ const AllLatestJobs = () => {
   const applyFilters = useCallback((filterOptions) => {
     let result = [...jobData];
     
+    // Filter by easy apply
+    if (filterOptions.easyApply) {
+      result = result.filter((job) => job.easyApply === true)
+    }
+
+    // Filter by date posted
+    if (filterOptions.datePosted !== "anytime") {
+      const now = new Date()
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      
+      result = result.filter((job) => {
+        const postDate = new Date(job.posted_date)
+        const diffTime = Math.abs(today - postDate)
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+        
+        if (filterOptions.datePosted === "past 24 hours") {
+          return diffDays <= 1
+        } else if (filterOptions.datePosted === "past week") {
+          return diffDays <= 7
+        }
+        return true
+      })
+    }
+    
     // Filter by job type if any selected
-    if (filterOptions.jobType.length > 0) {
+    if (filterOptions.jobType !== "All Types") {
       result = result.filter(job => 
-        filterOptions.jobType.some(type => 
-          job.type?.toLowerCase().includes(type.toLowerCase())
-        )
+        job.type?.toLowerCase().includes(filterOptions.jobType.toLowerCase())
       );
     }
     
     // Filter by experience level if any selected
-    if (filterOptions.experienceLevel.length > 0) {
-      result = result.filter(job => 
-        filterOptions.experienceLevel.some(level => {
-          if (level === "Entry Level" && job.experience.includes("0-2")) return true;
-          if (level === "Mid Level" && job.experience.includes("3-5")) return true;
-          if (level === "Senior" && job.experience.includes("5+")) return true;
-          if (level === "Executive" && job.experience.includes("10+")) return true;
-          return false;
-        })
-      );
-    }
-    
-    // Filter by salary range if not "Any"
-    if (filterOptions.salaryRange !== "Any") {
+    if (filterOptions.experienceLevel !== "All Levels") {
       result = result.filter(job => {
-        const jobSalary = parseInt(job.salary.replace(/[^0-9]/g, ''));
-        
-        if (filterOptions.salaryRange === "0-30,000") {
-          return jobSalary <= 30000;
-        } else if (filterOptions.salaryRange === "30,000-60,000") {
-          return jobSalary > 30000 && jobSalary <= 60000;
-        } else if (filterOptions.salaryRange === "60,000-90,000") {
-          return jobSalary > 60000 && jobSalary <= 90000;
-        } else if (filterOptions.salaryRange === "90,000+") {
-          return jobSalary > 90000;
-        }
-        return true;
+        if (filterOptions.experienceLevel === "Entry Level" && job.experience.includes("0-2")) return true;
+        if (filterOptions.experienceLevel === "Mid Level" && job.experience.includes("3-5")) return true;
+        if (filterOptions.experienceLevel === "Senior Level" && job.experience.includes("5+")) return true;
+        if (filterOptions.experienceLevel === "Executive" && job.experience.includes("10+")) return true;
+        return false;
       });
     }
     
-    // Filter by skills if any selected
-    if (filterOptions.skills.length > 0) {
-      result = result.filter(job => 
-        filterOptions.skills.some(skill => 
-          job.skills.some((jobSkill) => 
-            jobSkill.toLowerCase().includes(skill.toLowerCase())
-          )
-        )
-      );
+    // Filter by location
+    if (filterOptions.location !== "All Locations") {
+      result = result.filter((job) => 
+        job.location.toLowerCase().includes(filterOptions.location.toLowerCase())
+      )
+    }
+
+    // Filter by nearby location
+    if (filterOptions.nearbyLocation) {
+      result = result.filter((job) => 
+        job.location.toLowerCase().includes(filterOptions.nearbyLocation.toLowerCase())
+      )
+    }
+
+    // Filter by industry
+    if (filterOptions.industry !== "All Industries") {
+      result = result.filter((job) => 
+        job.industry?.toLowerCase().includes(filterOptions.industry.toLowerCase())
+      )
+    }
+
+    // Filter by company size
+    if (filterOptions.companySize !== "All Sizes") {
+      result = result.filter((job) => 
+        job.companySize === filterOptions.companySize
+      )
+    }
+    
+    // Sort the results
+    if (sortBy === "recent") {
+      result.sort((a, b) => new Date(b.posted_date) - new Date(a.posted_date))
+    } else if (sortBy === "salary-high") {
+      result.sort((a, b) => {
+        const salaryA = Number.parseInt(a.salary.replace(/[^0-9]/g, ""))
+        const salaryB = Number.parseInt(b.salary.replace(/[^0-9]/g, ""))
+        return salaryB - salaryA
+      })
+    } else if (sortBy === "salary-low") {
+      result.sort((a, b) => {
+        const salaryA = Number.parseInt(a.salary.replace(/[^0-9]/g, ""))
+        const salaryB = Number.parseInt(b.salary.replace(/[^0-9]/g, ""))
+        return salaryA - salaryB
+      })
     }
     
     setFilteredJobs(result);
-    setCurrentPage(1); // Reset to first page when filters change
-  }, []);
+    setCurrentPage(1);
+  }, [sortBy]);
 
   // Total number of pages
   const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
@@ -132,6 +173,21 @@ const AllLatestJobs = () => {
     setMenuOpen(menuOpen === jobId ? null : jobId)
   }
 
+  const handleSaveJob = (jobId) => {
+    console.log("Job saved:", jobId)
+    setMenuOpen(null)
+  }
+
+  const handleShareJob = (jobId) => {
+    console.log("Job shared:", jobId)
+    setMenuOpen(null)
+  }
+
+  const handleRateCompany = (companyName) => {
+    console.log("Rating company:", companyName)
+    setMenuOpen(null)
+  }
+
   // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -145,7 +201,7 @@ const AllLatestJobs = () => {
   }, [filters, applyFilters]);
 
   return (
-    <div className="mt-12 mb-10 xs:mx-5 relative">
+    <div className="flex min-h-screen">
       {/* Filter Panel */}
       <FilterPanel 
         isOpen={isFilterOpen}
@@ -155,69 +211,136 @@ const AllLatestJobs = () => {
         setFilters={setFilters}
       />
       
-      {/* Overlay when filter is open */}
-      {isFilterOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setIsFilterOpen(false)}
-        />
-      )}
-      
-      <div className="flex items-center justify-between mb-8 md:ml-10 lg:ml-20 md:mr-10 lg:mr-28">
-        <div className="flex items-center">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-blue-600 hover:text-blue-800 mr-4"
-        >
-          <FaArrowLeft size={40} className="p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
-        </button>
-        <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold text-gray-800">All Latest Jobs</h1>
+      <div className="flex-1 p-6 lg:ml-72 mb-5 mt-10">
+        <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center">
+            <button
+              onClick={() => navigate(-1)}
+              className="text-blue-600 hover:text-blue-800 mr-4"
+            >
+              <FaArrowLeft size={40} className="p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300" />
+            </button>
+            <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold text-gray-800">All Latest Jobs</h1>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Sort By Dropdown */}
+            <div className="hidden md:block">
+              <select
+                value={sortBy}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                  applyFilters(filters);
+                }}
+                className="bg-white border border-gray-300 px-3 py-2 rounded-md text-gray-700 shadow-sm focus:ring focus:ring-blue-500 text-sm"
+              >
+                <option value="sort-by">Sort By</option>
+                <option value="relevance">Relevance</option>
+                <option value="recent">Most Recent</option>
+                <option value="salary-high">Salary (High to Low)</option>
+                <option value="salary-low">Salary (Low to High)</option>
+              </select>
+            </div>
+
+            {/* Filter Button */}
+            <div className="flex items-center xs:block lg:hidden">
+              <button
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
+              >
+                <Filter size={24} className="mr-1" />
+                <span className="hidden sm:inline">Filter</span>
+              </button>
+            </div>
+          </div>
         </div>
         
-        <div className="flex items-center xs:block lg:hidden">
-          {/* Filter Button */}
-          <button
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
-          >
-            <Filter size={24} className="mr-1" />
-            <span className="hidden sm:inline">Filter</span>
-          </button>
-        </div>
+        
+
+      {/* Sort By Dropdown - Mobile Only */}
+      <div className="md:hidden mb-4 md:mx-10 lg:mx-24">
+        <select
+          value={sortBy}
+          onChange={(e) => {
+            setSortBy(e.target.value);
+            applyFilters(filters);
+          }}
+          className="bg-white border border-gray-300 px-3 py-2 rounded-md text-gray-700 shadow-sm focus:ring focus:ring-blue-500 text-sm w-full"
+        >
+          <option value="sort-by">Sort By</option>
+          <option value="relevance">Relevance</option>
+          <option value="recent">Most Recent</option>
+          <option value="salary-high">Salary (High to Low)</option>
+          <option value="salary-low">Salary (Low to High)</option>
+        </select>
       </div>
 
       {/* Active Filters Display */}
-      {(filters.jobType.length > 0 || 
-        filters.experienceLevel.length > 0 || 
-        filters.salaryRange !== "Any" || 
-        filters.skills.length > 0) && (
+      {(filters.easyApply || 
+        filters.datePosted !== "anytime" || 
+        filters.experienceLevel !== "All Levels" || 
+        filters.jobType !== "All Types" || 
+        filters.location !== "All Locations" || 
+        filters.nearbyLocation || 
+        filters.industry !== "All Industries" || 
+        filters.companySize !== "All Sizes" ) && (
         <div className="flex flex-wrap gap-2 md:mx-10 lg:mx-24 mb-4">
-          {filters.jobType.map(type => (
-            <span key={type} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-              {type}
+          {filters.easyApply && (
+            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+              Easy Apply
             </span>
-          ))}
-          {filters.experienceLevel.map(level => (
-            <span key={level} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-              {level}
+          )}
+          {filters.datePosted !== "anytime" && (
+            <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+              {filters.datePosted}
             </span>
-          ))}
+          )}
+          {filters.experienceLevel !== "All Levels" && (
+            <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+              {filters.experienceLevel}
+            </span>
+          )}
+          {filters.jobType !== "All Types" && (
+            <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
+              {filters.jobType}
+            </span>
+          )}
+          {filters.location !== "All Locations" && (
+            <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">
+              {filters.location}
+            </span>
+          )}
+          {filters.nearbyLocation && (
+            <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">
+              Near: {filters.nearbyLocation}
+            </span>
+          )}
+          {filters.industry !== "All Industries" && (
+            <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">
+              {filters.industry}
+            </span>
+          )}
+          {filters.companySize !== "All Sizes" && (
+            <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">
+              {filters.companySize}
+            </span>
+          )}
           {filters.salaryRange !== "Any" && (
             <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
               {filters.salaryRange}
             </span>
           )}
-          {filters.skills.map(skill => (
-            <span key={skill} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-              {skill}
-            </span>
-          ))}
           <button 
             onClick={() => setFilters({
-              jobType: [],
-              experienceLevel: [],
+              easyApply: false,
+              datePosted: "anytime",
+              experienceLevel: "All Levels",
+              jobType: "All Types",
+              location: "All Locations",
+              nearbyLocation: "",
+              industry: "All Industries",
+              companySize: "All Sizes",
               salaryRange: "Any",
-              skills: [],
             })}
             className="text-red-600 hover:text-red-800 text-sm underline"
           >
@@ -228,7 +351,7 @@ const AllLatestJobs = () => {
 
       {/* Job Listings */}
       {currentJobs.length > 0 ? (
-        <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         
           {currentJobs.map((job) => (
             <div
@@ -339,10 +462,15 @@ const AllLatestJobs = () => {
             <p className="text-xl text-gray-600">No jobs match your filter criteria</p>
             <button 
               onClick={() => setFilters({
-                jobType: [],
-                experienceLevel: [],
+                easyApply: false,
+                datePosted: "anytime",
+                experienceLevel: "All Levels",
+                jobType: "All Types",
+                location: "All Locations",
+                nearbyLocation: "",
+                industry: "All Industries",
+                companySize: "All Sizes",
                 salaryRange: "Any",
-                skills: [],
               })}
               className="mt-4 text-blue-600 hover:text-blue-800 underline"
             >
@@ -378,6 +506,8 @@ const AllLatestJobs = () => {
           onClose={() => setIsTogglePageOpen(false)}
         />
       )}
+
+    </div>
     </div>
   );
 };

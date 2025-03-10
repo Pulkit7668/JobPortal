@@ -5,6 +5,7 @@ import TopRecruiters from "../Components/TopRecruiters/TopRecruiters";
 import FilterJob from "../Components/FilterJobs/FilterJob";
 import RecommendedJobs from "../Components/RecommendedJobs/RecommendedJobs";
 import LatestJob from "../Components/LatestJobs/LatestJob";
+import Footer from "../Components/Footer/Footer";
 
 function Homepage() {
 
@@ -20,6 +21,7 @@ function Homepage() {
       <RecommendedJobs />
       <LatestJob />
       <TopRecruiters />
+      <Footer />
     </>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { PiStarFourFill } from "react-icons/pi";
 import { useLocation } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 const SubscriptionPlan = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
@@ -454,6 +455,7 @@ const SubscriptionPlan = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,31 +1,42 @@
 import React from 'react';
+import { FaUser, FaFileAlt, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaInfoCircle } from 'react-icons/fa';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const quickLinks = [
-    { id: 'all', name: 'All Sections', icon: '📋' },
-    { id: 'resume', name: 'Resume', icon: '📄' },
-    { id: 'experience', name: 'Experience', icon: '💼' },
-    { id: 'education', name: 'Education', icon: '🎓' },
-    { id: 'skills', name: 'Skills & Keywords', icon: '🛠️' },
-    { id: 'projects', name: 'Projects', icon: '🚀' },
-    { id: 'settings', name: 'Settings', icon: '⚙️' }
+    { id: 'profile', name: 'Profile', icon: <FaUser /> },
+    { id: 'basicDetails', name: 'Basic Details', icon: <FaInfoCircle /> },
+    { id: 'resume', name: 'Resume', icon: <FaFileAlt /> },
+    { id: 'experience', name: 'Experience', icon: <FaBriefcase /> },
+    { id: 'education', name: 'Education', icon: <FaGraduationCap /> },
+    { id: 'skills', name: 'Skills & Keywords', icon: <FaTools /> },
+    { id: 'projects', name: 'Projects', icon: <FaRocket /> }
   ];
 
+  const handleTabClick = (id) => {
+    setActiveTab(id);
+
+    // Scroll to the section
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <div className="w-64 bg-gray-800 text-white h-screen sticky top-0 hidden md:block">
-      <div className="p-5 mt-10">
+    <div className="w-64 bg-gray-800 text-white h-screen fixed left-0 top-0 hidden md:block">
+      <div className="px-5 py-24">
         <h2 className="text-sm uppercase tracking-wider text-gray-400 mb-4 pl-2">Quick Links</h2>
         <nav>
           <ul>
             {quickLinks.map((link) => (
               <li key={link.id} className="mb-2">
                 <button 
-                  onClick={() => setActiveTab(link.id)}
+                  onClick={() => handleTabClick(link.id)}
                   className={`flex items-center w-full p-2 rounded transition-colors ${
                     activeTab === link.id ? 'bg-blue-700 text-white' : 'hover:bg-gray-700 text-gray-300'
                   }`}
                 >
-                  <span className="mr-3">{link.icon}</span>
+                  <span className="mr-3 text-lg">{link.icon}</span>
                   {link.name}
                 </button>
               </li>

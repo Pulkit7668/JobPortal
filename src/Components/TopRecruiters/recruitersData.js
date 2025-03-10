@@ -893,3 +893,20 @@ export const recruitersData = [
         ]
     }      
 ];
+
+export const companyLogos = {
+  "Tata Consultancy Services (TCS)": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1280px-Infosys_logo.svg.png",
+  "Tata Consultancy Services (TCS)":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/2560px-Tata_Consultancy_Services_Logo.svg.png",
+  "Tata Consultancy Services (TCS)":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/2560px-Wipro_Primary_Logo_Color_RGB.svg.png",
+  "Tata Consultancy Services (TCS)":
+    "https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg",
+  "Tata Consultancy Services (TCS)": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/2560px-Accenture.svg.png",
+  "Tata Consultancy Services (TCS)":
+    "https://www.capgemini.com/wp-content/themes/capgemini2020/assets/images/logo.svg",
+  "Tata Consultancy Services (TCS)":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png",
+  "Tata Consultancy Services (TCS)":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png",
+}

@@ -38,13 +38,18 @@ function JobDetailsForSkills() {
   const [selectedJob, setSelectedJob] = useState(null)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(null)
+  const [sortBy, setSortBy] = useState("sort-by")
 
   // Filter states
   const [filters, setFilters] = useState({
-    jobType: [],
-    experienceLevel: [],
-    salaryRange: "Any",
-    skills: [],
+    easyApply: false,
+    datePosted: "anytime",
+    experienceLevel: "All Levels",
+    jobType: "All Types",
+    location: "All Locations",
+    nearbyLocation: "",
+    industry: "All Industries",
+    companySize: "All Sizes",
   })
 
   const [filteredJobs, setFilteredJobs] = useState([])
@@ -54,59 +59,92 @@ function JobDetailsForSkills() {
   const jobsPerPage = 6
 
   // Apply filters to jobs
-  const applyFilters = useCallback((filterOptions) => {
-    let result = jobs.filter((job) => job.skills.some((skill) => userSkills.includes(skill)))
+  const applyFilters = useCallback(
+    (filterOptions) => {
+      let result = jobs.filter((job) => job.skills.some((skill) => userSkills.includes(skill)))
 
-    // Filter by job type if any selected
-    if (filterOptions.jobType.length > 0) {
-      result = result.filter((job) =>
-        filterOptions.jobType.some((type) => job.type?.toLowerCase().includes(type.toLowerCase())),
-      )
-    }
+      // Filter by easy apply
+      if (filterOptions.easyApply) {
+        result = result.filter((job) => job.easyApply === true)
+      }
 
-    // Filter by experience level if any selected
-    if (filterOptions.experienceLevel.length > 0) {
-      result = result.filter((job) =>
-        filterOptions.experienceLevel.some((level) => {
-          if (level === "Entry Level" && job.experience.includes("0-2")) return true
-          if (level === "Mid Level" && job.experience.includes("3-5")) return true
-          if (level === "Senior" && job.experience.includes("5+")) return true
-          if (level === "Executive" && job.experience.includes("10+")) return true
+      // Filter by date posted
+      if (filterOptions.datePosted !== "anytime") {
+        const now = new Date()
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+
+        result = result.filter((job) => {
+          const postDate = new Date(job.posted_date)
+          const diffTime = Math.abs(today - postDate)
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+          if (filterOptions.datePosted === "past 24 hours") {
+            return diffDays <= 1
+          } else if (filterOptions.datePosted === "past week") {
+            return diffDays <= 7
+          }
+          return true
+        })
+      }
+
+      // Filter by experience level
+      if (filterOptions.experienceLevel !== "All Levels") {
+        result = result.filter((job) => {
+          if (filterOptions.experienceLevel === "Entry Level" && job.experience.includes("0-2")) return true
+          if (filterOptions.experienceLevel === "Mid Level" && job.experience.includes("3-5")) return true
+          if (filterOptions.experienceLevel === "Senior Level" && job.experience.includes("5+")) return true
+          if (filterOptions.experienceLevel === "Executive" && job.experience.includes("10+")) return true
           return false
-        }),
-      )
-    }
+        })
+      }
 
-    // Filter by salary range if not "Any"
-    if (filterOptions.salaryRange !== "Any") {
-      result = result.filter((job) => {
-        const jobSalary = Number.parseInt(job.salary.replace(/[^0-9]/g, ""))
+      // Filter by job type
+      if (filterOptions.jobType !== "All Types") {
+        result = result.filter((job) => job.type?.toLowerCase().includes(filterOptions.jobType.toLowerCase()))
+      }
 
-        if (filterOptions.salaryRange === "0-30,000") {
-          return jobSalary <= 30000
-        } else if (filterOptions.salaryRange === "30,000-60,000") {
-          return jobSalary > 30000 && jobSalary <= 60000
-        } else if (filterOptions.salaryRange === "60,000-90,000") {
-          return jobSalary > 60000 && jobSalary <= 90000
-        } else if (filterOptions.salaryRange === "90,000+") {
-          return jobSalary > 90000
-        }
-        return true
-      })
-    }
+      // Filter by location
+      if (filterOptions.location !== "All Locations") {
+        result = result.filter((job) => job.location.toLowerCase().includes(filterOptions.location.toLowerCase()))
+      }
 
-    // Filter by skills if any selected
-    if (filterOptions.skills.length > 0) {
-      result = result.filter((job) =>
-        filterOptions.skills.some((skill) =>
-          job.skills.some((jobSkill) => jobSkill.toLowerCase().includes(skill.toLowerCase())),
-        ),
-      )
-    }
+      // Filter by nearby location
+      if (filterOptions.nearbyLocation) {
+        result = result.filter((job) => job.location.toLowerCase().includes(filterOptions.nearbyLocation.toLowerCase()))
+      }
 
-    setFilteredJobs(result)
-    setCurrentPage(1) // Reset to first page when filters change
-  }, [])
+      // Filter by industry
+      if (filterOptions.industry !== "All Industries") {
+        result = result.filter((job) => job.industry?.toLowerCase().includes(filterOptions.industry.toLowerCase()))
+      }
+
+      // Filter by company size
+      if (filterOptions.companySize !== "All Sizes") {
+        result = result.filter((job) => job.companySize === filterOptions.companySize)
+      }
+
+      // Sort the results
+      if (sortBy === "recent") {
+        result.sort((a, b) => new Date(b.posted_date) - new Date(a.posted_date))
+      } else if (sortBy === "salary-high") {
+        result.sort((a, b) => {
+          const salaryA = Number.parseInt(a.salary.replace(/[^0-9]/g, ""))
+          const salaryB = Number.parseInt(b.salary.replace(/[^0-9]/g, ""))
+          return salaryB - salaryA
+        })
+      } else if (sortBy === "salary-low") {
+        result.sort((a, b) => {
+          const salaryA = Number.parseInt(a.salary.replace(/[^0-9]/g, ""))
+          const salaryB = Number.parseInt(b.salary.replace(/[^0-9]/g, ""))
+          return salaryA - salaryB
+        })
+      }
+
+      setFilteredJobs(result)
+      setCurrentPage(1)
+    },
+    [sortBy],
+  )
 
   // Calculate total pages and jobs for the current page
   const totalPages = Math.ceil(filteredJobs.length / jobsPerPage)
@@ -181,7 +219,7 @@ function JobDetailsForSkills() {
   }, [filters, applyFilters])
 
   return (
-    <div className="p-6 lg:mx-20 mb-5 mt-10 relative">
+    <div className="flex min-h-screen">
       {/* Filter Panel */}
       <FilterPanel
         isOpen={isFilterOpen}
@@ -191,229 +229,285 @@ function JobDetailsForSkills() {
         setFilters={setFilters}
       />
 
-      {/* Overlay when filter is open */}
-      {isFilterOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsFilterOpen(false)} />
-      )}
+      {/* Main Content */}
+      <div className="flex-1 p-6 lg:ml-72 mb-5 mt-10">
+        <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center">
+            <button onClick={() => navigate(-1)} className="text-blue-600 hover:text-blue-800 mr-4">
+              <FaArrowLeft
+                size={40}
+                className=" p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"
+              />
+            </button>
+            <h2 className="text-2xl font-bold">More Jobs for Your Skills</h2>
+          </div>
 
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center">
-          <button onClick={() => navigate(-1)} className="text-blue-600 hover:text-blue-800">
-            <FaArrowLeft
-              size={35}
-              className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"
-            />
-          </button>
-          <h2 className="text-2xl font-bold">More Jobs for Your Skills</h2>
+          <div className="flex items-center gap-4">
+            {/* Sort By Dropdown */}
+            <div className="hidden md:block">
+              <select
+                value={sortBy}
+                onChange={(e) => {
+                  setSortBy(e.target.value)
+                  applyFilters(filters)
+                }}
+                className="bg-white border border-gray-300 px-3 py-2 rounded-md text-gray-700 shadow-sm focus:ring focus:ring-blue-500 text-sm"
+              >
+                <option value="sort-by">Sort By</option>
+                <option value="relevance">Relevance</option>
+                <option value="recent">Most Recent</option>
+                <option value="salary-high">Salary (High to Low)</option>
+                <option value="salary-low">Salary (Low to High)</option>
+              </select>
+            </div>
+
+            {/* Filter Button - Only visible on mobile */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className="flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
+              >
+                <Filter size={24} className="mr-1" />
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Filter Button */}
-        <div className="flex items-center xs:block lg:hidden">
-          {/* Filter Button */}
-          <button
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="ml-4 flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
+        {/* Sort By Dropdown - Mobile Only */}
+        <div className="md:hidden mb-4">
+          <select
+            value={sortBy}
+            onChange={(e) => {
+              setSortBy(e.target.value)
+              applyFilters(filters)
+            }}
+            className="bg-white border border-gray-300 px-3 py-2 rounded-md text-gray-700 shadow-sm focus:ring focus:ring-blue-500 text-sm w-full"
           >
-            <Filter size={24} className="mr-1" />
-            <span className="hidden sm:inline">Filter</span>
-          </button>
+            <option value="sort-by">Sort By</option>
+            <option value="relevance">Relevance</option>
+            <option value="recent">Most Recent</option>
+            <option value="salary-high">Salary (High to Low)</option>
+            <option value="salary-low">Salary (Low to High)</option>
+          </select>
         </div>
-      </div>
 
-      {/* Active Filters Display */}
-      {(filters.jobType.length > 0 ||
-        filters.experienceLevel.length > 0 ||
-        filters.salaryRange !== "Any" ||
-        filters.skills.length > 0) && (
-        <div className="flex flex-wrap gap-2 mb-4">
-          {filters.jobType.map((type) => (
-            <span key={type} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-              {type}
-            </span>
-          ))}
-          {filters.experienceLevel.map((level) => (
-            <span key={level} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-              {level}
-            </span>
-          ))}
-          {filters.salaryRange !== "Any" && (
-            <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">{filters.salaryRange}</span>
-          )}
-          {filters.skills.map((skill) => (
-            <span key={skill} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-              {skill}
-            </span>
-          ))}
-          <button
-            onClick={() =>
-              setFilters({
-                jobType: [],
-                experienceLevel: [],
-                salaryRange: "Any",
-                skills: [],
-              })
-            }
-            className="text-red-600 hover:text-red-800 text-sm underline"
-          >
-            Clear All
-          </button>
-        </div>
-      )}
-
-      {currentJobs.length > 0 ? (
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {currentJobs.map((job) => (
-            <div
-              key={job.id}
-              className="p-4 bg-white border border-gray-200 rounded-xl hover:shadow-blue-200 transition-shadow duration-300 flex flex-col justify-between"
+        {/* Active Filters Display */}
+        {(filters.easyApply ||
+          filters.datePosted !== "anytime" ||
+          filters.experienceLevel !== "All Levels" ||
+          filters.jobType !== "All Types" ||
+          filters.location !== "All Locations" ||
+          filters.nearbyLocation ||
+          filters.industry !== "All Industries" ||
+          filters.companySize !== "All Sizes") && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {filters.easyApply && (
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Easy Apply</span>
+            )}
+            {filters.datePosted !== "anytime" && (
+              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">{filters.datePosted}</span>
+            )}
+            {filters.experienceLevel !== "All Levels" && (
+              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                {filters.experienceLevel}
+              </span>
+            )}
+            {filters.jobType !== "All Types" && (
+              <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">{filters.jobType}</span>
+            )}
+            {filters.location !== "All Locations" && (
+              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">{filters.location}</span>
+            )}
+            {filters.nearbyLocation && (
+              <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">
+                Near: {filters.nearbyLocation}
+              </span>
+            )}
+            {filters.industry !== "All Industries" && (
+              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">{filters.industry}</span>
+            )}
+            {filters.companySize !== "All Sizes" && (
+              <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">{filters.companySize}</span>
+            )}
+            <button
+              onClick={() =>
+                setFilters({
+                  easyApply: false,
+                  datePosted: "anytime",
+                  experienceLevel: "All Levels",
+                  jobType: "All Types",
+                  location: "All Locations",
+                  nearbyLocation: "",
+                  industry: "All Industries",
+                  companySize: "All Sizes",
+                })
+              }
+              className="text-red-600 hover:text-red-800 text-sm underline"
             >
-              <div className="flex justify-between items-center mb-3">
-                <div className="flex items-center">
-                  <img
-                    src={getCompanyLogo(job.company) || "/placeholder.svg"}
-                    alt={`${job.company} logo`}
-                    className="w-12 h-12 rounded-xl mr-3 p-1 object-contain border border-gray-400"
-                  />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
-                    <div className="flex items-center">
-                      <p className="text-gray-600 mr-2">{job.company}</p>
-                      {job.isVerified && (
-                        <FaCheckCircle size={12} className="text-green-500" title="Verified Company" />
+              Clear All
+            </button>
+          </div>
+        )}
+
+        {currentJobs.length > 0 ? (
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {currentJobs.map((job) => (
+              <div
+                key={job.id}
+                className="p-4 bg-white border border-gray-200 rounded-xl hover:shadow-blue-200 transition-shadow duration-300 flex flex-col justify-between"
+              >
+                <div className="flex justify-between items-center mb-3">
+                  <div className="flex items-center">
+                    <img
+                      src={getCompanyLogo(job.company) || "/placeholder.svg"}
+                      alt={`${job.company} logo`}
+                      className="w-12 h-12 rounded-xl mr-3 p-1 object-contain border border-gray-400"
+                    />
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
+                      <div className="flex items-center">
+                        <p className="text-gray-600 mr-2">{job.company}</p>
+                        {job.isVerified && (
+                          <FaCheckCircle size={12} className="text-green-500" title="Verified Company" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full mr-2">
+                      {getDaysAgo(job.application_deadline)}
+                    </span>
+                    <div className="relative">
+                      <button onClick={() => toggleMenu(job.id)} className="text-gray-500 hover:text-gray-700">
+                        <FaEllipsisV />
+                      </button>
+                      {menuOpen === job.id && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
+                          <div className="py-1">
+                            <button
+                              onClick={() => handleSaveJob(job.id)}
+                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                            >
+                              <FaBookmark className="mr-2" /> Save Job
+                            </button>
+                            <button
+                              onClick={() => handleShareJob(job.id)}
+                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                            >
+                              <FaShareAlt className="mr-2" /> Share Job
+                            </button>
+                            <button
+                              onClick={() => handleRateCompany(job.company)}
+                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                            >
+                              <FaStar className="mr-2" /> Rate Company
+                            </button>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center">
-                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full mr-2">
-                    {getDaysAgo(job.application_deadline)}
-                  </span>
-                  <div className="relative">
-                    <button onClick={() => toggleMenu(job.id)} className="text-gray-500 hover:text-gray-700">
-                      <FaEllipsisV />
-                    </button>
-                    {menuOpen === job.id && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
-                        <div className="py-1">
-                          <button
-                            onClick={() => handleSaveJob(job.id)}
-                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                          >
-                            <FaBookmark className="mr-2" /> Save Job
-                          </button>
-                          <button
-                            onClick={() => handleShareJob(job.id)}
-                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                          >
-                            <FaShareAlt className="mr-2" /> Share Job
-                          </button>
-                          <button
-                            onClick={() => handleRateCompany(job.company)}
-                            className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                          >
-                            <FaStar className="mr-2" /> Rate Company
-                          </button>
-                        </div>
-                      </div>
+                <div className="flex items-center mb-2">
+                  <CiLocationOn size={16} className="text-gray-500 mr-1" />
+                  <p className="text-sm text-gray-500">{job.location}</p>
+                </div>
+                <div className="mt-2 space-y-1">
+                  <p className="text-xs text-gray-600 flex items-center">
+                    <span className="font-semibold mr-1">Experience:</span> {job.experience}
+                  </p>
+                  <p className="text-xs text-gray-600 flex items-center">
+                    <span className="font-semibold mr-1">Salary:</span> {job.salary}
+                  </p>
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <p className="text-xs font-semibold text-gray-700 mb-1">Skills:</p>
+                  <div className="flex flex-wrap gap-1">
+                    {job.skills.slice(0, 3).map((skill, index) => (
+                      <span key={index} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
+                        {skill}
+                      </span>
+                    ))}
+                    {job.skills.length > 3 && (
+                      <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
+                        +{job.skills.length - 3}
+                      </span>
                     )}
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center mb-2">
-                <CiLocationOn size={16} className="text-gray-500 mr-1" />
-                <p className="text-sm text-gray-500">{job.location}</p>
-              </div>
-              <div className="mt-2 space-y-1">
-                <p className="text-xs text-gray-600 flex items-center">
-                  <span className="font-semibold mr-1">Experience:</span> {job.experience}
-                </p>
-                <p className="text-xs text-gray-600 flex items-center">
-                  <span className="font-semibold mr-1">Salary:</span> {job.salary}
-                </p>
-              </div>
-              <div className="mt-2 flex items-center gap-2">
-                <p className="text-xs font-semibold text-gray-700 mb-1">Skills:</p>
-                <div className="flex flex-wrap gap-1">
-                  {job.skills.slice(0, 3).map((skill, index) => (
-                    <span key={index} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
-                      {skill}
-                    </span>
-                  ))}
-                  {job.skills.length > 3 && (
-                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
-                      +{job.skills.length - 3}
-                    </span>
-                  )}
+                <div className="flex items-center justify-between mt-4 border-t border-gray-200 pt-3">
+                  <button
+                    onClick={() => handleApplyNow(job)}
+                    className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                  >
+                    Apply Now
+                  </button>
+                  <Link
+                    to={`/jobforskills/job/${job.id}`}
+                    className="px-3 py-2 text-sm font-semibold text-blue-700 hover:underline"
+                  >
+                    More Details
+                  </Link>
                 </div>
               </div>
-              <div className="flex items-center justify-between mt-4 border-t border-gray-200 pt-3">
-                <button
-                  onClick={() => handleApplyNow(job)}
-                  className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
-                >
-                  Apply Now
-                </button>
-                <Link
-                  to={`/jobforskills/job/${job.id}`}
-                  className="px-3 py-2 text-sm font-semibold text-blue-700 hover:underline"
-                >
-                  More Details
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>No jobs available for your skills at the moment.</p>
-      )}
+            ))}
+          </div>
+        ) : (
+          <p>No jobs available for your skills at the moment.</p>
+        )}
 
-      {/* Pagination */}
-      {filteredJobs.length > 0 && (
-        <div className="flex justify-center mt-6 space-x-2">
-          {/* Previous Button */}
-          <button
-            onClick={goToPreviousPage}
-            disabled={currentPage === 1}
-            className={`w-10 h-10 flex items-center justify-center border rounded-full ${
-              currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-700"
-            }`}
-          >
-            <FaChevronLeft size={15} />
-          </button>
-
-          {/* Page Number Buttons */}
-          {Array.from({ length: totalPages }, (_, index) => (
+        {/* Pagination */}
+        {filteredJobs.length > 0 && (
+          <div className="flex justify-center mt-6 space-x-2">
+            {/* Previous Button */}
             <button
-              key={index + 1}
-              onClick={() => setCurrentPage(index + 1)}
+              onClick={goToPreviousPage}
+              disabled={currentPage === 1}
               className={`w-10 h-10 flex items-center justify-center border rounded-full ${
-                currentPage === index + 1 ? "bg-blue-700 text-white" : "bg-gray-200 hover:bg-blue-600 hover:text-white"
+                currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-700"
               }`}
             >
-              {index + 1}
+              <FaChevronLeft size={15} />
             </button>
-          ))}
 
-          {/* Next Button */}
-          <button
-            onClick={goToNextPage}
-            disabled={currentPage === totalPages}
-            className={`w-10 h-10 flex items-center justify-center border rounded-full ${
-              currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-700"
-            }`}
-          >
-            <FaChevronRight size={15} />
-          </button>
-        </div>
-      )}
+            {/* Page Number Buttons */}
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`w-10 h-10 flex items-center justify-center border rounded-full ${
+                  currentPage === index + 1
+                    ? "bg-blue-700 text-white"
+                    : "bg-gray-200 hover:bg-blue-600 hover:text-white"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
 
+            {/* Next Button */}
+            <button
+              onClick={goToNextPage}
+              disabled={currentPage === totalPages}
+              className={`w-10 h-10 flex items-center justify-center border rounded-full ${
+                currentPage === totalPages
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-blue-600 text-white hover:bg-blue-700"
+              }`}
+            >
+              <FaChevronRight size={15} />
+            </button>
+          </div>
+        )}
 
-      {/* Toggle Page */}
-      {isTogglePageOpen && <TogglePage jobTitle={selectedJob?.title} onClose={() => setIsTogglePageOpen(false)} />}
+        {/* Toggle Page */}
+        {isTogglePageOpen && <TogglePage jobTitle={selectedJob?.title} onClose={() => setIsTogglePageOpen(false)} />}
+      </div>
     </div>
   )
 }
 
 export default JobDetailsForSkills
+
 
 
