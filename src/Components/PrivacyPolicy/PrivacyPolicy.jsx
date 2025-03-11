@@ -3,7 +3,7 @@ import { privacyPolicyData } from "./data";
 
 const PrivacyPolicy = () => {
   const [openSections, setOpenSections] = useState({
-    introduction: true,
+    introduction: false,
     informationCollect: false,
     useInformation: false,
     dataStorage: false,
@@ -271,23 +271,6 @@ const PrivacyPolicy = () => {
           </svg>
         </button>
       )}
-
-      {/* Add CSS for animations */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
-        }
-        
-        @media print {
-          .print\\:hidden {
-            display: none !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };
