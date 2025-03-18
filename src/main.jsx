@@ -28,7 +28,7 @@ import BlockedCompanies from "./Components/BlockedCompanies/BlockedCompanies.jsx
 import SavedJobs from "./Components/SavedJobs/SavedJobs.jsx";
 import { AuthProvider } from "./Context/AuthContext.jsx"; 
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword.jsx";
-import SubscriptionPlan from "./Components/SubscriptionPlan/SubscriptionPlan.jsx";
+// import SubscriptionPlan from "./Components/SubscriptionPlan/SubscriptionPlan.jsx";
 import Signup from "./Components/SignUpPage/Signup.jsx";
 import AllLatestJobs from "./Components/LatestJobs/AllLatestJobs.jsx";
 import LatestJobDetail from "./Components/LatestJobs/LatestJobDetails.jsx";
@@ -82,7 +82,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/blocked-companies" element={<BlockedCompanies />} />
             <Route path="/saved-jobs" element={<SavedJobs />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/subscription-plan" element={<SubscriptionPlan />} />
+            {/* <Route path="/subscription-plan" element={<SubscriptionPlan />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/all-latest-jobs" element={<AllLatestJobs />} />
             <Route path="/latest/job/:id" element={<LatestJobDetail />} />

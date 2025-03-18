@@ -1,24 +1,37 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../Context/AuthContext";
-import { FaTimes } from "react-icons/fa";
-import { Toaster, toast } from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
-import ForgotPassword from "../ForgotPassword/ForgotPassword";
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuth } from "../../Context/AuthContext"
+import { FaTimes } from "react-icons/fa"
+import { Toaster, toast } from "react-hot-toast"
+import { FcGoogle } from "react-icons/fc"
+import ForgotPassword from "../ForgotPassword/ForgotPassword"
 
 const LoginPage = ({ isOpen, onClose }) => {
-  const { login, loginWithGoogle, user } = useAuth();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const { login, loginWithGoogle, loginWithPhone } = useAuth()
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const [loginMethod, setLoginMethod] = useState("email")
+  const [email, setEmail] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [isForgotPassword, setIsForgotPassword] = useState(false)
 
-  const isFormValid = email.trim() !== "" && password.trim() !== "";
+  const isFormValid =
+    loginMethod === "email"
+      ? email.trim() !== "" && password.trim() !== ""
+      : phoneNumber.trim() !== "" && password.trim() !== ""
+
+  // Validate phone number format
+  const isValidPhoneNumber = (phone) => {
+    // Basic validation - can be enhanced based on your requirements
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/
+    return phoneRegex.test(phone)
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+
     if (!isFormValid) {
       toast.error("Please fill in all fields!", {
         position: "top-center",
@@ -26,23 +39,40 @@ const LoginPage = ({ isOpen, onClose }) => {
           background: "#f8d7da",
           color: "#721c24",
         },
-      });
-      return;
+      })
+      return
     }
 
-    setLoading(true);
+    // Validate phone number if phone login method is selected
+    if (loginMethod === "phone" && !isValidPhoneNumber(phoneNumber)) {
+      toast.error("Please enter a valid phone number!", {
+        position: "top-center",
+        style: {
+          background: "#f8d7da",
+          color: "#721c24",
+        },
+      })
+      return
+    }
+
+    setLoading(true)
     setTimeout(async () => {
       try {
-        await login();
+        if (loginMethod === "email") {
+          await login(email)
+        } else {
+          await loginWithPhone(phoneNumber)
+        }
+
         toast.success("Login successful!", {
           position: "top-center",
           style: {
             background: "#d4edda",
             color: "#155724",
           },
-        });
-        onClose();
-        navigate("/");
+        })
+        onClose()
+        navigate("/")
       } catch (error) {
         toast.error("Login failed. Please try again.", {
           position: "top-center",
@@ -50,52 +80,49 @@ const LoginPage = ({ isOpen, onClose }) => {
             background: "#f8d7da",
             color: "#721c24",
           },
-        });
+        })
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    }, 2000);
-  };
+    }, 2000)
+  }
 
   const handleGoogleLogin = async () => {
-    setLoading(true);
-    try {
-      await loginWithGoogle();
-      toast.success("Login successful!", {
-        position: "top-center",
-        style: {
-          background: "#d4edda",
-          color: "#155724",
-        },
-      });
-      onClose();
-      navigate("/");
-    } catch (error) {
-      toast.error("Login failed. Please try again.", {
-        position: "top-center",
-        style: {
-          background: "#f8d7da",
-          color: "#721c24",
-        },
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+    setLoading(true)
+    setTimeout(async () => {
+      try {
+        await loginWithGoogle()
+        toast.success("Login successful!", {
+          position: "top-center",
+          style: {
+            background: "#d4edda",
+            color: "#155724",
+          },
+        })
+        onClose()
+        navigate("/")
+      } catch (error) {
+        toast.error("Login failed. Please try again.", {
+          position: "top-center",
+          style: {
+            background: "#f8d7da",
+            color: "#721c24",
+          },
+        })
+      } finally {
+        setLoading(false)
+      }
+    }, 2000)
+  }
 
   const toggleForgotPassword = () => {
-    setIsForgotPassword(!isForgotPassword);
-  };
+    setIsForgotPassword(!isForgotPassword)
+  }
 
   return (
     <>
       <Toaster />
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40"
-          onClick={onClose}
-        ></div>
-      )}
+      {isOpen && <div className="fixed inset-0 bg-black bg-opacity-30 z-40" onClick={onClose}></div>}
       <div
         className={`fixed top-0 right-0 h-full md:w-[50%] 2xl:w-[25%] bg-white md:rounded-l-3xl shadow-xl z-50 flex flex-col transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -104,44 +131,76 @@ const LoginPage = ({ isOpen, onClose }) => {
         <div className="">
           <div className="flex items-center justify-between mb-6">
             {/* Title */}
-            <h2 className="xs:text-xl md:text-2xl font-bold text-blue-600">
-              Login to Your Account
-            </h2>
+            <h2 className="xs:text-xl md:text-2xl font-bold text-blue-600">Login to Your Account</h2>
             {/* Close Button */}
-            <button
-              className="text-gray-500 hover:text-gray-800"
-              onClick={onClose}
-            >
+            <button className="text-gray-500 hover:text-gray-800" onClick={onClose}>
               <FaTimes size={20} />
             </button>
           </div>
+
+          {/* Login Method Tabs */}
+          <div className="flex mb-6 border-b border-gray-200">
+            <button
+              className={`py-2 px-4 font-medium text-sm ${
+                loginMethod === "email"
+                  ? "text-blue-600 border-b-2 border-blue-600"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+              onClick={() => setLoginMethod("email")}
+            >
+              Email
+            </button>
+            <button
+              className={`py-2 px-4 font-medium text-sm ${
+                loginMethod === "phone"
+                  ? "text-blue-600 border-b-2 border-blue-600"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+              onClick={() => setLoginMethod("phone")}
+            >
+              Phone Number
+            </button>
+          </div>
+
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Email Field */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
-                placeholder="Enter your email"
-              />
-            </div>
+            {/* Email/Phone Field */}
+            {loginMethod === "email" ? (
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
+                  placeholder="Enter your email"
+                />
+              </div>
+            ) : (
+              <div>
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  required
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
+                  placeholder="Enter your phone number (e.g., +1234567890)"
+                />
+                <p className="mt-1 text-xs text-gray-500">Format: +[country code][number] (e.g., +12025550123)</p>
+              </div>
+            )}
 
             {/* Password Field */}
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <div className="relative">
@@ -183,11 +242,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                   : "hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
               }`}
             >
-              {loading ? (
-                <div className="loader mx-auto"></div>
-              ) : (
-                "Login"
-              )}
+              {loading ? <div className="loader mx-auto"></div> : "Login"}
             </button>
           </form>
 
@@ -212,24 +267,22 @@ const LoginPage = ({ isOpen, onClose }) => {
 
           {/* Signup Link */}
           <p className="text-center text-sm text-gray-600">
-            Don’t have an account?{" "}
-            <Link
-              to="/signup"
-              onClick={onClose} 
-              className="text-blue-600 hover:underline font-medium"
-            >
+            Don't have an account?{" "}
+            <Link to="/signup" onClick={onClose} className="text-blue-600 hover:underline font-medium">
               Sign up here
             </Link>
           </p>
           <p className="text-center text-sm text-gray-600 mt-2">
             Are you a recruiter?{" "}
-            <Link
-              to="/recruiter-page"
-              onClick={onClose} 
+            <a
+              href="https://static-page-0011.netlify.app/"
+              onClick={onClose}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-600 hover:underline font-medium"
             >
               Recruiter Sign up
-            </Link>
+            </a>
           </p>
         </div>
       </div>
@@ -237,7 +290,9 @@ const LoginPage = ({ isOpen, onClose }) => {
       {/* Forgot Password Modal */}
       <ForgotPassword isOpen={isForgotPassword} onClose={toggleForgotPassword} />
     </>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage
+
+

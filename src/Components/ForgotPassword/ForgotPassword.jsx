@@ -249,7 +249,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
                   Enter OTP
                 </label>
                 <div className="flex space-x-2">
-                  {[...Array(5)].map((_, index) => (
+                  {[...Array(6)].map((_, index) => (
                     <input
                       key={index}
                       type="text"

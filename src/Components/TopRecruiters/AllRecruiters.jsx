@@ -5,7 +5,6 @@ import { FaArrowLeft, FaChevronLeft, FaChevronRight, FaAngleDown } from "react-i
 import { CiLocationOn } from "react-icons/ci";
 import FilterRecruiters from "./FilterRecruiters";
 
-
 function AllRecruiters() {
   const navigate = useNavigate();
   const [isFilterOpen, setIsFilterOpen] = useState(false);

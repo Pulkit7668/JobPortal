@@ -51,13 +51,13 @@ function Navbar() {
     navigate("/signup");
   };
 
-  const handleSubscriptionClick = (e) => {
-    if (!isLoggedIn) {
-      e.preventDefault();
-      toast.error("Please log in to access the Subscription Plan.");
-      toggleLogin();
-    }
-  };
+  // const handleSubscriptionClick = (e) => {
+  //   if (!isLoggedIn) {
+  //     e.preventDefault();
+  //     toast.error("Please log in to access the Subscription Plan.");
+  //     toggleLogin();
+  //   }
+  // };
 
   return (
     <>
@@ -84,17 +84,25 @@ function Navbar() {
           {/* Navigation Links */}
           <nav className="md:space-x-6 lg:ml-48 lg:space-x-10 text-gray-700 relative lg:right-32">
             <div className="group md:inline-block relative font-semibold xs:hidden">
-              <NavLink
-                to="/subscription-plan"
+              {/* <NavLink
+                to="https://static-page-0011.netlify.app/"
                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
-                onClick={handleSubscriptionClick}
+                // onClick={handleSubscriptionClick}
               >
                 Subscription Plan
-              </NavLink>
-            </div>
+              </NavLink> */}
+              <a
+                href="https://static-page-0011.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
+              >
+                Subscription Plan
+              </a>
+            </div>  
             <div className="group md:inline-block relative font-semibold xs:hidden">
               <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
-                Courses
+                Shop
               </NavLink>
             </div>
             {!isLoggedIn && (

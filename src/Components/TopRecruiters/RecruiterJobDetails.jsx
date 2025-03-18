@@ -6,6 +6,7 @@ import { AiOutlineStar, AiOutlineExclamationCircle } from "react-icons/ai";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { CiLocationOn } from "react-icons/ci";
 import TogglePage from "../TogglePage/TogglePage";
+import { useAuth } from "../../Context/AuthContext"; 
 
 function RecruiterJobDetails() {
   const { recruiterId, jobId } = useParams();
@@ -15,7 +16,8 @@ function RecruiterJobDetails() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 5;
-
+  const { isAuthenticated } = useAuth();
+  
   const handleApplyNow = (job) => {
     setSelectedJob(job);
     setISTogglePageOpen(true);
@@ -103,7 +105,8 @@ function RecruiterJobDetails() {
                 <div className="flex items-center mt-3 justify-between">
                   <button
                     onClick={() => handleApplyNow(jobItem)}
-                    className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                    className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
+                    disabled={!isAuthenticated}
                   >
                     Apply Now
                   </button>
@@ -216,7 +219,8 @@ function RecruiterJobDetails() {
           <div className="mt-8 flex justify-center md:justify-end">
             <button
               onClick={() => handleApplyNow(job)}
-              className="bg-blue-600 text-white py-2 px-4 font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+              className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
+              disabled={!isAuthenticated}
             >
               Apply Now
             </button>

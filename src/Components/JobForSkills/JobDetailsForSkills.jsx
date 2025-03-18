@@ -15,6 +15,7 @@ import {
 import { CiLocationOn } from "react-icons/ci"
 import { Filter } from "lucide-react"
 import FilterPanel from "../FilterForJob/FilterPanel"
+import { useAuth } from "../../Context/AuthContext"
 
 // Mock user profile skills
 const userSkills = [
@@ -39,6 +40,8 @@ function JobDetailsForSkills() {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(null)
   const [sortBy, setSortBy] = useState("sort-by")
+  const { isAuthenticated } = useAuth()
+
 
   // Filter states
   const [filters, setFilters] = useState({
@@ -46,10 +49,13 @@ function JobDetailsForSkills() {
     datePosted: "anytime",
     experienceLevel: "All Levels",
     jobType: "All Types",
+    workType: "All Types",
     location: "All Locations",
-    nearbyLocation: "",
+    nearbyLocation: false,
+    isVerified: false,
     industry: "All Industries",
     companySize: "All Sizes",
+    selectedLocations: [],
   })
 
   const [filteredJobs, setFilteredJobs] = useState([])
@@ -103,14 +109,39 @@ function JobDetailsForSkills() {
         result = result.filter((job) => job.type?.toLowerCase().includes(filterOptions.jobType.toLowerCase()))
       }
 
-      // Filter by location
-      if (filterOptions.location !== "All Locations") {
-        result = result.filter((job) => job.location.toLowerCase().includes(filterOptions.location.toLowerCase()))
+      // Filter by work type (renamed from location)
+      if (filterOptions.workType !== "All Types") {
+        result = result.filter((job) => {
+          if (filterOptions.workType === "Remote" && job.location.toLowerCase().includes("remote")) return true
+          if (filterOptions.workType === "On-Site" && !job.location.toLowerCase().includes("remote")) return true
+          if (filterOptions.workType === "Hybrid" && job.location.toLowerCase().includes("hybrid")) return true
+          return false
+        })
+      }
+
+      // Filter by selected locations (new multi-select)
+      if (filterOptions.selectedLocations && filterOptions.selectedLocations.length > 0) {
+        result = result.filter((job) => {
+          return filterOptions.selectedLocations.some((location) =>
+            job.location.toLowerCase().includes(location.toLowerCase()),
+          )
+        })
       }
 
       // Filter by nearby location
       if (filterOptions.nearbyLocation) {
-        result = result.filter((job) => job.location.toLowerCase().includes(filterOptions.nearbyLocation.toLowerCase()))
+        // In a real app, this would use geolocation
+        // For now, just simulate nearby locations
+        result = result.filter((job) =>
+          ["New York", "San Francisco", "Chicago"].some((loc) =>
+            job.location.toLowerCase().includes(loc.toLowerCase()),
+          ),
+        )
+      }
+
+      // Filter by verified companies
+      if (filterOptions.isVerified) {
+        result = result.filter((job) => job.isVerified === true)
       }
 
       // Filter by industry
@@ -122,24 +153,6 @@ function JobDetailsForSkills() {
       if (filterOptions.companySize !== "All Sizes") {
         result = result.filter((job) => job.companySize === filterOptions.companySize)
       }
-
-      // Sort the results
-      if (sortBy === "recent") {
-        result.sort((a, b) => new Date(b.posted_date) - new Date(a.posted_date))
-      } else if (sortBy === "salary-high") {
-        result.sort((a, b) => {
-          const salaryA = Number.parseInt(a.salary.replace(/[^0-9]/g, ""))
-          const salaryB = Number.parseInt(b.salary.replace(/[^0-9]/g, ""))
-          return salaryB - salaryA
-        })
-      } else if (sortBy === "salary-low") {
-        result.sort((a, b) => {
-          const salaryA = Number.parseInt(a.salary.replace(/[^0-9]/g, ""))
-          const salaryB = Number.parseInt(b.salary.replace(/[^0-9]/g, ""))
-          return salaryA - salaryB
-        })
-      }
-
       setFilteredJobs(result)
       setCurrentPage(1)
     },
@@ -296,10 +309,12 @@ function JobDetailsForSkills() {
           filters.datePosted !== "anytime" ||
           filters.experienceLevel !== "All Levels" ||
           filters.jobType !== "All Types" ||
-          filters.location !== "All Locations" ||
+          filters.workType !== "All Types" ||
           filters.nearbyLocation ||
+          filters.isVerified ||
           filters.industry !== "All Industries" ||
-          filters.companySize !== "All Sizes") && (
+          filters.companySize !== "All Sizes" ||
+          (filters.selectedLocations && filters.selectedLocations.length > 0)) && (
           <div className="flex flex-wrap gap-2 mb-4">
             {filters.easyApply && (
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Easy Apply</span>
@@ -315,13 +330,20 @@ function JobDetailsForSkills() {
             {filters.jobType !== "All Types" && (
               <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">{filters.jobType}</span>
             )}
-            {filters.location !== "All Locations" && (
-              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">{filters.location}</span>
+            {filters.workType !== "All Types" && (
+              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">{filters.workType}</span>
+            )}
+            {filters.selectedLocations && filters.selectedLocations.length > 0 && (
+              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">
+                Locations: {filters.selectedLocations.slice(0, 2).join(", ")}
+                {filters.selectedLocations.length > 2 && ` +${filters.selectedLocations.length - 2}`}
+              </span>
             )}
             {filters.nearbyLocation && (
-              <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">
-                Near: {filters.nearbyLocation}
-              </span>
+              <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Nearby Location</span>
+            )}
+            {filters.isVerified && (
+              <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">Verified Only</span>
             )}
             {filters.industry !== "All Industries" && (
               <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">{filters.industry}</span>
@@ -336,10 +358,13 @@ function JobDetailsForSkills() {
                   datePosted: "anytime",
                   experienceLevel: "All Levels",
                   jobType: "All Types",
+                  workType: "All Types",
                   location: "All Locations",
-                  nearbyLocation: "",
+                  nearbyLocation: false,
+                  isVerified: false,
                   industry: "All Industries",
                   companySize: "All Sizes",
+                  selectedLocations: [],
                 })
               }
               className="text-red-600 hover:text-red-800 text-sm underline"
@@ -438,7 +463,8 @@ function JobDetailsForSkills() {
                 <div className="flex items-center justify-between mt-4 border-t border-gray-200 pt-3">
                   <button
                     onClick={() => handleApplyNow(job)}
-                    className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                    className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
+                    disabled={!isAuthenticated}
                   >
                     Apply Now
                   </button>
@@ -508,6 +534,5 @@ function JobDetailsForSkills() {
 }
 
 export default JobDetailsForSkills
-
 
 

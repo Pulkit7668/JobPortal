@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback, useEffect, useState } from "react"
 import { filterJobData } from "./FilterJobData"
 import { companyLogos } from "./FilterJobData"
@@ -18,6 +20,7 @@ import { CiLocationOn } from "react-icons/ci"
 import TogglePage from "../TogglePage/TogglePage"
 import FilterPanel from "../FilterForJob/FilterPanel"
 import { Filter } from "lucide-react"
+import { useAuth } from "../../Context/AuthContext"
 
 const JobCategoryPage = ({ category }) => {
   const navigate = useNavigate()
@@ -28,6 +31,7 @@ const JobCategoryPage = ({ category }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(null)
   const [sortBy, setSortBy] = useState("sort-by")
+  const { isAuthenticated } = useAuth()
 
   // Get initial jobs for the category
   const initialJobs = filterJobData[category.toLowerCase()] || []
@@ -38,10 +42,13 @@ const JobCategoryPage = ({ category }) => {
     datePosted: "anytime",
     experienceLevel: "All Levels",
     jobType: "All Types",
+    workType: "All Types",
     location: "All Locations",
-    nearbyLocation: "",
+    nearbyLocation: false,
+    isVerified: false,
     industry: "All Industries",
     companySize: "All Sizes",
+    selectedLocations: [],
   })
 
   const [filteredJobs, setFilteredJobs] = useState(initialJobs)
@@ -92,14 +99,39 @@ const JobCategoryPage = ({ category }) => {
         })
       }
 
-      // Filter by location
-      if (filterOptions.location !== "All Locations") {
-        result = result.filter((job) => job.location.toLowerCase().includes(filterOptions.location.toLowerCase()))
+      // Filter by work type
+      if (filterOptions.workType !== "All Types") {
+        result = result.filter((job) => {
+          if (filterOptions.workType === "Remote" && job.location.toLowerCase().includes("remote")) return true
+          if (filterOptions.workType === "On-Site" && !job.location.toLowerCase().includes("remote")) return true
+          if (filterOptions.workType === "Hybrid" && job.location.toLowerCase().includes("hybrid")) return true
+          return false
+        })
+      }
+
+      // Filter by selected locations (multiple)
+      if (filterOptions.selectedLocations && filterOptions.selectedLocations.length > 0) {
+        result = result.filter((job) => {
+          return filterOptions.selectedLocations.some((location) =>
+            job.location.toLowerCase().includes(location.toLowerCase()),
+          )
+        })
       }
 
       // Filter by nearby location
       if (filterOptions.nearbyLocation) {
-        result = result.filter((job) => job.location.toLowerCase().includes(filterOptions.nearbyLocation.toLowerCase()))
+        // In a real app, this would use geolocation
+        // For now, just simulate nearby locations
+        result = result.filter((job) =>
+          ["New York", "San Francisco", "Chicago"].some((loc) =>
+            job.location.toLowerCase().includes(loc.toLowerCase()),
+          ),
+        )
+      }
+
+      // Filter by verified companies
+      if (filterOptions.isVerified) {
+        result = result.filter((job) => job.isVerified === true)
       }
 
       // Filter by industry
@@ -253,249 +285,261 @@ const JobCategoryPage = ({ category }) => {
           </div>
         </div>
 
-      {/* Sort By Dropdown - Mobile Only */}
-      <div className="md:hidden mb-4">
-        <select
-          value={sortBy}
-          onChange={(e) => {
-            setSortBy(e.target.value)
-            applyFilters(filters)
-          }}
-          className="bg-white border border-gray-300 px-3 py-2 rounded-md text-gray-700 shadow-sm focus:ring focus:ring-blue-500 text-sm w-full"
-        >
-          <option value="relevance">Sort by: Relevance</option>
-          <option value="recent">Sort by: Most Recent</option>
-          <option value="salary-high">Sort by: Salary (High to Low)</option>
-          <option value="salary-low">Sort by: Salary (Low to High)</option>
-        </select>
-      </div>
-
-      {/* Active Filters Display */}
-      {(filters.easyApply ||
-        filters.datePosted !== "anytime" ||
-        filters.experienceLevel !== "All Levels" ||
-        filters.jobType !== "All Types" ||
-        filters.location !== "All Locations" ||
-        filters.nearbyLocation ||
-        filters.industry !== "All Industries" ||
-        filters.companySize !== "All Sizes") && (
-        <div className="flex flex-wrap gap-2 mb-4">
-          {filters.easyApply && (
-            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Easy Apply</span>
-          )}
-          {filters.datePosted !== "anytime" && (
-            <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">{filters.datePosted}</span>
-          )}
-          {filters.experienceLevel !== "All Levels" && (
-            <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-              {filters.experienceLevel}
-            </span>
-          )}
-          {filters.jobType !== "All Types" && (
-            <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">{filters.jobType}</span>
-          )}
-          {filters.location !== "All Locations" && (
-            <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">{filters.location}</span>
-          )}
-          {filters.nearbyLocation && (
-            <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">
-              Near: {filters.nearbyLocation}
-            </span>
-          )}
-          {filters.industry !== "All Industries" && (
-            <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">{filters.industry}</span>
-          )}
-          {filters.companySize !== "All Sizes" && (
-            <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">{filters.companySize}</span>
-          )}
-          <button
-            onClick={() =>
-              setFilters({
-                easyApply: false,
-                datePosted: "anytime",
-                experienceLevel: "All Levels",
-                jobType: "All Types",
-                location: "All Locations",
-                nearbyLocation: "",
-                industry: "All Industries",
-                companySize: "All Sizes",
-                salaryRange: [0, Number.POSITIVE_INFINITY],
-              })
-            }
-            className="text-red-600 hover:text-red-800 text-sm underline"
+        {/* Sort By Dropdown - Mobile Only */}
+        <div className="md:hidden mb-4">
+          <select
+            value={sortBy}
+            onChange={(e) => {
+              setSortBy(e.target.value)
+              applyFilters(filters)
+            }}
+            className="bg-white border border-gray-300 px-3 py-2 rounded-md text-gray-700 shadow-sm focus:ring focus:ring-blue-500 text-sm w-full"
           >
-            Clear All
-          </button>
+            <option value="relevance">Sort by: Relevance</option>
+            <option value="recent">Sort by: Most Recent</option>
+            <option value="salary-high">Sort by: Salary (High to Low)</option>
+            <option value="salary-low">Sort by: Salary (Low to High)</option>
+          </select>
         </div>
-      )}
 
-      {filteredJobs.length === 0 ? (
-        <p>No jobs available in this category.</p>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {currentJobs.map((job) => (
-              <div
-                key={job.id}
-                className="p-4 bg-white border border-gray-200 rounded-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between relative"
-              >
-                {/* Top row with days ago and menu icon */}
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex items-center">
-                    <img
-                      src={getCompanyLogo(job.company) || "/placeholder.svg"}
-                      alt={`${job.company} logo`}
-                      className="w-12 h-12 rounded-xl mr-3 p-1 object-contain border border-gray-400"
-                    />
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
-                      <div className="flex items-center">
-                        <p className="text-gray-600 mr-2">{job.company}</p>
-                        {/* Verified Company Badge */}
-                        {job.isVerified && (
-                          <FaCheckCircle size={12} className="text-green-500" title="Verified Company" />
+        {/* Active Filters Display */}
+        {(filters.easyApply ||
+          filters.datePosted !== "anytime" ||
+          filters.experienceLevel !== "All Levels" ||
+          filters.jobType !== "All Types" ||
+          filters.workType !== "All Types" ||
+          filters.nearbyLocation ||
+          filters.isVerified ||
+          filters.industry !== "All Industries" ||
+          filters.companySize !== "All Sizes" ||
+          (filters.selectedLocations && filters.selectedLocations.length > 0)) && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {filters.easyApply && (
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Easy Apply</span>
+            )}
+            {filters.datePosted !== "anytime" && (
+              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">{filters.datePosted}</span>
+            )}
+            {filters.experienceLevel !== "All Levels" && (
+              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                {filters.experienceLevel}
+              </span>
+            )}
+            {filters.jobType !== "All Types" && (
+              <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">{filters.jobType}</span>
+            )}
+            {filters.workType !== "All Types" && (
+              <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">{filters.workType}</span>
+            )}
+            {filters.selectedLocations && filters.selectedLocations.length > 0 && (
+              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">
+                Locations: {filters.selectedLocations.slice(0, 2).join(", ")}
+                {filters.selectedLocations.length > 2 && ` +${filters.selectedLocations.length - 2}`}
+              </span>
+            )}
+            {filters.nearbyLocation && (
+              <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Nearby Location</span>
+            )}
+            {filters.isVerified && (
+              <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">Verified Only</span>
+            )}
+            {filters.industry !== "All Industries" && (
+              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">{filters.industry}</span>
+            )}
+            {filters.companySize !== "All Sizes" && (
+              <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">{filters.companySize}</span>
+            )}
+            <button
+              onClick={() =>
+                setFilters({
+                  easyApply: false,
+                  datePosted: "anytime",
+                  experienceLevel: "All Levels",
+                  jobType: "All Types",
+                  workType: "All Types",
+                  location: "All Locations",
+                  nearbyLocation: false,
+                  isVerified: false,
+                  industry: "All Industries",
+                  companySize: "All Sizes",
+                  selectedLocations: [],
+                })
+              }
+              className="text-red-600 hover:text-red-800 text-sm underline"
+            >
+              Clear All
+            </button>
+          </div>
+        )}
+
+        {filteredJobs.length === 0 ? (
+          <p>No jobs available in this category.</p>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {currentJobs.map((job) => (
+                <div
+                  key={job.id}
+                  className="p-4 bg-white border border-gray-200 rounded-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between relative"
+                >
+                  {/* Top row with days ago and menu icon */}
+                  <div className="flex justify-between items-center mb-3">
+                    <div className="flex items-center">
+                      <img
+                        src={getCompanyLogo(job.company) || "/placeholder.svg"}
+                        alt={`${job.company} logo`}
+                        className="w-12 h-12 rounded-xl mr-3 p-1 object-contain border border-gray-400"
+                      />
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
+                        <div className="flex items-center">
+                          <p className="text-gray-600 mr-2">{job.company}</p>
+                          {/* Verified Company Badge */}
+                          {job.isVerified && (
+                            <FaCheckCircle size={12} className="text-green-500" title="Verified Company" />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full mr-2">
+                        {getDaysAgo(job.application_deadline)}
+                      </span>
+                      {/* Menu Icon */}
+                      <div className="relative">
+                        <button onClick={() => toggleMenu(job.id)} className="text-gray-500 hover:text-gray-700">
+                          <FaEllipsisV />
+                        </button>
+                        {/* Dropdown Menu */}
+                        {menuOpen === job.id && (
+                          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
+                            <div className="py-1">
+                              <button
+                                onClick={() => handleSaveJob(job.id)}
+                                className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                              >
+                                <FaBookmark className="mr-2" /> Save Job
+                              </button>
+                              <button
+                                onClick={() => handleShareJob(job.id)}
+                                className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                              >
+                                <FaShareAlt className="mr-2" /> Share Job
+                              </button>
+                              <button
+                                onClick={() => handleRateCompany(job.company)}
+                                className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                              >
+                                <FaStar className="mr-2" /> Rate Company
+                              </button>
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full mr-2">
-                      {getDaysAgo(job.application_deadline)}
-                    </span>
-                    {/* Menu Icon */}
-                    <div className="relative">
-                      <button onClick={() => toggleMenu(job.id)} className="text-gray-500 hover:text-gray-700">
-                        <FaEllipsisV />
-                      </button>
-                      {/* Dropdown Menu */}
-                      {menuOpen === job.id && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
-                          <div className="py-1">
-                            <button
-                              onClick={() => handleSaveJob(job.id)}
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                            >
-                              <FaBookmark className="mr-2" /> Save Job
-                            </button>
-                            <button
-                              onClick={() => handleShareJob(job.id)}
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                            >
-                              <FaShareAlt className="mr-2" /> Share Job
-                            </button>
-                            <button
-                              onClick={() => handleRateCompany(job.company)}
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                            >
-                              <FaStar className="mr-2" /> Rate Company
-                            </button>
-                          </div>
-                        </div>
+
+                  {/* Location */}
+                  <div className="flex items-center mb-2">
+                    <CiLocationOn size={16} className="text-gray-500 mr-1" />
+                    <p className="text-sm text-gray-500">{job.location}</p>
+                  </div>
+
+                  {/* Job Details */}
+                  <div className="mt-2 space-y-1">
+                    <p className="text-xs text-gray-600 flex items-center">
+                      <span className="font-semibold mr-1">Experience:</span> {job.experience}
+                    </p>
+                    <p className="text-xs text-gray-600 flex items-center">
+                      <span className="font-semibold mr-1">Salary:</span> {job.salary}
+                    </p>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="mt-3 flex items-center gap-2">
+                    <p className="text-xs font-semibold text-gray-700">Skills:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {job.skills &&
+                        job.skills.slice(0, 3).map((skill, index) => (
+                          <span key={index} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
+                            {skill}
+                          </span>
+                        ))}
+                      {job.skills && job.skills.length > 3 && (
+                        <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
+                          +{job.skills.length - 3}
+                        </span>
                       )}
                     </div>
                   </div>
-                </div>
 
-                {/* Location */}
-                <div className="flex items-center mb-2">
-                  <CiLocationOn size={16} className="text-gray-500 mr-1" />
-                  <p className="text-sm text-gray-500">{job.location}</p>
-                </div>
-
-                {/* Job Details */}
-                <div className="mt-2 space-y-1">
-                  <p className="text-xs text-gray-600 flex items-center">
-                    <span className="font-semibold mr-1">Experience:</span> {job.experience}
-                  </p>
-                  <p className="text-xs text-gray-600 flex items-center">
-                    <span className="font-semibold mr-1">Salary:</span> {job.salary}
-                  </p>
-                </div>
-
-                {/* Skills */}
-                <div className="mt-3 flex items-center gap-2">
-                  <p className="text-xs font-semibold text-gray-700">Skills:</p>
-                  <div className="flex flex-wrap gap-1">
-                    {job.skills &&
-                      job.skills.slice(0, 3).map((skill, index) => (
-                        <span key={index} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
-                          {skill}
-                        </span>
-                      ))}
-                    {job.skills && job.skills.length > 3 && (
-                      <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
-                        +{job.skills.length - 3}
-                      </span>
-                    )}
+                  {/* Action Buttons */}
+                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
+                    <button
+                      onClick={() => handleApplyNow(job)}
+                      className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
+                      disabled={!isAuthenticated}
+                    >
+                      Apply Now
+                    </button>
+                    <button
+                      onClick={() => navigate(`/jobs/${category.toLowerCase()}/${job.id}`)}
+                      className="px-3 py-2 text-sm font-semibold text-blue-700 hover:underline"
+                    >
+                      More Details
+                    </button>
                   </div>
                 </div>
-
-                {/* Action Buttons */}
-                <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
-                  <button
-                    onClick={() => handleApplyNow(job)}
-                    className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
-                  >
-                    Apply Now
-                  </button>
-                  <button
-                    onClick={() => navigate(`/jobs/${category.toLowerCase()}/${job.id}`)}
-                    className="px-3 py-2 text-sm font-semibold text-blue-700 hover:underline"
-                  >
-                    More Details
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Pagination Controls */}
-          {totalPages > 1 && (
-            <div className="mt-6 flex justify-center gap-2">
-              <button
-                disabled={currentPage === 1}
-                onClick={() => handlePageChange(currentPage - 1)}
-                className={`px-4 py-2 border rounded-full ${
-                  currentPage === 1 ? "bg-gray-200 text-gray-500" : "bg-blue-500 text-white"
-                }`}
-                aria-label="Previous page"
-              >
-                <FaChevronLeft />
-              </button>
-              {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                  key={index + 1}
-                  onClick={() => handlePageChange(index + 1)}
-                  className={`px-4 py-2 border rounded-full ${
-                    currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-800"
-                  }`}
-                  aria-label={`Page ${index + 1}`}
-                >
-                  {index + 1 === 1 || index + 1 === 2 || currentPage === index + 1 ? (
-                    index + 1
-                  ) : currentPage === index + 1 ? (
-                    <FaDotCircle />
-                  ) : (
-                    <FaCircle />
-                  )}
-                </button>
               ))}
-              <button
-                disabled={currentPage === totalPages}
-                onClick={() => handlePageChange(currentPage + 1)}
-                className={`px-4 py-2 border rounded-full ${
-                  currentPage === totalPages ? "bg-gray-200 text-gray-500" : "bg-blue-500 text-white"
-                }`}
-                aria-label="Next page"
-              >
-                <FaChevronRight />
-              </button>
             </div>
-          )}
-        </>
-      )}
 
-      {isTogglePageOpen && <TogglePage jobTitle={selectedJob?.title} onClose={() => setIsTogglePageOpen(false)} />}
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="mt-6 flex justify-center gap-2">
+                <button
+                  disabled={currentPage === 1}
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className={`px-4 py-2 border rounded-full ${
+                    currentPage === 1 ? "bg-gray-200 text-gray-500" : "bg-blue-500 text-white"
+                  }`}
+                  aria-label="Previous page"
+                >
+                  <FaChevronLeft />
+                </button>
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`px-4 py-2 border rounded-full ${
+                      currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-800"
+                    }`}
+                    aria-label={`Page ${index + 1}`}
+                  >
+                    {index + 1 === 1 || index + 1 === 2 || currentPage === index + 1 ? (
+                      index + 1
+                    ) : currentPage === index + 1 ? (
+                      <FaDotCircle />
+                    ) : (
+                      <FaCircle />
+                    )}
+                  </button>
+                ))}
+                <button
+                  disabled={currentPage === totalPages}
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className={`px-4 py-2 border rounded-full ${
+                    currentPage === totalPages ? "bg-gray-200 text-gray-500" : "bg-blue-500 text-white"
+                  }`}
+                  aria-label="Next page"
+                >
+                  <FaChevronRight />
+                </button>
+              </div>
+            )}
+          </>
+        )}
+
+        {isTogglePageOpen && <TogglePage jobTitle={selectedJob?.title} onClose={() => setIsTogglePageOpen(false)} />}
       </div>
     </div>
   )

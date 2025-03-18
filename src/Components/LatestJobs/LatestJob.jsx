@@ -6,12 +6,15 @@ import { Link } from "react-router-dom"
 import TogglePage from "../TogglePage/TogglePage"
 import jobData from "./LatestJobData"
 import { companyLogos } from "./LatestJobData"
+import { useAuth } from "../../Context/AuthContext";
 
 const LatestJob = () => {
   const [visibleJobs] = useState(6)
   const [isTogglePageOpen, setIsTogglePageOpen] = useState(false)
   const [selectedJob, setSelectedJob] = useState(null)
   const [menuOpen, setMenuOpen] = useState(null)
+  const { isAuthenticated } = useAuth();
+  
 
   const handleApplyNow = (job) => {
     setSelectedJob(job)
@@ -151,7 +154,8 @@ const LatestJob = () => {
             <div className="flex justify-between mt-4 pt-3 border-t border-gray-200">
               <button
                 onClick={() => handleApplyNow(job)}
-                className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
+                disabled={!isAuthenticated}
               >
                 Apply Now
               </button>

@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa"
 import { CiLocationOn } from "react-icons/ci"
 import TogglePage from "../TogglePage/TogglePage"
+import { useAuth } from "../../Context/AuthContext"
 
 const FilterJobDetails = () => {
   const { category, jobId } = useParams()
@@ -23,6 +24,7 @@ const FilterJobDetails = () => {
   const [isTogglePageOpen, setIsTogglePageOpen] = useState(false)
   const [selectedJob, setSelectedJob] = useState(job || null)
   const [menuOpen, setMenuOpen] = useState(null)
+  const { isAuthenticated } = useAuth();
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1)
@@ -171,7 +173,8 @@ const FilterJobDetails = () => {
                 <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
                   <button
                     onClick={() => handleApplyNow()}
-                    className="px-3 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                    className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
+                    disabled={!isAuthenticated}
                   >
                     Apply Now
                   </button>
@@ -324,7 +327,7 @@ const FilterJobDetails = () => {
           <div className="mt-6 flex justify-end">
             <button
               onClick={handleApplyNow}
-              className="px-6 py-2 bg-blue-600 font-semibold text-white rounded-lg hover:bg-blue-700 transition duration-300"
+              className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
               disabled={!isActive}
             >
               Apply Now

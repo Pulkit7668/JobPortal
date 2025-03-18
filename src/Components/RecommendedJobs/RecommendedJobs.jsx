@@ -5,12 +5,14 @@ import { CiLocationOn } from "react-icons/ci"
 import { Link } from "react-router-dom"
 import TogglePage from "../TogglePage/TogglePage"
 import jobData, { companyLogos } from "./RecommendedJobsData"
+import { useAuth } from "../../Context/AuthContext"; 
 
 const RecommendedJobs = () => {
   const [visibleJobs] = useState(6)
   const [isTogglePageOpen, setIsTogglePageOpen] = useState(false)
   const [selectedJob, setSelectedJob] = useState(null)
   const [menuOpen, setMenuOpen] = useState(null)
+  const { isAuthenticated } = useAuth();
 
   const handleApplyNow = (job) => {
     setSelectedJob(job)
@@ -150,7 +152,8 @@ const RecommendedJobs = () => {
             <div className="flex justify-between mt-4 pt-3 border-t border-gray-200">
               <button
                 onClick={() => handleApplyNow(job)}
-                className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+                className={`px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ${isAuthenticated ? "" : "cursor-not-allowed"}`}
+                disabled={!isAuthenticated}
               >
                 Apply Now
               </button>
