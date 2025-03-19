@@ -39,8 +39,8 @@ const SupportChat = () => {
   return (
     <div className="mt-5 h-[90vh] bg-gray-100 flex flex-col">
       {/* Chat Header */}
-      <div className="bg-indigo-500 text-white text-3xl font-bold py-2 relative">
-        <h1 className="ml-5">Support Chat</h1>
+      <div className="bg-indigo-500 text-white text-3xl font-bold p-8 relative">
+        <h1 className="ml-5"></h1>
         <button
           onClick={handleCloseChat}
           className="absolute top-1/2 transform -translate-y-1/2 right-4 text-white"
@@ -93,3 +93,4 @@ const SupportChat = () => {
 };
 
 export default SupportChat;
+

@@ -47,9 +47,9 @@ function Navbar() {
     setIsSearchOpen(!isSearchOpen);
   }
 
-  const handleSignup = () => {
-    navigate("/signup");
-  };
+  // const handleSignup = () => {
+  //   navigate("/signup");
+  // };
 
   // const handleSubscriptionClick = (e) => {
   //   if (!isLoggedIn) {
@@ -198,9 +198,9 @@ function Navbar() {
                 >
                   Login
                 </button>
-                <button onClick={handleSignup} className="xs:px-2 md:px-4 py-2 text-blue-600 border border-blue-600 rounded-lg">
+                {/* <button onClick={handleSignup} className="xs:px-2 md:px-4 py-2 text-blue-600 border border-blue-600 rounded-lg">
                   Signup
-                </button>
+                </button> */}
               </div>
             )}
           </div>

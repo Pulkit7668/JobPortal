@@ -273,7 +273,7 @@ const LoginPage = ({ isOpen, onClose }) => {
             </Link>
           </p>
           <p className="text-center text-sm text-gray-600 mt-2">
-            Are you a recruiter?{" "}
+            Are you recruiter?{" "}
             <a
               href="https://static-page-0011.netlify.app/"
               onClick={onClose}
@@ -281,7 +281,7 @@ const LoginPage = ({ isOpen, onClose }) => {
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline font-medium"
             >
-              Recruiter Sign up
+              Recruiter Login
             </a>
           </p>
         </div>
@@ -294,5 +294,3 @@ const LoginPage = ({ isOpen, onClose }) => {
 }
 
 export default LoginPage
-
-
