@@ -13,7 +13,7 @@ const LatestJob = () => {
   const [isTogglePageOpen, setIsTogglePageOpen] = useState(false)
   const [selectedJob, setSelectedJob] = useState(null)
   const [menuOpen, setMenuOpen] = useState(null)
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, login } = useAuth();
   
 
   const handleApplyNow = (job) => {
@@ -26,18 +26,33 @@ const LatestJob = () => {
   }
 
   const handleSaveJob = (jobId) => {
-    console.log("Job saved:", jobId)
-    setMenuOpen(null)
+    if (!isAuthenticated) {
+      alert("Please log in to save jobs.");
+      login();
+      return;
+    }
+    console.log("Job saved:", jobId);
+    setMenuOpen(null);
   }
 
   const handleShareJob = (jobId) => {
-    console.log("Job shared:", jobId)
-    setMenuOpen(null)
+    if (!isAuthenticated) {
+      alert("Please log in to share jobs.");
+      login();
+      return;
+    }
+    console.log("Job shared:", jobId);
+    setMenuOpen(null);
   }
 
   const handleRateCompany = (companyName) => {
-    console.log("Rating company:", companyName)
-    setMenuOpen(null)
+    if (!isAuthenticated) {
+      alert("Please log in to rate companies.");
+      login();
+      return;
+    }
+    console.log("Rating company:", companyName);
+    setMenuOpen(null);
   }
 
   const getCompanyLogo = (company) => {
@@ -94,7 +109,7 @@ const LatestJob = () => {
                   {getDaysAgo(job.postedDate)}
                 </span>
                 <div className="relative">
-                  <button onClick={() => toggleMenu(job.id)} className="text-gray-500 hover:text-gray-700">
+                  <button onClick={() => toggleMenu(job.id)} disabled={!isAuthenticated} className={`text-gray-500 hover:text-gray-700 ${!isAuthenticated ? "cursor-not-allowed opacity-50" : ""}`}>
                     <FaEllipsisV />
                   </button>
                   {menuOpen === job.id && (
@@ -173,3 +188,4 @@ const LatestJob = () => {
 }
 
 export default LatestJob
+

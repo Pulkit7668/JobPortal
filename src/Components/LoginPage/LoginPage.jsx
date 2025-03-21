@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../../Context/AuthContext"
 import { FaTimes } from "react-icons/fa"
@@ -16,17 +16,165 @@ const LoginPage = ({ isOpen, onClose }) => {
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [isForgotPassword, setIsForgotPassword] = useState(false)
+  
+  // OTP states
+  const [otpSent, setOtpSent] = useState(false)
+  const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""])
+  
+  // Timer states
+  const [timer, setTimer] = useState(120) // 2 minutes in seconds
+  const [timerActive, setTimerActive] = useState(false)
+  
+  // Refs for OTP input fields
+  const otpRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null)
+  ]
+
+  // Timer effect
+  useEffect(() => {
+    let interval = null;
+    
+    if (timerActive && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setTimerActive(false);
+      // Optional: Show a notification that OTP has expired
+      if (otpSent) {
+        toast.info("OTP has expired. Please request a new one.", {
+          position: "top-center",
+          style: {
+            background: "#e2e8f0",
+            color: "#1e293b",
+          },
+        });
+      }
+    }
+    
+    return () => clearInterval(interval);
+  }, [timerActive, timer, otpSent]);
+
+  // Format timer to MM:SS
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
 
   const isFormValid =
     loginMethod === "email"
       ? email.trim() !== "" && password.trim() !== ""
-      : phoneNumber.trim() !== "" && password.trim() !== ""
+      : phoneNumber.trim() !== "" && (otpSent ? !otpValues.includes("") : true)
+
+  // Get the complete OTP value
+  const getOtpValue = () => otpValues.join("")
+
+  // Handle OTP input change
+  const handleOtpChange = (index, value) => {
+    // Only allow numbers
+    if (value && !/^\d*$/.test(value)) return
+
+    const newOtpValues = [...otpValues]
+    newOtpValues[index] = value.slice(0, 1) // Only take the first character
+
+    setOtpValues(newOtpValues)
+
+    // Auto-focus next input if current input is filled
+    if (value && index < 5) {
+      otpRefs[index + 1].current.focus()
+    }
+  }
+
+  // Handle key press in OTP input
+  const handleOtpKeyDown = (index, e) => {
+    // Move to previous input on backspace if current input is empty
+    if (e.key === "Backspace" && !otpValues[index] && index > 0) {
+      otpRefs[index - 1].current.focus()
+    }
+  }
+
+  // Handle paste for OTP
+  const handleOtpPaste = (e) => {
+    e.preventDefault()
+    const pastedData = e.clipboardData.getData("text")
+    
+    // Check if pasted content is a 6-digit number
+    if (/^\d{6}$/.test(pastedData)) {
+      const digits = pastedData.split("")
+      setOtpValues(digits)
+      
+      // Focus the last input
+      otpRefs[5].current.focus()
+    }
+  }
 
   // Validate phone number format
   const isValidPhoneNumber = (phone) => {
     // Basic validation - can be enhanced based on your requirements
     const phoneRegex = /^\+?[1-9]\d{1,14}$/
     return phoneRegex.test(phone)
+  }
+
+  const handleSendOtp = async () => {
+    if (!isValidPhoneNumber(phoneNumber)) {
+      toast.error("Please enter a valid phone number!", {
+        position: "top-center",
+        style: {
+          background: "#f8d7da",
+          color: "#721c24",
+        },
+      })
+      return
+    }
+
+    setLoading(true)
+    try {
+      // Here you would call your API to send OTP to the phone number
+      // For example: await sendOtp(phoneNumber)
+      
+      // Simulating API call with timeout
+      setTimeout(() => {
+        setOtpSent(true)
+        setLoading(false)
+        
+        // Reset OTP values if resending
+        setOtpValues(["", "", "", "", "", ""])
+        
+        // Reset and start timer
+        setTimer(120)
+        setTimerActive(true)
+        
+        toast.success("OTP sent to your phone number!", {
+          position: "top-center",
+          style: {
+            background: "#d4edda",
+            color: "#155724",
+          },
+        })
+        
+        // Focus the first OTP input after sending
+        setTimeout(() => {
+          if (otpRefs[0].current) {
+            otpRefs[0].current.focus()
+          }
+        }, 100)
+      }, 1500)
+    } catch (error) {
+      toast.error("Failed to send OTP. Please try again.", {
+        position: "top-center",
+        style: {
+          background: "#f8d7da",
+          color: "#721c24",
+        },
+      })
+      setLoading(false)
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -43,9 +191,9 @@ const LoginPage = ({ isOpen, onClose }) => {
       return
     }
 
-    // Validate phone number if phone login method is selected
-    if (loginMethod === "phone" && !isValidPhoneNumber(phoneNumber)) {
-      toast.error("Please enter a valid phone number!", {
+    // For email login, validate password
+    if (loginMethod === "email" && password.trim() === "") {
+      toast.error("Please enter your password!", {
         position: "top-center",
         style: {
           background: "#f8d7da",
@@ -55,13 +203,51 @@ const LoginPage = ({ isOpen, onClose }) => {
       return
     }
 
+    // For phone login, validate OTP if OTP has been sent
+    if (loginMethod === "phone") {
+      if (!isValidPhoneNumber(phoneNumber)) {
+        toast.error("Please enter a valid phone number!", {
+          position: "top-center",
+          style: {
+            background: "#f8d7da",
+            color: "#721c24",
+          },
+        })
+        return
+      }
+      
+      if (otpSent && otpValues.includes("")) {
+        toast.error("Please enter the complete 6-digit OTP!", {
+          position: "top-center",
+          style: {
+            background: "#f8d7da",
+            color: "#721c24",
+          },
+        })
+        return
+      }
+      
+      // Check if OTP has expired
+      if (timer === 0) {
+        toast.error("OTP has expired. Please request a new one.", {
+          position: "top-center",
+          style: {
+            background: "#f8d7da",
+            color: "#721c24",
+          },
+        })
+        return
+      }
+    }
+
     setLoading(true)
     setTimeout(async () => {
       try {
         if (loginMethod === "email") {
-          await login(email)
+          await login(email, password)
         } else {
-          await loginWithPhone(phoneNumber)
+          // Pass OTP instead of password for phone login
+          await loginWithPhone(phoneNumber, getOtpValue())
         }
 
         toast.success("Login successful!", {
@@ -119,6 +305,15 @@ const LoginPage = ({ isOpen, onClose }) => {
     setIsForgotPassword(!isForgotPassword)
   }
 
+  // Reset OTP state when switching login methods
+  const handleLoginMethodChange = (method) => {
+    setLoginMethod(method)
+    setOtpSent(false)
+    setOtpValues(["", "", "", "", "", ""])
+    setTimerActive(false)
+    setTimer(120)
+  }
+
   return (
     <>
       <Toaster />
@@ -146,7 +341,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                   ? "text-blue-600 border-b-2 border-blue-600"
                   : "text-gray-500 hover:text-gray-700"
               }`}
-              onClick={() => setLoginMethod("email")}
+              onClick={() => handleLoginMethodChange("email")}
             >
               Email
             </button>
@@ -156,7 +351,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                   ? "text-blue-600 border-b-2 border-blue-600"
                   : "text-gray-500 hover:text-gray-700"
               }`}
-              onClick={() => setLoginMethod("phone")}
+              onClick={() => handleLoginMethodChange("phone")}
             >
               Phone Number
             </button>
@@ -185,60 +380,130 @@ const LoginPage = ({ isOpen, onClose }) => {
                 <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
                   Phone Number
                 </label>
-                <input
-                  type="tel"
-                  id="phoneNumber"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  required
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
-                  placeholder="Enter your phone number (e.g., +1234567890)"
-                />
+                <div className="flex">
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    required
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
+                    placeholder="Enter your phone number (e.g., +1234567890)"
+                    disabled={otpSent && timerActive}
+                  />
+                  {(!otpSent || timer === 0) && (
+                    <button
+                      type="button"
+                      onClick={handleSendOtp}
+                      disabled={!isValidPhoneNumber(phoneNumber) || loading}
+                      className={`mt-1 ml-2 px-4 py-3 rounded-lg text-sm font-medium text-white transition ${
+                        !isValidPhoneNumber(phoneNumber) || loading
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                      }`}
+                    >
+                      {loading ? "Sending..." : otpSent ? "Resend OTP" : "Send OTP"}
+                    </button>
+                  )}
+                </div>
                 <p className="mt-1 text-xs text-gray-500">Format: +[country code][number] (e.g., +12025550123)</p>
               </div>
             )}
 
-            {/* Password Field */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
-                  placeholder="Enter your password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 px-3 py-2 text-sm font-medium text-blue-600 focus:outline-none"
-                >
-                  {showPassword ? "Hide" : "Show"}
-                </button>
+            {/* Password Field for Email / OTP Field for Phone */}
+            {loginMethod === "email" ? (
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-sm"
+                    placeholder="Enter your password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 px-3 py-2 text-sm font-medium text-blue-600 focus:outline-none"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
+                <div className="text-right mt-2">
+                  <button
+                    type="button"
+                    onClick={toggleForgotPassword}
+                    className="text-blue-600 hover:underline font-medium text-sm"
+                  >
+                    Forgot your password?
+                  </button>
+                </div>
               </div>
-              <div className="text-right mt-2">
-                <button
-                  type="button"
-                  onClick={toggleForgotPassword}
-                  className="text-blue-600 hover:underline font-medium text-sm"
+            ) : otpSent ? (
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Enter 6-digit OTP
+                  </label>
+                  {timerActive && (
+                    <div className={`text-sm font-medium ${timer < 30 ? 'text-red-500' : 'text-blue-600'}`}>
+                      {formatTime(timer)}
+                    </div>
+                  )}
+                </div>
+                <div 
+                  className="flex justify-between gap-2" 
+                  onPaste={handleOtpPaste}
                 >
-                  Forgot your password?
-                </button>
+                  {otpValues.map((digit, index) => (
+                    <input
+                      key={index}
+                      ref={otpRefs[index]}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={digit}
+                      onChange={(e) => handleOtpChange(index, e.target.value)}
+                      onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                      className={`w-full h-12 text-center text-lg font-semibold border ${
+                        timer === 0 ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                      } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+                      disabled={timer === 0}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between mt-2">
+                  <span className="text-xs text-gray-500">
+                    {timer === 0 
+                      ? "OTP expired. Please request a new one." 
+                      : "OTP valid for " + formatTime(timer)}
+                  </span>
+                  {timer === 0 && (
+                    <button
+                      type="button"
+                      onClick={handleSendOtp}
+                      disabled={loading}
+                      className="text-blue-600 hover:underline font-medium text-sm"
+                    >
+                      Resend OTP
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
+            ) : null}
 
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={!isFormValid || loading}
+              disabled={!isFormValid || loading || (loginMethod === "phone" && (!otpSent || timer === 0))}
               className={`w-full py-3 rounded-lg text-sm font-medium text-white transition bg-blue-600 ${
-                !isFormValid || loading
-                  ? "cursor-not-allowed"
+                !isFormValid || loading || (loginMethod === "phone" && (!otpSent || timer === 0))
+                  ? "cursor-not-allowed bg-opacity-70"
                   : "hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
               }`}
             >

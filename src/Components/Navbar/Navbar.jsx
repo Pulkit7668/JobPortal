@@ -101,7 +101,7 @@ function Navbar() {
               </a>
             </div>  
             <div className="group md:inline-block relative font-semibold xs:hidden">
-              <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
+              <NavLink to="/courses" className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
                 Shop
               </NavLink>
             </div>

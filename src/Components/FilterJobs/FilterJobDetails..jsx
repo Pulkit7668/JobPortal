@@ -24,7 +24,7 @@ const FilterJobDetails = () => {
   const [isTogglePageOpen, setIsTogglePageOpen] = useState(false)
   const [selectedJob, setSelectedJob] = useState(job || null)
   const [menuOpen, setMenuOpen] = useState(null)
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, login } = useAuth();
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1)
@@ -38,21 +38,33 @@ const FilterJobDetails = () => {
   }
 
   const handleSaveJob = (jobId) => {
-    // Implement save job functionality
-    console.log("Job saved:", jobId)
-    setMenuOpen(null)
+    if (!isAuthenticated) {
+      alert("Please log in to save jobs.");
+      login();
+      return;
+    }
+    console.log("Job saved:", jobId);
+    setMenuOpen(null);
   }
 
   const handleShareJob = (jobId) => {
-    // Implement share job functionality
-    console.log("Job shared:", jobId)
-    setMenuOpen(null)
+    if (!isAuthenticated) {
+      alert("Please log in to share jobs.");
+      login();
+      return;
+    }
+    console.log("Job shared:", jobId);
+    setMenuOpen(null);
   }
 
   const handleRateCompany = (companyName) => {
-    // Implement rate company functionality
-    console.log("Rating company:", companyName)
-    setMenuOpen(null)
+    if (!isAuthenticated) {
+      alert("Please log in to rate companies.");
+      login();
+      return;
+    }
+    console.log("Rating company:", companyName);
+    setMenuOpen(null);
   }
 
   // Check if the job is active based on the application deadline
@@ -229,7 +241,7 @@ const FilterJobDetails = () => {
               </p>
               {/* Menu Icon */}
               <div className="relative">
-                <button onClick={() => toggleMenu(selectedJob.id)} className="text-gray-500 hover:text-gray-700">
+                <button onClick={() => toggleMenu(selectedJob.id)} disabled={!isAuthenticated} className={`text-gray-500 hover:text-gray-700 ${!isAuthenticated ? "cursor-not-allowed opacity-50" : ""}`}>
                   <FaEllipsisV />
                 </button>
                 {/* Dropdown Menu */}

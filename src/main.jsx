@@ -39,6 +39,9 @@ import CompanyDetail from "./Components/TopRecruiters/CompanyDetail.jsx";
 import AppliedJobs from "./Components/AppliedJobs/AppliedJobs.jsx";
 import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy.jsx";
 import TermsAndConditions from "./Components/TermAndCondition/TermAndCondition.jsx";
+// import CoursesListingPage from "./Pages/CoursesListingPage.jsx";
+// import CourseDetailPage from "./Pages/CourseDetailPage.jsx";
+// import ShopPage from "./Pages/ShopPage.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -91,6 +94,9 @@ createRoot(document.getElementById("root")).render(
             <Route path="/applied-jobs" element={<AppliedJobs />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/term-and-condition" element={<TermsAndConditions />} />
+            {/* <Route path="/course" element={<ShopPage />} />
+            <Route path="/courses" element={<CoursesListingPage />} />
+          <Route path="/courses/:id" element={<CourseDetailPage />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
