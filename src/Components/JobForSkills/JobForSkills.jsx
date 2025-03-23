@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { FaEllipsisV, FaBookmark, FaShareAlt, FaStar, FaCheckCircle } from "react-icons/fa"
+import { FaEllipsisV, FaBookmark, FaShareAlt, FaStar, FaCheckCircle, FaLightbulb, FaBriefcase } from "react-icons/fa"
+import { BiDollarCircle } from "react-icons/bi";
 import { FaCircleArrowRight } from "react-icons/fa6"
 import { CiLocationOn } from "react-icons/ci"
 import { Link } from "react-router-dom"
@@ -164,15 +165,18 @@ function JobsForSkills() {
               {/* Job Details */}
               <div className="mt-2 space-y-1">
                 <p className="text-xs text-gray-600 flex items-center">
+                  <FaBriefcase className="mr-1" />
                   <span className="font-semibold mr-1">Experience:</span> {job.experience}
                 </p>
                 <p className="text-xs text-gray-600 flex items-center">
+                  <BiDollarCircle className="mr-1"/> 
                   <span className="font-semibold mr-1">Salary:</span> {job.salary}
                 </p>
               </div>
 
               {/* Skills */}
-              <div className="mt-3 flex items-center gap-2">
+              <div className="mt-1 flex items-center gap-1">
+                <FaLightbulb className="text-gray-600" />
                 <p className="text-xs font-semibold text-gray-700">Skills:</p>
                 <div className="flex flex-wrap gap-1">
                   {job.skills.slice(0, 3).map((skill, index) => (

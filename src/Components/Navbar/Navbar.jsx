@@ -97,24 +97,23 @@ function Navbar() {
                 rel="noopener noreferrer"
                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
               >
-                Subscription Plan
+                Subscription
               </a>
             </div>  
-            <div className="group md:inline-block relative font-semibold xs:hidden">
+            {/* <div className="group md:inline-block relative font-semibold xs:hidden">
               <NavLink to="/courses" className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">
                 Shop
               </NavLink>
+            </div> */}
+            
+            <div className="group md:inline-block relative font-semibold xs:hidden">
+              <NavLink
+                to=""
+                className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
+              >
+                Services
+              </NavLink>
             </div>
-            {!isLoggedIn && (
-              <div className="group md:inline-block relative font-semibold xs:hidden">
-                <NavLink
-                 to=""
-                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
-                >
-                  Services
-                </NavLink>
-              </div>
-            )}
             {isLoggedIn && (
               <div className="group md:inline-block relative font-semibold xs:hidden">
                 <NavLink className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1">

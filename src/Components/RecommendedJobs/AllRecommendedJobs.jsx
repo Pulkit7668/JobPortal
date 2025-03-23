@@ -9,7 +9,10 @@ import {
   FaShareAlt,
   FaStar,
   FaCheckCircle,
+  FaLightbulb,
+  FaBriefcase
 } from "react-icons/fa"
+import { BiDollarCircle } from "react-icons/bi"
 import { CiLocationOn } from "react-icons/ci"
 import { Filter } from "lucide-react"
 import jobData, { companyLogos } from "./RecommendedJobsData"
@@ -449,14 +452,17 @@ const AllRecommendedJobs = () => {
 
                 <div className="mt-2 space-y-1">
                   <p className="text-xs text-gray-600 flex items-center">
+                    <FaBriefcase className="mr-1" />
                     <span className="font-semibold mr-1">Experience:</span> {job.experience}
                   </p>
                   <p className="text-xs text-gray-600 flex items-center">
+                    <BiDollarCircle className="mr-1"/> 
                     <span className="font-semibold mr-1">Salary:</span> {job.salary}
                   </p>
                 </div>
-                <div className="mt-3 flex items-center gap-2">
-                  <p className="text-xs font-semibold text-gray-700 mb-1">Skills:</p>
+                <div className="mt-1 flex items-center gap-1">
+                  <FaLightbulb className="text-gray-600" />
+                  <p className="text-xs font-semibold text-gray-600 mb-1">Skills:</p>
                   <div className="flex flex-wrap gap-1">
                     {job.skills.slice(0, 3).map((skill, index) => (
                       <span key={index} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">

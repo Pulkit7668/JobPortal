@@ -9,9 +9,13 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaCheckCircle,
+  FaLightbulb,
+  FaBriefcase
 } from "react-icons/fa"
+import { BiDollarCircle } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
 import jobs from "./RecommendedJobsData";
+import { companyLogos } from "./RecommendedJobsData";
 import TogglePage from "../TogglePage/TogglePage";
 import { useAuth } from "../../Context/AuthContext";
 
@@ -87,6 +91,10 @@ function RecommendedJobDetails() {
     setSelectedJob(jobItem);
   };
 
+  const getCompanyLogo = (company) => {
+    return companyLogos[company] || `/placeholder.svg?height=40&width=40&text=${encodeURIComponent(company)}`
+  }
+
   // Function to calculate days ago from a date string
   const getDaysAgo = (dateString) => {
     const today = new Date()
@@ -124,7 +132,7 @@ function RecommendedJobDetails() {
       {/* Flex container for job listings and job details */}
       <div className="flex lg:space-x-6">
         {/* Left Column: Job Listings */}
-        <div className="w-1/4 pr-6 h-[10%] overflow-y-auto scrollable xs:hidden lg:block">
+        <div className="w-[30%] pr-6 h-[10%] overflow-y-auto scrollable xs:hidden lg:block">
           <h3 className="text-xl font-bold mb-4">Job Listings</h3>
           <div className="flex flex-col gap-4">
             {currentJobs.map((jobItem) => (
@@ -134,14 +142,21 @@ function RecommendedJobDetails() {
               >
                 {/* Top row with company info */}
                 <div className="flex justify-between items-center mb-3">
-                  <div>
-                    <h3 className="text-base font-semibold text-gray-800">{jobItem.title}</h3>
-                    <div className="flex items-center">
-                      <p className="text-gray-600 mr-2">{jobItem.company}</p>
-                      {/* Verified Company Badge */}
-                      {jobItem.isVerified && (
-                        <FaCheckCircle size={12} className="text-green-500" title="Verified Company" />
-                      )}
+                  <div className="flex gap-2">
+                    <img
+                     src={getCompanyLogo(jobItem.company) || "/placeholder.svg"}
+                     alt={`${jobItem.company} logo`}
+                     className="w-12 h-12 rounded-xl p-1 object-contain border border-gray-200"
+                    />
+                    <div>
+                      <h3 className="text-base font-semibold text-gray-800">{jobItem.title}</h3>
+                      <div className="flex items-center">
+                        <p className="text-gray-600 mr-2">{jobItem.company}</p>
+                        {/* Verified Company Badge */}
+                        {jobItem.isVerified && (
+                          <FaCheckCircle size={12} className="text-green-500" title="Verified Company" />
+                        )}
+                      </div>
                     </div>
                   </div>
                   <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
@@ -158,19 +173,23 @@ function RecommendedJobDetails() {
                 {/* Job Details */}
                 <div className="mt-2 space-y-1">
                   <p className="text-xs text-gray-600 flex items-center">
+                    <FaBriefcase className="mr-1" />
                     <span className="font-semibold mr-1">Experience:</span> {jobItem.experience}
                   </p>
                   <p className="text-xs text-gray-600 flex items-center">
+                    <BiDollarCircle className="mr-1"/> 
                     <span className="font-semibold mr-1">Salary:</span> {jobItem.salary}
                   </p>
                 </div>
 
                 {/* Skills */}
-                <div className="mt-3 flex items-center gap-2">
-                  <p className="text-xs font-semibold text-gray-700">Skills:</p>
+                <div className="mt-1 flex items-center gap-1">
+                  <FaLightbulb className="text-gray-600" />
+                  <p className="text-xs font-semibold text-gray-600">Skills:</p>
                   <div className="flex flex-wrap gap-1">
                     {jobItem.skills &&
                       jobItem.skills.slice(0, 3).map((skill, index) => (
+                        
                         <span key={index} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">
                           {skill}
                         </span>
@@ -285,23 +304,17 @@ function RecommendedJobDetails() {
           <p className="text-lg text-gray-700 mb-4">{selectedJob.description}</p>
 
           {/* Job Details */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <p className="text-md text-gray-600">
-                <strong>Experience: </strong>
-                {selectedJob.experience}
-              </p>
-            </div>
-            <div>
-              <p className="text-md text-gray-600">
-                <strong>Salary: </strong>
-                {selectedJob.salary}
-              </p>
-            </div>
+          <div className="mt-2 space-y-1">
+            <p className="text-md text-gray-600 flex items-center">        
+              <span className="font-semibold mr-1">Experience:</span> {selectedJob.experience}
+            </p>
+            <p className="text-md text-gray-600 flex items-center">    
+              <span className="font-semibold mr-1">Salary:</span> {selectedJob.salary}
+            </p>
           </div>
 
           {/* Skills */}
-          <div className="mb-4 flex items-center gap-2">
+          <div className="mt-1 mb-4 flex items-center gap-2">
             <p className="text-md text-gray-600">
               <strong>Skills: </strong>
             </p>

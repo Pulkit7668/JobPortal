@@ -128,7 +128,7 @@ const RecommendedJobsData = [
     salary: "(₹15 LPA - ₹20 LPA)",
     type: "Full-time",
     experience: "5+ years",
-    skills: ["Product Strategy", "Agile", "Market Research", "Stakeholder Management"],
+    skills: ["Product Strategy", "Agile", "Market Re", "Stakeholder Management"],
     description: "We are looking for an experienced Product Manager to direct product development and ensure high return on investment.",
     responsibilities: [
       "Develop and implement product strategies consistent with company vision",

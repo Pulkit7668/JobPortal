@@ -134,7 +134,7 @@ export const filterJobData = {
         'Excellent communication and leadership skills.',
       ],
       skills: [
-        'Product Management', 'Agile', 'Market Trends', 'User Feedback Analysis'
+        'Product Management', 'Agile', 'Market', 'User Feedback Analysis'
       ],
       application_deadline: '10-Apr-2025',
       contact_email: 'pm-careers@visionarytech.com',
