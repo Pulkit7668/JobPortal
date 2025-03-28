@@ -49,14 +49,14 @@ export default function ResumeUpload({ currentResume, onUpload }) {
 
   return (
     <div className="mt-6">
-      <h2 className="text-2xl font-bold mb-2">Resume</h2>
+      <h2 className="text-xl sm:text-2xl font-bold mb-2">Resume</h2>
       <p className="text-gray-600 mb-4">
         Your resume is the first impression you make on potential employers. Craft it carefully to secure your desired
         job or internship.
       </p>
 
       <div
-        className={`border-2 border-dashed rounded-lg p-8 text-center ${
+        className={`border-2 border-dashed rounded-lg p-4 sm:p-6 md:p-8 text-center ${
           isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
         onDragOver={handleDragOver}
@@ -68,7 +68,7 @@ export default function ResumeUpload({ currentResume, onUpload }) {
             <div className="flex items-center justify-center gap-2 text-gray-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-5 w-5 sm:h-6 sm:w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -80,7 +80,7 @@ export default function ResumeUpload({ currentResume, onUpload }) {
                   d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              <span>{fileName}</span>
+              <span className="break-all">{fileName}</span>
             </div>
             <button
               onClick={() => fileInputRef.current?.click()}
@@ -93,12 +93,12 @@ export default function ResumeUpload({ currentResume, onUpload }) {
           <div className="space-y-4">
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors"
+              className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-colors text-sm sm:text-base"
             >
               Upload resume
             </button>
-            <p className="text-gray-500 text-sm">Supported formats: doc, docx, rtf, pdf, up to 2MB</p>
-            <p className="text-gray-400 text-sm">or drag and drop your file here</p>
+            <p className="text-gray-500 text-xs sm:text-sm">Supported formats: doc, docx, rtf, pdf, up to 2MB</p>
+            <p className="text-gray-400 text-xs sm:text-sm">or drag and drop your file here</p>
           </div>
         )}
       </div>

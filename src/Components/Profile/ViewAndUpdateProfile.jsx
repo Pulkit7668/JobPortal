@@ -10,16 +10,24 @@ import BasicDetails from "./BasicDetails"
 export default function ProfileView() {
   const [activeTab, setActiveTab] = useState("all")
   const [profileData, setProfileData] = useState({
-    coverImage: "https://images.unsplash.com/photo-1615525137689-198778541af6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvdmVyJTIwaW1hZ2UlMjBjb2RlfGVufDB8fDB8fHww",
-    profileImage: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
+    coverImage:
+      "https://images.unsplash.com/photo-1615525137689-198778541af6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvdmVyJTIwaW1hZ2UlMjBjb2RlfGVufDB8fDB8fHww",
+    profileImage:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
     name: "Rahul Sharma",
     headline: "Senior Frontend Developer",
     company: "TechSolutions India",
     location: "Bangalore, India",
     bio: "Passionate frontend developer with 5+ years of experience building responsive and user-friendly web applications.",
+    linkedin: "https://www.linkedin.com/",
+    github: "https://www.github.com/",
     resumeDetails: {
       basicInfo: "B.Tech in Computer Science, 5+ years experience in web development",
-      professionalDetails: "Worked on multiple enterprise-level applications using modern JavaScript frameworks",
+      professionalDetails: {
+        industry: "Information Technology",
+        department: "Engineering",
+        currentRole: "Senior Frontend Developer",
+      },
       experience: [
         {
           company: "TechSolutions India",
@@ -47,17 +55,19 @@ export default function ProfileView() {
         {
           title: "E-commerce Platform",
           description: "Built a full-featured e-commerce platform with React, Redux, and Node.js",
+          projectLink: ""
         },
         {
           title: "CRM Dashboard",
           description: "Developed an interactive dashboard for customer relationship management",
+          projectLink: ""
         },
       ],
     },
     education: {
       name: "Hi-Tech Institute of Information Technology",
       logo: "/placeholder.svg?height=40&width=40",
-    }
+    },
   })
 
   const [editingSection, setEditingSection] = useState(null)
@@ -98,6 +108,8 @@ export default function ProfileView() {
         company: newData.company,
         location: newData.location,
         bio: newData.bio,
+        linkedin: newData.linkedin,
+        github: newData.github,
       })
     } else if (section === "resume") {
       setProfileData({
@@ -105,6 +117,19 @@ export default function ProfileView() {
         resumeDetails: {
           ...profileData.resumeDetails,
           basicInfo: newData.basicInfo,
+        },
+      })
+    } else if (section === "professionalInfo") {
+      setProfileData({
+        ...profileData,
+        resumeDetails: {
+          ...profileData.resumeDetails,
+          professionalDetails: {
+            ...profileData.resumeDetails.professionalDetails,
+            industry: newData.industry,
+            department: newData.department,
+            currentRole: newData.currentRole,
+          },
         },
       })
     } else if (section === "experience") {
@@ -170,7 +195,7 @@ export default function ProfileView() {
   return (
     <div className="flex min-h-screen bg-gray-100 mt-5">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="flex-1 md:ml-64 p-4"> {/* Added margin-left to account for fixed sidebar */}
+      <div className="flex-1 lg:ml-64 p-2 sm:p-4 md:p-6">
         <div className="mx-auto bg-white rounded-lg shadow-md overflow-hidden">
           <ProfileHeader
             coverImage={profileData.coverImage}
@@ -181,14 +206,17 @@ export default function ProfileView() {
             onUpdateImages={handleImageUpdate}
           />
 
-          <div className="p-6">
+          <div className="p-3 sm:p-4 md:p-6">
             <div id="profile">
               <ProfileInfo
                 name={profileData.name}
                 headline={profileData.headline}
                 location={profileData.location}
-                connections={profileData.connections}
+                bio={profileData.bio}
+                company={profileData.company}
                 education={profileData.education}
+                linkedin={profileData.linkedin}
+                github={profileData.github}
                 onEdit={() =>
                   handleEdit("profile", {
                     name: profileData.name,
@@ -196,6 +224,8 @@ export default function ProfileView() {
                     company: profileData.company,
                     location: profileData.location,
                     bio: profileData.bio,
+                    linkdin: profileData.linkedin,
+                    github: profileData.github,
                   })
                 }
               />
@@ -219,6 +249,9 @@ export default function ProfileView() {
                 skills={profileData.resumeDetails.skills}
                 topSkills={profileData.resumeDetails.topSkills}
                 workSamples={profileData.resumeDetails.workSamples}
+                industry={profileData.resumeDetails.professionalDetails?.industry}
+                department={profileData.resumeDetails.professionalDetails?.department}
+                currentRole={profileData.resumeDetails.professionalDetails?.currentRole}
                 onEditExperience={() => handleEdit("experience", { experience: profileData.resumeDetails.experience })}
                 onEditEducation={() => handleEdit("education", { education: profileData.resumeDetails.education })}
                 onEditSkills={() =>
@@ -229,6 +262,13 @@ export default function ProfileView() {
                 }
                 onEditWorkSamples={() =>
                   handleEdit("workSamples", { workSamples: profileData.resumeDetails.workSamples })
+                }
+                onEditProfessionalInfo={() =>
+                  handleEdit("professionalInfo", {
+                    industry: profileData.resumeDetails.professionalDetails?.industry,
+                    department: profileData.resumeDetails.professionalDetails?.department,
+                    currentRole: profileData.resumeDetails.professionalDetails?.currentRole,
+                  })
                 }
               />
             </div>
@@ -242,3 +282,4 @@ export default function ProfileView() {
     </div>
   )
 }
+

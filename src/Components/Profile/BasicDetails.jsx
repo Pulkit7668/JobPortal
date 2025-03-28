@@ -1,7 +1,17 @@
 export default function BasicDetails({ basicInfo, onEdit }) {
+  const {
+    experience = "",
+    city = "",
+    state = "",
+    email = "",
+    isEmailVerified = false,
+    phoneNumber = "",
+    description = "",
+  } = typeof basicInfo === "object" ? basicInfo : { description: basicInfo }
+
   return (
     <div className="relative">
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center mb-4 gap-2">
         <h2 className="text-xl font-bold">Basic Details</h2>
         <button
           onClick={onEdit}
@@ -27,7 +37,7 @@ export default function BasicDetails({ basicInfo, onEdit }) {
 
       <div className="bg-gray-50 p-4 rounded-lg">
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="w-full md:w-1/4">
+          <div className="w-full md:w-1/4 flex justify-center md:justify-start">
             <div className="bg-gray-200 h-32 w-24 rounded flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +57,42 @@ export default function BasicDetails({ basicInfo, onEdit }) {
           </div>
           <div className="w-full md:w-3/4">
             <h3 className="font-semibold text-lg mb-2">Basic Details</h3>
-            <p className="text-gray-700">{basicInfo || "No basic details provided"}</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <p className="text-sm text-gray-500">Experience</p>
+                <p className="text-gray-700">{experience || "Not specified"}</p>
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-500">Location</p>
+                <p className="text-gray-700">
+                  {city && state ? `${city}, ${state}` : city || state || "Not specified"}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-500">Email</p>
+                <div className="flex items-center">
+                  <p className="text-gray-700 mr-2 break-all">{email || "Not specified"}</p>
+                  {email && isEmailVerified && (
+                    <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full whitespace-nowrap">
+                      Verified
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-500">Phone Number</p>
+                <p className="text-gray-700">{phoneNumber || "Not specified"}</p>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">About</p>
+              <p className="text-gray-700">{description || "No description provided"}</p>
+            </div>
           </div>
         </div>
       </div>
