@@ -39,7 +39,7 @@ const SupportChat = () => {
   return (
     <div className="mt-5 h-[90vh] bg-gray-100 flex flex-col">
       {/* Chat Header */}
-      <div className="bg-indigo-500 text-white text-3xl font-bold p-8 relative">
+      {/* <div className="text-white text-3xl font-bold p-8 relative">
         <h1 className="ml-5"></h1>
         <button
           onClick={handleCloseChat}
@@ -47,7 +47,7 @@ const SupportChat = () => {
         >
           <IoCloseCircleSharp size={30} />
         </button>
-      </div>
+      </div> */}
 
       {/* Chat Container */}
       <div className="flex-1 flex flex-col-reverse overflow-y-auto bg-white p-4">

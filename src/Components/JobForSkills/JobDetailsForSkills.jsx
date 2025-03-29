@@ -255,7 +255,7 @@ function JobDetailsForSkills() {
                 className=" p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"
               />
             </button>
-            <h2 className="text-2xl font-bold">More Jobs for Your Skills</h2>
+            <h2 className="xs:text-lg md:text-2xl font-bold">More Jobs for Your Skills</h2>
           </div>
 
           <div className="flex items-center gap-4">

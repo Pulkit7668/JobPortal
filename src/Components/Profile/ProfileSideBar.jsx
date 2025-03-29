@@ -1,16 +1,17 @@
 import { Link, useNavigate } from "react-router-dom"
 import { FaTimes, FaBookmark, FaEye, FaSlidersH } from "react-icons/fa"
+import { FaBox } from "react-icons/fa"
 import { useAuth } from "../../Context/AuthContext"
 
 function ProfileSidebar({ isOpen, onClose }) {
   const profileCompletion = 40
   const progressColor = profileCompletion >= 75 ? "#34D399" : "#F04141"
   const navigate = useNavigate()
-  const { isLoggedIn } = useAuth() // Get login status
+  const { isLoggedIn } = useAuth()
 
   // If user is not logged in, don't render the sidebar
   if (!isLoggedIn && isOpen) {
-    onClose() // Close the sidebar if it's open but user is logged out
+    onClose()
     return null
   }
 
@@ -126,6 +127,14 @@ function ProfileSidebar({ isOpen, onClose }) {
             >
               <FaBookmark />
               <span>Saved Jobs</span>
+            </button>
+
+            <button
+              onClick={() => handleProfileClick("/my-member-ship")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <FaBox />
+              <span>My Member Ship</span>
             </button>
           </div>
         </div>

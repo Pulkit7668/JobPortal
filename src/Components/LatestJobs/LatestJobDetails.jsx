@@ -245,18 +245,18 @@ function LatestJobDetail() {
           {/* Top row with job title and menu */}
           <div className="flex justify-between items-center mb-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-800">{selectedJob.title}</h2>
+              <h2 className="md:text-2xl font-bold text-gray-800">{selectedJob.title}</h2>
               <div className="flex items-center">
-                <p className="text-xl text-gray-600 mr-2">{selectedJob.company}</p>
+                <p className="md:text-xl text-gray-600 mr-2">{selectedJob.company}</p>
                 {/* Verified Company Badge */}
                 {selectedJob.isVerified && (
                   <FaCheckCircle size={14} className="text-green-500" title="Verified Company" />
                 )}
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center md:space-x-4">
               {/* Status */}
-              <p className={`font-semibold ${isActive ? "text-green-600" : "text-red-600"}`}>
+              <p className={`xs:text-xs font-semibold ${isActive ? "text-green-600" : "text-red-600"}`}>
                 Status: {isActive ? "Active" : "Closed"}
               </p>
               {/* Menu Icon */}

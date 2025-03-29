@@ -75,7 +75,7 @@ const LoginPage = ({ isOpen, onClose }) => {
     if (value && !/^\d*$/.test(value)) return
 
     const newOtpValues = [...otpValues]
-    newOtpValues[index] = value.slice(0, 1) // Only take the first character
+    newOtpValues[index] = value.slice(0, 1)
 
     setOtpValues(newOtpValues)
 
@@ -576,7 +576,7 @@ const LoginPage = ({ isOpen, onClose }) => {
           <p className="text-center text-sm text-gray-600 mt-2">
             Are you recruiter?{" "}
             <a
-              href="https://static-page-0011.netlify.app/"
+              href="https://new-repo-admin-5.vercel.app/"
               onClick={onClose}
               target="_blank"
               rel="noopener noreferrer"

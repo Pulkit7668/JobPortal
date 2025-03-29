@@ -74,7 +74,7 @@ const RecommendedJobs = () => {
   return (
     <div className="mt-12 mb-10 xs:mx-5">
       <div className="flex items-center justify-between mb-5 lg:mx-24">
-        <h2 className="text-2xl font-bold">Recommended Jobs</h2>
+        <h2 className="xs:text-lg md:text-2xl font-bold">Recommended Jobs</h2>
         <div className="flex items-center">
           <Link to="/job-opportunities" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
             View More

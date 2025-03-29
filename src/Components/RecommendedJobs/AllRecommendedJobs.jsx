@@ -261,7 +261,7 @@ const AllRecommendedJobs = () => {
                 className="p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"
               />
             </button>
-            <h1 className="xs:text-2xl xs:font-extrabold md:text-3xl md:font-bold">All Recommended Jobs</h1>
+            <h1 className="xs:text-xl xs:font-bold md:text-3xl md:font-bold">All Recommended Jobs</h1>
           </div>
 
           <div className="flex items-center gap-4">

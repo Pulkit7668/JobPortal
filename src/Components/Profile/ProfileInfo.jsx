@@ -67,16 +67,19 @@ export default function ProfileInfo({ name, headline, location, education, onEdi
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+        <div className="flex flex-col xs:flex-row items-start xs:items-center gap-4 w-full xs:w-auto mt-4 sm:mt-0">
           <div className="flex items-center gap-4">
             {linkedin && (
               <a
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-gray-700 hover:text-blue-600 transition-all duration-300 hover:underline"
+                className="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-gray-50 transition-colors text-sm sm:text-sm md:text-base"
               >
-                LinkedIn
+                <svg role="img" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                  <title>LinkedIn</title>
+                  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 19h-2.5v-10h2.5v10zm-1.25-11.25c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.25 11.25h-2.5v-5c0-1.1-.9-2-2-2s-2 .9-2 2v5h-2.5v-10h2.5v1.25c.73-.95 1.84-1.25 3-1.25 2.48 0 4.5 2.02 4.5 4.5v5.5z"/>
+                </svg>
               </a>
             )}
             {github && (
@@ -84,18 +87,36 @@ export default function ProfileInfo({ name, headline, location, education, onEdi
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-gray-700 hover:text-blue-600 transition-all duration-300 hover:underline"
+                className="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-gray-50 transition-colors text-sm sm:text-sm md:text-base"
               >
-                GitHub
+                <svg role="img" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                  <title>GitHub</title>
+                  <path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.2-1.5-4.2-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 2.6.8 3.6.6.1-.8.4-1.4.7-1.7-2.7-.3-5.5-1.3-5.5-5.7 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.9 1.2 2 1.2 3.2 0 4.5-2.8 5.4-5.5 5.7.4.4.8 1 .8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 0z"/>
+                </svg>
+
               </a>
             )}
           </div>
 
           <button
             onClick={onEdit}
-            className="bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700 transition-colors"
+            className="bg-white border border-gray-300 text-gray-700 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors flex items-center"
           >
-            Edit profile
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+              />
+            </svg>
+            Edit
           </button>
         </div>
       </div>

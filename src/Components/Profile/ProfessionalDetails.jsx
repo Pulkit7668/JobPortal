@@ -29,7 +29,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-lg mb-6">
+        <div className="grid grid-cols-1  gap-4 bg-gray-50 p-4 rounded-lg mb-6">
           <div>
             <p className="text-sm text-gray-500">Industry</p>
             <p className="font-medium">{industry || "Not specified"}</p>
@@ -58,7 +58,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {experience.map((exp, index) => (
             <div key={index} className="mb-4 last:mb-0 bg-gray-50 p-4 rounded-lg">
               <h4 className="font-medium">{exp.role}</h4>
@@ -84,7 +84,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {education.map((edu, index) => (
             <div key={index} className="mb-4 last:mb-0 bg-gray-50 p-4 rounded-lg">
               <h4 className="font-medium mb-2">{edu.institution}</h4>
@@ -99,7 +99,7 @@ export default function ProfessionalDetails({
 
       <div id="skills" className="mb-8 scroll-mt-16">
         <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center mb-4 gap-2">
-          <h3 className="text-lg font-semibold mb-0 sm:mb-0">Skills</h3>
+          <h3 className="text-lg font-semibold mb-0 sm:mb-0">Skills & Tools</h3>
           <button
             onClick={onEditSkills}
             className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-50 transition-colors flex items-center"
@@ -110,7 +110,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           <div className="mb-4 bg-gray-50 p-4 rounded-lg">
             <h4 className="font-medium mb-2">Top Skills</h4>
             <div className="flex flex-wrap gap-2">
@@ -147,7 +147,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {workSamples.map((sample, index) => (
             <div key={index} className="mb-4 last:mb-0 bg-gray-50 p-4 rounded-lg">
               <h4 className="font-medium">{sample.title}</h4>
