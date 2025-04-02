@@ -14,31 +14,9 @@ import {
   FaUserShield,
   FaFileContract,
 } from "react-icons/fa"
+import { NotebookText } from 'lucide-react';
 import axios from "axios"
 import { baseUrl } from "../../Context/apiVariable"
-
-// Create a custom event for logout
-export const createLogoutEvent = async() => {
-  const email = localStorage.getItem("email");
-  const password= localStorage.getItem("password");
-
-
-try {
-  const response = await axios.post(`${baseUrl}/user/logout`,{
-    email,password
-  },{
-    headers:{
-      token:localStorage.getItem("token")
-    }
-  });
-  if(response.data.status_code === 1){
-    toast.success(response.data.message);
-    localStorage.clear();
-  }
-} catch (error) {
-  console.log(error)
-}
-}
 
 const MenuCard = ({ isOpen, onClose }) => {
   const navigate = useNavigate()
@@ -46,6 +24,30 @@ const MenuCard = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false)
 
   const { isLoggedIn, logout } = useAuth()
+
+  // Create a custom event for logout
+  const createLogoutEvent = async() => {
+    const email = localStorage.getItem("email");
+    const password= localStorage.getItem("password");
+  
+  
+  try {
+    const response = await axios.post(`${baseUrl}/user/logout`,{
+      email,password
+    },{
+      headers:{
+        token:localStorage.getItem("token")
+      }
+    });
+    if(response.data.status_code === 1){
+      toast.success(response.data.message);
+      localStorage.clear();
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  }
+  
 
   const handleMenuClick = (path) => {
     onClose()
@@ -64,7 +66,7 @@ const MenuCard = ({ isOpen, onClose }) => {
       setShowLogoutPopup(false)
       onClose()
       navigate("/")
-    }, 2000)
+    },2000)
   }
 
   return (
@@ -130,6 +132,14 @@ const MenuCard = ({ isOpen, onClose }) => {
             >
               <FaClipboardList />
               <span>Applied Jobs</span>
+            </button>
+
+            <button
+              onClick={() => handleMenuClick("/feedback")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+               <NotebookText size={18} />
+              <span>Feedback</span> 
             </button>
 
             <button

@@ -183,7 +183,7 @@ function RecommendedJobDetails() {
                 </div>
 
                 {/* Skills */}
-                <div className="mt-1 flex items-center gap-1">
+                <div className="mt-1 flex items-start flex-row gap-1">
                   <FaLightbulb className="text-gray-600" />
                   <p className="text-xs font-semibold text-gray-600">Skills:</p>
                   <div className="flex flex-wrap gap-1">

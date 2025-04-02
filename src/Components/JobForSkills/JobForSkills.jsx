@@ -3,7 +3,7 @@ import { FaEllipsisV, FaBookmark, FaShareAlt, FaStar, FaCheckCircle, FaLightbulb
 import { BiDollarCircle } from "react-icons/bi";
 import { FaCircleArrowRight } from "react-icons/fa6"
 import { CiLocationOn } from "react-icons/ci"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { jobs, companyLogos } from "./JobDataForSkills"
 import TogglePage from "../TogglePage/TogglePage"
 import { useAuth } from "../../Context/AuthContext"
@@ -23,6 +23,7 @@ function JobsForSkills() {
   const [isTogglePageOpen, setIsTogglePageOpen] = useState(false)
   const [selectedJob, setSelectedJob] = useState(null)
   const [menuOpen, setMenuOpen] = useState(null)
+  const navigate = useNavigate();
 
   const handleApplyNow = (job) => {
     setSelectedJob(job)
@@ -49,6 +50,7 @@ function JobsForSkills() {
     // Implement rate company functionality
     console.log("Rating company:", companyName)
     setMenuOpen(null)
+    // navigate("/feedback");
   }
 
   // Function to get company logo

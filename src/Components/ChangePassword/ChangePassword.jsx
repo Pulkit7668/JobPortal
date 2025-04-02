@@ -1,16 +1,21 @@
+
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 import { FaArrowLeft, FaTimes } from "react-icons/fa";
+import axios from "axios";
+import { baseUrl } from "../../Context/apiVariable";
 
 const ChangePassword = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState(["", "", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]); // Changed to 6 digits
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [otpToken, setOtpToken] = useState("");
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -18,51 +23,80 @@ const ChangePassword = () => {
     return emailRegex.test(email);
   };
 
-  const handleNext = () => {
-    if (step === 1 && email.trim() === "") {
-      setError("Email is required.");
-      toast.error("Please enter your email.", {
-        style: {
-          backgroundColor: '#f8d7da', // Light red
-          color: '#721c24', // Dark red text
-        },
-      });
-      return;
-    }
-    if (step === 1 && !validateEmail(email)) {
-      setError("Please enter a valid email.");
-      toast.error("Please enter a valid email.", {
-        style: {
-          backgroundColor: '#f8d7da',
-          color: '#721c24',
-        },
-      });
-      return;
-    }
-    if (step === 2 && otp.join("").trim() === "") {
-      setError("OTP is required.");
-      toast.error("Please enter the OTP.", {
-        style: {
-          backgroundColor: '#f8d7da',
-          color: '#721c24',
-        },
-      });
+  const handleNext = async () => {
+    if (step === 1) {
+      if (email.trim() === "") {
+        setError("Email is required.");
+        toast.error("Please enter your email.");
+        return;
+      }
+      if (!validateEmail(email)) {
+        setError("Please enter a valid email.");
+        toast.error("Please enter a valid email.");
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const response = await axios.post(`${baseUrl}/user/forgot_password`, {
+          email: email.trim(),
+        });
+
+        if (response.data) {
+          console.log(response.data.data.token)
+          setOtpToken(response.data.data.token);
+          console.log(otpToken)
+          toast.success("OTP sent to your email!");
+          setIsOtpSent(true);
+        }
+      } catch (error) {
+        toast.error(error.response?.data?.message || "Failed to send OTP. Please try again.");
+        setError(error.response?.data?.message || "Failed to send OTP");
+      } finally {
+        setIsLoading(false);
+      }
       return;
     }
 
-    // Simulate the OTP sending process (with loading spinner for a few seconds)
-    if (step === 1) {
+    if (step === 2) {
+      if (otp.join("").trim() === "") {
+        setError("OTP is required.");
+        toast.error("Please enter the OTP.");
+        return;
+      }
+
+      if (otp.join("").length !== 6) {
+        setError("Please enter a valid 6-digit OTP.");
+        toast.error("Please enter a valid 6-digit OTP.");
+        return;
+      }
+
       setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        setStep(step + 1);
-        toast.success("OTP sent to your email.", {
-          style: {
-            backgroundColor: '#d4edda', // Light green
-            color: '#155724', // Dark green text
+      try {
+        console.log(otpToken); // Fixed incorrect variable
+        const response = await axios.post(
+          `${baseUrl}/user/verify_otp`,
+          {
+            email: email.trim(),
+            otp: otp.join(""),
           },
-        });
-      }, 3000);
+          {
+            headers: {
+              token: otpToken,
+            },
+          }
+        );
+
+        if (response.data) {
+          setStep(3);
+          toast.success("OTP verified successfully.");
+        }
+      } catch (error) {
+        toast.error(error.response?.data?.message || "Invalid OTP. Please try again.");
+        setError(error.response?.data?.message || "Invalid OTP");
+      } finally {
+        setIsLoading(false);
+      }
       return;
     }
 
@@ -70,44 +104,48 @@ const ChangePassword = () => {
     setStep(step + 1);
   };
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
     if (newPassword.trim() === "" || confirmPassword.trim() === "") {
       setError("Both password fields are required.");
-      toast.error("Please fill out both password fields.", {
-        style: {
-          backgroundColor: '#f8d7da',
-          color: '#721c24',
-        },
-      });
+      toast.error("Please fill out both password fields.");
       return;
     }
     if (newPassword !== confirmPassword) {
       setError("Passwords do not match.");
-      toast.error("Passwords do not match.", {
-        style: {
-          backgroundColor: '#f8d7da',
-          color: '#721c24',
-        },
-      });
+      toast.error("Passwords do not match.");
       return;
     }
 
     setError("");
     setIsLoading(true);
 
-    // Simulate a network request (e.g., password reset API call)
-    setTimeout(() => {
-      toast.success("Password changed successfully!", {
-        style: {
-          backgroundColor: '#d4edda', // Light green
-          color: '#155724', // Dark green text
+    try {
+      const response = await axios.put(
+        `${baseUrl}/user/change_password`,
+        {
+          email: email.trim(),
+          new_password: newPassword.trim(),
+          otp: otp.join(""),
         },
-      });
+        {
+          headers: {
+            token: otpToken,
+          }
+        }
+      );
+      console.log(response.data);
+      if (response.data) {
+        toast.success("Password changed successfully!");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to change password. Please try again.");
+      setError(error.response?.data?.message || "Failed to change password");
+    } finally {
       setIsLoading(false);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
-    }, 2000);
+    }
   };
 
   const handleOtpChange = (e, index) => {
@@ -189,7 +227,7 @@ const ChangePassword = () => {
 
           {step === 2 && (
             <div>
-              <label className="block text-gray-700 font-medium mb-2">Enter the OTP sent to your email:</label>
+              <label className="block text-gray-700 font-medium mb-2">Enter the 6-digit OTP sent to your email:</label>
               <div className="flex space-x-2 mb-4">
                 {otp.map((digit, index) => (
                   <input
@@ -204,10 +242,11 @@ const ChangePassword = () => {
                 ))}
               </div>
               <button
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 hover:bg-blue-600 transition"
+                className={`w-full bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 hover:bg-blue-600 transition ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                 onClick={handleNext}
+                disabled={isLoading}
               >
-                Verify OTP
+                {isLoading ? "Verifying..." : "Verify OTP"}
               </button>
             </div>
           )}
