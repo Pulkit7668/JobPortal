@@ -37,7 +37,6 @@ function RecommendedJobDetails() {
       login();
       return;
     }
-    console.log("Job saved:", jobId);
     setMenuOpen(null);
   }
 
@@ -47,7 +46,6 @@ function RecommendedJobDetails() {
       login();
       return;
     }
-    console.log("Job shared:", jobId);
     setMenuOpen(null);
   }
 
@@ -57,8 +55,8 @@ function RecommendedJobDetails() {
       login();
       return;
     }
-    console.log("Rating company:", companyName);
     setMenuOpen(null);
+    navigate("/rate-company")
   }
 
 

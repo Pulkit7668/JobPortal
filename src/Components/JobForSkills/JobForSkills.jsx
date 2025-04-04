@@ -50,7 +50,7 @@ function JobsForSkills() {
     // Implement rate company functionality
     console.log("Rating company:", companyName)
     setMenuOpen(null)
-    // navigate("/feedback");
+    navigate("/rate-company");
   }
 
   // Function to get company logo

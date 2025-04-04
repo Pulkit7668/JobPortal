@@ -45,6 +45,7 @@ function JobDetail() {
     // Implement rate company functionality
     console.log("Rating company:", companyName)
     setMenuOpen(null)
+    navigate("/rate-company")
   }
 
   const getCompanyLogo = (company) => {

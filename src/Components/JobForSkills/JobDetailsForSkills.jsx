@@ -190,6 +190,7 @@ function JobDetailsForSkills() {
   const handleRateCompany = (companyName) => {
     console.log("Rating company:", companyName)
     setMenuOpen(null)
+    navigate("/rate-company");
   }
 
   // Function to get company logo

@@ -204,7 +204,6 @@ const AllRecommendedJobs = () => {
       login();
       return;
     }
-    console.log("Job saved:", jobId);
     setMenuOpen(null);
   }
 
@@ -214,7 +213,6 @@ const AllRecommendedJobs = () => {
       login();
       return;
     }
-    console.log("Job shared:", jobId);
     setMenuOpen(null);
   }
 
@@ -224,8 +222,8 @@ const AllRecommendedJobs = () => {
       login();
       return;
     }
-    console.log("Rating company:", companyName);
     setMenuOpen(null);
+    navigate("/rate-company");
   }
 
 
