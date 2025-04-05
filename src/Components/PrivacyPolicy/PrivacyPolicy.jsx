@@ -155,30 +155,6 @@ const PrivacyPolicy = () => {
                   ))}
                 </ul>
               </nav>
-
-              {/* Action buttons */}
-              <div className="mt-6 space-y-3">
-                <button
-                  onClick={printPolicy}
-                  className="w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 rounded-md text-gray-800 font-medium transition-colors flex items-center justify-center gap-2"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-                    />
-                  </svg>
-                  Print Privacy Policy
-                </button>
-              </div>
             </div>
           </div>
 
@@ -221,31 +197,6 @@ const PrivacyPolicy = () => {
                     Last Updated:{" "}
                     {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                   </p>
-                </div>
-
-                {/* Accept Privacy Policy Checkbox */}
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="accept-policy"
-                      checked={acceptPolicy}
-                      onChange={() => setAcceptPolicy(!acceptPolicy)}
-                      className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="accept-policy" className="ml-2 block text-sm text-gray-900">
-                      I have read and agree to the Privacy Policy
-                    </label>
-                  </div>
-
-                  <button
-                    disabled={!acceptPolicy}
-                    className={`mt-4 w-full py-2 px-4 rounded-md text-white font-medium transition-colors ${
-                      acceptPolicy ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-400 cursor-not-allowed"
-                    }`}
-                  >
-                    Continue
-                  </button>
                 </div>
               </div>
             </div>
