@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useMemo } from "react"
 import { Search, ChevronDown, ChevronUp, X, Eye, Trash, ArrowLeft } from "lucide-react"
 

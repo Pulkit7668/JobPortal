@@ -5,6 +5,7 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import { FaHandshake, FaGraduationCap, FaBalanceScale, FaTools } from "react-icons/fa";
+import { FaCircleArrowRight } from "react-icons/fa6";
 import { RiComputerLine } from "react-icons/ri";
 import { BiBarChart, BiUserCircle, BiSupport } from "react-icons/bi";
 import { IoAnalyticsOutline } from "react-icons/io5";
@@ -29,7 +30,16 @@ const FilterJob = () => {
   ];
 
   return (
-    <div className="mt-20 px-4 lg:mx-20">
+    <div className="mt-20 px-4">
+      <div className="flex items-center justify-between mb-5 lg:mx-20">
+        <h2 className="xs:text-lg md:text-2xl font-bold">Industries</h2>
+        <div className="flex items-center">
+          <Link to="/all-industries" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
+            View More
+          </Link>
+          <FaCircleArrowRight size={20} />
+        </div>
+      </div>
       {/* Desktop View */}
       <div className="hidden md:flex flex-wrap justify-center gap-4">
         {buttons.map((button, index) => (

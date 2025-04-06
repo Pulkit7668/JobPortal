@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
-import { FaTimes, FaBookmark, FaEye, FaSlidersH } from "react-icons/fa"
+import { FaTimes, FaBookmark, FaEye, FaSlidersH, FaUser, FaChartLine, FaDownload } from "react-icons/fa"
+import { ImLoop } from "react-icons/im";
 import { FaBox } from "react-icons/fa"
 import { useAuth } from "../../Context/AuthContext"
 
@@ -80,7 +81,7 @@ function ProfileSidebar({ isOpen, onClose }) {
           </div>
         </div>
 
-        <div className="p-4">
+        {/* <div className="p-4">
           <h4 className="text-sm font-bold text-gray-700">
             Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span>
           </h4>
@@ -101,9 +102,46 @@ function ProfileSidebar({ isOpen, onClose }) {
               </Link>
             </div>
           </div>
+        </div> */}
+
+        <div className="p-4 text-sm">
+          <h4 className="text-base font-bold mb-2">Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span></h4>
+
+          <div className="space-y-4 border-2 border-gray-200 p-4 rounded-lg"> 
+            <div className="flex items-start hover:bg-gray-200 transition-colors duration-150 ease-in-out p-2 rounded-lg cursor-pointer"> 
+              <div className="mr-3">
+                <FaUser />
+              </div>
+              <div>
+                <h5 className="text-base font-semibold">35 profile views</h5> 
+                <p className="text-sm text-gray-500">Discover who's viewed your profile.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start hover:bg-gray-200 transition-colors duration-150 ease-in-out p-2 rounded-lg cursor-pointer">
+              <div className="mr-3">
+                <FaChartLine />
+              </div>
+              <div>
+                <h5 className="text-base font-semibold">70 post impressions</h5>
+                <p className="text-sm text-gray-500">Check out who's engaging with your posts.</p>
+                <p className="text-xs text-gray-500">Past 7 days</p>
+              </div>
+            </div>
+
+            <div className="flex items-start hover:bg-gray-200 transition-colors duration-150 ease-in-out p-2 rounded-lg cursor-pointer"> 
+              <div className="mr-3">
+                <FaDownload />
+              </div>
+              <div>
+                <h5 className="text-base font-semibold">20 Resume Downloads</h5>
+                <p className="text-sm text-gray-500">See how often you appear in search results.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="p-4 space-y-3 text-sm">
+        <div className="p-4 text-sm">
           <div className="space-y-3">
             <button
               onClick={() => handleProfileClick("/change-visibility")}
@@ -135,6 +173,14 @@ function ProfileSidebar({ isOpen, onClose }) {
             >
               <FaBox />
               <span>My Member Ship</span>
+            </button>
+
+            <button
+              // onClick={() => handleProfileClick("/my-member-ship")}
+              className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
+            >
+              <ImLoop />
+              <span>Loop CV</span>
             </button>
           </div>
         </div>

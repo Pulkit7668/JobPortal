@@ -6,7 +6,7 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import ProfileSidebar from "../Profile/ProfileSideBar";
 import MenuCard from "../MenuCard/MenuCard";
 import { useAuth } from "../../Context/AuthContext";
-import LoginPage from "../LoginPage/LoginPage";
+import LoginPage from "../../Pages/LoginPage/LoginPage";
 import { toast, Toaster } from "react-hot-toast";
 import SearchPage from "../SearchInputBox/Searchpage";
 
