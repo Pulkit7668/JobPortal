@@ -34,6 +34,11 @@ const JobCategoryPage = ({ category }) => {
   const [sortBy, setSortBy] = useState("sort-by")
   const { isAuthenticated, login } = useAuth()
 
+
+  const handleBackBTn = () => {
+    navigate(-1)
+  }
+
   // Get initial jobs for the category
   const initialJobs = filterJobData[category.toLowerCase()] || []
 
@@ -258,7 +263,7 @@ const JobCategoryPage = ({ category }) => {
       <div className="flex-1 p-6 lg:ml-72 mb-5 mt-10">
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center">
-            <button onClick={() => navigate(-1)} className="text-blue-600 transition duration-300" aria-label="Go back">
+            <button onClick={handleBackBTn} className="text-blue-600 transition duration-300" aria-label="Go back">
               <FaArrowLeft
                 size={40}
                 className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"

@@ -323,6 +323,9 @@ export const filterJobData = {
         'Ability to communicate complex data insights in simple terms.',
         'Attention to detail and ability to work independently.'
       ],
+      skills: [
+        'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
+      ],
       application_deadline: '15th July 2025',
     },
     {
@@ -346,6 +349,9 @@ export const filterJobData = {
         'Strong knowledge of SQL and data query languages.',
         'Excellent communication and presentation skills.',
         'Experience in business process analysis and improvement.'
+      ],
+      skills: [
+        'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
       ],
       application_deadline: '20th July 2025',
     },
@@ -371,6 +377,9 @@ export const filterJobData = {
         'Excellent communication and presentation skills.',
         'Attention to detail and ability to meet deadlines.'
       ],
+      skills: [
+        'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
+      ],
       application_deadline: '25th July 2025',
     },
     {
@@ -394,6 +403,9 @@ export const filterJobData = {
         'Good understanding of marketing trends and customer behavior.',
         'Ability to interpret data and present findings clearly.',
         'Excellent communication and teamwork skills.'
+      ],
+      skills: [
+        'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
       ],
       application_deadline: '30th July 2025',
     },
@@ -419,6 +431,9 @@ export const filterJobData = {
         'Good understanding of customer behavior and user experience.',
         'Strong communication and collaboration skills.'
       ],
+      skills: [
+        'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
+      ],
       application_deadline: '5th August 2025',
     }
   ],
@@ -441,13 +456,10 @@ export const filterJobData = {
           'Strong knowledge of labor laws and HR best practices.',
           'Excellent interpersonal and communication skills.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Flexible working hours.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th January 2025',
-        contact_email: 'hr@peoplefirst.com',
       },
       {
         id: 2,
@@ -467,10 +479,8 @@ export const filterJobData = {
           'Familiarity with applicant tracking systems (ATS).',
           'Strong communication and negotiation skills.',
         ],
-        perks: [
-          'Remote work options.',
-          'Competitive salary with annual performance bonuses.',
-          'Access to career development resources.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '30th January 2025',
       },
@@ -492,10 +502,8 @@ export const filterJobData = {
           'Excellent problem-solving and strategic thinking abilities.',
           'Ability to influence and guide senior leadership.',
         ],
-        perks: [
-          'Stock options.',
-          'Comprehensive health benefits.',
-          'Paid parental leave.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th February 2025',
       },
@@ -517,10 +525,8 @@ export const filterJobData = {
           'Strong understanding of learning management systems (LMS).',
           'Excellent communication and presentation skills.',
         ],
-        perks: [
-          'Education allowance.',
-          'Opportunities for career growth and development.',
-          'Health and wellness benefits.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '28th February 2025',
       },
@@ -542,10 +548,8 @@ export const filterJobData = {
           'Strong analytical and problem-solving skills.',
           'Familiarity with compensation software and HRIS systems.',
         ],
-        perks: [
-          'Performance-based bonuses.',
-          'Comprehensive medical coverage.',
-          'Retirement savings plan.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th March 2025',
       },
@@ -712,13 +716,10 @@ export const filterJobData = {
           'Strong knowledge of accounting and financial principles.',
           'Excellent analytical and problem-solving skills.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Performance-based incentives.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th January 2025',
-        contact_email: 'finance@fincorp.com',
       },
       {
         id: 2,
@@ -738,10 +739,8 @@ export const filterJobData = {
           'Proficiency in financial modeling and Excel.',
           'Strong attention to detail and analytical skills.',
         ],
-        perks: [
-          'Remote work options.',
-          'Competitive salary with performance-based bonuses.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '30th January 2025',
       },
@@ -763,10 +762,8 @@ export const filterJobData = {
           'Strong leadership and management skills.',
           'Proficiency in financial software and reporting systems.',
         ],
-        perks: [
-          'Stock options.',
-          'Comprehensive health benefits.',
-          'Flexible work hours.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th February 2025',
       },
@@ -788,10 +785,8 @@ export const filterJobData = {
           'Knowledge of tax laws and accounting principles.',
           'Attention to detail and strong problem-solving skills.',
         ],
-        perks: [
-          'Annual performance bonuses.',
-          'Training and development programs.',
-          'Health and wellness benefits.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '28th February 2025',
       },
@@ -813,10 +808,8 @@ export const filterJobData = {
           'Strong analytical and research skills.',
           'Proficiency in financial tools and analysis software.',
         ],
-        perks: [
-          'Annual performance-based bonuses.',
-          'Opportunities for career growth and development.',
-          'Retirement savings plan.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th March 2025',
       },
@@ -840,10 +833,8 @@ export const filterJobData = {
           'Strong problem-solving and leadership skills.',
           'Experience in process improvement and project management.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Annual performance bonuses.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th January 2025',
         contact_email: 'operations@opexsolutions.com',
@@ -866,10 +857,8 @@ export const filterJobData = {
           'Strong organizational and negotiation skills.',
           'Proficiency in supply chain management software.',
         ],
-        perks: [
-          'Remote work options.',
-          'Performance-based incentives.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '30th January 2025',
       },
@@ -891,10 +880,8 @@ export const filterJobData = {
           'Proficiency in data analysis tools and techniques.',
           'Strong communication and analytical skills.',
         ],
-        perks: [
-          'Stock options.',
-          'Flexible work hours.',
-          'Health insurance benefits.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th February 2025',
       },
@@ -916,10 +903,8 @@ export const filterJobData = {
           'Strong leadership and organizational skills.',
           'Ability to manage and improve logistics processes.',
         ],
-        perks: [
-          'Annual performance-based bonuses.',
-          'Training and development programs.',
-          'Team bonding activities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '28th February 2025',
       },
@@ -941,10 +926,8 @@ export const filterJobData = {
           'Strong leadership and multitasking skills.',
           'Ability to troubleshoot and solve operational issues.',
         ],
-        perks: [
-          'Performance-based bonuses.',
-          'Opportunities for career growth and development.',
-          'Retirement savings plan.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th March 2025',
       },
@@ -968,10 +951,8 @@ export const filterJobData = {
           'Strong leadership and communication skills.',
           'Ability to resolve customer issues effectively and efficiently.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Performance-based bonuses.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th January 2025',
         contact_email: 'support@supporthub.com',
@@ -994,10 +975,8 @@ export const filterJobData = {
           'Strong problem-solving and communication skills.',
           'Familiarity with troubleshooting software and hardware issues.',
         ],
-        perks: [
-          'Remote work options.',
-          'Competitive salary with performance-based bonuses.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '30th January 2025',
       },
@@ -1019,10 +998,8 @@ export const filterJobData = {
           'Excellent communication and interpersonal skills.',
           'Strong attention to detail and ability to multitask.',
         ],
-        perks: [
-          'Health and wellness benefits.',
-          'Annual performance bonuses.',
-          'Opportunities for career growth.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th February 2025',
       },
@@ -1044,10 +1021,8 @@ export const filterJobData = {
           'Proficiency in troubleshooting hardware and software issues.',
           'Strong communication and problem-solving skills.',
         ],
-        perks: [
-          'Annual performance-based bonuses.',
-          'Flexible working hours.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '28th February 2025',
       },
@@ -1069,10 +1044,8 @@ export const filterJobData = {
           'Excellent communication and organizational skills.',
           'Ability to work well under pressure and meet deadlines.',
         ],
-        perks: [
-          'Retirement savings plan.',
-          'Performance-based incentives.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th March 2025',
       },
@@ -1096,10 +1069,8 @@ export const filterJobData = {
           'Strong negotiation and communication skills.',
           'Experience in handling complex legal issues and disputes.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Annual performance-based bonuses.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th January 2025',
         contact_email: 'legal@lawcorp.com',
@@ -1122,10 +1093,8 @@ export const filterJobData = {
           'Experience in corporate law, mergers, and acquisitions.',
           'Excellent analytical and communication skills.',
         ],
-        perks: [
-          'Remote work options.',
-          'Competitive salary with performance-based bonuses.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '30th January 2025',
       },
@@ -1147,10 +1116,8 @@ export const filterJobData = {
           'Strong research and organizational skills.',
           'Ability to manage multiple tasks and meet deadlines.',
         ],
-        perks: [
-          'Health insurance benefits.',
-          'Annual performance bonuses.',
-          'Opportunities for career growth and development.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th February 2025',
       },
@@ -1172,10 +1139,8 @@ export const filterJobData = {
           'Strong attention to detail and negotiation skills.',
           'Experience in managing high-value contracts.',
         ],
-        perks: [
-          'Annual performance-based bonuses.',
-          'Flexible working hours.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '28th February 2025',
       },
@@ -1197,10 +1162,8 @@ export const filterJobData = {
           'Experience in court proceedings and handling litigation cases.',
           'Strong advocacy and communication skills.',
         ],
-        perks: [
-          'Retirement savings plan.',
-          'Performance-based incentives.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th March 2025',
       },
@@ -1224,10 +1187,8 @@ export const filterJobData = {
           'Excellent communication and presentation skills.',
           'Ability to engage and motivate employees during training sessions.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Annual performance-based bonuses.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th January 2025',
         contact_email: 'training@skilltech.com',
@@ -1250,10 +1211,8 @@ export const filterJobData = {
           'Strong interpersonal and communication skills.',
           'Ability to assess and improve employee soft skills effectively.',
         ],
-        perks: [
-          'Remote work options.',
-          'Competitive salary with performance-based bonuses.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '30th January 2025',
       },
@@ -1275,10 +1234,8 @@ export const filterJobData = {
           'Deep understanding of relevant technologies and tools.',
           'Ability to explain complex technical concepts in an easy-to-understand manner.',
         ],
-        perks: [
-          'Health and wellness benefits.',
-          'Annual performance bonuses.',
-          'Opportunities for career growth.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th February 2025',
       },
@@ -1300,10 +1257,8 @@ export const filterJobData = {
           'Excellent organizational and communication skills.',
           'Ability to manage multiple tasks and prioritize effectively.',
         ],
-        perks: [
-          'Annual performance-based bonuses.',
-          'Flexible working hours.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '28th February 2025',
       },
@@ -1325,10 +1280,8 @@ export const filterJobData = {
           'Strong understanding of leadership theories and practices.',
           'Ability to inspire and coach future leaders.',
         ],
-        perks: [
-          'Retirement savings plan.',
-          'Performance-based incentives.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th March 2025',
       },
@@ -1352,10 +1305,8 @@ export const filterJobData = {
           'Strong knowledge of programming languages such as Java, Python, or C++.',
           'Familiarity with software development methodologies (Agile, Scrum).',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Annual performance-based bonuses.',
-          'Work-from-home options.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '20th January 2025',
         contact_email: 'careers@techsoft.com',
@@ -1378,10 +1329,8 @@ export const filterJobData = {
           'Experience with design software like AutoCAD or Civil 3D.',
           'Strong understanding of construction processes and safety standards.',
         ],
-        perks: [
-          'Health and wellness benefits.',
-          'Career advancement opportunities.',
-          'Annual performance bonuses.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th February 2025',
       },
@@ -1403,10 +1352,8 @@ export const filterJobData = {
           'Experience with CAD software such as SolidWorks or AutoCAD.',
           'Strong analytical and problem-solving skills.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Employee wellness programs.',
-          'Annual performance-based bonuses.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '5th March 2025',
       },
@@ -1428,10 +1375,8 @@ export const filterJobData = {
           'Knowledge of electrical design software and tools.',
           'Strong understanding of electrical safety standards.',
         ],
-        perks: [
-          'Retirement savings plan.',
-          'Flexible working hours.',
-          'Health and wellness benefits.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '20th March 2025',
       },
@@ -1453,10 +1398,8 @@ export const filterJobData = {
           'Experience with process simulation software and chemical analysis.',
           'Strong problem-solving and analytical skills.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Annual performance-based bonuses.',
-          'Career development opportunities.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '15th April 2025',
       },
@@ -1480,10 +1423,8 @@ export const filterJobData = {
           'Strong organizational and multitasking skills.',
           'Excellent communication and interpersonal skills.',
         ],
-        perks: [
-          'Health insurance for employees and families.',
-          'Annual performance-based bonuses.',
-          'Work-from-home flexibility.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th January 2025',
         contact_email: 'careers@adminpro.com',
@@ -1506,10 +1447,8 @@ export const filterJobData = {
           'Strong organizational, communication, and problem-solving skills.',
           'Proficiency in MS Office and office management software.',
         ],
-        perks: [
-          'Flexible work hours.',
-          'Competitive salary with performance-based incentives.',
-          'Opportunities for career growth and advancement.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '25th January 2025',
       },
@@ -1531,10 +1470,8 @@ export const filterJobData = {
           'Excellent organizational and time management skills.',
           'Strong written and verbal communication skills.',
         ],
-        perks: [
-          'Health and wellness benefits.',
-          'Annual performance bonuses.',
-          'Opportunities for career development.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '5th February 2025',
       },
@@ -1556,10 +1493,8 @@ export const filterJobData = {
           'Strong communication and organizational skills.',
           'Ability to handle office equipment and maintain cleanliness.',
         ],
-        perks: [
-          'Annual performance-based bonuses.',
-          'Flexible working hours.',
-          'Employee wellness programs.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '20th February 2025',
       },
@@ -1581,10 +1516,8 @@ export const filterJobData = {
           'Strong organizational and multitasking skills.',
           'Proficiency in office software and data management.',
         ],
-        perks: [
-          'Health insurance.',
-          'Career growth opportunities.',
-          'Employee perks and discounts.',
+        skills: [
+          'React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 'Azure'
         ],
         application_deadline: '10th March 2025',
       },

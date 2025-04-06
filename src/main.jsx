@@ -42,6 +42,7 @@ import TermsAndConditions from "./Pages/TermAndCondition/TermAndCondition.jsx";
 import MyMemberShip from "./Components/MyMemberShip/MyMemberShip.jsx";
 import Feedback from "./Components/Feedback/Feedback.jsx";
 import CompanyRating from "./Components/RateCompany/CompanyRating.jsx";
+import AllIndustries from "./Components/FilterJobs/AllIndustries.jsx";
 // import CoursesListingPage from "./Pages/CoursesListingPage.jsx";
 // import CourseDetailPage from "./Pages/CourseDetailPage.jsx";
 // import ShopPage from "./Pages/ShopPage.jsx";
@@ -100,6 +101,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/my-member-ship" element={<MyMemberShip />} />
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/rate-company" element={<CompanyRating />} /> 
+            <Route path="/all-industries" element={<AllIndustries />} />
             {/* <Route path="/course" element={<ShopPage />} />
             <Route path="/courses" element={<CoursesListingPage />} />
           <Route path="/courses/:id" element={<CourseDetailPage />} /> */}
