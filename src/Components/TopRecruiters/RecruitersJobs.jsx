@@ -241,19 +241,19 @@ function RecruitersJob() {
 
                   <div className="mt-2 space-y-1">
                     <p className="text-xs text-gray-600 flex items-center">
-                      <FaBriefcase className="mr-1" />
+                      <FaBriefcase className="mr-1 text-blue-500"/>
                       <span className="font-semibold mr-1">Experience:</span> {job.experience}
                     </p>
                     <p className="text-xs text-gray-600 flex items-center">
-                      <BiDollarCircle className="mr-1" />
+                      <BiDollarCircle className="mr-1 text-green-500"/>
                       <span className="font-semibold mr-1">Salary:</span> {job.salary}
                     </p>
                   </div>
 
-                  <div className="mt-1 flex items-center gap-1">
-                    <FaLightbulb className="text-gray-600" />
+                  <div className="mt-1 flex items-start flex-row gap-1">
+                    <FaLightbulb className="text-yellow-500"/>
                     <p className="text-xs font-semibold text-gray-600">Skills:</p>
-                    <div className="flex items-start gap-1">
+                    <div className="flex flex-wrap gap-1">
                         <span className="text-xs text-gray-600">
                           {Array.isArray(job.skills) ? job.skills.join(", ") : String(job.skills || "N/A")}
                        </span>

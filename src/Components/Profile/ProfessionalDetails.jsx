@@ -58,7 +58,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1">
           {experience.map((exp, index) => (
             <div key={index} className="mb-4 last:mb-0 bg-gray-50 p-4 rounded-lg">
               <h4 className="font-medium">{exp.role}</h4>
@@ -84,7 +84,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1">
           {education.map((edu, index) => (
             <div key={index} className="mb-4 last:mb-0 bg-gray-50 p-4 rounded-lg">
               <h4 className="font-medium mb-2">{edu.institution}</h4>
@@ -110,7 +110,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1">
           <div className="mb-4 bg-gray-50 p-4 rounded-lg">
             <h4 className="font-medium mb-2">Top Skills</h4>
             <div className="flex flex-wrap gap-2">
@@ -147,7 +147,7 @@ export default function ProfessionalDetails({
             Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1">
           {workSamples.map((sample, index) => (
             <div key={index} className="mb-4 last:mb-0 bg-gray-50 p-4 rounded-lg">
               <h4 className="font-medium">{sample.title}</h4>

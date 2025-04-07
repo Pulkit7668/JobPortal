@@ -10,7 +10,7 @@ import JobDetailsForSkills from "./Components/JobForSkills/JobDetailsForSkills.j
 import AllRecruiters from "./Components/TopRecruiters/AllRecruiters.jsx";
 import JobCategoryPage from './Components/FilterJobs/JobCardPage.jsx';
 import Searchpage from "./Components/SearchInputBox/Searchpage.jsx";
-import NotificationPage from "./Pages/NotificationPage.jsx";
+import NotificationPage from "./Pages/NotificationPage/NotificationPage.jsx";
 import JobsResults from "./Components/SearchInputBox/JobResults.jsx";
 import SearchJobDetails from "./Components/SearchInputBox/SearchJobDetails.jsx";
 import FilterJobDetails from "./Components/FilterJobs/FilterJobDetails..jsx";
