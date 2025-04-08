@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Homepage from './Pages/Homepage'
+import { generateToken, messaging } from './Pages/NotificationPage/firebase'
+import { onMessage } from 'firebase/messaging';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
+ 
+  useEffect(() => {
+    generateToken();
+    onMessage(messaging, (payload) => {
+      console.log(payload);
+      toast.success(payload.notification.body);
+      toast.error(payload.notification.title);
+    });
+  }, []);
+
   return (
     <>
+    <Toaster position='top-center' />
     <Homepage />
     </>
   )
