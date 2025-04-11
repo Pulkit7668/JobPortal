@@ -81,29 +81,6 @@ function ProfileSidebar({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* <div className="p-4">
-          <h4 className="text-sm font-bold text-gray-700">
-            Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span>
-          </h4>
-          <div className="flex justify-between 2xl:justify-around mt-3 bg-blue-50 p-3 rounded-lg">
-            <div className="text-center ml-8">
-              <h5 className="text-lg font-bold text-gray-700">0</h5>
-              <p className="text-xs text-gray-500">Recruiter Visitor</p>
-              <Link to="" className="text-xs text-blue-600 hover:underline">
-                View all
-              </Link>
-            </div>
-            <div className="border-l-2"></div>
-            <div className="text-center mr-8">
-              <h5 className="text-lg font-bold text-gray-700">0</h5>
-              <p className="text-xs text-gray-500">Recruiter Actions</p>
-              <Link to="" className="text-xs text-blue-600 hover:underline">
-                View all
-              </Link>
-            </div>
-          </div>
-        </div> */}
-
         <div className="p-4 text-sm">
           <h4 className="text-base font-bold mb-2">Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span></h4>
 
