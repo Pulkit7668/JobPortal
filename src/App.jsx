@@ -3,6 +3,7 @@ import Homepage from './Pages/Homepage'
 import { generateToken, messaging } from './Pages/NotificationPage/firebase'
 import { onMessage } from 'firebase/messaging';
 import toast, { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
 
 function App() {
  
