@@ -9,10 +9,10 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaCheckCircle,
-  FaLightbulb,
-  FaBriefcase
 } from "react-icons/fa"
-import { BiDollarCircle } from "react-icons/bi";
+import { BiCodeAlt } from "react-icons/bi";
+import { LuHistory } from "react-icons/lu";
+import { LuWallet } from "react-icons/lu";
 import { CiLocationOn } from "react-icons/ci";
 import { jobs } from "./JobDataForSkills";
 import { companyLogos } from "./JobDataForSkills";
@@ -159,18 +159,18 @@ function JobDetail() {
                 {/* Job Details */}
                 <div className="mt-2 space-y-1">
                   <p className="text-xs text-gray-600 flex items-center">
-                    <FaBriefcase className="mr-1 text-blue-500" />
+                    <LuHistory className="mr-1 text-gray-500" />
                     <span className="font-semibold mr-1">Experience:</span> {jobItem.experience}
                   </p>
                   <p className="text-xs text-gray-600 flex items-center">
-                    <BiDollarCircle className="mr-1 text-gray-500"/> 
+                    <LuWallet className="mr-1 text-gray-500"/> 
                     <span className="font-semibold mr-1">Salary:</span> {jobItem.salary}
                   </p>
                 </div>
 
                 {/* Skills */}
                 <div className="mt-1 flex items-start flex-row gap-1">
-                  <FaLightbulb className="text-yellow-500" />
+                  <BiCodeAlt className="text-gray-500" />
                   <p className="text-xs font-semibold text-gray-700">Skills:</p>
                   <div className="flex flex-wrap gap-1">
                     {jobItem.skills &&

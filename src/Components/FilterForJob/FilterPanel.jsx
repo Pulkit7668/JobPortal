@@ -65,11 +65,11 @@ const FilterPanel = ({ isOpen, onClose, onApplyFilters, filters, setFilters }) =
       <div
         className={`fixed top-0 left-0 h-full bg-white border-r border-gray-200 overflow-y-auto transition-transform duration-300 ease-in-out z-40 w-64 md:w-72 mt-16 pb-20 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`}
+        } lg:translate-x-0`}
       >
         {/* Close Button for Mobile */}
         <button
-          className="md:hidden absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition"
+          className="lg:hidden absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition"
           onClick={onClose}
         >
           <X size={20} />

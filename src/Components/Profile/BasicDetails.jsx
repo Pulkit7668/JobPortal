@@ -1,12 +1,11 @@
 export default function BasicDetails({ basicInfo, onEdit }) {
   const {
     experience = "",
-    city = "",
-    state = "",
+    notice_field = "",
     email = "",
     isEmailVerified = false,
     phoneNumber = "",
-    description = "",
+    salary = "",
   } = typeof basicInfo === "object" ? basicInfo : { description: basicInfo }
 
   return (
@@ -65,9 +64,9 @@ export default function BasicDetails({ basicInfo, onEdit }) {
               </div>
 
               <div>
-                <p className="text-sm text-gray-500">Location</p>
+                <p className="text-sm text-gray-500">Notice Field</p>
                 <p className="text-gray-700">
-                  {city && state ? `${city}, ${state}` : city || state || "Not specified"}
+                  { notice_field || "Not specified"}
                 </p>
               </div>
 
@@ -90,8 +89,8 @@ export default function BasicDetails({ basicInfo, onEdit }) {
             </div>
 
             <div>
-              <p className="text-sm text-gray-500">About</p>
-              <p className="text-gray-700">{description || "No description provided"}</p>
+              <p className="text-sm text-gray-500">Salary</p>
+              <p className="text-gray-700">{salary || "No salary provided"}</p>
             </div>
           </div>
         </div>

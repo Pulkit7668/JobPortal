@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import { FaEllipsisV, FaBookmark, FaShareAlt, FaStar, FaCheckCircle, FaLightbulb, FaBriefcase } from "react-icons/fa"
-import { BiDollarCircle } from "react-icons/bi";
+import { FaEllipsisV, FaBookmark, FaShareAlt, FaStar, FaCheckCircle } from "react-icons/fa"
 import { FaCircleArrowRight } from "react-icons/fa6"
 import { CiLocationOn } from "react-icons/ci"
 import { Link } from "react-router-dom"
 import TogglePage from "../TogglePage/TogglePage"
 import jobData, { companyLogos } from "./RecommendedJobsData"
 import { useAuth } from "../../Context/AuthContext"; 
+import { BiCodeAlt } from "react-icons/bi"
+import { LuHistory, LuWallet } from "react-icons/lu"
 
 const RecommendedJobs = () => {
   const [visibleJobs] = useState(6)
@@ -71,8 +72,8 @@ const RecommendedJobs = () => {
   }
 
   return (
-    <div className="mt-12 mb-10 xs:mx-5">
-      <div className="flex items-center justify-between mb-5 lg:mx-24">
+    <div className="p-4 sm:p-6 lg:mx-10 xl:mx-20 mt-6 lg:mt-10">
+      <div className="flex xs:flex-row justify-between items-start sm:items-center mb-4">
         <h2 className="xs:text-lg md:text-2xl font-bold">Recommended Jobs</h2>
         <div className="flex items-center">
           <Link to="/job-opportunities" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
@@ -81,11 +82,11 @@ const RecommendedJobs = () => {
           <FaCircleArrowRight size={20} />
         </div>
       </div>
-      <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 md:mx-10 lg:mx-24">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {jobData.slice(0, visibleJobs).map((job) => (
           <div
             key={job.id}
-            className="flex flex-col bg-white rounded-xl shadow-md p-4 mb-4 hover:shadow-xl transition-shadow duration-300"
+            className="p-3 sm:p-4 bg-white border border-gray-200 rounded-lg sm:rounded-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between relative"
           >
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center">
@@ -142,18 +143,18 @@ const RecommendedJobs = () => {
               <p className="text-sm text-gray-500">{job.location}</p>
             </div>
             <div className="mt-2 space-y-1">
-              <p className="text-xs text-gray-600 flex items-center">
-                <FaBriefcase className="mr-1 text-blue-500" />
+              <p className="text-xs xs:text-sm text-gray-600 flex items-center">
+                <LuHistory className="mr-1 text-gray-500" />
                 <span className="font-semibold mr-1">Experience:</span> {job.experience}
               </p>
-              <p className="text-xs text-gray-600 flex items-center">
-                <BiDollarCircle className="mr-1 text-green-500"/> 
+              <p className="text-xs xs:text-sm text-gray-600 flex items-center">
+                <LuWallet className="mr-1 text-gray-500"/>  
                 <span className="font-semibold mr-1">Salary:</span> {job.salary}
               </p>
             </div>
             <div className="mt-1 flex items-start gap-1">
-              <FaLightbulb className="text-yellow-500" />
-              <p className="text-xs font-semibold text-gray-600 mb-1">Skills:</p>
+              <BiCodeAlt className="text-gray-500" />
+              <p className="text-xs xs:text-sm font-semibold text-gray-600 mb-1">Skills:</p>
               <div className="flex flex-wrap gap-1">
                 {job.skills.slice(0, 3).map((skill, index) => (
                   <span key={index} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">

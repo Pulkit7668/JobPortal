@@ -148,7 +148,7 @@ const AllIndustries = () => {
       <main className="flex-1 overflow-auto">
         {!selectedDepartment ? (
           // Department List with visual differentiation
-          <div className="grid grid-cols-1 gap-4 p-4">
+          <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
             {filteredDepartments.map((department, index) => {
               const bgColor = departmentColors[department.toLowerCase()] || "#F5F5F5";
               

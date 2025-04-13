@@ -263,28 +263,28 @@ const MembershipCard = ({ membership }) => {
   )
 }
 
-// UserProfile Component
-const UserProfile = ({ user }) => {
-  return (
-    <div className="bg-white rounded-xl shadow-md p-6">
-      <div className="flex items-center gap-4">
-        <img
-          src={user.avatar || "/placeholder.svg"}
-          alt={user.name}
-          className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
-        />
-        <div>
-          <h2 className="text-2xl font-bold text-gray-800">{user.name}</h2>
-          <p className="text-gray-600">{user.email}</p>
-          <div className="flex items-center gap-1 mt-1 text-sm text-gray-500">
-            <User size={14} />
-            <span>Member since {user.joinDate}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+// // UserProfile Component
+// const UserProfile = ({ user }) => {
+//   return (
+//     <div className="bg-white rounded-xl shadow-md p-6">
+//       <div className="flex items-center gap-4">
+//         <img
+//           src={user.avatar || "/placeholder.svg"}
+//           alt={user.name}
+//           className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
+//         />
+//         <div>
+//           <h2 className="text-2xl font-bold text-gray-800">{user.name}</h2>
+//           <p className="text-gray-600">{user.email}</p>
+//           <div className="flex items-center gap-1 mt-1 text-sm text-gray-500">
+//             <User size={14} />
+//             <span>Member since {user.joinDate}</span>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
 
 // MembershipStats Component
 const MembershipStats = ({ memberships }) => {
@@ -347,12 +347,6 @@ const PaymentHistory = ({ payments }) => {
               >
                 Status
               </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Invoice
-              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -370,12 +364,6 @@ const PaymentHistory = ({ payments }) => {
                     {payment.status}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <button className="flex items-center text-blue-600 hover:text-blue-800">
-                    <Download size={14} className="mr-1" />
-                    {payment.invoice}
-                  </button>
-                </td>
               </tr>
             ))}
           </tbody>
@@ -385,294 +373,294 @@ const PaymentHistory = ({ payments }) => {
   )
 }
 
-// PaymentMethods Component
-const PaymentMethods = ({ methods, setMethods }) => {
-  const setDefaultMethod = (id) => {
-    const updatedMethods = methods.map((method) => ({
-      ...method,
-      isDefault: method.id === id,
-    }))
-    setMethods(updatedMethods)
-  }
+// // PaymentMethods Component
+// const PaymentMethods = ({ methods, setMethods }) => {
+//   const setDefaultMethod = (id) => {
+//     const updatedMethods = methods.map((method) => ({
+//       ...method,
+//       isDefault: method.id === id,
+//     }))
+//     setMethods(updatedMethods)
+//   }
 
-  return (
-    <div className="bg-white rounded-xl shadow-md p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Payment Methods</h2>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
-          Add New
-        </button>
-      </div>
-      <div className="space-y-4">
-        {methods.map((method) => (
-          <div key={method.id} className="flex items-center justify-between p-4 border rounded-lg">
-            <div className="flex items-center gap-3">
-              <CreditCard size={24} className={method.type === "Visa" ? "text-blue-600" : "text-red-600"} />
-              <div>
-                <p className="font-medium">
-                  {method.type} ending in {method.last4}
-                </p>
-                <p className="text-sm text-gray-500">Expires {method.expiry}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              {method.isDefault ? (
-                <span className="text-sm text-green-600 font-medium">Default</span>
-              ) : (
-                <button
-                  onClick={() => setDefaultMethod(method.id)}
-                  className="text-sm text-blue-600 hover:text-blue-800"
-                >
-                  Set as default
-                </button>
-              )}
-              <button className="text-gray-400 hover:text-gray-600">
-                <RefreshCw size={16} />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div className="bg-white rounded-xl shadow-md p-6">
+//       <div className="flex justify-between items-center mb-4">
+//         <h2 className="text-xl font-bold">Payment Methods</h2>
+//         <button className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+//           Add New
+//         </button>
+//       </div>
+//       <div className="space-y-4">
+//         {methods.map((method) => (
+//           <div key={method.id} className="flex items-center justify-between p-4 border rounded-lg">
+//             <div className="flex items-center gap-3">
+//               <CreditCard size={24} className={method.type === "Visa" ? "text-blue-600" : "text-red-600"} />
+//               <div>
+//                 <p className="font-medium">
+//                   {method.type} ending in {method.last4}
+//                 </p>
+//                 <p className="text-sm text-gray-500">Expires {method.expiry}</p>
+//               </div>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               {method.isDefault ? (
+//                 <span className="text-sm text-green-600 font-medium">Default</span>
+//               ) : (
+//                 <button
+//                   onClick={() => setDefaultMethod(method.id)}
+//                   className="text-sm text-blue-600 hover:text-blue-800"
+//                 >
+//                   Set as default
+//                 </button>
+//               )}
+//               <button className="text-gray-400 hover:text-gray-600">
+//                 <RefreshCw size={16} />
+//               </button>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   )
+// }
 
-// NotificationPreferences Component
-const NotificationPreferences = () => {
-  const [preferences, setPreferences] = useState({
-    renewalReminders: true,
-    expiryAlerts: true,
-    specialOffers: false,
-    newsletterUpdates: true,
-  })
+// // NotificationPreferences Component
+// const NotificationPreferences = () => {
+//   const [preferences, setPreferences] = useState({
+//     renewalReminders: true,
+//     expiryAlerts: true,
+//     specialOffers: false,
+//     newsletterUpdates: true,
+//   })
 
-  const togglePreference = (key) => {
-    setPreferences({
-      ...preferences,
-      [key]: !preferences[key],
-    })
-  }
+//   const togglePreference = (key) => {
+//     setPreferences({
+//       ...preferences,
+//       [key]: !preferences[key],
+//     })
+//   }
 
-  return (
-    <div className="bg-white rounded-xl shadow-md p-6">
-      <div className="flex items-center gap-2 mb-4">
-        <Bell size={20} />
-        <h2 className="text-xl font-bold">Notification Preferences</h2>
-      </div>
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-medium">Renewal Reminders</p>
-            <p className="text-sm text-gray-500">Get notified before your membership renews</p>
-          </div>
-          <button onClick={() => togglePreference("renewalReminders")} className="focus:outline-none">
-            {preferences.renewalReminders ? (
-              <ToggleRight size={24} className="text-blue-500" />
-            ) : (
-              <ToggleLeft size={24} className="text-gray-400" />
-            )}
-          </button>
-        </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-medium">Expiry Alerts</p>
-            <p className="text-sm text-gray-500">Get notified when your membership is about to expire</p>
-          </div>
-          <button onClick={() => togglePreference("expiryAlerts")} className="focus:outline-none">
-            {preferences.expiryAlerts ? (
-              <ToggleRight size={24} className="text-blue-500" />
-            ) : (
-              <ToggleLeft size={24} className="text-gray-400" />
-            )}
-          </button>
-        </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-medium">Special Offers</p>
-            <p className="text-sm text-gray-500">Receive notifications about special deals and promotions</p>
-          </div>
-          <button onClick={() => togglePreference("specialOffers")} className="focus:outline-none">
-            {preferences.specialOffers ? (
-              <ToggleRight size={24} className="text-blue-500" />
-            ) : (
-              <ToggleLeft size={24} className="text-gray-400" />
-            )}
-          </button>
-        </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-medium">Newsletter Updates</p>
-            <p className="text-sm text-gray-500">Receive our monthly newsletter</p>
-          </div>
-          <button onClick={() => togglePreference("newsletterUpdates")} className="focus:outline-none">
-            {preferences.newsletterUpdates ? (
-              <ToggleRight size={24} className="text-blue-500" />
-            ) : (
-              <ToggleLeft size={24} className="text-gray-400" />
-            )}
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div className="bg-white rounded-xl shadow-md p-6">
+//       <div className="flex items-center gap-2 mb-4">
+//         <Bell size={20} />
+//         <h2 className="text-xl font-bold">Notification Preferences</h2>
+//       </div>
+//       <div className="space-y-4">
+//         <div className="flex items-center justify-between">
+//           <div>
+//             <p className="font-medium">Renewal Reminders</p>
+//             <p className="text-sm text-gray-500">Get notified before your membership renews</p>
+//           </div>
+//           <button onClick={() => togglePreference("renewalReminders")} className="focus:outline-none">
+//             {preferences.renewalReminders ? (
+//               <ToggleRight size={24} className="text-blue-500" />
+//             ) : (
+//               <ToggleLeft size={24} className="text-gray-400" />
+//             )}
+//           </button>
+//         </div>
+//         <div className="flex items-center justify-between">
+//           <div>
+//             <p className="font-medium">Expiry Alerts</p>
+//             <p className="text-sm text-gray-500">Get notified when your membership is about to expire</p>
+//           </div>
+//           <button onClick={() => togglePreference("expiryAlerts")} className="focus:outline-none">
+//             {preferences.expiryAlerts ? (
+//               <ToggleRight size={24} className="text-blue-500" />
+//             ) : (
+//               <ToggleLeft size={24} className="text-gray-400" />
+//             )}
+//           </button>
+//         </div>
+//         <div className="flex items-center justify-between">
+//           <div>
+//             <p className="font-medium">Special Offers</p>
+//             <p className="text-sm text-gray-500">Receive notifications about special deals and promotions</p>
+//           </div>
+//           <button onClick={() => togglePreference("specialOffers")} className="focus:outline-none">
+//             {preferences.specialOffers ? (
+//               <ToggleRight size={24} className="text-blue-500" />
+//             ) : (
+//               <ToggleLeft size={24} className="text-gray-400" />
+//             )}
+//           </button>
+//         </div>
+//         <div className="flex items-center justify-between">
+//           <div>
+//             <p className="font-medium">Newsletter Updates</p>
+//             <p className="text-sm text-gray-500">Receive our monthly newsletter</p>
+//           </div>
+//           <button onClick={() => togglePreference("newsletterUpdates")} className="focus:outline-none">
+//             {preferences.newsletterUpdates ? (
+//               <ToggleRight size={24} className="text-blue-500" />
+//             ) : (
+//               <ToggleLeft size={24} className="text-gray-400" />
+//             )}
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
 
-// MembershipComparison Component
-const MembershipComparison = ({ plans }) => {
-  return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden">
-      <div className="p-6 border-b border-gray-200">
-        <h2 className="text-xl font-bold">Membership Comparison</h2>
-        <p className="text-gray-600 mt-1">Compare our membership plans to find the right one for you</p>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Feature
-              </th>
-              {plans.map((plan) => (
-                <th
-                  key={plan.id}
-                  scope="col"
-                  className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  <div className="relative">
-                    {plan.isRecommended && (
-                      <div className="absolute -top-3 left-0 right-0 mx-auto w-max px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded">
-                        Recommended
-                      </div>
-                    )}
-                    {plan.type}
-                    <div className="font-bold text-gray-800 mt-1">{plan.price}</div>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {plans[0].features.map((feature, index) => (
-              <tr key={index} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{feature.name}</td>
-                {plans.map((plan) => (
-                  <td key={plan.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                    {plan.features[index].value}
-                  </td>
-                ))}
-              </tr>
-            ))}
-            <tr>
-              <td className="px-6 py-4"></td>
-              {plans.map((plan) => (
-                <td key={plan.id} className="px-6 py-4 text-center">
-                  <button
-                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                      plan.isRecommended
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                  >
-                    {plan.isRecommended ? "Get Started" : "Select Plan"}
-                  </button>
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
+// // MembershipComparison Component
+// const MembershipComparison = ({ plans }) => {
+//   return (
+//     <div className="bg-white rounded-xl shadow-md overflow-hidden">
+//       <div className="p-6 border-b border-gray-200">
+//         <h2 className="text-xl font-bold">Membership Comparison</h2>
+//         <p className="text-gray-600 mt-1">Compare our membership plans to find the right one for you</p>
+//       </div>
+//       <div className="overflow-x-auto">
+//         <table className="min-w-full divide-y divide-gray-200">
+//           <thead className="bg-gray-50">
+//             <tr>
+//               <th
+//                 scope="col"
+//                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+//               >
+//                 Feature
+//               </th>
+//               {plans.map((plan) => (
+//                 <th
+//                   key={plan.id}
+//                   scope="col"
+//                   className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+//                 >
+//                   <div className="relative">
+//                     {plan.isRecommended && (
+//                       <div className="absolute -top-3 left-0 right-0 mx-auto w-max px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded">
+//                         Recommended
+//                       </div>
+//                     )}
+//                     {plan.type}
+//                     <div className="font-bold text-gray-800 mt-1">{plan.price}</div>
+//                   </div>
+//                 </th>
+//               ))}
+//             </tr>
+//           </thead>
+//           <tbody className="bg-white divide-y divide-gray-200">
+//             {plans[0].features.map((feature, index) => (
+//               <tr key={index} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{feature.name}</td>
+//                 {plans.map((plan) => (
+//                   <td key={plan.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+//                     {plan.features[index].value}
+//                   </td>
+//                 ))}
+//               </tr>
+//             ))}
+//             <tr>
+//               <td className="px-6 py-4"></td>
+//               {plans.map((plan) => (
+//                 <td key={plan.id} className="px-6 py-4 text-center">
+//                   <button
+//                     className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+//                       plan.isRecommended
+//                         ? "bg-blue-600 text-white hover:bg-blue-700"
+//                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+//                     }`}
+//                   >
+//                     {plan.isRecommended ? "Get Started" : "Select Plan"}
+//                   </button>
+//                 </td>
+//               ))}
+//             </tr>
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   )
+// }
 
-// ReferralProgram Component
-const ReferralProgram = ({ referral }) => {
-  const [copied, setCopied] = useState(false)
+// // ReferralProgram Component
+// const ReferralProgram = ({ referral }) => {
+//   const [copied, setCopied] = useState(false)
 
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+//   const copyToClipboard = (text) => {
+//     navigator.clipboard.writeText(text)
+//     setCopied(true)
+//     setTimeout(() => setCopied(false), 2000)
+//   }
 
-  return (
-    <div className="bg-white rounded-xl shadow-md p-6">
-      <div className="flex items-center gap-2 mb-4">
-        <Users size={20} />
-        <h2 className="text-xl font-bold">Referral Program</h2>
-      </div>
-      <p className="text-gray-600 mb-6">Invite your friends and earn rewards when they join our membership program.</p>
+//   return (
+//     <div className="bg-white rounded-xl shadow-md p-6">
+//       <div className="flex items-center gap-2 mb-4">
+//         <Users size={20} />
+//         <h2 className="text-xl font-bold">Referral Program</h2>
+//       </div>
+//       <p className="text-gray-600 mb-6">Invite your friends and earn rewards when they join our membership program.</p>
 
-      <div className="grid md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gray-50 p-4 rounded-lg text-center">
-          <p className="text-2xl font-bold text-blue-600">{referral.totalReferred}</p>
-          <p className="text-sm text-gray-500">Friends Referred</p>
-        </div>
-        <div className="bg-gray-50 p-4 rounded-lg text-center">
-          <p className="text-2xl font-bold text-blue-600">{referral.pendingRewards}</p>
-          <p className="text-sm text-gray-500">Pending Rewards</p>
-        </div>
-        <div className="bg-gray-50 p-4 rounded-lg text-center">
-          <p className="text-2xl font-bold text-blue-600">{referral.rewardsEarned}</p>
-          <p className="text-sm text-gray-500">Rewards Earned</p>
-        </div>
-      </div>
+//       <div className="grid md:grid-cols-3 gap-4 mb-6">
+//         <div className="bg-gray-50 p-4 rounded-lg text-center">
+//           <p className="text-2xl font-bold text-blue-600">{referral.totalReferred}</p>
+//           <p className="text-sm text-gray-500">Friends Referred</p>
+//         </div>
+//         <div className="bg-gray-50 p-4 rounded-lg text-center">
+//           <p className="text-2xl font-bold text-blue-600">{referral.pendingRewards}</p>
+//           <p className="text-sm text-gray-500">Pending Rewards</p>
+//         </div>
+//         <div className="bg-gray-50 p-4 rounded-lg text-center">
+//           <p className="text-2xl font-bold text-blue-600">{referral.rewardsEarned}</p>
+//           <p className="text-sm text-gray-500">Rewards Earned</p>
+//         </div>
+//       </div>
 
-      <div className="space-y-4">
-        <div>
-          <p className="font-medium mb-2">Your Referral Code</p>
-          <div className="flex">
-            <div className="bg-gray-100 border border-gray-300 rounded-l-lg px-4 py-2 font-mono flex-grow">
-              {referral.code}
-            </div>
-            <button
-              onClick={() => copyToClipboard(referral.code)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors"
-            >
-              {copied ? "Copied!" : "Copy"}
-            </button>
-          </div>
-        </div>
+//       <div className="space-y-4">
+//         <div>
+//           <p className="font-medium mb-2">Your Referral Code</p>
+//           <div className="flex">
+//             <div className="bg-gray-100 border border-gray-300 rounded-l-lg px-4 py-2 font-mono flex-grow">
+//               {referral.code}
+//             </div>
+//             <button
+//               onClick={() => copyToClipboard(referral.code)}
+//               className="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors"
+//             >
+//               {copied ? "Copied!" : "Copy"}
+//             </button>
+//           </div>
+//         </div>
 
-        <div>
-          <p className="font-medium mb-2">Referral Link</p>
-          <div className="flex">
-            <div className="bg-gray-100 border border-gray-300 rounded-l-lg px-4 py-2 text-sm truncate flex-grow">
-              {referral.referralLink}
-            </div>
-            <button
-              onClick={() => copyToClipboard(referral.referralLink)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors"
-            >
-              {copied ? "Copied!" : "Copy"}
-            </button>
-          </div>
-        </div>
+//         <div>
+//           <p className="font-medium mb-2">Referral Link</p>
+//           <div className="flex">
+//             <div className="bg-gray-100 border border-gray-300 rounded-l-lg px-4 py-2 text-sm truncate flex-grow">
+//               {referral.referralLink}
+//             </div>
+//             <button
+//               onClick={() => copyToClipboard(referral.referralLink)}
+//               className="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors"
+//             >
+//               {copied ? "Copied!" : "Copy"}
+//             </button>
+//           </div>
+//         </div>
 
-        <div className="flex gap-2 mt-4">
-          <button className="flex items-center gap-1 px-4 py-2 bg-[#1877F2] text-white rounded-lg font-medium hover:bg-[#166FE5] transition-colors">
-            Share on Facebook
-          </button>
-          <button className="flex items-center gap-1 px-4 py-2 bg-[#1DA1F2] text-white rounded-lg font-medium hover:bg-[#1A94DA] transition-colors">
-            Share on Twitter
-          </button>
-          <button className="flex items-center gap-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors">
-            Email
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
+//         <div className="flex gap-2 mt-4">
+//           <button className="flex items-center gap-1 px-4 py-2 bg-[#1877F2] text-white rounded-lg font-medium hover:bg-[#166FE5] transition-colors">
+//             Share on Facebook
+//           </button>
+//           <button className="flex items-center gap-1 px-4 py-2 bg-[#1DA1F2] text-white rounded-lg font-medium hover:bg-[#1A94DA] transition-colors">
+//             Share on Twitter
+//           </button>
+//           <button className="flex items-center gap-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+//             Email
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
 
 // Main MembershipPage Component
 const MyMemberShip = () => {
   const [activeTab, setActiveTab] = useState("all")
   const [activePage, setActivePage] = useState("memberships")
-  const [paymentMethods, setPaymentMethods] = useState(userData.paymentMethods)
+  // const [paymentMethods, setPaymentMethods] = useState(userData.paymentMethods)
 
   const filteredMemberships =
     activeTab === "all" ? membershipData : membershipData.filter((m) => m.status.toLowerCase() === activeTab)
@@ -685,7 +673,7 @@ const MyMemberShip = () => {
           <p className="mt-3 text-xl text-gray-500">Manage and view all your membership subscriptions</p>
         </div>
 
-        <UserProfile user={userData} />
+        {/* <UserProfile user={userData} /> */}
 
         <div className="border-b border-gray-200 mb-6">
           <nav className="flex flex-wrap space-x-8">
@@ -709,7 +697,7 @@ const MyMemberShip = () => {
             >
               Payment History
             </button>
-            <button
+            {/* <button
               onClick={() => setActivePage("payment-methods")}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activePage === "payment-methods"
@@ -748,7 +736,7 @@ const MyMemberShip = () => {
               }`}
             >
               Notifications
-            </button>
+            </button> */}
           </nav>
         </div>
 

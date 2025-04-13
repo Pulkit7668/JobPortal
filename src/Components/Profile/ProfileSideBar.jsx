@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
-import { FaTimes, FaBookmark, FaEye, FaSlidersH, FaUser, FaChartLine, FaDownload } from "react-icons/fa"
-import { ImLoop } from "react-icons/im";
-import { FaBox } from "react-icons/fa"
+import { FaTimes } from "react-icons/fa"
 import { useAuth } from "../../Context/AuthContext"
+import { Bookmark, Eye, SlidersHorizontal, User, LineChart, Download, Package, RefreshCw } from 'lucide-react'
+
 
 function ProfileSidebar({ isOpen, onClose }) {
   const profileCompletion = 40
@@ -26,7 +26,9 @@ function ProfileSidebar({ isOpen, onClose }) {
       {isOpen && <div className="fixed inset-0 bg-black bg-opacity-30 z-40" onClick={onClose}></div>}
 
       <div
-        className={`fixed top-0 right-0 h-full md:w-[50%] 2xl:w-[25%] bg-white md:rounded-l-3xl shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"} sm:w-[80%] lg:w-96`}
+        className={`fixed top-0 right-0 h-full w-[90%] sm:w-[80%] md:w-[50%] lg:w-96 2xl:w-[25%] bg-white md:rounded-l-3xl shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex justify-between items-center px-4 py-3 border-b">
           <h2 className="text-lg font-bold">Profile</h2>
@@ -81,38 +83,51 @@ function ProfileSidebar({ isOpen, onClose }) {
           </div>
         </div>
 
-        <div className="p-4 text-sm">
-          <h4 className="text-base font-bold mb-2">Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span></h4>
+        <div className="px-4 pb-3 text-sm">
+          <h4 className="text-base font-bold mb-2">
+            Your profile performance <span className="text-xs text-gray-400">(Last 90 days)</span>
+          </h4>
 
-          <div className="space-y-4 border-2 border-gray-200 p-4 rounded-lg"> 
-            <div className="flex items-start hover:bg-gray-200 transition-colors duration-150 ease-in-out p-2 rounded-lg cursor-pointer"> 
-              <div className="mr-3">
-                <FaUser />
+          <div className="border border-gray-200 rounded-lg overflow-hidden">
+            <div
+              className="flex items-center p-3 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-200"
+              onClick={() => handleProfileClick("/profile-views")}
+            >
+              <div className="mr-3 text-gray-600">
+                <User size={16} />
               </div>
               <div>
-                <h5 className="text-base font-semibold">35 profile views</h5> 
-                <p className="text-sm text-gray-500">Discover who's viewed your profile.</p>
+                <h5 className="font-medium">35 profile views</h5>
+                <p className="text-xs text-gray-500">Discover who's viewed your profile.</p>
               </div>
             </div>
 
-            <div className="flex items-start hover:bg-gray-200 transition-colors duration-150 ease-in-out p-2 rounded-lg cursor-pointer">
-              <div className="mr-3">
-                <FaChartLine />
+            <div
+              className="flex items-center p-3 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-200"
+              onClick={() => handleProfileClick("/post-impressions")}
+            >
+              <div className="mr-3 text-gray-600">
+                <LineChart size={16} />
               </div>
               <div>
-                <h5 className="text-base font-semibold">70 post impressions</h5>
-                <p className="text-sm text-gray-500">Check out who's engaging with your posts.</p>
-                <p className="text-xs text-gray-500">Past 7 days</p>
+                <h5 className="font-medium">70 post impressions</h5>
+                <p className="text-xs text-gray-500">
+                  Check out who's engaging with your posts.
+                  <span className="block mt-0.5">Past 7 days</span>
+                </p>
               </div>
             </div>
 
-            <div className="flex items-start hover:bg-gray-200 transition-colors duration-150 ease-in-out p-2 rounded-lg cursor-pointer"> 
-              <div className="mr-3">
-                <FaDownload />
+            <div
+              className="flex items-center p-3 hover:bg-gray-50 transition-colors cursor-pointer"
+              onClick={() => handleProfileClick("/resume-downloads")}
+            >
+              <div className="mr-3 text-gray-600">
+                <Download size={16} />
               </div>
               <div>
-                <h5 className="text-base font-semibold">20 Resume Downloads</h5>
-                <p className="text-sm text-gray-500">See how often you appear in search results.</p>
+                <h5 className="font-medium">20 Resume Downloads</h5>
+                <p className="text-xs text-gray-500">See how often you appear in search results.</p>
               </div>
             </div>
           </div>
@@ -124,7 +139,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               onClick={() => handleProfileClick("/change-visibility")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
-              <FaEye />
+              <Eye size={16} />
               <span>Change Visibility</span>
             </button>
 
@@ -132,7 +147,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               onClick={() => handleProfileClick("/set-job-preference")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
-              <FaSlidersH />
+              <SlidersHorizontal size={16} />
               <span>Set Job Preference</span>
             </button>
 
@@ -140,7 +155,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               onClick={() => handleProfileClick("/saved-jobs")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
-              <FaBookmark />
+              <Bookmark size={16} />
               <span>Saved Jobs</span>
             </button>
 
@@ -148,7 +163,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               onClick={() => handleProfileClick("/my-member-ship")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
-              <FaBox />
+              <Package size={16} />
               <span>My Member Ship</span>
             </button>
 
@@ -156,7 +171,7 @@ function ProfileSidebar({ isOpen, onClose }) {
               // onClick={() => handleProfileClick("/my-member-ship")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
-              <ImLoop />
+              <RefreshCw  size={16} />
               <span>Loop CV</span>
             </button>
           </div>

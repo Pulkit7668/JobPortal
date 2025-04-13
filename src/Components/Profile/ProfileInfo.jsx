@@ -20,7 +20,8 @@ export default function ProfileInfo({ name, headline, location, education, onEdi
             </svg>
           </div>
           <p className="text-base sm:text-base md:text-lg text-gray-600 mt-1">{headline || "Your Headline"}</p>
-          <p className="text-gray-600 flex items-center">
+          <p className="mt-2 text-gray-700">{bio || "No bio available"}</p>
+          <p className="mt-2 text-gray-600 flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 mr-1"
@@ -54,16 +55,6 @@ export default function ProfileInfo({ name, headline, location, education, onEdi
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             <span>{location || "Your Location"}</span>
-          </div>
-          <p className="mt-3 text-gray-700">{bio || "No bio available"}</p>
-
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button className="bg-blue-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-blue-700 transition-colors text-sm sm:text-sm md:text-base">
-              Contact
-            </button>
-            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-gray-50 transition-colors text-sm sm:text-sm md:text-base">
-              Share Profile
-            </button>
           </div>
         </div>
 
@@ -123,6 +114,3 @@ export default function ProfileInfo({ name, headline, location, education, onEdi
     </div>
   )
 }
-
-
-

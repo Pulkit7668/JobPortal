@@ -13,10 +13,9 @@ import {
   FaShareAlt,
   FaStar,
   FaCheckCircle,
-  FaLightbulb,
-  FaBriefcase
 } from "react-icons/fa"
-import { BiDollarCircle } from "react-icons/bi";
+import { BiCodeAlt } from "react-icons/bi"
+import { LuHistory, LuWallet } from "react-icons/lu"
 import { CiLocationOn } from "react-icons/ci"
 import TogglePage from "../TogglePage/TogglePage"
 import FilterPanel from "../FilterForJob/FilterPanel"
@@ -274,7 +273,7 @@ const JobCategoryPage = ({ category }) => {
 
           <div className="flex items-center gap-4">
             {/* Sort By Dropdown */}
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <select
                 value={sortBy}
                 onChange={(e) => {
@@ -292,7 +291,7 @@ const JobCategoryPage = ({ category }) => {
             </div>
 
             {/* Filter Button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
                 className="flex items-center border border-black rounded-xl p-2 text-blue-600 hover:text-blue-700 cursor-pointer"
@@ -304,7 +303,7 @@ const JobCategoryPage = ({ category }) => {
         </div>
 
         {/* Sort By Dropdown - Mobile Only */}
-        <div className="md:hidden mb-4">
+        <div className="lg:hidden mb-4">
           <select
             value={sortBy}
             onChange={(e) => {
@@ -466,16 +465,16 @@ const JobCategoryPage = ({ category }) => {
                   {/* Job Details */}
                   <div className="mt-2 space-y-1">
                   <p className="text-xs text-gray-600 flex items-center">
-                    <FaBriefcase className="mr-1" />
+                    <LuHistory className="mr-1 text-gray-500" />
                     <span className="font-semibold mr-1">Experience:</span> {job.experience}
                   </p>
                   <p className="text-xs text-gray-600 flex items-center">
-                    <BiDollarCircle className="mr-1"/> 
+                    <LuWallet className="mr-1 text-gray-500"/>
                     <span className="font-semibold mr-1">Salary:</span> {job.salary}
                   </p>
                 </div>
-                <div className="mt-1 flex items-center gap-1">
-                  <FaLightbulb className="text-gray-600" />
+                <div className="mt-1 flex items-start gap-1">
+                  <BiCodeAlt className="text-gray-500 mr-1" />
                   <p className="text-xs font-semibold text-gray-600 mb-1">Skills:</p>
                   <div className="flex flex-wrap gap-1">
                     {job.skills.slice(0, 3).map((skill, index) => (

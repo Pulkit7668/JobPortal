@@ -28,7 +28,6 @@ import BlockedCompanies from "./Pages/BlockedCompanies/BlockedCompanies.jsx";
 import SavedJobs from "./Components/SavedJobs/SavedJobs.jsx";
 import { AuthProvider } from "./Context/AuthContext.jsx"; 
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword.jsx";
-// import SubscriptionPlan from "./Components/SubscriptionPlan/SubscriptionPlan.jsx";
 import Signup from "./Pages/SignUpPage/Signup.jsx";
 import AllLatestJobs from "./Components/LatestJobs/AllLatestJobs.jsx";
 import LatestJobDetail from "./Components/LatestJobs/LatestJobDetails.jsx";
@@ -40,12 +39,8 @@ import AppliedJobs from "./Pages/AppliedJobs/AppliedJobs.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy.jsx";
 import TermsAndConditions from "./Pages/TermAndCondition/TermAndCondition.jsx";
 import MyMemberShip from "./Components/MyMemberShip/MyMemberShip.jsx";
-import Feedback from "./Components/Feedback/Feedback.jsx";
-import CompanyRating from "./Components/RateCompany/CompanyRating.jsx";
 import AllIndustries from "./Components/FilterJobs/AllIndustries.jsx";
-// import CoursesListingPage from "./Pages/CoursesListingPage.jsx";
-// import CourseDetailPage from "./Pages/CourseDetailPage.jsx";
-// import ShopPage from "./Pages/ShopPage.jsx";
+import CompanyRatePage from "./Pages/Rate-company/CompanyRatePage.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -89,7 +84,6 @@ createRoot(document.getElementById("root")).render(
             <Route path="/blocked-companies" element={<BlockedCompanies />} />
             <Route path="/saved-jobs" element={<SavedJobs />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            {/* <Route path="/subscription-plan" element={<SubscriptionPlan />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/all-latest-jobs" element={<AllLatestJobs />} />
             <Route path="/latest/job/:id" element={<LatestJobDetail />} />
@@ -99,12 +93,8 @@ createRoot(document.getElementById("root")).render(
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/term-and-condition" element={<TermsAndConditions />} />
             <Route path="/my-member-ship" element={<MyMemberShip />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/rate-company" element={<CompanyRating />} /> 
             <Route path="/all-industries" element={<AllIndustries />} />
-            {/* <Route path="/course" element={<ShopPage />} />
-            <Route path="/courses" element={<CoursesListingPage />} />
-          <Route path="/courses/:id" element={<CourseDetailPage />} /> */}
+            <Route path="/rate-company" element={<CompanyRatePage />} />
           </Route>
         </Routes>
       </BrowserRouter>

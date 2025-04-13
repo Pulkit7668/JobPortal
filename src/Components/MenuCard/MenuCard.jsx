@@ -13,8 +13,8 @@ import {
   FaClipboardList,
   FaUserShield,
   FaFileContract,
+  FaStar,
 } from "react-icons/fa"
-import { NotebookText } from 'lucide-react';
 import axios from "axios"
 import { baseUrl } from "../../Context/apiVariable"
 
@@ -135,11 +135,11 @@ const MenuCard = ({ isOpen, onClose }) => {
             </button>
 
             <button
-              onClick={() => handleMenuClick("/feedback")}
+              onClick={() => handleMenuClick("/rate-company")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
-               <NotebookText size={18} />
-              <span>Feedback</span> 
+               <FaStar />
+              <span>Rate Company</span> 
             </button>
 
             <button

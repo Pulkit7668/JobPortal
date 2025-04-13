@@ -4,12 +4,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
-import { FaHandshake, FaGraduationCap, FaBalanceScale, FaTools } from "react-icons/fa";
+import {
+  FaHandshake,
+  FaGraduationCap,
+  FaBalanceScale,
+  FaTools,
+} from "react-icons/fa";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { RiComputerLine } from "react-icons/ri";
-import { BiBarChart, BiUserCircle, BiSupport } from "react-icons/bi";
+import {
+  BiBarChart,
+  BiUserCircle,
+  BiSupport,
+} from "react-icons/bi";
 import { IoAnalyticsOutline } from "react-icons/io5";
-import { MdOutlineBusiness, MdOutlineEngineering } from "react-icons/md";
+import {
+  MdOutlineBusiness,
+  MdOutlineEngineering,
+} from "react-icons/md";
 import { FiSmile } from "react-icons/fi";
 
 const FilterJob = () => {
@@ -30,16 +42,21 @@ const FilterJob = () => {
   ];
 
   return (
-    <div className="mt-20 px-4">
-      <div className="flex items-center justify-between mb-5 lg:mx-20">
-        <h2 className="xs:text-lg md:text-2xl font-bold">Industries</h2>
+    <div className="p-4 sm:p-6 lg:mx-16 mt-6 lg:mt-10">
+      {/* Header */}
+      <div className="flex xs:flex-row justify-between items-start xs:items-center mb-6 gap-2 xs:gap-0">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Industries</h2>
         <div className="flex items-center">
-          <Link to="/all-industries" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
+          <Link
+            to="/all-industries"
+            className="mr-2 text-gray-800 hover:text-blue-600 text-sm sm:text-base transition-all duration-300"
+          >
             View More
           </Link>
-          <FaCircleArrowRight size={20} />
+          <FaCircleArrowRight className="text-black text-base sm:text-lg" />
         </div>
       </div>
+
       {/* Desktop View */}
       <div className="hidden md:flex flex-wrap justify-center gap-4">
         {buttons.map((button, index) => (
@@ -48,7 +65,7 @@ const FilterJob = () => {
             to={button.path}
             aria-label={`Navigate to ${button.label}`}
             title={button.label}
-            className={`flex items-center px-4 py-3 shadow-md rounded-lg transition-all duration-300 cursor-pointer 
+            className={`flex items-center px-4 py-3 rounded-lg transition-all duration-300 shadow-md 
               ${
                 location.pathname === button.path
                   ? "bg-blue-500 text-white shadow-lg"
@@ -56,15 +73,15 @@ const FilterJob = () => {
               }`}
           >
             <span className="text-xl">{button.icon}</span>
-            <span className="ml-2 text-lg font-medium">{button.label}</span>
+            <span className="ml-2 text-base lg:text-lg font-medium">{button.label}</span>
           </Link>
         ))}
       </div>
 
-      {/* Mobile View (Swiper with Auto Loop) */}
+      {/* Mobile Swiper View */}
       <div className="md:hidden">
         <Swiper
-          spaceBetween={10}
+          spaceBetween={12}
           slidesPerView={3.2}
           freeMode={true}
           autoplay={{
@@ -73,7 +90,7 @@ const FilterJob = () => {
           }}
           loop={true}
           modules={[Autoplay, FreeMode]}
-          className="py-2"
+          className="py-3"
         >
           {buttons.map((button, index) => (
             <SwiperSlide key={index}>
@@ -81,15 +98,17 @@ const FilterJob = () => {
                 to={button.path}
                 aria-label={`Navigate to ${button.label}`}
                 title={button.label}
-                className={`flex flex-col items-center p-3 shadow-md rounded-lg transition-all duration-300 cursor-pointer
+                className={`flex flex-col items-center justify-center p-3 rounded-lg transition-all duration-300 shadow-md
                   ${
                     location.pathname === button.path
                       ? "bg-blue-500 text-white shadow-lg"
                       : "bg-white text-gray-700 hover:shadow-xl"
                   }`}
               >
-                <span className="text-2xl">{button.icon}</span>
-                <span className="text-sm font-medium mt-1">{button.label}</span>
+                <span className="text-xl sm:text-2xl">{button.icon}</span>
+                <span className="text-xs sm:text-sm font-medium mt-1 text-center">
+                  {button.label}
+                </span>
               </Link>
             </SwiperSlide>
           ))}
