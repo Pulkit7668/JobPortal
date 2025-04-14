@@ -11,7 +11,7 @@ function TopRecruiters() {
   return (
     <div className="p-4 sm:p-6 lg:mx-10 xl:mx-20 mt-6 lg:mt-10">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-        <h2 className="text-xl md:text-2xl font-bold">Top Recruiters</h2>
+        <h2 className="text-xl md:text-2xl font-bold">Top Companies</h2>
         <div className="flex items-center mt-2 sm:mt-0">
           <Link to="/recruiters/all" className="mr-2 text-gray-800 hover:text-blue-600 transition-all duration-300">
             View More
@@ -39,7 +39,7 @@ function TopRecruiters() {
                   <CiLocationOn size={12} className="text-gray-500" />
                   <p className="text-xs md:text-sm text-gray-600 ml-1">{recruiter.location}</p>
                 </div>
-                <p className="text-xs md:text-sm text-gray-500">{recruiter.vacancies} Vacancies</p>
+                <p className="text-xs md:text-sm text-gray-500">{recruiter.industry}</p>
                 
                 <div className="flex items-center justify-between mt-2 md:mt-3 space-x-2">
                   {/* View Jobs Button */}

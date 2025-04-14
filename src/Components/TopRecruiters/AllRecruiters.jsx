@@ -49,7 +49,7 @@ function AllRecruiters() {
             className="mr-3 p-2 border-2 border-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition duration-300"
           />
         </button>
-        <h2 className="xs:text-2xl md:text-3xl font-bold">All Recruiters</h2>
+        <h2 className="xs:text-2xl md:text-3xl font-bold">All Companies</h2>
         {/* Filter Button */}
         <button
           onClick={toggleFilter} // Toggle filter visibility

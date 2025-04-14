@@ -134,13 +134,13 @@ const MenuCard = ({ isOpen, onClose }) => {
               <span>Applied Jobs</span>
             </button>
 
-            <button
+            {/* <button
               onClick={() => handleMenuClick("/rate-company")}
               className="flex items-center space-x-2 cursor-pointer text-gray-700 hover:text-blue-600 hover:underline hover:underline-offset-4 hover:decoration-orange-500 transition-colors duration-150 ease-in-out"
             >
                <FaStar />
               <span>Rate Company</span> 
-            </button>
+            </button> */}
 
             <button
               onClick={() => handleMenuClick("/privacy-policy")}

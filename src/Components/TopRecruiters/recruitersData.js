@@ -2,7 +2,7 @@ export const recruitersData = [
     {
         id: 1,
         name: "Tata Consultancy Services (TCS)",
-        vacancies: 250,
+        industry: "IT Services and Consulting",
         location: "Mumbai",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbUfVwV-mMkk3G3BGg2NOBo9cwqSMAmFevvl6Qf7R9-72RoOy8SKpybI&s",
         jobs: [
@@ -114,7 +114,7 @@ export const recruitersData = [
     {
         id: 2,
         name: "Infosys",
-        vacancies: 200,
+        industry: "IT Services and Consulting",
         location: "Bengaluru, Karnataka",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCz4Caygbm1OdRn3UCg-I-BFozHz7LihZeYiGqDxJF6wGGGepuVGGf4hw&s",
         jobs: [
@@ -225,7 +225,7 @@ export const recruitersData = [
     {
         id: 3,
         name: "Wipro",
-        vacancies: 180,
+        industry: "IT Services and Consulting",
         location: "Noida, Uttar Pradesh",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEdq8QnU_xN6fYYdYwvEksSOtTof0asvf4xRWdJYptIN-OSbWnkWRVcF4&s",
         jobs: [
@@ -336,7 +336,7 @@ export const recruitersData = [
     {
         id: 4,
         name: "Tech Mahindra",
-        vacancies: 150,
+        industry: "IT Services and Consulting",
         location: "Pune, Maharashtra",
         image: "https://www.techmahindra.com/themes/custom/techm/techm_logo.svg",
         jobs: [
@@ -451,7 +451,7 @@ export const recruitersData = [
     {
             id: 5,
             name: "HCL Technologies",
-            vacancies: 120,
+            industry: "IT Services and Consulting",
             location: "Noida, Uttar Pradesh",
             image: "https://www.hcltech.com/themes/custom/hcltech/images/hcltech-new-logo.svg",
             jobs: [
@@ -562,7 +562,7 @@ export const recruitersData = [
     {
       id: 6,
       name: "Capgemini",
-      vacancies: 130,
+      industry: "IT Services and Consulting",
       location: "Hyderabad, Telangana",
       image: "https://www.capgemini.com/wp-content/themes/capgemini2020/assets/images/logo.svg",
       jobs: [
@@ -673,7 +673,7 @@ export const recruitersData = [
     {
       id: 7,
       name: "Cognizant",
-      vacancies: 80,
+      industry: "IT Services and Consulting",
       location: "Kolkata, West Bengal",
       image: "https://cognizant.scene7.com/is/content/cognizant/COG-Logo-2022-1?fmt=png-alpha",
       jobs: [
@@ -784,7 +784,7 @@ export const recruitersData = [
     {
         id: 8,
         name: "IBM India",
-        vacancies: 60,
+        industry: "IT Services and Consulting",
         location: "Bengaluru",
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
         jobs: [
