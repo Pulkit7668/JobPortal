@@ -7,6 +7,7 @@ import { BsEmojiSmile, BsThreeDotsVertical } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import { BsCheck2All } from "react-icons/bs"
 
+// Initial recruiters data with added lastMessage property
 const recruiters = [
   {
     id: 1,
@@ -14,6 +15,8 @@ const recruiters = [
     image: "https://i.imgur.com/5X1N3Gx.png",
     role: "Technical Recruiter",
     status: "online",
+    lastMessage: "Are you available for an interview tomorrow?",
+    lastMessageTime: "10:45 AM",
   },
   {
     id: 2,
@@ -21,6 +24,8 @@ const recruiters = [
     image: "https://i.imgur.com/5X1N3Gx.png",
     role: "HR Manager",
     status: "online",
+    lastMessage: "Your resume looks impressive!",
+    lastMessageTime: "Yesterday",
   },
   {
     id: 3,
@@ -28,6 +33,8 @@ const recruiters = [
     image: "https://i.imgur.com/5X1N3Gx.png",
     role: "Senior Recruiter",
     status: "away",
+    lastMessage: "Let's schedule a call to discuss the position.",
+    lastMessageTime: "Wed",
   },
   {
     id: 4,
@@ -35,6 +42,8 @@ const recruiters = [
     image: "https://i.imgur.com/5X1N3Gx.png",
     role: "Talent Acquisition",
     status: "offline",
+    lastMessage: "Thanks for your application.",
+    lastMessageTime: "Mon",
   },
 ]
 
@@ -72,6 +81,7 @@ const RecruiterChat = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredRecruiters, setFilteredRecruiters] = useState(recruiters)
   const [showDropdown, setShowDropdown] = useState(false)
+  const [recruitersData, setRecruitersData] = useState(recruiters)
 
   const navigate = useNavigate()
   const messagesEndRef = useRef(null)
@@ -91,12 +101,14 @@ const RecruiterChat = () => {
   // Filter recruiters based on search term
   useEffect(() => {
     if (searchTerm) {
-      const filtered = recruiters.filter((recruiter) => recruiter.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      const filtered = recruitersData.filter((recruiter) =>
+        recruiter.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      )
       setFilteredRecruiters(filtered)
     } else {
-      setFilteredRecruiters(recruiters)
+      setFilteredRecruiters(recruitersData)
     }
-  }, [searchTerm])
+  }, [searchTerm, recruitersData])
 
   // Load default messages when selecting a recruiter
   useEffect(() => {
@@ -183,6 +195,26 @@ const RecruiterChat = () => {
 
           // Update user message to read
           setChatMessages((prev) => prev.map((msg) => (msg.sender === "user" ? { ...msg, status: "read" } : msg)))
+
+          // Update last message for the selected recruiter
+          if (selectedRecruiter) {
+            const updatedRecruiters = recruitersData.map((recruiter) => {
+              if (recruiter.id === selectedRecruiter.id) {
+                return {
+                  ...recruiter,
+                  lastMessage: recruiterResponse.text,
+                  lastMessageTime: recruiterResponse.time,
+                }
+              }
+              return recruiter
+            })
+            setRecruitersData(updatedRecruiters)
+            setSelectedRecruiter({
+              ...selectedRecruiter,
+              lastMessage: recruiterResponse.text,
+              lastMessageTime: recruiterResponse.time,
+            })
+          }
         },
         1500 + Math.random() * 1000,
       )
@@ -289,7 +321,7 @@ const RecruiterChat = () => {
             {filteredRecruiters.map((recruiter) => (
               <li
                 key={recruiter.id}
-                className={`flex items-center px-5 py-3 cursor-pointer transition-all hover:bg-gray-50 border-l-[3px] ${
+                className={`flex items-start px-5 py-3 cursor-pointer transition-all hover:bg-gray-50 border-l-[3px] ${
                   selectedRecruiter?.id === recruiter.id ? "bg-indigo-50 border-l-indigo-500" : "border-l-transparent"
                 }`}
                 onClick={() => setSelectedRecruiter(recruiter)}
@@ -302,9 +334,15 @@ const RecruiterChat = () => {
                   />
                   {getStatusIndicator(recruiter.status)}
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-1 min-w-0">
                   <span className="font-medium text-gray-800 text-[0.95rem]">{recruiter.name}</span>
                   <span className="text-xs text-gray-500 mt-1">{recruiter.role}</span>
+
+                  {/* Last message and time */}
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-xs text-gray-600 truncate max-w-[140px]">{recruiter.lastMessage}</p>
+                    <span className="text-xs text-gray-400 ml-1 whitespace-nowrap">{recruiter.lastMessageTime}</span>
+                  </div>
                 </div>
               </li>
             ))}
@@ -316,7 +354,7 @@ const RecruiterChat = () => {
       {selectedRecruiter && (
         <div className={`flex-1 flex flex-col bg-white transition-all duration-300 ${isMobile ? "w-full" : ""}`}>
           {/* Chat Header */}
-          <div className="bg-indigo-500 text-white py-3 px-4 md:px-5 flex justify-between items-center border-b border-indigo-600">
+          <div className="bg-indigo-500 text-white py-3 px-4 md:px-5 flex justify-between items-center border-b border-indigo-600 md:hidden">
             <div className="flex items-center">
               {isMobile && (
                 <button
@@ -345,7 +383,7 @@ const RecruiterChat = () => {
                 </span>
               </div>
             </div>
-            <div className="flex items-center relative">
+            {/* <div className="flex items-center relative">
               <button
                 className="text-white bg-transparent border-none cursor-pointer mr-3 p-1 rounded-full hover:bg-indigo-400 transition-colors"
                 onClick={() => setShowDropdown(!showDropdown)}
@@ -371,7 +409,7 @@ const RecruiterChat = () => {
               >
                 <IoCloseCircleSharp size={isMobile ? 24 : 28} />
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* Chat Messages */}

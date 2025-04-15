@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { recruitersData } from "./recruitersData"
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 const CompanyDetails = () => {
   const [activeTab, setActiveTab] = useState("overview")
   const { recruiterId } = useParams()
   const navigate = useNavigate()
+  const [showMenu, setShowMenu] = useState(false)
+  const [reviewFilter, setReviewFilter] = useState("all")
   
 
   useEffect(() => {
@@ -15,6 +18,77 @@ const CompanyDetails = () => {
   // Find company data from recruitersData
   const [company, setCompany] = useState(null)
   const [currentRecruiterId, setCurrentRecruiterId] = useState(null)
+
+  // Sample reviews data
+  const reviews = [
+    {
+      id: 1,
+      title: "Great place to work",
+      rating: 5,
+      author: "Former Employee - Software Engineer",
+      date: "Jan 15, 2023",
+      pros: "Good work-life balance, great benefits, supportive management",
+      cons: "Career growth can be slow in some departments",
+      isGood: true
+    },
+    {
+      id: 2,
+      title: "Challenging but rewarding",
+      rating: 4,
+      author: "Current Employee - Product Manager",
+      date: "Mar 22, 2023",
+      pros: "Innovative projects, competitive salary, learning opportunities",
+      cons: "High pressure environment, long hours during release cycles",
+      isGood: true
+    },
+    {
+      id: 3,
+      title: "Disappointing experience",
+      rating: 2,
+      author: "Former Employee - Marketing Specialist",
+      date: "Feb 10, 2023",
+      pros: "Good location, nice office space",
+      cons: "Poor management, lack of direction, limited growth opportunities",
+      isGood: false
+    },
+    {
+      id: 4,
+      title: "Toxic workplace culture",
+      rating: 1,
+      author: "Former Employee - Customer Support",
+      date: "Apr 5, 2023",
+      pros: "Decent pay for the industry",
+      cons: "Toxic management, unrealistic expectations, no work-life balance",
+      isGood: false
+    },
+    {
+      id: 5,
+      title: "Great benefits but stressful",
+      rating: 3,
+      author: "Current Employee - Data Analyst",
+      date: "May 18, 2023",
+      pros: "Excellent benefits, good pay, interesting projects",
+      cons: "High stress environment, poor communication between departments",
+      isGood: false
+    },
+    {
+      id: 6,
+      title: "Excellent company culture",
+      rating: 5,
+      author: "Current Employee - HR Manager",
+      date: "Jun 7, 2023",
+      pros: "Supportive environment, good work-life balance, great team",
+      cons: "Some processes could be more efficient",
+      isGood: true
+    }
+  ]
+
+  // Filter reviews based on selection
+  const filteredReviews = reviewFilter === "all" 
+    ? reviews 
+    : reviewFilter === "good" 
+      ? reviews.filter(review => review.isGood) 
+      : reviews.filter(review => !review.isGood)
 
   useEffect(() => {
     // If recruiterId is provided in URL, use it, otherwise default to first company
@@ -29,7 +103,7 @@ const CompanyDetails = () => {
         name: foundCompany.name,
         logo: foundCompany.image,
         rating: 3.4, // Default rating if not available in data
-        reviewCount: foundCompany.jobs?.length || 0,
+        reviewCount: 6000, // Changed to match the 6k mentioned
         recommendRate: 55,
         interviewDifficulty: 3.1,
         ceo: {
@@ -200,7 +274,16 @@ const CompanyDetails = () => {
 
             {/* Interview difficulty */}
             <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-2">{company.interviewDifficulty}/5 Interview Difficulty level</h3>
+              <div className="flex items-end gap-1 mb-2">
+                <span className="text-5xl font-semibold">{company.interviewDifficulty}</span>
+                <span className="text-gray-600 flex items-center">
+                  /5 difficulty 
+                  <span className="ml-1 cursor-pointer"> <AiOutlineExclamationCircle /></span>
+                </span>
+              </div>
+
+
+
 
               {/* Interview experience */}
               <div className="mt-8">
@@ -278,12 +361,89 @@ const CompanyDetails = () => {
                   className="flex-grow px-4 py-2 border border-gray-300 rounded-full text-sm"
                   placeholder="e.g. Consultant"
                 />
-                <div className="ml-2 px-3 py-2 border border-gray-300 rounded flex items-center cursor-pointer">
-                  <span className="mr-1">⚙️</span>
-                  <span className="font-medium">5</span>
+                <div className="relative ml-2">
+                  <div 
+                    className="px-3 py-2 border border-gray-300 rounded flex items-center cursor-pointer"
+                    onClick={() => setShowMenu(!showMenu)}
+                  >
+                    <span className="mr-1">⚙️</span>
+                    <span className="font-medium">5</span>
+                  </div>
+                  {showMenu && (
+                    <div className="absolute right-0 mt-1 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                      <div 
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          setReviewFilter("all");
+                          setShowMenu(false);
+                        }}
+                      >
+                        All reviews
+                      </div>
+                      <div 
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          setReviewFilter("good");
+                          setShowMenu(false);
+                        }}
+                      >
+                        Recent good
+                      </div>
+                      <div 
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          setReviewFilter("bad");
+                          setShowMenu(false);
+                        }}
+                      >
+                        Recent bad
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div className="font-bold mt-4">{company.reviewCount}K reviews</div>
+              <div className="font-bold mt-4">{company.reviewCount} reviews</div>
+            </div>
+
+            {/* Reviews list */}
+            <div className="mt-6 space-y-6">
+              {filteredReviews.map(review => (
+                <div key={review.id} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h4 className="text-lg font-semibold">{review.title}</h4>
+                      <div className="flex items-center mt-1">
+                        <div className="text-xl text-green-600 mr-2">
+                          {renderStars(review.rating)}
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-500 mt-1">{review.author} - {review.date}</p>
+                    </div>
+                    <div className="px-3 py-1 rounded-full bg-gray-100 text-xs font-medium">
+                      {review.isGood ? "Positive" : "Negative"}
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4">
+                    <div className="mb-3">
+                      <h5 className="font-semibold text-green-600">Pros</h5>
+                      <p className="text-sm mt-1">{review.pros}</p>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-red-600">Cons</h5>
+                      <p className="text-sm mt-1">{review.cons}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 pt-3 border-t border-gray-200 flex justify-between">
+                    <div className="text-sm text-gray-500">Was this review helpful?</div>
+                    <div className="flex space-x-2">
+                      <button className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50">Yes</button>
+                      <button className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50">No</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -416,4 +576,4 @@ const CompanyDetails = () => {
   )
 }
 
-export default CompanyDetails
+export default CompanyDetails   

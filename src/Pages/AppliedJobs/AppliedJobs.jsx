@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react"
-import { Search, ChevronDown, ChevronUp, X, Eye, Trash, ArrowLeft } from "lucide-react"
+import { Search, ChevronDown, ChevronUp, X, Eye, Trash, ArrowLeft } from 'lucide-react'
 
 const AppliedJobs = () => {
   // Sample data for applied jobs
@@ -112,7 +112,24 @@ const AppliedJobs = () => {
   const [sortConfig, setSortConfig] = useState({ key: "appliedDate", direction: "desc" })
   const [selectedJob, setSelectedJob] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 6
+  const [isMobileView, setIsMobileView] = useState(false)
+  const itemsPerPage = isMobileView ? 4 : 6
+
+  // Check for mobile view on mount and window resize
+  useState(() => {
+    const checkMobileView = () => {
+      setIsMobileView(window.innerWidth < 768)
+    }
+    
+    // Initial check
+    checkMobileView()
+    
+    // Add event listener
+    window.addEventListener('resize', checkMobileView)
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobileView)
+  }, [])
 
   // Handle sorting
   const requestSort = (key) => {
@@ -170,13 +187,53 @@ const AppliedJobs = () => {
   const paginatedJobs = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage
     return filteredAndSortedJobs.slice(startIndex, startIndex + itemsPerPage)
-  }, [filteredAndSortedJobs, currentPage])
+  }, [filteredAndSortedJobs, currentPage, itemsPerPage])
 
   // Get unique statuses for filter dropdown
   const statuses = ["All", ...new Set(appliedJobs.map((job) => job.status))]
 
+  // Mobile card view for job listings
+  const MobileJobCard = ({ job }) => (
+    <div className="bg-white rounded-lg shadow-md p-4 mb-4">
+      <div className="flex justify-between items-start">
+        <div>
+          <h3 className="font-medium text-lg">{job.title}</h3>
+          <p className="text-gray-600 text-sm">{job.company}</p>
+        </div>
+        <span
+          className={`px-2 py-1 rounded-full text-xs font-medium ${
+            job.status === "Pending Review"
+              ? "bg-yellow-100 text-yellow-800"
+              : job.status === "Interview Scheduled"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+          }`}
+        >
+          {job.status}
+        </span>
+      </div>
+      <p className="text-gray-500 text-sm mt-2">Applied: {job.appliedDate}</p>
+      <div className="flex justify-end space-x-2 mt-3">
+        <button
+          className="p-1 text-blue-600 hover:text-blue-800 transition-colors"
+          onClick={() => setSelectedJob(job)}
+          title="View details"
+        >
+          <Eye className="h-5 w-5" />
+        </button>
+        <button
+          className="p-1 text-red-600 hover:text-red-800 transition-colors"
+          onClick={() => handleWithdraw(job.id)}
+          title="Withdraw application"
+        >
+          <Trash className="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  )
+
   return (
-    <div className="mx-auto mt-5 p-10">
+    <div className="mx-auto mt-5 p-4 sm:p-6 lg:p-10">
       <button
         onClick={() => window.history.back()}
         className="flex items-center text-gray-600 hover:text-gray-900 mb-4 transition-colors"
@@ -185,10 +242,10 @@ const AppliedJobs = () => {
         <ArrowLeft className="h-5 w-5 mr-1" />
         <span>Back</span>
       </button>
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Applied Jobs</h2>
+      <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Applied Jobs</h2>
 
       {/* Search and filters */}
-      <div className="flex flex-col md:flex-row gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <div className="relative flex-1">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
@@ -207,7 +264,7 @@ const AppliedJobs = () => {
           )}
         </div>
 
-        <div className="w-full md:w-48">
+        <div className="w-full sm:w-48">
           <select
             className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={statusFilter}
@@ -222,8 +279,17 @@ const AppliedJobs = () => {
         </div>
       </div>
 
-      {/* Jobs table */}
-      <div className="bg-white shadow-md rounded-lg overflow-hidden mb-6">
+      {/* Mobile view */}
+      <div className="md:hidden">
+        {paginatedJobs.length > 0 ? (
+          paginatedJobs.map((job) => <MobileJobCard key={job.id} job={job} />)
+        ) : (
+          <div className="text-center text-gray-500 py-8">No applied jobs found.</div>
+        )}
+      </div>
+
+      {/* Desktop/Tablet view - Jobs table */}
+      <div className="hidden md:block bg-white shadow-md rounded-lg overflow-hidden mb-6">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -251,7 +317,7 @@ const AppliedJobs = () => {
                   </div>
                 </th>
                 <th
-                  className="p-3 border-b cursor-pointer hidden md:table-cell"
+                  className="p-3 border-b cursor-pointer hidden lg:table-cell"
                   onClick={() => requestSort("appliedDate")}
                 >
                   <div className="flex items-center">
@@ -284,7 +350,7 @@ const AppliedJobs = () => {
                   <tr key={job.id} className="border-b hover:bg-gray-50">
                     <td className="p-3 font-medium">{job.title}</td>
                     <td className="p-3">{job.company}</td>
-                    <td className="p-3 hidden md:table-cell">{job.appliedDate}</td>
+                    <td className="p-3 hidden lg:table-cell">{job.appliedDate}</td>
                     <td className="p-3">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -332,9 +398,9 @@ const AppliedJobs = () => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
           <button
-            className="px-4 py-2 border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
@@ -344,7 +410,7 @@ const AppliedJobs = () => {
             Page {currentPage} of {totalPages}
           </span>
           <button
-            className="px-4 py-2 border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
           >
@@ -353,13 +419,13 @@ const AppliedJobs = () => {
         </div>
       )}
 
-      {/* Job details modal */}
+      {/* Job details modal - Responsive for all screen sizes */}
       {selectedJob && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
+          <div className="bg-white rounded-lg w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="p-4 sm:p-6">
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold text-gray-900">{selectedJob.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">{selectedJob.title}</h3>
                 <button className="text-gray-500 hover:text-gray-700" onClick={() => setSelectedJob(null)}>
                   <X className="h-6 w-6" />
                 </button>
@@ -367,11 +433,11 @@ const AppliedJobs = () => {
 
               <div className="space-y-4">
                 <div>
-                  <p className="text-lg font-medium">{selectedJob.company}</p>
+                  <p className="text-base sm:text-lg font-medium">{selectedJob.company}</p>
                   <p className="text-gray-600">{selectedJob.location}</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-gray-500">Salary Range</p>
                     <p className="font-medium">{selectedJob.salary}</p>
@@ -403,15 +469,15 @@ const AppliedJobs = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex justify-end space-x-3">
+              <div className="mt-6 flex flex-col sm:flex-row justify-end gap-3">
                 <button
-                  className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                  className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 order-2 sm:order-1"
                   onClick={() => setSelectedJob(null)}
                 >
                   Close
                 </button>
                 <button
-                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                  className="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 order-1 sm:order-2"
                   onClick={() => {
                     handleWithdraw(selectedJob.id)
                     setSelectedJob(null)
@@ -429,4 +495,3 @@ const AppliedJobs = () => {
 }
 
 export default AppliedJobs
-
