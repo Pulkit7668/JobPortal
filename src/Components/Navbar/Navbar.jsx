@@ -92,7 +92,7 @@ function Navbar() {
                 Subscription Plan
               </NavLink> */}
               <a
-                href="https://static-page-0011.netlify.app/"
+                href="https://recruiter-static-page.vercel.app/client"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-600 hover:border-b-2 border-orange-500 pb-1 transition-all duration-300 py-1"
