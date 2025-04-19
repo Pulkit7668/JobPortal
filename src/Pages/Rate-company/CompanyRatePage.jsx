@@ -376,7 +376,7 @@ export default function CompanyRatePage() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen mt-16 md:mt-0">
       <div className="max-w-7xl mx-auto bg-white shadow-sm md:my-8 md:rounded-lg overflow-hidden">
         <MobileHeader />
         <main>{renderContent()}</main>
