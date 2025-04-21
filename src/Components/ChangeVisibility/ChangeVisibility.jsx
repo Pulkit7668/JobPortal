@@ -11,7 +11,6 @@ const ChangeVisibility = () => {
   const [animateSwitch, setAnimateSwitch] = useState(false)
   const navigate = useNavigate()
 
-  // Add animation effect when component mounts
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimateSwitch(true)
@@ -22,7 +21,6 @@ const ChangeVisibility = () => {
   const handleToggle = () => {
     setIsLookingForJob((prevState) => !prevState)
 
-    // Show a mini toast on toggle
     toast.success(`Status changed to: ${!isLookingForJob ? "Looking for a job" : "Not looking for a job"}`, {
       duration: 1500,
       style: {
