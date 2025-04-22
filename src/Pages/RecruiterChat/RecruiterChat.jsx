@@ -383,33 +383,6 @@ const RecruiterChat = () => {
                 </span>
               </div>
             </div>
-            {/* <div className="flex items-center relative">
-              <button
-                className="text-white bg-transparent border-none cursor-pointer mr-3 p-1 rounded-full hover:bg-indigo-400 transition-colors"
-                onClick={() => setShowDropdown(!showDropdown)}
-              >
-                <BsThreeDotsVertical size={20} />
-              </button>
-              {showDropdown && (
-                <div className="absolute top-full right-0 bg-white rounded-lg shadow-lg w-[180px] z-10 mt-2 overflow-hidden animate-fadeIn">
-                  <button className="py-3 px-4 text-left w-full bg-transparent border-none text-gray-700 text-sm cursor-pointer hover:bg-gray-100 transition-colors">
-                    View Profile
-                  </button>
-                  <button className="py-3 px-4 text-left w-full bg-transparent border-none text-gray-700 text-sm cursor-pointer hover:bg-gray-100 transition-colors">
-                    Clear Chat
-                  </button>
-                  <button className="py-3 px-4 text-left w-full bg-transparent border-none text-gray-700 text-sm cursor-pointer hover:bg-gray-100 transition-colors">
-                    Block Recruiter
-                  </button>
-                </div>
-              )}
-              <button
-                onClick={() => navigate("/")}
-                className="text-white bg-transparent border-none cursor-pointer flex items-center justify-center"
-              >
-                <IoCloseCircleSharp size={isMobile ? 24 : 28} />
-              </button>
-            </div> */}
           </div>
 
           {/* Chat Messages */}
